@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "牛奶猫的猎人笔记"
   text: "StarNekOvO"
-  tagline: "System Security Hunter. Freelancer. Daily Py/Go/Rust. | MSCS at CU Boulder 🎓 | maimaiDX ◂Ⓘ▸ ヨルシカ | INFJ"
+  tagline: "System Security Hunter. Freelancer. Python/Go/Rust. | MSCS at CU Boulder. | maimaiDX ◂Ⓘ▸ ヨルシカ | INFJ"
   image:
     src: /img/Milk.jpg
     alt: StarNekOvO
