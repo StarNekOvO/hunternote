@@ -31,6 +31,7 @@ export default defineConfig({
   
   head: [
     ['link', { rel: 'icon', href: '/img/Milk.jpg' }],
+    ['link', { rel: 'stylesheet', href: '/custom.css' }],
     ['meta', { name: 'author', content: 'StarNekOvO' }],
     ['meta', { property: 'og:title', content: '牛奶猫的猎人笔记' }],
     ['meta', { property: 'og:type', content: 'blog' }],

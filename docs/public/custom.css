@@ -1,0 +1,22 @@
+/* 首页头像圆形样式 */
+.VPHomeHero .image img {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--vp-c-bg-soft);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 导航栏 logo 圆形样式 */
+.VPNavBarTitle img,
+.VPNavBarTitle .logo {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--vp-c-divider);
+  transition: transform 0.2s ease;
+}
+
+.VPNavBarTitle img:hover,
+.VPNavBarTitle .logo:hover {
+  transform: scale(1.05);
+}
+
