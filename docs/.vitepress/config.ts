@@ -27,6 +27,7 @@ export default defineConfig({
   title: '牛奶猫的猎人笔记',
   description: "StarNekOvO's Security Research Notes",
   lang: 'zh-CN',
+  base: '/', // 使用自定义域名时设置为根路径
   
   head: [
     ['link', { rel: 'icon', href: '/img/Milk.jpg' }],
