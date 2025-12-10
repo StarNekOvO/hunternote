@@ -12,8 +12,13 @@ hunternote-blog/
 │   ├── public/             # 静态资源目录
 │   │   └── img/            # 图片资源
 │   ├── ctfs/               # CTF 相关文章
+│   │   ├── buuctf/         # BUU CTF
+│   │   └── ctfshow/        # ctf.show
 │   ├── cves/               # CVE 相关文章
 │   ├── labs/               # 实验相关文章
+│   │   ├── htb-academy/    # HTB Academy
+│   │   ├── htb-lab/        # HTB Lab
+│   │   └── pwn-college/    # pwn.college
 │   ├── file/               # 文件资源
 │   ├── index.md            # 首页
 │   └── whoami/             # whoami 页面

@@ -12,13 +12,20 @@ function getSidebar() {
       text: 'CTFs',
       collapsed: false,
       link: '/ctfs/',
-      items: []
+      items: [
+        { text: 'BUU CTF', link: '/ctfs/buuctf/' },
+        { text: 'ctf.show', link: '/ctfs/ctfshow/' }
+      ]
     },
     {
       text: 'Labs',
       collapsed: false,
       link: '/labs/',
-      items: []
+      items: [
+        { text: 'HTB Academy', link: '/labs/htb-academy/' },
+        { text: 'HTB Lab', link: '/labs/htb-lab/' },
+        { text: 'pwn.college', link: '/labs/pwn-college/' }
+      ]
     }
   ]
 }
