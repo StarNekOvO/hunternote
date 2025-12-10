@@ -46,6 +46,7 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', href: '/img/Milk.jpg' }],
     ['link', { rel: 'stylesheet', href: '/custom.css' }],
+    ['link', { rel: 'sitemap', type: 'application/xml', href: '/sitemap.xml' }],
     ['meta', { name: 'author', content: 'StarNekOvO' }],
     ['meta', { property: 'og:title', content: '牛奶猫的猎人笔记' }],
     ['meta', { property: 'og:type', content: 'blog' }],
@@ -86,7 +87,8 @@ export default defineConfig({
       '/ctfs/': getSidebar(),
       '/labs/': getSidebar(),
       '/whoami/': [],
-      '/friends/': []
+      '/friends/': [],
+      '/sitemap/': []
     },
 
     outline: {
