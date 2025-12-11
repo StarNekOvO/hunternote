@@ -1,4 +1,4 @@
-# pwn.college lv1（白腰带）
+# pwn.college lv1（白色腰带）
 
 白腰带挑战其实并不算挑战，就是熟悉一下 pwn.college 这个平台的基础操作。
 

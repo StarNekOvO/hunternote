@@ -26,6 +26,10 @@
   - [HTB Lab](/labs/htb-lab/)
   - [pwn.college](/labs/pwn-college/)
     - [lv1 白腰带挑战](/labs/pwn-college/lv1/)
+    - [lv2 橙色腰带挑战](/labs/pwn-college/lv2/)
+    - [lv3 黄色腰带挑战](/labs/pwn-college/lv3/)
+    - [lv4 绿色腰带挑战](/labs/pwn-college/lv4/)
+    - [lv5 蓝色腰带挑战](/labs/pwn-college/lv5/)
 
 ## XML 网站地图
 
@@ -35,7 +39,7 @@
 
 ## 站点统计
 
-- **总页面数**：14 个主要页面
+- **总页面数**：18 个主要页面
 - **内容分类**：CVEs、CTFs、Labs
 - **更新频率**：持续更新中
 

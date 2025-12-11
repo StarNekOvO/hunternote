@@ -35,7 +35,11 @@ function getSidebar() {
           text: 'pwn.college',
           link: '/labs/pwn-college/',
           items: [
-            { text: 'lv1', link: '/labs/pwn-college/lv1/' }
+            { text: 'lv1 白色腰带', link: '/labs/pwn-college/lv1/' },
+            { text: 'lv2 橙色腰带', link: '/labs/pwn-college/lv2/' },
+            { text: 'lv3 黄色腰带', link: '/labs/pwn-college/lv3/' },
+            { text: 'lv4 绿色腰带', link: '/labs/pwn-college/lv4/' },
+            { text: 'lv5 蓝色腰带', link: '/labs/pwn-college/lv5/' }
           ]
         }
       ]
