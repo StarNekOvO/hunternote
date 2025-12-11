@@ -25,6 +25,7 @@
   - [HTB Academy](/labs/htb-academy/)
   - [HTB Lab](/labs/htb-lab/)
   - [pwn.college](/labs/pwn-college/)
+    - [lv1 白腰带挑战](/labs/pwn-college/lv1/)
 
 ## XML 网站地图
 
@@ -34,7 +35,7 @@
 
 ## 站点统计
 
-- **总页面数**：13 个主要页面
+- **总页面数**：14 个主要页面
 - **内容分类**：CVEs、CTFs、Labs
 - **更新频率**：持续更新中
 
