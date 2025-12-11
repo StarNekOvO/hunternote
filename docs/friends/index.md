@@ -28,11 +28,11 @@
   <div class="friend-item">
     <a href="https://hoshiroko.com" target="_blank" rel="noopener noreferrer">
       <div class="friend-avatar">
-        <img src="https://www.google.com/s2/favicons?sz=128&domain=hoshiroko.com" alt="薄荷の尾巴" loading="lazy" />
+        <img src="https://www.google.com/s2/favicons?sz=128&domain=hoshiroko.com" alt="薄荷の小屋" loading="lazy" />
       </div>
-      <div class="friend-name">薄荷の尾巴</div>
+      <div class="friend-name">薄荷の小屋</div>
       <div class="friend-url">hoshiroko.com</div>
-      <div class="friend-desc">Hi, I’m mintdesu.</div>
+      <div class="friend-desc">越是拼命往前伸手，渴望之物越是渐行渐远</div>
     </a>
   </div>
 
