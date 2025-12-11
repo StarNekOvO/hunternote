@@ -38,11 +38,11 @@ function getSidebar() {
             { text: 'Linux Luminarium 🐧', link: '/labs/pwn-college/linux-luminarium/' },
             { text: 'Computing 101 💻', link: '/labs/pwn-college/computing-101/' },
             { text: 'Playing With Programs 🔤', link: '/labs/pwn-college/playing-with-programs/' },
-            { text: 'lv1 白色腰带', link: '/labs/pwn-college/lv1/' },
-            { text: 'lv2 橙色腰带', link: '/labs/pwn-college/lv2/' },
-            { text: 'lv3 黄色腰带', link: '/labs/pwn-college/lv3/' },
-            { text: 'lv4 绿色腰带', link: '/labs/pwn-college/lv4/' },
-            { text: 'lv5 蓝色腰带', link: '/labs/pwn-college/lv5/' }
+            { text: 'lv1 白色腰带 <img src="https://pwn.college/belt/white.svg" style="height: 1em; vertical-align: middle;">', link: '/labs/pwn-college/lv1/' },
+            { text: 'lv2 橙色腰带 <img src="https://pwn.college/belt/orange.svg" style="height: 1em; vertical-align: middle;">', link: '/labs/pwn-college/lv2/' },
+            { text: 'lv3 黄色腰带 <img src="https://pwn.college/belt/yellow.svg" style="height: 1em; vertical-align: middle;">', link: '/labs/pwn-college/lv3/' },
+            { text: 'lv4 绿色腰带 <img src="https://pwn.college/belt/green.svg" style="height: 1em; vertical-align: middle;">', link: '/labs/pwn-college/lv4/' },
+            { text: 'lv5 蓝色腰带 <img src="https://pwn.college/belt/blue.svg" style="height: 1em; vertical-align: middle;">', link: '/labs/pwn-college/lv5/' }
           ]
         }
       ]
