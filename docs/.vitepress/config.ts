@@ -3,12 +3,6 @@ import { defineConfig } from 'vitepress'
 function getSidebar() {
   return [
     {
-      text: 'CVEs',
-      collapsed: false,
-      link: '/cves/',
-      items: []
-    },
-    {
       text: 'CTFs',
       collapsed: false,
       link: '/ctfs/',
@@ -38,6 +32,12 @@ function getSidebar() {
         },
         { text: 'NSSCTF', link: '/ctfs/nssctf/' }
       ]
+    },
+    {
+      text: 'CVEs',
+      collapsed: false,
+      link: '/cves/',
+      items: []
     },
     {
       text: 'Labs',
@@ -89,7 +89,7 @@ export default defineConfig({
     
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Notes', link: '/cves/' },
+      { text: 'Notes', link: '/ctfs/' },
       { text: 'Links', link: '/links/' },
       { text: 'whoami', link: '/whoami/' },
     ],

@@ -1,6 +1,6 @@
 # CTFs
 
-CTF 比赛题目与 Writeup，按平台分类：
+CTF 平台题目与 Writeup：
 
 - [BUU CTF](/ctfs/buuctf/)
 - [CTFshow](/ctfs/ctfshow/)
