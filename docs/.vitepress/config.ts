@@ -103,9 +103,9 @@ export default defineConfig({
         text: 'Notes',
         items: [
           { text: 'Notes', link: '/notes/' },
+          { text: 'CVEs', link: '/cves/' },
           { text: 'CTFs', link: '/ctfs/' },
           { text: 'Labs', link: '/labs/' },
-          { text: 'CVEs', link: '/cves/' }
         ]
       },
       { text: 'Links', link: '/links/' },
