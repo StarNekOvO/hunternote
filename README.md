@@ -3,7 +3,7 @@
 [![Deploy](https://img.shields.io/badge/deploy-GitHub%20Pages-blue)](https://starneko.com)
 [![VitePress](https://img.shields.io/badge/VitePress-1.6.4-brightgreen)](https://vitepress.dev)
 
-基于 VitePress 构建的个人系统安全研究博客，专注于 CTF、PWN、漏洞利用等领域的学习笔记与 Writeup。
+基于 VitePress 构建的个人系统安全研究博客，专注于 CTF、PWN、漏洞利用等领域的学习笔记与 Writeup
 
 🌐 **在线访问**：[https://starneko.com](https://starneko.com)
 
@@ -24,6 +24,8 @@ hunternote/
 │   │   ├── htb-lab/
 │   │   └── pwn-college/
 │   ├── cves/               # CVE 漏洞复现
+│   ├── notes/              # 技术学习笔记
+│   │   └── android-internals/
 │   ├── links/              # 友情链接
 │   ├── sitemap/            # 网站地图
 │   └── whoami/             # 关于作者
@@ -50,7 +52,7 @@ npm run preview
 
 ## 部署
 
-项目使用 GitHub Actions 自动部署到 GitHub Pages。推送到 `main` 分支会自动触发部署。
+项目使用 GitHub Actions 自动部署到 GitHub Pages。推送到 `main` 分支会自动触发部署
 
 ## 功能特性
 
@@ -74,6 +76,7 @@ npm run preview
 - **pwn.college** - ASU 系统安全学习平台（腰带系统）
 
 ### 其他
+- **Notes** - 技术学习笔记与研究总结
 - **CVEs** - 漏洞复现、POC、EXP
 - **Links** - 友情链接
 - **Whoami** - 关于作者
@@ -82,4 +85,4 @@ npm run preview
 
 [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) - Creative Commons Attribution-NonCommercial 4.0 International
 
-本作品采用知识共享署名-非商业性使用 4.0 国际许可协议进行许可。
+本作品采用知识共享署名-非商业性使用 4.0 国际许可协议进行许可

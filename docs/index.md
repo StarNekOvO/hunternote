@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /ctfs/
+      link: /notes/
     - theme: alt
       text: whoami
       link: /whoami/

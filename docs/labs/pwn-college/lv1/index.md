@@ -1,10 +1,10 @@
 # lv1 白色腰带 Start Here <img src="https://pwn.college/belt/white.svg" style="height: 1em; vertical-align: middle;">
 
-白色腰带挑战其实并不算挑战，就是熟悉一下 pwn.college 这个平台的基础操作。
+白色腰带挑战其实并不算挑战，就是熟悉一下 pwn.college 这个平台的基础操作
 
-平台支持多种连接方式，WebSSH、WebVSCode、WebVNC，还有直接SSH都行，随便选一个顺手的用就好了。
+平台支持多种连接方式，WebSSH、WebVSCode、WebVNC，还有直接SSH都行，随便选一个顺手的用就好了
 
-记得提前了解一下Linux的基础概念，特别是flag文件和权限管理。不熟悉的话建议先看看Linux Luminarium那边的教程。
+记得提前了解一下Linux的基础概念，特别是flag文件和权限管理。不熟悉的话建议先看看Linux Luminarium那边的教程
 
 
 ## SENSAI - 靶机+AI联动

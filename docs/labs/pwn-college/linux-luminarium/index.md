@@ -7,7 +7,7 @@
 
 ## 模块概述
 
-Linux Luminarium 是 pwn.college 平台的 Linux 学习模块，通过实践挑战系统性地掌握 Linux 系统的各个方面。从基础的命令行操作到高级的系统管理，为二进制安全学习打下坚实的基础。
+Linux Luminarium 是 pwn.college 平台的 Linux 学习模块，通过实践挑战系统性地掌握 Linux 系统的各个方面，从基础的命令行操作到高级的系统管理
 
 ## 模块列表
 

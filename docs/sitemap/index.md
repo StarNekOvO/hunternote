@@ -1,6 +1,6 @@
 # 网站地图
 
-本站点的完整页面索引。
+本站点的完整页面索引
 
 ## 主要页面
 
@@ -10,8 +10,9 @@
 
 ## 笔记分类
 
-### CVEs
-- [CVE 相关文章](/cves/)
+### Notes
+- [技术笔记](/notes/)
+  - [Android Internals](/notes/android-internals/)
 
 ### CTFs
 - [CTF 平台总览](/ctfs/)
@@ -29,6 +30,9 @@
       - [异构PWN (331-355)](/ctfs/ctfshow/pwnvip360/09-cross-architecture)
       - [内核PWN (356-360)](/ctfs/ctfshow/pwnvip360/10-kernel-pwn)
   - [NSSCTF](/ctfs/nssctf/)
+
+### CVEs
+- [CVE 相关文章](/cves/)
 
 ### Labs
 - [实战平台总览](/labs/)
@@ -52,7 +56,7 @@
 
 ## 站点统计
 
-- **总页面数**：31 个主要页面
-- **内容分类**：CVEs、CTFs、Labs
+- **总页面数**：33 个主要页面
+- **内容分类**：Notes、CVEs、CTFs、Labs
 - **更新频率**：持续更新中
 

@@ -1,6 +1,6 @@
 # NSSCTF
 
-[NSSCTF](https://www.nssctf.cn/index) 是一个综合性的 CTF 竞赛平台，提供各类 CTF 题目、竞赛和训练营，涵盖网络安全、密码学、逆向工程等多个领域。
+[NSSCTF](https://www.nssctf.cn/index) 是一个综合性的 CTF 竞赛平台，提供各类 CTF 题目、竞赛和训练营，涵盖网络安全、密码学、逆向工程等多个领域
 
 ## 平台特色
 
@@ -10,5 +10,5 @@
 - **题目质量高**：题目设计精良，能够有效提升技能水平
 - **持续更新**：平台定期更新题目和比赛，保持内容的新鲜度
 
-这里将记录 NSSCTF 的题目与 Writeup。
+这里将记录 NSSCTF 的题目与 Writeup
 

@@ -1,6 +1,6 @@
 # CTFshow
 
-[CTFshow](https://ctf.show/challenges) 是一个专注于 CTF 竞赛的在线练习平台，提供丰富的 CTF 题目和实战环境，适合各个水平的 CTF 爱好者练习。
+[CTFshow](https://ctf.show/challenges) 是一个专注于 CTF 竞赛的在线练习平台，提供丰富的 CTF 题目和实战环境，适合各个水平的 CTF 爱好者练习
 
 ## 平台特色
 
@@ -13,5 +13,5 @@
 
 - [PWN VIP 360](/ctfs/ctfshow/pwnvip360/) - PWN 付费大会员课程，共 360 个靶场
 
-这里将记录 CTFshow 的题目与 Writeup。
+这里将记录 CTFshow 的题目与 Writeup
 
