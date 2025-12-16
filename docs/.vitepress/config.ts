@@ -12,7 +12,7 @@ function getSidebar() {
           link: '/notes/android-internals/',
           collapsed: false,
           items: [
-            { text: '安卓架构演进：整体到模块化', link: '/notes/android-internals/android-evolution' }
+            { text: 'Android 架构演进', link: '/notes/android-internals/android-evolution' }
           ]
         }
       ]

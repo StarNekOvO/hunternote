@@ -13,6 +13,7 @@
 ### Notes
 - [技术笔记](/notes/)
   - [Android Internals](/notes/android-internals/)
+    - [Android 架构演进](/notes/android-internals/android-evolution)
 
 ### CTFs
 - [CTF 平台总览](/ctfs/)
@@ -56,7 +57,7 @@
 
 ## 站点统计
 
-- **总页面数**：33 个主要页面
+- **总页面数**：34 个主要页面
 - **内容分类**：Notes、CVEs、CTFs、Labs
 - **更新频率**：持续更新中
 
