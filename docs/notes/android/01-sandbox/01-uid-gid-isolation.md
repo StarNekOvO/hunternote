@@ -4,8 +4,6 @@ Android 安全模型的核心建立在 Linux 的 **DAC (Discretionary Access Con
 
 这就是所谓的“应用沙箱”的第一道防线。
 
----
-
 ## 1. Android ID (AID) 机制
 
 在 Android 中，每一个安装的应用都会被分配一个唯一的 UID，称为 **AID (Android ID)**。
@@ -30,8 +28,6 @@ Android 在 `system/core/include/private/android_filesystem_config.h` 中定义�
 
 在 Linux 内核看来，`com.example.app` 就是一个名为 `u0_a123` 的用户（假设是 User 0）。
 
----
-
 ## 2. `installd` 与目录权限设置
 
 应用安装后，系统需要为其创建私有数据目录（`/data/data/<pkg_name>`）。这个过程是由高权限守护进程 `installd` 完成的。
@@ -52,8 +48,6 @@ if (fs_prepare_dir_strict(path, 0751, uid, gid) != 0) {
 
 这种机制确保了即使应用 A 知道应用 B 的路径，也无法读取其内容，因为 Linux 内核会在文件系统层级拦截越权访问。
 
----
-
 ## 3. SharedUserId 的“原罪”
 
 在 Android 早期，为了方便同一开发者的多个应用共享数据，引入了 `android:sharedUserId` 属性。
@@ -67,8 +61,6 @@ if (fs_prepare_dir_strict(path, 0751, uid, gid) != 0) {
 `sharedUserId` 极大地破坏了沙箱的隔离性。如果其中一个应用存在漏洞（如文件遍历），攻击者可以轻易获取另一个应用的所有敏感数据。
 
 **注意**：从 Android 10 开始，`sharedUserId` 已被弃用，Google 强烈建议使用 `ContentProvider` 或 `Service` 进行跨应用通信。
-
----
 
 ## 4. CVE 案例分析：CVE-2018-9468
 
@@ -86,21 +78,16 @@ if (fs_prepare_dir_strict(path, 0751, uid, gid) != 0) {
 ### 4.3 修复
 Google 修复了 PMS 中关于 `sharedUserId` 签名校验的边界条件，并进一步收紧了对系统 UID 共享的限制。
 
----
-
 ## 5. 总结
 
 UID/GID 隔离是 Android 沙箱的底层基石。它利用成熟的 Linux DAC 机制，以极低的性能开销实现了应用间的数据隔离。
 
 然而，随着系统复杂度的增加，单纯依靠 UID 已经不足以应对现代安全挑战。这也是为什么 Android 后来引入了 **SELinux (MAC)** 和 **Scoped Storage** 的原因——它们将在后续章节中详细讨论。
 
----
-
 ## 思考题
 - 为什么 `root` 用户可以无视 UID/GID 限制？在 Android 中如何限制 `root` 进程的权限？
 - 如果一个应用通过 `chmod 777` 修改了自己的私有目录权限，其他应用能访问吗？
 
----
 ## 延伸阅读
 - [Android Source: Permissions and UID](https://source.android.com/docs/security/app-sandbox)
 - [CVE-2018-9468 Detail](https://nvd.nist.gov/vuln/detail/CVE-2018-9468)

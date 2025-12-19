@@ -23,8 +23,6 @@ graph TD
 3.  **Seccomp**: 限制进程可调用的系统调用（Syscalls），收窄内核攻击面。
 4.  **Scoped Storage**: 针对存储空间的细粒度隔离，终结了“全盘读写 SD 卡”的混乱时代。
 
----
-
 ## 2. 专题章节
 
 在本专题中，我们将深入拆解沙箱的每一个核心组件，并结合真实的 CVE 案例分析其攻防博弈：
@@ -49,8 +47,6 @@ graph TD
 - **核心内容**: Activity/Service/Receiver/Provider 的边界安全与常见漏洞模式。
 - **CVE 案例**: CVE-2018-9581 (Broadcast 信息泄露)。
 
----
-
 ## 3. 为什么沙箱会失效？
 
 尽管有如此严密的保护，沙箱依然可能被突破。常见的攻击路径包括：
@@ -59,8 +55,6 @@ graph TD
 - **逻辑漏洞**: 利用 Framework 层的逻辑缺陷（如 Intent 重定向、PendingIntent 劫持）绕过权限检查。
 
 在接下来的章节中，我们将逐一揭开这些机制的神秘面纱。
-
----
 
 ## 延伸阅读
 - [0x01 - Android 架构演进](../00-foundation/01-architecture-overview.md)
