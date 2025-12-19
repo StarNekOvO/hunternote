@@ -9,7 +9,6 @@
 ## CVE 案例分析
 - **CVE-2021-0691**: 权限绕过漏洞分析
 
----
 ## 待编写内容
 - [ ] 演示如何通过 `adb shell dumpsys package` 查看应用权限状态。
 - [ ] 梳理从 `checkPermission` 到 `PermissionManagerService` 的调用链。

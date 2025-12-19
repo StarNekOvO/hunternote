@@ -20,8 +20,6 @@ repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.
 repo sync -j$(nproc)
 ```
 
----
-
 ## 2. 调试与分析工具
 
 ### 调试器 (Debugger)
@@ -37,8 +35,6 @@ repo sync -j$(nproc)
 - **模拟器 (Cuttlefish)**：Google 官方推荐的虚拟化研究环境，支持内核调试与元数据追踪。
 - **真机 (Pixel)**：建议使用 Pixel 6 及以上版本，以支持 MTE (Memory Tagging Extension) 等现代硬件安全特性。
 
----
-
 ## 3. 代码导航与关键路径
 
 ### 在线搜索
@@ -53,8 +49,6 @@ repo sync -j$(nproc)
 | `system/sepolicy/` | SELinux 策略定义 |
 | `bionic/` | Android C 库实现 |
 | `packages/modules/Virtualization/` | AVF / pKVM 相关实现 |
-
----
 
 ## 4. 参考资源
 

@@ -108,8 +108,6 @@
     - **MTE (Memory Tagging Extension)**：硬件级内存安全检测，旨在从根源上终结 UAF 和 Buffer Overflow 等内存破坏漏洞。
     - **ARM CCA (Android 16)**：引入 Realm 隔离，硬件强制的应用沙箱。
 
----
-
 ## 总结：攻击面的演进趋势
 
 从研究视角看，Android 的演进是一个**“收缩”**的过程：
