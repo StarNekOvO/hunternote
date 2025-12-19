@@ -17,7 +17,7 @@ pwn.college 是真的想教会所有人 pwn，靶机还给联动大模型助手2
 
 ## Challenge Programs - 第一个提权
 
-蛮好玩就是`Challenge Programs`关卡了，让你执行`/challenge/solve`。一开始我还以为就是个二进制，用`file`命令看看，发现是个shell脚本。但是执行的时候发现不对劲，它居然能读取`/flag`文件，这个文件普通用户是没权限访问的。
+蛮好玩就是`Challenge Programs`关卡了，让执行`/challenge/solve`。一开始我还以为就是个二进制，用`file`命令看看，发现是个shell脚本。但是执行的时候发现不对劲，它居然能读取`/flag`文件，这个文件普通用户是没权限访问的。
 
 关键在于：
 

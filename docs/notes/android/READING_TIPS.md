@@ -1,6 +1,6 @@
 # Android 4.x 书籍 → 现代 Android 的差异警示
 
-> **内部参考文档**：本文件用于对比《Android Hacker's Handbook》等早期资料与现代 Android (12-16) 的核心差异，防止在学习过程中走弯路。
+**内部参考文档**：本文件用于对比《Android Hacker's Handbook》等早期资料与现代 Android (12-16) 的核心差异，避免学习路径偏离。
 
 ## 🔴 完全过时，需要重新学习
 
@@ -181,6 +181,6 @@
 
 ## 一句话总结
 
-> **书中的"为什么"仍然有价值，"怎么做"需要重新验证。**
-> 
-> 特别是：Dalvik→ART、无SELinux→强制SELinux、无seccomp→强制seccomp，这三个变化让书中大部分攻击技术直接失效。
+书中的“为什么”仍然有价值，但“怎么做”需要结合现代系统重新验证。
+
+重点差异：Dalvik→ART、无 SELinux→强制 SELinux、无 seccomp→强制 seccomp；这些变化会使早期书中的大量攻击路径不再成立。

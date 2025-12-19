@@ -98,6 +98,10 @@ Google 修复了 PMS 中关于 `sharedUserId` 签名校验的边界条件，并�
 
 ## 6. 总结
 
+UID/GID 隔离是 Android 沙箱的基石，它利用 Linux 成熟的 DAC 机制实现了应用间的初步隔离。然而，随着系统复杂性的增加，单纯依靠 UID 已经无法应对 Root 提权、内核漏洞以及复杂的权限共享需求。因此，现代 Android 引入了 SELinux、Capabilities 和 Scoped Storage 等机制，构建了一套多层级的纵深防御体系。
+
+对于安全研究员而言，理解 UID 映射和 `installd` 的权限设置逻辑，是分析应用数据泄露和提权漏洞的起点。
+
 UID/GID 隔离是 Android 沙箱的底层基石。它利用成熟的 Linux DAC 机制，以极低的性能开销实现了应用间的数据隔离。
 
 然而，随着系统复杂度的增加，单纯依靠 UID 已经不足以应对现代安全挑战。这也是为什么 Android 后来引入了 **SELinux (MAC)** 和 **Scoped Storage** 的原因——它们将在后续章节中详细讨论。

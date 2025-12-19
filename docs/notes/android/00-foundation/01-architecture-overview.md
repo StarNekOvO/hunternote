@@ -89,7 +89,7 @@
 | 2016 | **QuadRooter** | `CVE-2016-2503` / `2504` / `2059` / `5340` | 高通驱动链路的一组高危漏洞集合，典型利用为本地提权/持久化（依赖具体设备与补丁状态）。 | 暴露供应链（SoC/驱动）漏洞对生态的长尾影响；仅更新 framework 无法覆盖驱动修复，推动 system/vendor 边界与更新责任更清晰。 |
 | 2017 | **Janus** | `CVE-2017-13156` | APK 注入攻击：在不破坏 v1（JAR）签名的情况下向 APK 追加恶意 DEX；影响 Android 5.1.1–8.0。 | 促使生态加速迁移到 APK Signature Scheme v2/v3（v2 覆盖整包完整性；v3 引入 key rotation），并推动旧设备修复包管理校验逻辑。 |
 
-### Android 10 (2019)：Project Mainline - 模块化更新的终极形态
+### Android 10 (2019)：Project Mainline - 模块化更新阶段
 
 - **变革核心：Google Play 系统更新 (APEX)**
     - **变动原因**：即使有了 Treble，系统核心组件（如媒体框架、权限控制器）的更新仍依赖厂商。
