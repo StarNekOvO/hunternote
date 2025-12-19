@@ -1,7 +1,5 @@
 # 权限模型演进
 
-> 本文属于 [Android 沙箱机制](./index.md) 系列文章。
-
 ## 核心要点
 - 权限类型：Normal, Dangerous, Signature, Privileged
 - 权限到 GID 的映射机制 (`platform.xml`)

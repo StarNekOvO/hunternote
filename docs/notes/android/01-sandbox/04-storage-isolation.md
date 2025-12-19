@@ -1,7 +1,5 @@
 # 存储隔离 (Scoped Storage)
 
-> 本文属于 [Android 沙箱机制](./index.md) 系列文章。
-
 ## 核心要点
 - 存储权限演进：从全局读写到 Scoped Storage
 - MediaStore API 与 Fuse/Sdcardfs 挂载机制

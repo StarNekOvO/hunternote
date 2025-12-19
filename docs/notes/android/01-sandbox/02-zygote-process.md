@@ -1,7 +1,5 @@
 # Zygote 与进程创建
 
-> 本文属于 [Android 沙箱机制](./index.md) 系列文章。
-
 ## 核心要点
 - Zygote 启动流程与 Socket 通信
 - `fork` + `specialize` 机制详解

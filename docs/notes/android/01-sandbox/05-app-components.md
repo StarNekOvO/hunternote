@@ -1,7 +1,5 @@
 # 四大组件安全
 
-> 本文属于 [Android 沙箱机制](./index.md) 系列文章。
-
 ## 核心要点
 - **Activity**: Intent 劫持、taskAffinity 攻击
 - **Service**: Isolated Process 隔离、前台服务限制
