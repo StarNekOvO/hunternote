@@ -90,7 +90,25 @@
 - 跟到权限校验调用（`enforceCallingPermission`/`checkPermission`/`AppOps`）
 - 再看是否发生了身份切换（`clearCallingIdentity`）以及后续实际写入点
 
-## 5. 关联阅读
+## 5. Canyie (残页) 相关 CVE
+
+> GitHub: https://github.com/canyie | Blog: https://blog.canyie.top
+
+以下是 Canyie 在 Framework/System 层发现的部分漏洞，可对照相关模块的代码学习：
+
+| CVE | 类型 | 简介 | 公告 |
+|-----|------|------|------|
+| CVE-2024-43080 | EoP/High | Framework 权限提升 | [ASB 2024-11](https://source.android.com/docs/security/bulletin/2024-11-01) |
+| CVE-2024-43081 | EoP/High | Framework 权限提升 | [ASB 2024-11](https://source.android.com/docs/security/bulletin/2024-11-01) |
+| CVE-2024-49733 | EoP/High | Framework 权限提升 | [ASB 2025-01](https://source.android.com/docs/security/bulletin/2025-01-01) |
+| CVE-2024-49744 | EoP/High | Framework 权限提升 | [ASB 2025-01](https://source.android.com/docs/security/bulletin/2025-01-01) |
+| CVE-2025-22432 | EoP/High | System 组件输入验证不当，可执行任意代码 | [ASB 2025-04](https://source.android.com/docs/security/bulletin/2025-04-01) |
+| CVE-2025-26464 | EoP/High | AppSearch 权限提升 | [ASB 2025-06](https://source.android.com/docs/security/bulletin/2025-06-01) |
+| CVE-2025-32323 | EoP/High | DocumentsUI 权限提升 | [ASB 2025-06](https://source.android.com/docs/security/bulletin/2025-06-01) |
+| CVE-2025-48535 | EoP/High | Settings 权限提升 | [ASB 2025-06](https://source.android.com/docs/security/bulletin/2025-06-01) |
+| CVE-2025-48554 | DoS/High | Framework 拒绝服务 | [ASB 2025-06](https://source.android.com/docs/security/bulletin/2025-06-01) |
+
+## 6. 关联阅读
 
 - `/notes/android/01-sandbox/02-zygote-process`（Zygote 与 fork 模型）
 - `/notes/android/02-ipc/01-binder-deep-dive`（Binder 调用链与身份传递）

@@ -8,22 +8,26 @@
 2.  **逻辑复杂**：AMS、PMS 等服务包含数百万行 Java 代码，逻辑极其复杂，容易出现状态机错误或权限校验漏洞。
 3.  **跨进程交互**：所有应用都能通过 Binder 与这些服务通信，提供了巨大的攻击入口。
 
-## 2. 专题章节
+## 2. Canyie (残页) 相关 CVE 速查
 
-### [3x00 - system_server 架构](./01-system-server.md)
-- **核心内容**: system_server 的启动流程、服务注册机制、JNI 边界。
+> GitHub: https://github.com/canyie | Blog: https://blog.canyie.top
+>
+> Canyie 是 Google Bug Hunters Android Program #4 的安全研究员，以下是她在系统服务层发现的部分漏洞：
 
-### [3x01 - ActivityManagerService (AMS)](./02-ams.md)
-- **核心内容**: 进程管理、Activity 栈劫持、Intent 转发逻辑。
+| CVE | 类型 | 模块 | 章节 |
+|-----|------|------|------|
+| **CVE-2024-0044** | EoP/High | PMS (packages.list) | [02-pms](/notes/android/03-services/02-pms) |
+| CVE-2024-43080 | EoP/High | Framework | [00-system-server](/notes/android/03-services/00-system-server) |
+| CVE-2024-43081 | EoP/High | Framework | [00-system-server](/notes/android/03-services/00-system-server) |
+| CVE-2024-49733 | EoP/High | Framework | [00-system-server](/notes/android/03-services/00-system-server) |
+| CVE-2024-49744 | EoP/High | Framework | [00-system-server](/notes/android/03-services/00-system-server) |
+| CVE-2025-22432 | EoP/High | System | [00-system-server](/notes/android/03-services/00-system-server) |
+| CVE-2025-26464 | EoP/High | AppSearch | [00-system-server](/notes/android/03-services/00-system-server) |
+| CVE-2025-32323 | EoP/High | DocumentsUI | [00-system-server](/notes/android/03-services/00-system-server) |
+| CVE-2025-48535 | EoP/High | Settings | [00-system-server](/notes/android/03-services/00-system-server) |
+| CVE-2025-48554 | DoS/High | Framework | [00-system-server](/notes/android/03-services/00-system-server) |
 
-### [3x02 - PackageManagerService (PMS)](./03-pms.md)
-- **核心内容**: APK 安装校验、权限授予逻辑、签名验证漏洞。
-
-### [3x03 - WindowManagerService (WMS)](./04-wms.md)
-- **核心内容**: 窗口层级管理、悬浮窗攻击（Overlay Attack）。
-
-### [3x04 - Media Framework](./05-media-framework.md)
-- **核心内容**: 媒体解析服务的沙箱化、Stagefright 历史漏洞。
+> **CVE-2024-0044** 有完整的 PoC 与技术分析，**强烈推荐深入学习**。
 
 ## 参考（AOSP）
 

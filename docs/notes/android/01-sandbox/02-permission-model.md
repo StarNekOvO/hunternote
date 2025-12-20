@@ -132,6 +132,20 @@ Google 在 `PermissionController` 中添加了多层防护：
 2. 对 `RoleManager` 的返回结果进行签名校验，确保只有系统签名的应用才能声明敏感角色。
 3. 引入了 `GRANT_RUNTIME_PERMISSIONS` 系统权限，限制普通应用无法触发自动授权流程。
 
+## 7. Canyie (残页) 相关 CVE
+
+> GitHub: https://github.com/canyie | Blog: https://blog.canyie.top
+
+以下是 Canyie 发现的与权限/信息泄露相关的漏洞：
+
+| CVE | 类型 | 简介 | 公告 |
+|-----|------|------|------|
+| CVE-2024-43090 | ID/High | 信息泄露 | [ASB 2024-11](https://source.android.com/docs/security/bulletin/2024-11-01) |
+| CVE-2025-0076 | ID/High | Framework 信息泄露 | [ASB 2025-02](https://source.android.com/docs/security/bulletin/2025-02-01) |
+| CVE-2025-48545 | ID/High | Framework 信息泄露 | [ASB 2025-06](https://source.android.com/docs/security/bulletin/2025-06-01) |
+
+> **注**：ID = Information Disclosure，通常可用于绕过 ASLR 或泄露敏感用户数据。
+
 ## 参考（AOSP）
 
 - https://source.android.com/docs/core/permissions — Android 权限架构总览：权限类型、声明与检查机制。

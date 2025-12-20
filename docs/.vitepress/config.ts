@@ -26,11 +26,11 @@ function getSidebar() {
               collapsed: false,
               items: [
                 { text: 'Overview', link: '/notes/android/01-sandbox/' },
-                { text: '1x00 UID/GID 隔离', link: '/notes/android/01-sandbox/01-uid-gid-isolation' },
-                { text: '1x01 Zygote 进程', link: '/notes/android/01-sandbox/02-zygote-process' },
-                { text: '1x02 权限模型', link: '/notes/android/01-sandbox/03-permission-model' },
-                { text: '1x03 存储隔离', link: '/notes/android/01-sandbox/04-storage-isolation' },
-                { text: '1x04 四大组件安全', link: '/notes/android/01-sandbox/05-app-components' },
+                { text: '1x00 UID/GID 隔离', link: '/notes/android/01-sandbox/00-uid-gid-isolation' },
+                { text: '1x01 Zygote 进程', link: '/notes/android/01-sandbox/01-zygote-process' },
+                { text: '1x02 权限模型', link: '/notes/android/01-sandbox/02-permission-model' },
+                { text: '1x03 存储隔离', link: '/notes/android/01-sandbox/03-storage-isolation' },
+                { text: '1x04 四大组件安全', link: '/notes/android/01-sandbox/04-app-components' },
               ]
             },
             {
@@ -38,10 +38,10 @@ function getSidebar() {
               collapsed: false,
               items: [
                 { text: 'Overview', link: '/notes/android/02-ipc/' },
-                { text: '2x00 Binder 深度解析', link: '/notes/android/02-ipc/01-binder-deep-dive' },
-                { text: '2x01 Intent 系统安全', link: '/notes/android/02-ipc/02-intent-system' },
-                { text: '2x02 HIDL 与 AIDL', link: '/notes/android/02-ipc/03-hidl-aidl' },
-                { text: '2x03 其他 IPC 机制', link: '/notes/android/02-ipc/04-other-ipc' },
+                { text: '2x00 Binder 深度解析', link: '/notes/android/02-ipc/00-binder-deep-dive' },
+                { text: '2x01 Intent 系统安全', link: '/notes/android/02-ipc/01-intent-system' },
+                { text: '2x02 HIDL 与 AIDL', link: '/notes/android/02-ipc/02-hidl-aidl' },
+                { text: '2x03 其他 IPC 机制', link: '/notes/android/02-ipc/03-other-ipc' },
               ]
             },
             {
@@ -49,11 +49,11 @@ function getSidebar() {
               collapsed: false,
               items: [
                 { text: 'Overview', link: '/notes/android/03-services/' },
-                { text: '3x00 system_server 架构', link: '/notes/android/03-services/01-system-server' },
-                { text: '3x01 AMS 深度解析', link: '/notes/android/03-services/02-ams' },
-                { text: '3x02 PMS 深度解析', link: '/notes/android/03-services/03-pms' },
-                { text: '3x03 WMS 深度解析', link: '/notes/android/03-services/04-wms' },
-                { text: '3x04 媒体框架安全', link: '/notes/android/03-services/05-media-framework' },
+                { text: '3x00 system_server 架构', link: '/notes/android/03-services/00-system-server' },
+                { text: '3x01 AMS 深度解析', link: '/notes/android/03-services/01-ams' },
+                { text: '3x02 PMS 深度解析', link: '/notes/android/03-services/02-pms' },
+                { text: '3x03 WMS 深度解析', link: '/notes/android/03-services/03-wms' },
+                { text: '3x04 媒体框架安全', link: '/notes/android/03-services/04-media-framework' },
               ]
             },
             {
@@ -61,11 +61,11 @@ function getSidebar() {
               collapsed: false,
               items: [
                 { text: 'Overview', link: '/notes/android/04-native/' },
-                { text: '4x00 Bionic Libc', link: '/notes/android/04-native/01-bionic-libc' },
-                { text: '4x01 Linker 链接器', link: '/notes/android/04-native/02-linker' },
-                { text: '4x02 Seccomp 机制', link: '/notes/android/04-native/03-seccomp' },
-                { text: '4x03 ART 运行时', link: '/notes/android/04-native/04-art-runtime' },
-                { text: '4x04 原生守护进程', link: '/notes/android/04-native/05-native-daemons' },
+                { text: '4x00 Bionic Libc', link: '/notes/android/04-native/00-bionic-libc' },
+                { text: '4x01 Linker 链接器', link: '/notes/android/04-native/01-linker' },
+                { text: '4x02 Seccomp 机制', link: '/notes/android/04-native/02-seccomp' },
+                { text: '4x03 ART 运行时', link: '/notes/android/04-native/03-art-runtime' },
+                { text: '4x04 原生守护进程', link: '/notes/android/04-native/04-native-daemons' },
               ]
             },
             {
@@ -73,12 +73,12 @@ function getSidebar() {
               collapsed: false,
               items: [
                 { text: 'Overview', link: '/notes/android/05-kernel/' },
-                { text: '5x00 内核概览', link: '/notes/android/05-kernel/01-kernel-overview' },
-                { text: '5x01 SELinux', link: '/notes/android/05-kernel/02-selinux' },
-                { text: '5x02 攻击面分析', link: '/notes/android/05-kernel/03-attack-surface' },
-                { text: '5x03 内核缓解技术', link: '/notes/android/05-kernel/04-mitigations' },
-                { text: '5x04 AVF 虚拟化', link: '/notes/android/05-kernel/05-avf' },
-                { text: '5x05 内核利用技巧', link: '/notes/android/05-kernel/06-exploitation' },
+                { text: '5x00 内核概览', link: '/notes/android/05-kernel/00-kernel-overview' },
+                { text: '5x01 SELinux', link: '/notes/android/05-kernel/01-selinux' },
+                { text: '5x02 攻击面分析', link: '/notes/android/05-kernel/02-attack-surface' },
+                { text: '5x03 内核缓解技术', link: '/notes/android/05-kernel/03-mitigations' },
+                { text: '5x04 AVF 虚拟化', link: '/notes/android/05-kernel/04-avf' },
+                { text: '5x05 内核利用技巧', link: '/notes/android/05-kernel/05-exploitation' },
               ]
             },
             {
@@ -86,10 +86,10 @@ function getSidebar() {
               collapsed: false,
               items: [
                 { text: 'Overview', link: '/notes/android/06-hardware/' },
-                { text: '6x00 TrustZone', link: '/notes/android/06-hardware/01-trustzone' },
-                { text: '6x01 ARM CCA', link: '/notes/android/06-hardware/02-arm-cca' },
-                { text: '6x02 Verified Boot', link: '/notes/android/06-hardware/03-avb' },
-                { text: '6x03 硬件 Keystore', link: '/notes/android/06-hardware/04-keystore' },
+                { text: '6x00 TrustZone', link: '/notes/android/06-hardware/00-trustzone' },
+                { text: '6x01 ARM CCA', link: '/notes/android/06-hardware/01-arm-cca' },
+                { text: '6x02 Verified Boot', link: '/notes/android/06-hardware/02-avb' },
+                { text: '6x03 硬件 Keystore', link: '/notes/android/06-hardware/03-keystore' },
               ]
             },
             {
@@ -97,9 +97,9 @@ function getSidebar() {
               collapsed: false,
               items: [
                 { text: 'Overview', link: '/notes/android/07-special/' },
-                { text: '7x00 WebView 安全', link: '/notes/android/07-special/01-webview' },
-                { text: '7x01 蓝牙安全', link: '/notes/android/07-special/02-bluetooth' },
-                { text: '7x02 通信安全', link: '/notes/android/07-special/03-connectivity' },
+                { text: '7x00 WebView 安全', link: '/notes/android/07-special/00-webview' },
+                { text: '7x01 蓝牙安全', link: '/notes/android/07-special/01-bluetooth' },
+                { text: '7x02 通信安全', link: '/notes/android/07-special/02-connectivity' },
               ]
             },
             {
@@ -107,11 +107,11 @@ function getSidebar() {
               collapsed: false,
               items: [
                 { text: 'Overview', link: '/notes/android/08-practical/' },
-                { text: '8x00 研究方法论', link: '/notes/android/08-practical/01-methodology' },
-                { text: '8x01 调试与逆向', link: '/notes/android/08-practical/02-debugging' },
-                { text: '8x02 漏洞利用开发', link: '/notes/android/08-practical/03-exploit-dev' },
-                { text: '8x03 Bug Bounty 指南', link: '/notes/android/08-practical/04-bug-bounty' },
-                { text: '8x04 CVE 案例研究', link: '/notes/android/08-practical/05-cve-studies' },
+                { text: '8x00 研究方法论', link: '/notes/android/08-practical/00-methodology' },
+                { text: '8x01 调试与逆向', link: '/notes/android/08-practical/01-debugging' },
+                { text: '8x02 漏洞利用开发', link: '/notes/android/08-practical/02-exploit-dev' },
+                { text: '8x03 Bug Bounty 指南', link: '/notes/android/08-practical/03-bug-bounty' },
+                { text: '8x04 CVE 案例研究', link: '/notes/android/08-practical/04-cve-studies' },
               ]
             }
           ]
