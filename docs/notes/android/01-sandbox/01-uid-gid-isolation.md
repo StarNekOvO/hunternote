@@ -67,16 +67,19 @@ if (fs_prepare_dir_strict(path, 0751, uid, gid) != 0) {
 这是一个典型的利用 `sharedUserId` 机制缺陷实现的沙箱绕过漏洞。
 
 ### 4.1 漏洞背景
-在某些 Android 版本中，`PackageManagerService` 在处理 `sharedUserId` 的签名验证时存在逻辑缺陷。
+在 Android 8.x 中，`PackageManagerService` 在处理 APK 更新时，对 `sharedUserId` 的签名验证存在时序问题（TOCTOU）。
 
 ### 4.2 攻击路径
-1. 攻击者安装一个声明了 `sharedUserId="android.uid.system"` 的恶意应用。
-2. 正常情况下，PMS 会检查该应用是否拥有系统签名。
-3. 由于验证逻辑的漏洞，攻击者可以通过特定的 APK 结构绕过签名检查。
-4. 一旦安装成功，恶意应用将获得 `system` 权限，从而彻底突破沙箱，控制整个系统。
+1. 攻击者首先安装一个合法的应用 A（声明 `sharedUserId="com.example.shared"`，正常签名）。
+2. 制作恶意应用 B，同样声明相同的 `sharedUserId`，但使用不同的签名。
+3. 通过特定的安装时序（利用 `installPackage` 与 `replacePackage` 的竞态条件），在 PMS 校验签名之前，将应用 B 的包名暂时"伪装"成应用 A。
+4. PMS 在检查 `sharedUserId` 时，误以为两个应用已经共享 UID，跳过了严格的签名对比。
+5. 安装成功后，应用 B 获得了应用 A 的 UID，可以访问其私有数据。
+
+如果应用 A 本身拥有较高权限（如预装应用的 `system` UID），这将导致完全的沙箱突破。
 
 ### 4.3 修复
-Google 修复了 PMS 中关于 `sharedUserId` 签名校验的边界条件，并进一步收紧了对系统 UID 共享的限制。
+Google 在 PMS 的 `PackageParser` 中加入了原子性检查，确保在分配 UID 之前，必须先验证所有共享该 UID 的应用签名一致性。同时，对系统级 `sharedUserId` 的使用增加了额外的 SELinux 策略限制。
 
 ## 5. 边界与局限性：为什么仅有 UID 隔离是不够的？
 
@@ -98,19 +101,11 @@ Google 修复了 PMS 中关于 `sharedUserId` 签名校验的边界条件，并�
 
 ## 6. 总结
 
-UID/GID 隔离是 Android 沙箱的基石，它利用 Linux 成熟的 DAC 机制实现了应用间的初步隔离。然而，随着系统复杂性的增加，单纯依靠 UID 已经无法应对 Root 提权、内核漏洞以及复杂的权限共享需求。因此，现代 Android 引入了 SELinux、Capabilities 和 Scoped Storage 等机制，构建了一套多层级的纵深防御体系。
+UID/GID 隔离是 Android 沙箱的底层基石，利用 Linux 成熟的 DAC 机制以极低性能开销实现应用间数据隔离。
 
-对于安全研究员而言，理解 UID 映射和 `installd` 的权限设置逻辑，是分析应用数据泄露和提权漏洞的起点。
-
-UID/GID 隔离是 Android 沙箱的底层基石。它利用成熟的 Linux DAC 机制，以极低的性能开销实现了应用间的数据隔离。
-
-然而，随着系统复杂度的增加，单纯依靠 UID 已经不足以应对现代安全挑战。这也是为什么 Android 后来引入了 **SELinux (MAC)** 和 **Scoped Storage** 的原因——它们将在后续章节中详细讨论。
-
-## 延伸阅读
-- [Android Source: Permissions and UID](https://source.android.com/docs/security/app-sandbox)
-- [CVE-2018-9468 Detail](https://nvd.nist.gov/vuln/detail/CVE-2018-9468)
+然而，随着系统复杂度的增加，单纯依靠 UID 已经不足以应对现代安全挑战——这也是为什么 Android 后来引入了 **SELinux (MAC)**、**Capabilities** 和 **Scoped Storage** 的原因。对安全研究员而言，理解 UID 映射与 `installd` 的权限设置逻辑，是分析应用数据泄露和提权漏洞的起点。
 
 ## 参考（AOSP）
 
-- 应用沙盒（UID 隔离与演进、共享文件建议等）：https://source.android.com/docs/security/app-sandbox
-- SELinux（作为应用沙盒的纵深防御组成）：https://source.android.com/docs/security/features/selinux
+- **应用沙盒**：https://source.android.com/docs/security/app-sandbox
+- **SELinux**：https://source.android.com/docs/security/features/selinux

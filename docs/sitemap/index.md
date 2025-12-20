@@ -15,6 +15,7 @@
   - [Android Internals](/notes/android/)
     - [0x00 环境搭建与导读](/notes/android/00-foundation/00-environment-setup)
     - [0x01 架构与安全模型](/notes/android/00-foundation/01-architecture-overview)
+    - [0x02 构建系统](/notes/android/00-foundation/02-build-system)
     - [Part 1: 沙箱综述](/notes/android/01-sandbox/)
     - [1x00 UID/GID 隔离](/notes/android/01-sandbox/01-uid-gid-isolation)
     - [1x01 Zygote 进程](/notes/android/01-sandbox/02-zygote-process)

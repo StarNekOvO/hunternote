@@ -59,7 +59,33 @@ runtime permissions:
 
 ## 5. 权限校验流程：从 `checkPermission` 到 PMS
 
-当应用尝试执行敏感操作（如 `startActivity`）时，系统会进行权限校验：
+当应用尝试执行敏感操作（如访问摄像头）时，系统会进行权限校验：
+
+```mermaid
+sequenceDiagram
+    participant App
+    participant Framework
+    participant AMS
+    participant PMS
+    participant Kernel
+    
+    App->>Framework: 调用敏感 API
+    Framework->>Framework: checkPermission()
+    Framework->>AMS: 跨进程请求校验
+    AMS->>PMS: 查询权限状态
+    PMS->>PMS: 检查内存权限表
+    alt 权限已授予
+        PMS->>Kernel: 验证 GID (如 inet)
+        Kernel-->>PMS: 通过
+        PMS-->>AMS: PERMISSION_GRANTED
+        AMS-->>App: 继续执行
+    else 权限未授予
+        PMS-->>AMS: PERMISSION_DENIED
+        AMS-->>App: SecurityException
+    end
+```
+
+关键步骤：
 
 1. **API 调用**: 应用调用 Framework 接口。
 2. **ContextImpl**: 内部调用 `checkPermission()`。
@@ -69,11 +95,42 @@ runtime permissions:
 
 ## 6. CVE 案例分析：CVE-2021-0691 (权限绕过)
 
-该漏洞存在于 `PermissionController` 组件中。
+该漏洞存在于 `PermissionController` 的自动授权流程中。
 
-- **成因**: 在处理某些特定权限的自动授予逻辑时，系统未能正确校验请求方的包名与 UID 的对应关系。
-- **影响**: 攻击者可以构造一个虚假的包名，诱导系统为其授予本不该拥有的危险权限，从而实现隐私窃取。
-- **修复**: 强化了对调用方身份的二次校验，确保权限授予逻辑的原子性。
+### 6.1 漏洞原理
+
+在 Android 11 中，系统为某些特殊场景（如设备管理器、辅助功能服务）提供了"预授权"机制。`PermissionController` 会根据应用的角色（Role）自动授予相关权限。
+
+漏洞的触发条件：
+
+1. 攻击者安装一个恶意应用，声明了某个需要预授权的角色（如 `ROLE_SMS`）。
+2. 在调用 `grantRuntimePermissions()` 时，`PermissionController` 会查询 `RoleManager` 获取该角色对应的包名。
+3. 由于 RoleManager 的查询结果可以被 IPC 中间人攻击（通过 Intent 重定向），攻击者可以伪造一个"系统推荐的 SMS 应用"身份。
+4. `PermissionController` 未对返回的包名进行 UID 一致性校验，直接为攻击者应用授予了 `READ_SMS`、`SEND_SMS` 等危险权限。
+
+### 6.2 攻击演示
+
+```java
+// 攻击者在 Manifest 中声明
+<intent-filter>
+    <action android:name="android.app.role.action.REQUEST_ROLE" />
+    <category android:name="android.intent.category.DEFAULT" />
+</intent-filter>
+
+// 拦截系统的 Role 查询请求，返回伪造的包名
+Intent fakeIntent = new Intent();
+fakeIntent.putExtra("android.app.extra.ROLE_NAME", "android.app.role.SMS");
+fakeIntent.putExtra("android.intent.extra.PACKAGE_NAME", "com.attacker.app");
+startActivity(fakeIntent);
+```
+
+### 6.3 修复方案
+
+Google 在 `PermissionController` 中添加了多层防护：
+
+1. 在授予权限前，通过 `PackageManager.getPackageUid()` 验证包名与调用方 UID 是否匹配。
+2. 对 `RoleManager` 的返回结果进行签名校验，确保只有系统签名的应用才能声明敏感角色。
+3. 引入了 `GRANT_RUNTIME_PERMISSIONS` 系统权限，限制普通应用无法触发自动授权流程。
 
 ## 参考（AOSP）
 

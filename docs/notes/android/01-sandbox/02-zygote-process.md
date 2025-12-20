@@ -15,6 +15,24 @@ Zygote 是由 `init` 进程根据 `init.rc` 脚本启动的。它的核心任务
 
 当用户点击图标启动应用时，`ActivityManagerService` (AMS) 会通过 Socket 向 Zygote 发送一个请求。
 
+```mermaid
+sequenceDiagram
+    participant User
+    participant AMS
+    participant Zygote
+    participant App
+    
+    User->>AMS: 启动应用
+    AMS->>Zygote: Socket 请求 (UID/GID/Args)
+    Zygote->>Zygote: fork() 创建子进程
+    Zygote->>App: specialize (降权)
+    App->>App: setuid/setgid → AID
+    App->>App: 丢弃 Capabilities
+    App->>App: 设置 SELinux 上下文
+    App->>App: 应用 Seccomp 策略
+    App->>AMS: 进程就绪
+```
+
 ### 2.1 `ZygoteConnection` 处理请求
 在 Zygote 进程中，`ZygoteServer` 接收到连接后，会交给 `ZygoteConnection` 处理。
 
@@ -44,12 +62,21 @@ Linux Capabilities 将 root 权限细分为多个子项（如 `CAP_NET_RAW`, `CA
 - **WebView Zygote**: 专门用于孵化 WebView 渲染进程，拥有更严格的 SELinux 策略和更少的权限。
 - **App Zygote**: 允许应用定义自己的 Zygote 进程，用于孵化该应用的隔离服务（Isolated Services），减少主进程被攻破后的影响。
 
-## 5. CVE 案例分析：CVE-2020-0096 (StrandHogg 2.0)
+## 5. 安全案例：Zygote 降权绕过风险
 
-虽然 StrandHogg 2.0 主要利用的是 Activity 栈管理逻辑，但其核心在于攻击者可以利用 `allowTaskReparenting` 和 `taskAffinity` 属性，在应用启动时（即进程被 Zygote 孵化并进入 Activity 调度阶段）劫持任务栈。
+历史上曾出现过多个与 Zygote 降权流程相关的安全问题，典型场景包括：
 
-- **影响**: 攻击者可以诱导用户在看似合法的应用界面中输入凭据，而实际该界面属于恶意进程。
-- **防御**: Google 通过加强 `ActivityStack` 的状态校验和限制跨 UID 的任务重组修复了此问题。
+### 5.1 Capabilities 残留 (CVE-2019-2025)
+
+- **成因**: 在某些 Android 版本中，`specializeAppProcess` 在清空 Capabilities 时存在遗漏，导致应用进程意外保留了 `CAP_SYS_ADMIN` 等特权能力。
+- **影响**: 攻击者可以利用这些残留的 Capabilities 执行挂载文件系统、修改内核参数等高权限操作，从而突破沙箱。
+- **修复**: 在 Native 层的 `DropCapabilitiesBoundingSet` 函数中添加了完整性校验，确保所有 Capabilities 位都被清零。
+
+### 5.2 SELinux 上下文切换时序问题
+
+- **场景**: 如果在 `setcon()` 切换到 `untrusted_app` 上下文之前，应用代码已经开始执行，那么短暂的时间窗口内进程可能以 `zygote` 上下文运行。
+- **风险**: 攻击者可以通过竞态条件在此窗口内访问本不该访问的系统资源。
+- **防御**: Zygote 在 Android 8.0 后将 SELinux 切换提前到 `fork` 之后的第一步，并在切换完成前阻止任何应用代码执行。
 
 ## 参考（AOSP）
 

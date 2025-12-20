@@ -18,6 +18,7 @@ function getSidebar() {
               items: [
                 { text: '0x00 环境', link: '/notes/android/00-foundation/00-environment-setup' },
                 { text: '0x01 架构演进', link: '/notes/android/00-foundation/01-architecture-overview' },
+                { text: '0x02 构建系统', link: '/notes/android/00-foundation/02-build-system' },
               ]
             },
             {

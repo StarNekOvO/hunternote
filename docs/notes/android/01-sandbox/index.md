@@ -26,24 +26,25 @@ graph TD
 在本专题中，我们将深入拆解沙箱的每一个核心组件，并结合真实的 CVE 案例分析其攻防博弈：
 
 ### [1x00 - UID/GID 隔离深度解析](./01-uid-gid-isolation.md)
-- **核心内容**: AID 分配机制、`installd` 源码分析、SharedUserId 的原罪。
-- **CVE 案例**: CVE-2018-9468 (SharedUserId 签名验证绕过)。
+- **核心内容**: AID 分配机制、`installd` 源码分析、SharedUserId 的安全风险。
+- **安全案例**: CVE-2018-9468 (SharedUserId 时序竞态导致的签名绕过)。
 
 ### [1x01 - Zygote 与进程创建](./02-zygote-process.md)
-- **核心内容**: 进程是如何从 Zygote 孵化并“降权”进入沙箱的？Capabilities 丢弃机制。
-- **CVE 案例**: CVE-2020-0096 (StrandHogg 2.0 - Activity 栈劫持)。
+- **核心内容**: 进程如何从 Zygote 孵化并"降权"进入沙箱，Capabilities 丢弃机制。
+- **安全案例**: CVE-2019-2025 (Capabilities 残留导致的特权保持)。
 
 ### [1x02 - 权限模型演进](./03-permission-model.md)
 - **核心内容**: 从安装时权限到运行时权限，底层 GID 映射与 `platform.xml`。
-- **CVE 案例**: CVE-2021-0691 (权限绕过漏洞)。
+- **安全案例**: CVE-2021-0691 (PermissionController 预授权绕过)。
 
 ### [1x03 - 存储隔离 (Scoped Storage)](./04-storage-isolation.md)
-- **核心内容**: 存储权限的“黑暗时代”与“现代文明”，MediaStore 与 SAF。
-- **CVE 案例**: 路径遍历与符号链接攻击系列。
+- **核心内容**: 存储权限演进史，FUSE 视图隔离，MediaStore 与 SAF。
+- **安全案例**: CVE-2019-2219 (MediaProvider 路径遍历)、CVE-2020-0418 (FileProvider 符号链接)、CVE-2021-0478 (MediaStore SQL 注入)、CVE-2022-20006 (Download Provider TOCTOU)。
+- **实战技能**: FileProvider 配置审计、路径遍历 Fuzzing、Frida 监控文件访问。
 
 ### [1x04 - 四大组件安全](./05-app-components.md)
 - **核心内容**: Activity/Service/Receiver/Provider 的边界安全与常见漏洞模式。
-- **CVE 案例**: CVE-2018-9581 (Broadcast 信息泄露)。
+- **安全案例**: CVE-2018-9581 (蓝牙配对广播的 PIN 码泄露)。
 
 ## 3. 为什么沙箱会失效？
 
@@ -54,13 +55,10 @@ graph TD
 
 后续章节将详细分析这些防御机制的实现细节与绕过思路。
 
-## 延伸阅读
-- [0x01 - Android 架构演进](../00-foundation/01-architecture-overview.md)
-- [Android 官方文档：应用沙箱](https://source.android.com/docs/security/app-sandbox)
-
 ## 参考（AOSP）
 
-- 应用沙盒：https://source.android.com/docs/security/app-sandbox
-- SELinux（强制访问控制与应用隔离演进背景）：https://source.android.com/docs/security/features/selinux
-- Zygote（进程孵化、USAP 池等现代行为）：https://source.android.com/docs/core/runtime/zygote
-- Android 运行时与 Dalvik/ART：https://source.android.com/docs/core/runtime
+- **应用沙盒**：https://source.android.com/docs/security/app-sandbox
+- **SELinux**：https://source.android.com/docs/security/features/selinux
+- **Zygote 与进程孵化**：https://source.android.com/docs/core/runtime/zygote
+- **Android 运行时 (ART)**：https://source.android.com/docs/core/runtime
+- **Android 架构总览**：https://source.android.com/docs/core/architecture
