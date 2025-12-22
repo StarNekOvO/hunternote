@@ -4,12 +4,12 @@ Android 系统核心架构与底层运行机制分析，从 Userland 到 Kernel 
 
 ## 目录大纲
 
-### Part 0: Foundation
+### Part 0: Foundation (基础篇)
 - **0x00 - Environment Setup & Technical Reference** ([00-foundation/00-environment-setup.md](00-foundation/00-environment-setup.md))
 - **0x01 - Android Architecture & Security Model Overview** ([00-foundation/01-architecture-overview.md](00-foundation/01-architecture-overview.md))
 - **0x02 - Android Build System** ([00-foundation/02-build-system.md](00-foundation/02-build-system.md))
 
-### Part 1: Application Sandbox
+### Part 1: Application Sandbox (沙箱篇)
 - **1x00 - UID/GID Isolation Deep Dive** ([01-sandbox/00-uid-gid-isolation](01-sandbox/00-uid-gid-isolation))
 - **1x01 - Zygote and Process Creation** ([01-sandbox/01-zygote-process](01-sandbox/01-zygote-process))
 - **1x02 - Permission Model** ([01-sandbox/02-permission-model](01-sandbox/02-permission-model))
