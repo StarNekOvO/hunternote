@@ -243,7 +243,7 @@ export default defineConfig({
 
     footer: {
       message: 'Creative Commons Attribution-NonCommercial 4.0 International',
-      copyright: 'Copyright © StarNekOvO'
+      copyright: 'Copyright © starneko'
     },
 
     search: {
