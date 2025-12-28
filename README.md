@@ -51,27 +51,36 @@ npm install
 # 启动开发服务器
 npm run dev
 
-# 构建 WASM (需要 Rust + wasm-pack)
-npm run build:wasm
-
-# 构建生产版本 (包含 WASM)
-npm run build:all
+# 构建生产版本
+npm run build
 
 # 预览构建结果
 npm run preview
 ```
 
-### 开发环境要求
+### 修改 WASM 工具（可选）
 
-- Node.js 18+
-- Rust (通过 rustup 安装)
-- wasm-pack (`cargo install wasm-pack`)
+如需修改 Rust 代码，需要安装 Rust 工具链：
+
+```bash
+# 安装 Rust (通过 rustup)
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# 添加 wasm target
+rustup target add wasm32-unknown-unknown
+
+# 安装 wasm-pack
+cargo install wasm-pack
+
+# 构建 WASM
+npm run build:wasm
+```
 
 ## 部署
 
 项目使用 GitHub Actions 自动部署到 GitHub Pages。推送到 `main` 分支会自动触发部署
 
-CI 流程：Rust 编译 → WASM 构建 → VitePress 构建 → 部署
+WASM 文件已预编译并提交到仓库，CI 只需运行 `npm run build`
 
 ## 功能特性
 
