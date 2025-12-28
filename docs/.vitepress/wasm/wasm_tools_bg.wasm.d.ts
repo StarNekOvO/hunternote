@@ -1,0 +1,34 @@
+/* tslint:disable */
+/* eslint-disable */
+export const memory: WebAssembly.Memory;
+export const calc_address: (a: number, b: number, c: number, d: number) => [number, number, number, number];
+export const convert_base: (a: number, b: number, c: number) => [number, number, number, number];
+export const date_to_timestamp: (a: number, b: number, c: number, d: number, e: number, f: number) => bigint;
+export const decimal_to_ip: (a: number) => [number, number];
+export const decode_base64: (a: number, b: number) => [number, number, number, number];
+export const decode_hex: (a: number, b: number) => [number, number, number, number];
+export const encode_base64: (a: number, b: number) => [number, number];
+export const encode_hex: (a: number, b: number) => [number, number];
+export const format_shellcode: (a: number, b: number, c: number, d: number) => [number, number];
+export const generate_cyclic: (a: number) => [number, number];
+export const generate_padding: (a: number, b: number) => [number, number];
+export const get_ip_class: (a: number, b: number) => [number, number, number, number];
+export const hash_md5: (a: number, b: number) => [number, number];
+export const hash_sha1: (a: number, b: number) => [number, number];
+export const hash_sha256: (a: number, b: number) => [number, number];
+export const hash_sha512: (a: number, b: number) => [number, number];
+export const ip_to_binary: (a: number, b: number) => [number, number, number, number];
+export const ip_to_decimal: (a: number, b: number) => [number, number, number];
+export const ip_to_hex: (a: number, b: number) => [number, number, number, number];
+export const is_private_ip: (a: number, b: number) => [number, number, number];
+export const parse_cidr: (a: number, b: number) => [number, number, number, number];
+export const shellcode_length: (a: number, b: number) => number;
+export const timestamp_to_date: (a: number) => [number, number];
+export const to_big_endian: (a: number, b: number, c: number) => [number, number, number, number];
+export const to_little_endian: (a: number, b: number, c: number) => [number, number, number, number];
+export const __wbindgen_externrefs: WebAssembly.Table;
+export const __wbindgen_malloc: (a: number, b: number) => number;
+export const __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
+export const __externref_table_dealloc: (a: number) => void;
+export const __wbindgen_free: (a: number, b: number, c: number) => void;
+export const __wbindgen_start: () => void;

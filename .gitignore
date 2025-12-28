@@ -104,11 +104,10 @@ dist
 # vitepress cache directory
 **/.vitepress/cache
 
-# wasm-pack output (intermediate)
-docs/.vitepress/wasm/
-
-# wasm binary (built by CI)
-docs/public/wasm_tools_bg.wasm
+# wasm-pack intermediate files (keep .js, .d.ts)
+docs/.vitepress/wasm/.gitignore
+docs/.vitepress/wasm/package.json
+docs/.vitepress/wasm/*.wasm
 
 # Docusaurus cache and generated files
 .docusaurus
