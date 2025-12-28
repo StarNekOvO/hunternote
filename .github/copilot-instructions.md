@@ -33,6 +33,7 @@ This repository is a personal security research blog built with **VitePress**. I
 - **Links Page**: `docs/links/index.md` uses a custom HTML structure for the friends list. Follow the `<div class="friend-item">` pattern when adding new links.
 - **Internal Links**: Use root-relative links (e.g., `/notes/android/android-evolution`) for internal navigation.
 - **Images**: Always use the `/img/` prefix for images stored in `docs/public/img/`.
+- **No Emoji**: Do not use emoji characters anywhere in the project (titles, content, navigation, etc.). Use text or icons instead.
 
 ## Example: Adding a new CTF Writeup
 1. Create `docs/ctfs/new-platform/challenge.md`.

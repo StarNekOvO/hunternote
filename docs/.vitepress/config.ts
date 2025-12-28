@@ -278,6 +278,17 @@ export default defineConfig({
           { text: 'Labs', link: '/labs/' },
         ]
       },
+      {
+        text: 'Tools',
+        items: [
+          { text: '编码解码', link: '/tools/encoder' },
+          { text: '进制转换', link: '/tools/base-converter' },
+          { text: '哈希计算', link: '/tools/hash' },
+          { text: '时间戳转换', link: '/tools/timestamp' },
+          { text: 'PWN 辅助', link: '/tools/pwn-helper' },
+          { text: '正则测试', link: '/tools/regex' },
+        ]
+      },
       { text: 'Links', link: '/links/' },
       { text: 'whoami', link: '/whoami/' },
     ],
@@ -303,6 +314,7 @@ export default defineConfig({
       '/ctfs/': getSidebar(),
       '/labs/': getSidebar(),
       '/notes/': getSidebar(),
+      '/tools/': [],
       '/whoami/': [],
       '/links/': [],
       '/sitemap/': []
