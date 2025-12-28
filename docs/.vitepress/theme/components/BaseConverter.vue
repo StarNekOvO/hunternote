@@ -57,17 +57,23 @@
         </tbody>
       </table>
     </div>
+
+    <div v-if="!wasmReady" class="loading-hint">
+      正在加载 WebAssembly 模块...
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { ensureWasmLoaded, wasm } from '../wasm-loader'
 
 const dec = ref('')
 const bin = ref('')
 const oct = ref('')
 const hex = ref('')
 const activeField = ref('')
+const wasmReady = ref(false)
 
 const patterns: Record<number, RegExp> = {
   2: /^[01]+$/,
@@ -76,25 +82,30 @@ const patterns: Record<number, RegExp> = {
   16: /^[0-9a-fA-F]+$/
 }
 
+onMounted(async () => {
+  await ensureWasmLoaded()
+  wasmReady.value = true
+})
+
 function isValidNumber(str: string, base: number): boolean {
   if (!str) return true
   return patterns[base].test(str)
 }
 
 function convert(value: string, fromBase: number) {
-  if (!value) {
+  if (!value || !wasmReady.value) {
     dec.value = bin.value = oct.value = hex.value = ''
     return
   }
   
   try {
-    const prefix = { 2: '0b', 8: '0o', 16: '0x' } as Record<number, string>
-    const num = BigInt(fromBase === 10 ? value : prefix[fromBase] + value)
+    const result = wasm.convert_base(value, fromBase)
+    const parsed = JSON.parse(result)
     
-    if (activeField.value !== 'dec') dec.value = num.toString(10)
-    if (activeField.value !== 'bin') bin.value = num.toString(2)
-    if (activeField.value !== 'oct') oct.value = num.toString(8)
-    if (activeField.value !== 'hex') hex.value = num.toString(16).toUpperCase()
+    if (activeField.value !== 'dec') dec.value = parsed.dec
+    if (activeField.value !== 'bin') bin.value = parsed.bin
+    if (activeField.value !== 'oct') oct.value = parsed.oct
+    if (activeField.value !== 'hex') hex.value = parsed.hex
   } catch (e) {
     // invalid input
   }
@@ -121,6 +132,13 @@ function copy(value: string) {
 <style scoped>
 .base-converter {
   margin-top: 1.5rem;
+}
+
+.loading-hint {
+  padding: 1rem;
+  text-align: center;
+  color: var(--vp-c-text-3);
+  font-size: 0.9rem;
 }
 
 .converter-grid {
@@ -152,12 +170,13 @@ function copy(value: string) {
   border-radius: 4px;
   background: var(--vp-c-bg-soft);
   color: var(--vp-c-text-2);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   cursor: pointer;
 }
 
 .copy-btn:hover:not(:disabled) {
-  background: var(--vp-c-bg-mute);
+  background: var(--vp-c-brand);
+  color: white;
 }
 
 .copy-btn:disabled {
@@ -165,18 +184,17 @@ function copy(value: string) {
   cursor: not-allowed;
 }
 
-input {
-  width: 100%;
+.field-group input {
   padding: 0.75rem;
   border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
+  border-radius: 6px;
   background: var(--vp-c-bg-soft);
   color: var(--vp-c-text-1);
   font-family: var(--vp-font-family-mono);
   font-size: 1rem;
 }
 
-input:focus {
+.field-group input:focus {
   outline: none;
   border-color: var(--vp-c-brand);
 }
@@ -208,16 +226,16 @@ input:focus {
 .tips h3 {
   margin: 0 0 1rem 0;
   font-size: 1rem;
+  color: var(--vp-c-text-1);
 }
 
 .tips table {
   width: 100%;
   border-collapse: collapse;
-  font-family: var(--vp-font-family-mono);
-  font-size: 0.9rem;
 }
 
-.tips th, .tips td {
+.tips th,
+.tips td {
   padding: 0.5rem;
   text-align: left;
   border-bottom: 1px solid var(--vp-c-divider);
@@ -226,5 +244,9 @@ input:focus {
 .tips th {
   color: var(--vp-c-text-2);
   font-weight: 500;
+}
+
+.tips td {
+  font-family: var(--vp-font-family-mono);
 }
 </style>

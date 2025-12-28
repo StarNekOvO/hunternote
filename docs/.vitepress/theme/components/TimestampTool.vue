@@ -59,21 +59,29 @@
         </tbody>
       </table>
     </div>
+
+    <div v-if="!wasmReady" class="loading-hint">
+      正在加载 WebAssembly 模块...
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { ensureWasmLoaded, wasm } from '../wasm-loader'
 
 const currentTimestamp = ref(0)
 const timestampInput = ref('')
 const dateInput = ref('')
 const convertedDate = ref('')
 const convertedTimestamp = ref('')
+const wasmReady = ref(false)
 
 let timer: ReturnType<typeof setInterval> | null = null
 
-onMounted(() => {
+onMounted(async () => {
+  await ensureWasmLoaded()
+  wasmReady.value = true
   updateCurrent()
   timer = setInterval(updateCurrent, 1000)
 })
@@ -87,55 +95,62 @@ function updateCurrent() {
 }
 
 function timestampToDate() {
-  if (!timestampInput.value) {
+  if (!timestampInput.value || !wasmReady.value) {
     convertedDate.value = ''
     return
   }
   
   try {
     let ts = parseInt(timestampInput.value)
-    if (ts > 9999999999) ts = Math.floor(ts / 1000)
-    
-    const date = new Date(ts * 1000)
-    if (isNaN(date.getTime())) {
+    if (isNaN(ts)) {
       convertedDate.value = '无效时间戳'
       return
     }
     
-    convertedDate.value = formatDate(date)
+    // Use Wasm for UTC calculation
+    const result = wasm.timestamp_to_date(ts)
+    const parsed = JSON.parse(result)
+    
+    const pad = (n: number) => n.toString().padStart(2, '0')
+    const utc = `${parsed.year}-${pad(parsed.month)}-${pad(parsed.day)} ${pad(parsed.hours)}:${pad(parsed.minutes)}:${pad(parsed.seconds)}`
+    
+    // Calculate local time using JS Date (because timezone info needed)
+    let localTs = ts
+    if (localTs > 9999999999) localTs = Math.floor(localTs / 1000)
+    const date = new Date(localTs * 1000)
+    const local = `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
+    
+    const relative = getRelativeTime(date)
+    
+    convertedDate.value = `本地时间: ${local}\nUTC: ${utc}\n相对时间: ${relative}`
   } catch (e) {
     convertedDate.value = '转换错误'
   }
 }
 
 function dateToTimestamp() {
-  if (!dateInput.value) {
+  if (!dateInput.value || !wasmReady.value) {
     convertedTimestamp.value = ''
     return
   }
   
   try {
-    const date = new Date(dateInput.value)
-    if (isNaN(date.getTime())) {
-      convertedTimestamp.value = '无效日期'
-      return
-    }
+    // Parse datetime-local input
+    const [datePart, timePart] = dateInput.value.split('T')
+    const [year, month, day] = datePart.split('-').map(Number)
+    const [hours, minutes] = timePart.split(':').map(Number)
     
-    const ts = Math.floor(date.getTime() / 1000)
-    convertedTimestamp.value = `秒: ${ts}\n毫秒: ${ts * 1000}`
+    // Use Wasm for calculation (UTC)
+    const ts = wasm.date_to_timestamp(year, month, day, hours, minutes, 0)
+    
+    // Also calculate local using JS for comparison
+    const date = new Date(dateInput.value)
+    const localTs = Math.floor(date.getTime() / 1000)
+    
+    convertedTimestamp.value = `本地: ${localTs}\n本地(毫秒): ${localTs * 1000}\nUTC: ${ts}`
   } catch (e) {
     convertedTimestamp.value = '转换错误'
   }
-}
-
-function formatDate(date: Date): string {
-  const pad = (n: number) => n.toString().padStart(2, '0')
-  
-  const local = `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
-  const utc = date.toISOString()
-  const relative = getRelativeTime(date)
-  
-  return `本地时间: ${local}\nUTC: ${utc}\n相对时间: ${relative}`
 }
 
 function getRelativeTime(date: Date): string {
@@ -181,6 +196,13 @@ function copy(text: string) {
   margin-top: 1.5rem;
 }
 
+.loading-hint {
+  padding: 1rem;
+  text-align: center;
+  color: var(--vp-c-text-3);
+  font-size: 0.9rem;
+}
+
 .current-time {
   background: var(--vp-c-bg-soft);
   border-radius: 8px;
@@ -201,19 +223,29 @@ function copy(text: string) {
   font-weight: 600;
   color: var(--vp-c-brand);
   cursor: pointer;
+  position: relative;
 }
 
 .click-hint {
+  position: absolute;
+  bottom: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 0.75rem;
   color: var(--vp-c-text-3);
-  display: block;
-  margin-top: 0.25rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.current-value:hover .click-hint {
+  opacity: 1;
 }
 
 .converter-sections {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .section {
@@ -250,65 +282,64 @@ function copy(text: string) {
 
 .now-btn {
   padding: 0.75rem 1rem;
-  border: 1px solid var(--vp-c-divider);
+  border: 1px solid var(--vp-c-brand);
   border-radius: 6px;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text-2);
+  background: var(--vp-c-brand);
+  color: white;
   cursor: pointer;
-  white-space: nowrap;
-}
-
-.now-btn:hover {
-  background: var(--vp-c-bg-mute);
 }
 
 .result {
   margin-top: 1rem;
-  position: relative;
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
 }
 
 .result pre {
-  background: var(--vp-c-bg-alt);
+  flex: 1;
+  margin: 0;
   padding: 0.75rem;
+  background: var(--vp-c-bg);
   border-radius: 6px;
   font-size: 0.85rem;
   white-space: pre-wrap;
-  margin: 0;
 }
 
-.result .copy-btn {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  padding: 0.2rem 0.5rem;
+.copy-btn {
+  padding: 0.5rem 0.75rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 4px;
   background: var(--vp-c-bg);
   color: var(--vp-c-text-2);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   cursor: pointer;
 }
 
 .copy-btn:hover {
-  background: var(--vp-c-bg-mute);
+  background: var(--vp-c-brand);
+  color: white;
 }
 
 .reference {
-  margin-top: 2rem;
+  background: var(--vp-c-bg-soft);
+  border-radius: 8px;
+  padding: 1rem;
 }
 
 .reference h3 {
   margin: 0 0 1rem 0;
   font-size: 1rem;
+  color: var(--vp-c-text-1);
 }
 
 .reference table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
 }
 
-.reference th, .reference td {
+.reference th,
+.reference td {
   padding: 0.5rem;
   text-align: left;
   border-bottom: 1px solid var(--vp-c-divider);
@@ -319,7 +350,8 @@ function copy(text: string) {
   font-weight: 500;
 }
 
-.reference td:nth-child(2) {
+.reference td {
   font-family: var(--vp-font-family-mono);
+  font-size: 0.9rem;
 }
 </style>

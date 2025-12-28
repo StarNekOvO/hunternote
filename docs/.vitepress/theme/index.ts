@@ -7,6 +7,7 @@ import HashTool from './components/HashTool.vue'
 import TimestampTool from './components/TimestampTool.vue'
 import PwnHelper from './components/PwnHelper.vue'
 import RegexTool from './components/RegexTool.vue'
+import IpCalculator from './components/IpCalculator.vue'
 
 export default {
   extends: DefaultTheme,
@@ -17,5 +18,6 @@ export default {
     app.component('TimestampTool', TimestampTool)
     app.component('PwnHelper', PwnHelper)
     app.component('RegexTool', RegexTool)
+    app.component('IpCalculator', IpCalculator)
   }
 } satisfies Theme

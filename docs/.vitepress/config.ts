@@ -285,6 +285,7 @@ export default defineConfig({
           { text: '进制转换', link: '/tools/base-converter' },
           { text: '哈希计算', link: '/tools/hash' },
           { text: '时间戳转换', link: '/tools/timestamp' },
+          { text: 'IP/CIDR 计算器', link: '/tools/ip-calculator' },
           { text: 'PWN 辅助', link: '/tools/pwn-helper' },
           { text: '正则测试', link: '/tools/regex' },
         ]
@@ -328,6 +329,20 @@ export default defineConfig({
 
   markdown: {
     lineNumbers: true
+  },
+
+  vite: {
+    optimizeDeps: {
+      exclude: ['wasm_tools']
+    },
+    build: {
+      target: 'esnext'
+    },
+    server: {
+      fs: {
+        allow: ['.']
+      }
+    }
   }
 })
 

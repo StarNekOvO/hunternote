@@ -35,15 +35,21 @@
         <textarea :value="output" readonly placeholder="结果将显示在这里..." rows="6"></textarea>
       </div>
     </div>
+
+    <div v-if="!wasmReady" class="loading-hint">
+      正在加载 WebAssembly 模块...
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { ensureWasmLoaded, wasm } from '../wasm-loader'
 
 const input = ref('')
 const mode = ref('base64')
 const direction = ref<'encode' | 'decode'>('encode')
+const wasmReady = ref(false)
 
 const modes = [
   { value: 'base64', label: 'Base64' },
@@ -53,8 +59,13 @@ const modes = [
   { value: 'unicode', label: 'Unicode' },
 ]
 
+onMounted(async () => {
+  await ensureWasmLoaded()
+  wasmReady.value = true
+})
+
 const output = computed(() => {
-  if (!input.value) return ''
+  if (!input.value || !wasmReady.value) return ''
   try {
     return direction.value === 'encode' 
       ? encode(input.value, mode.value)
@@ -66,12 +77,14 @@ const output = computed(() => {
 
 function encode(str: string, type: string): string {
   switch (type) {
-    case 'base64':
-      return btoa(unescape(encodeURIComponent(str)))
-    case 'hex':
-      return Array.from(new TextEncoder().encode(str))
-        .map(b => b.toString(16).padStart(2, '0'))
-        .join(' ')
+    case 'base64': {
+      const data = new TextEncoder().encode(str)
+      return wasm.encode_base64(data)
+    }
+    case 'hex': {
+      const data = new TextEncoder().encode(str)
+      return wasm.encode_hex(data)
+    }
     case 'url':
       return encodeURIComponent(str)
     case 'html':
@@ -86,18 +99,22 @@ function encode(str: string, type: string): string {
 
 function decode(str: string, type: string): string {
   switch (type) {
-    case 'base64':
-      return decodeURIComponent(escape(atob(str.trim())))
-    case 'hex':
+    case 'base64': {
+      const bytes = wasm.decode_base64(str.trim())
+      return new TextDecoder().decode(bytes)
+    }
+    case 'hex': {
       const hexStr = str.replace(/\s+/g, '').replace(/0x/gi, '')
-      const bytes = hexStr.match(/.{1,2}/g)?.map(b => parseInt(b, 16)) || []
-      return new TextDecoder().decode(new Uint8Array(bytes))
+      const bytes = wasm.decode_hex(hexStr)
+      return new TextDecoder().decode(bytes)
+    }
     case 'url':
       return decodeURIComponent(str)
-    case 'html':
+    case 'html': {
       const textarea = document.createElement('textarea')
       textarea.innerHTML = str
       return textarea.value
+    }
     case 'unicode':
       return str.replace(/\\u([0-9a-fA-F]{4})/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
     default:
@@ -127,6 +144,13 @@ function clearAll() {
   margin-top: 1.5rem;
 }
 
+.loading-hint {
+  padding: 1rem;
+  text-align: center;
+  color: var(--vp-c-text-3);
+  font-size: 0.9rem;
+}
+
 .tool-controls {
   display: flex;
   justify-content: space-between;
@@ -152,11 +176,6 @@ function clearAll() {
   transition: all 0.2s;
 }
 
-.mode-btn:hover {
-  border-color: var(--vp-c-brand);
-  color: var(--vp-c-brand);
-}
-
 .mode-btn.active {
   background: var(--vp-c-brand);
   border-color: var(--vp-c-brand);
@@ -167,11 +186,7 @@ function clearAll() {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-.direction-toggle span {
-  color: var(--vp-c-text-3);
-  font-size: 0.9rem;
+  color: var(--vp-c-text-2);
 }
 
 .direction-toggle span.active {
@@ -180,16 +195,11 @@ function clearAll() {
 }
 
 .swap-btn {
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 0.5rem;
   border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
+  border-radius: 4px;
   background: var(--vp-c-bg-soft);
   cursor: pointer;
-  font-size: 1.1rem;
-}
-
-.swap-btn:hover {
-  background: var(--vp-c-bg-mute);
 }
 
 .io-area {
@@ -198,7 +208,7 @@ function clearAll() {
   gap: 1rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .io-area {
     grid-template-columns: 1fr;
   }
@@ -215,20 +225,22 @@ function clearAll() {
   align-items: center;
   margin-bottom: 0.5rem;
   font-weight: 500;
+  color: var(--vp-c-text-1);
 }
 
 .action-btn {
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 0.5rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 4px;
   background: var(--vp-c-bg-soft);
   color: var(--vp-c-text-2);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   cursor: pointer;
 }
 
 .action-btn:hover {
-  background: var(--vp-c-bg-mute);
+  background: var(--vp-c-brand);
+  color: white;
 }
 
 textarea {
@@ -246,9 +258,5 @@ textarea {
 textarea:focus {
   outline: none;
   border-color: var(--vp-c-brand);
-}
-
-textarea[readonly] {
-  background: var(--vp-c-bg-alt);
 }
 </style>

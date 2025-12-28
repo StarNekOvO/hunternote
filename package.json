@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
+    "build:wasm": "cd wasm-tools && wasm-pack build --target web --out-dir ../docs/.vitepress/wasm && cp ../docs/.vitepress/wasm/wasm_tools_bg.wasm ../docs/public/",
+    "build:all": "npm run build:wasm && npm run build",
     "preview": "vitepress preview docs"
   },
   "keywords": ["security", "ctf", "pwn", "writeup", "vitepress", "starneko", "牛奶猫", "StarNekOvO", "android security", "kernel exploitation"],

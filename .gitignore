@@ -104,6 +104,12 @@ dist
 # vitepress cache directory
 **/.vitepress/cache
 
+# wasm-pack output (intermediate)
+docs/.vitepress/wasm/
+
+# wasm binary (built by CI)
+docs/public/wasm_tools_bg.wasm
+
 # Docusaurus cache and generated files
 .docusaurus
 
@@ -144,3 +150,7 @@ node_modules
 .DS_Store
 .idea
 .vscode
+
+# Rust / Cargo
+**/target/
+**/*.rs.bk

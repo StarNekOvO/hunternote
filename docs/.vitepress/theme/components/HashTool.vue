@@ -22,7 +22,7 @@
         rows="5"
       ></textarea>
       <div class="input-actions">
-        <button class="calc-btn" @click="calculateAll" :disabled="!input || isCalculating">
+        <button class="calc-btn" @click="calculateAll" :disabled="!input || isCalculating || !wasmReady">
           {{ isCalculating ? '计算中...' : '计算哈希' }}
         </button>
         <button class="clear-btn" @click="clear">清空</button>
@@ -49,90 +49,46 @@
         </div>
       </div>
     </div>
+
+    <div v-if="!wasmReady" class="loading-hint">
+      正在加载 WebAssembly 模块...
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { ensureWasmLoaded, wasm } from '../wasm-loader'
 
 const input = ref('')
 const inputType = ref<'text' | 'file'>('text')
-const fileInfo = ref<{ name: string; size: number; arrayBuffer: ArrayBuffer } | null>(null)
+const fileInfo = ref<{ name: string; size: number; data: Uint8Array } | null>(null)
 const hashResults = ref<Record<string, string>>({})
 const isCalculating = ref(false)
+const wasmReady = ref(false)
 
 const algorithms = ['MD5', 'SHA-1', 'SHA-256', 'SHA-512']
 
-async function calculateHash(data: ArrayBuffer, algorithm: string): Promise<string> {
-  if (algorithm === 'MD5') {
-    return md5(data)
-  }
-  
-  const hashBuffer = await crypto.subtle.digest(algorithm, data)
-  const hashArray = Array.from(new Uint8Array(hashBuffer))
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
-}
-
-function md5(data: ArrayBuffer): string {
-  const bytes = new Uint8Array(data)
-  
-  function rotateLeft(x: number, n: number) { return (x << n) | (x >>> (32 - n)) }
-  function toHex(n: number) { return n.toString(16).padStart(8, '0').match(/../g)!.reverse().join('') }
-  
-  const k = new Uint32Array(64)
-  for (let i = 0; i < 64; i++) k[i] = Math.floor(Math.abs(Math.sin(i + 1)) * 0x100000000)
-  
-  const s = [7,12,17,22,7,12,17,22,7,12,17,22,7,12,17,22,5,9,14,20,5,9,14,20,5,9,14,20,5,9,14,20,4,11,16,23,4,11,16,23,4,11,16,23,4,11,16,23,6,10,15,21,6,10,15,21,6,10,15,21,6,10,15,21]
-  
-  let [a0, b0, c0, d0] = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476]
-  
-  const len = bytes.length
-  const padded = new Uint8Array(Math.ceil((len + 9) / 64) * 64)
-  padded.set(bytes)
-  padded[len] = 0x80
-  const view = new DataView(padded.buffer)
-  view.setUint32(padded.length - 8, len * 8, true)
-  
-  for (let i = 0; i < padded.length; i += 64) {
-    const M = new Uint32Array(16)
-    for (let j = 0; j < 16; j++) M[j] = view.getUint32(i + j * 4, true)
-    
-    let [A, B, C, D] = [a0, b0, c0, d0]
-    
-    for (let j = 0; j < 64; j++) {
-      let F: number, g: number
-      if (j < 16) { F = (B & C) | (~B & D); g = j }
-      else if (j < 32) { F = (D & B) | (~D & C); g = (5 * j + 1) % 16 }
-      else if (j < 48) { F = B ^ C ^ D; g = (3 * j + 5) % 16 }
-      else { F = C ^ (B | ~D); g = (7 * j) % 16 }
-      
-      F = (F + A + k[j] + M[g]) >>> 0
-      A = D; D = C; C = B; B = (B + rotateLeft(F, s[j])) >>> 0
-    }
-    
-    a0 = (a0 + A) >>> 0; b0 = (b0 + B) >>> 0; c0 = (c0 + C) >>> 0; d0 = (d0 + D) >>> 0
-  }
-  
-  return toHex(a0) + toHex(b0) + toHex(c0) + toHex(d0)
-}
+onMounted(async () => {
+  await ensureWasmLoaded()
+  wasmReady.value = true
+})
 
 async function calculateAll() {
+  if (!wasmReady.value) return
   if (!input.value && !fileInfo.value) return
   
   isCalculating.value = true
   hashResults.value = {}
   
-  try {
-    const data = inputType.value === 'text'
-      ? new TextEncoder().encode(input.value).buffer
-      : fileInfo.value!.arrayBuffer
-    
-    for (const algo of algorithms) {
-      hashResults.value[algo] = await calculateHash(data, algo)
-    }
-  } catch (e) {
-    console.error(e)
-  }
+  const data = inputType.value === 'text'
+    ? new TextEncoder().encode(input.value)
+    : fileInfo.value!.data
+  
+  hashResults.value['MD5'] = wasm.hash_md5(data)
+  hashResults.value['SHA-1'] = wasm.hash_sha1(data)
+  hashResults.value['SHA-256'] = wasm.hash_sha256(data)
+  hashResults.value['SHA-512'] = wasm.hash_sha512(data)
   
   isCalculating.value = false
 }
@@ -141,10 +97,11 @@ async function handleFile(event: Event) {
   const file = (event.target as HTMLInputElement).files?.[0]
   if (!file) return
   
+  const arrayBuffer = await file.arrayBuffer()
   fileInfo.value = {
     name: file.name,
     size: file.size,
-    arrayBuffer: await file.arrayBuffer()
+    data: new Uint8Array(arrayBuffer)
   }
   
   await calculateAll()
@@ -170,6 +127,13 @@ function formatSize(bytes: number): string {
 <style scoped>
 .hash-tool {
   margin-top: 1.5rem;
+}
+
+.loading-hint {
+  padding: 1rem;
+  text-align: center;
+  color: var(--vp-c-text-3);
+  font-size: 0.9rem;
 }
 
 .input-type-toggle {
@@ -206,29 +170,27 @@ function formatSize(bytes: number): string {
   resize: vertical;
 }
 
-.text-input textarea:focus {
-  outline: none;
-  border-color: var(--vp-c-brand);
-}
-
 .input-actions {
   display: flex;
   gap: 0.5rem;
   margin-top: 0.75rem;
 }
 
-.calc-btn {
-  padding: 0.5rem 1.5rem;
+.calc-btn, .clear-btn {
+  padding: 0.5rem 1rem;
   border: none;
   border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.calc-btn {
   background: var(--vp-c-brand);
   color: white;
-  cursor: pointer;
-  font-weight: 500;
 }
 
 .calc-btn:hover:not(:disabled) {
-  opacity: 0.9;
+  background: var(--vp-c-brand-dark);
 }
 
 .calc-btn:disabled {
@@ -237,28 +199,27 @@ function formatSize(bytes: number): string {
 }
 
 .clear-btn {
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
   background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
   color: var(--vp-c-text-2);
-  cursor: pointer;
+}
+
+.file-input {
+  margin-bottom: 1rem;
 }
 
 .file-drop {
   display: block;
+  padding: 2rem;
   border: 2px dashed var(--vp-c-divider);
   border-radius: 8px;
-  padding: 3rem;
   text-align: center;
   cursor: pointer;
   transition: all 0.2s;
-  color: var(--vp-c-text-2);
 }
 
 .file-drop:hover {
   border-color: var(--vp-c-brand);
-  background: var(--vp-c-bg-soft);
 }
 
 .file-drop input {
@@ -275,13 +236,14 @@ function formatSize(bytes: number): string {
 .results h3 {
   margin: 0 0 1rem 0;
   font-size: 1rem;
+  color: var(--vp-c-text-1);
 }
 
 .result-row {
   display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  padding: 0.75rem 0;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
   border-bottom: 1px solid var(--vp-c-divider);
 }
 
@@ -290,12 +252,13 @@ function formatSize(bytes: number): string {
 }
 
 .algo-name {
+  width: 80px;
   font-weight: 600;
-  color: var(--vp-c-text-2);
-  font-size: 0.85rem;
+  color: var(--vp-c-brand);
 }
 
 .hash-value {
+  flex: 1;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -303,25 +266,25 @@ function formatSize(bytes: number): string {
 
 .hash-value code {
   flex: 1;
-  font-size: 0.85rem;
-  word-break: break-all;
   padding: 0.25rem 0.5rem;
-  background: var(--vp-c-bg-alt);
+  background: var(--vp-c-bg);
   border-radius: 4px;
+  font-size: 0.8rem;
+  word-break: break-all;
 }
 
 .copy-btn {
-  padding: 0.2rem 0.6rem;
+  padding: 0.25rem 0.5rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 4px;
   background: var(--vp-c-bg);
   color: var(--vp-c-text-2);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   cursor: pointer;
-  white-space: nowrap;
 }
 
 .copy-btn:hover {
-  background: var(--vp-c-bg-mute);
+  background: var(--vp-c-brand);
+  color: white;
 }
 </style>

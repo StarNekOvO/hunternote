@@ -103,54 +103,55 @@
         <pre class="padding-output">{{ cyclicPadding }}</pre>
       </div>
     </div>
+
+    <div v-if="!wasmReady" class="loading-hint">
+      正在加载 WebAssembly 模块...
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { ensureWasmLoaded, wasm } from '../wasm-loader'
 
 const activeTab = ref('address')
+const wasmReady = ref(false)
+
+onMounted(async () => {
+  await ensureWasmLoaded()
+  wasmReady.value = true
+})
 
 // 地址计算
 const baseAddr = ref('')
 const offset = ref('')
 const addressResult = computed(() => {
-  if (!baseAddr.value) return ''
+  if (!baseAddr.value || !wasmReady.value) return ''
   try {
-    const base = BigInt(baseAddr.value.startsWith('0x') ? baseAddr.value : '0x' + baseAddr.value)
-    const off = offset.value 
-      ? BigInt(offset.value.startsWith('0x') || offset.value.startsWith('-') ? offset.value : '0x' + offset.value) 
-      : 0n
-    return '0x' + (base + off).toString(16)
-  } catch (e) {
-    return '计算错误'
+    return wasm.calc_address(baseAddr.value, offset.value || '0')
+  } catch (e: any) {
+    return '计算错误: ' + e.message
   }
 })
 
 // 字节序转换
 const byteInput = ref('')
 const byteSize = ref('8')
+
 const littleEndian = computed(() => {
-  if (!byteInput.value) return ''
+  if (!byteInput.value || !wasmReady.value) return ''
   try {
-    let hex = byteInput.value.replace(/^0x/i, '').replace(/\s+/g, '')
-    const size = parseInt(byteSize.value)
-    hex = hex.padStart(size * 2, '0').slice(0, size * 2)
-    const bytes = hex.match(/.{2}/g) || []
-    return '0x' + bytes.reverse().join('')
-  } catch (e) {
+    return wasm.to_little_endian(byteInput.value, parseInt(byteSize.value))
+  } catch (e: any) {
     return '转换错误'
   }
 })
 
 const bigEndian = computed(() => {
-  if (!byteInput.value) return ''
+  if (!byteInput.value || !wasmReady.value) return ''
   try {
-    let hex = byteInput.value.replace(/^0x/i, '').replace(/\s+/g, '')
-    const size = parseInt(byteSize.value)
-    hex = hex.padStart(size * 2, '0').slice(0, size * 2)
-    return '0x' + hex
-  } catch (e) {
+    return wasm.to_big_endian(byteInput.value, parseInt(byteSize.value))
+  } catch (e: any) {
     return '转换错误'
   }
 })
@@ -159,53 +160,32 @@ const bigEndian = computed(() => {
 const shellcodeInput = ref('')
 const shellcodeFormat = ref('c')
 
-function parseShellcode(input: string): string[] {
-  return input
-    .replace(/\\x/gi, ' ')
-    .replace(/0x/gi, ' ')
-    .replace(/,/g, ' ')
-    .replace(/[^0-9a-fA-F\s]/g, '')
-    .trim()
-    .split(/\s+/)
-    .filter(b => b.length === 2)
-}
-
 const formattedShellcode = computed(() => {
-  if (!shellcodeInput.value) return ''
-  const hex = parseShellcode(shellcodeInput.value)
-  if (!hex.length) return '无法解析'
-  
-  switch (shellcodeFormat.value) {
-    case 'c': return '"' + hex.map(b => '\\x' + b.toLowerCase()).join('') + '"'
-    case 'python': return 'b"' + hex.map(b => '\\x' + b.toLowerCase()).join('') + '"'
-    case 'hex': return hex.join(' ').toUpperCase()
-    case 'array': return '{ ' + hex.map(b => '0x' + b.toUpperCase()).join(', ') + ' }'
-    case 'nasm': return 'db ' + hex.map(b => '0x' + b.toLowerCase()).join(', ')
-    default: return hex.join('')
-  }
+  if (!shellcodeInput.value || !wasmReady.value) return ''
+  return wasm.format_shellcode(shellcodeInput.value, shellcodeFormat.value)
 })
 
-const shellcodeLength = computed(() => parseShellcode(shellcodeInput.value).length)
+const shellcodeLength = computed(() => {
+  if (!shellcodeInput.value || !wasmReady.value) return 0
+  return wasm.shellcode_length(shellcodeInput.value)
+})
 
 // Padding 生成
 const paddingLength = ref('64')
 const paddingPattern = ref('A')
 
 const generatedPadding = computed(() => {
+  if (!wasmReady.value) return ''
   const len = parseInt(paddingLength.value) || 0
   if (len > 10000) return '长度过大'
-  return paddingPattern.value.repeat(len)
+  return wasm.generate_padding(len, paddingPattern.value || 'A')
 })
 
 const cyclicPadding = computed(() => {
+  if (!wasmReady.value) return ''
   const len = parseInt(paddingLength.value) || 0
   if (len > 10000) return '长度过大'
-  const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-  let result = ''
-  for (let i = 0; i < len; i++) {
-    result += charset[i % charset.length]
-  }
-  return result
+  return wasm.generate_cyclic(len)
 })
 
 function copy(text: string) {
@@ -216,6 +196,13 @@ function copy(text: string) {
 <style scoped>
 .pwn-helper {
   margin-top: 1.5rem;
+}
+
+.loading-hint {
+  padding: 1rem;
+  text-align: center;
+  color: var(--vp-c-text-3);
+  font-size: 0.9rem;
 }
 
 .tabs {
