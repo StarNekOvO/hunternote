@@ -2,6 +2,7 @@
 
 [![Deploy](https://img.shields.io/badge/deploy-GitHub%20Pages-blue)](https://starneko.com)
 [![VitePress](https://img.shields.io/badge/VitePress-1.6.4-brightgreen)](https://vitepress.dev)
+[![Rust](https://img.shields.io/badge/Rust-WASM-orange)](https://www.rust-lang.org/)
 
 基于 VitePress 构建的个人系统安全研究博客，专注于 CTF、PWN、漏洞利用等领域的学习笔记与 Writeup
 
@@ -13,6 +14,10 @@
 hunternote/
 ├── docs/
 │   ├── .vitepress/         # VitePress 配置
+│   │   ├── theme/          # 自定义主题
+│   │   │   ├── components/ # Vue 工具组件
+│   │   │   └── wasm-loader.ts
+│   │   └── wasm/           # wasm-pack 输出 (构建生成)
 │   ├── public/             # 静态资源
 │   ├── ctfs/               # CTF 平台 Writeup
 │   │   ├── buuctf/
@@ -25,10 +30,13 @@ hunternote/
 │   │   └── pwn-college/
 │   ├── cves/               # CVE 漏洞复现
 │   ├── notes/              # 技术学习笔记
-│   │   └── android/
+│   │   └── android/        # Android 安全
+│   ├── tools/              # 在线工具
 │   ├── links/              # 友情链接
-│   ├── sitemap/            # 网站地图
 │   └── whoami/             # 关于作者
+├── wasm-tools/             # Rust WebAssembly 源码
+│   ├── Cargo.toml
+│   └── src/lib.rs
 ├── .github/workflows/      # GitHub Actions
 ├── package.json
 └── README.md
@@ -43,25 +51,51 @@ npm install
 # 启动开发服务器
 npm run dev
 
-# 构建生产版本
-npm run build
+# 构建 WASM (需要 Rust + wasm-pack)
+npm run build:wasm
+
+# 构建生产版本 (包含 WASM)
+npm run build:all
 
 # 预览构建结果
 npm run preview
 ```
 
+### 开发环境要求
+
+- Node.js 18+
+- Rust (通过 rustup 安装)
+- wasm-pack (`cargo install wasm-pack`)
+
 ## 部署
 
 项目使用 GitHub Actions 自动部署到 GitHub Pages。推送到 `main` 分支会自动触发部署
 
+CI 流程：Rust 编译 → WASM 构建 → VitePress 构建 → 部署
+
 ## 功能特性
 
+- Rust + WebAssembly 在线工具（Hash、编码、进制转换、时间戳、PWN 辅助、正则、IP/CIDR）
 - 自动部署到 GitHub Pages
 - 本地搜索功能
 - 响应式设计
 - 深色模式支持
 - 友链
 - SEO 优化
+
+## 在线工具
+
+基于 Rust 编译为 WebAssembly，在浏览器中高性能运行：
+
+| 工具 | 功能 | 实现 |
+|------|------|------|
+| Hash 计算 | MD5、SHA1、SHA256、SHA512 | Rust |
+| 编码转换 | Base64、Hex、URL、HTML | Rust + JS |
+| 进制转换 | 二进制、八进制、十进制、十六进制 | Rust |
+| 时间戳 | Unix 时间戳与日期互转 | Rust |
+| PWN 辅助 | 大小端、地址计算、字符串生成 | Rust |
+| 正则测试 | 正则表达式在线测试 | JavaScript |
+| IP/CIDR | 子网计算、IP 格式转换 | Rust |
 
 ## 内容分类
 
@@ -76,8 +110,9 @@ npm run preview
 - **pwn.college** - ASU 系统安全学习平台（腰带系统）
 
 ### 其他
-- **Notes** - 技术学习笔记与研究总结
+- **Notes** - 技术学习笔记与研究总结（Android 安全等）
 - **CVEs** - 漏洞复现、POC、EXP
+- **Tools** - 在线安全工具集
 - **Links** - 友情链接
 - **Whoami** - 关于作者
 
