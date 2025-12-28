@@ -1,6 +1,7 @@
 import DefaultTheme from 'vitepress/theme'
 import type { Theme } from 'vitepress'
 
+import CustomLayout from './CustomLayout.vue'
 import EncoderTool from './components/EncoderTool.vue'
 import BaseConverter from './components/BaseConverter.vue'
 import HashTool from './components/HashTool.vue'
@@ -11,6 +12,7 @@ import IpCalculator from './components/IpCalculator.vue'
 
 export default {
   extends: DefaultTheme,
+  Layout: CustomLayout,
   enhanceApp({ app }) {
     app.component('EncoderTool', EncoderTool)
     app.component('BaseConverter', BaseConverter)
