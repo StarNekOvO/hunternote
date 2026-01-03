@@ -129,7 +129,7 @@ function getSidebar() {
       collapsed: false,
       link: '/ctfs/',
       items: [
-        { text: 'BUU CTF', link: '/ctfs/buuctf/' },
+        // { text: 'BUU CTF', link: '/ctfs/buuctf/' },
         {
           text: 'CTFshow',
           link: '/ctfs/ctfshow/',
