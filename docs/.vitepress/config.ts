@@ -219,7 +219,7 @@ export default defineConfig({
     ['meta', { property: 'og:title', content: '牛奶猫的猎人笔记 - starneko' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:url', content: 'https://starneko.com' }],
-    ['meta', { property: 'og:image', content: 'https://starneko.com/img/MilkDollar.jpeg' }],
+    ['meta', { property: 'og:image', content: 'https://starneko.com/img/MilkFish.jpeg' }],
     ['meta', { property: 'og:site_name', content: '牛奶猫的猎人笔记' }],
     ['meta', { property: 'og:description', content: 'starneko (牛奶猫) 的系统安全研究笔记 - System Security Hunter. Python/Go/Rust. MSCS at CU Boulder.' }],
     
@@ -229,7 +229,7 @@ export default defineConfig({
     ['meta', { name: 'twitter:creator', content: '@StarNekOvO' }],
     ['meta', { name: 'twitter:title', content: '牛奶猫的猎人笔记 - starneko' }],
     ['meta', { name: 'twitter:description', content: 'starneko (牛奶猫) 的系统安全研究笔记 - System Security Hunter' }],
-    ['meta', { name: 'twitter:image', content: 'https://starneko.com/img/MilkDollar.jpeg' }],
+    ['meta', { name: 'twitter:image', content: 'https://starneko.com/img/MilkFish.jpeg' }],
     
     // JSON-LD structured data for better SEO
     ['script', { type: 'application/ld+json' }, JSON.stringify({
@@ -238,7 +238,7 @@ export default defineConfig({
       name: 'starneko',
       alternateName: ['牛奶猫', 'StarNekOvO'],
       url: 'https://starneko.com',
-      image: 'https://starneko.com/img/MilkDollar.jpeg',
+      image: 'https://starneko.com/img/MilkFish.jpeg',
       sameAs: [
         'https://github.com/StarNekOvO',
         'https://x.com/StarNekOvO',
@@ -265,7 +265,7 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    logo: '/img/MilkDollar.jpeg',
+    logo: '/img/MilkFish.jpeg',
     
     nav: [
       { text: 'Home', link: '/' },

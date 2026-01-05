@@ -6,7 +6,7 @@ hero:
   text: "starneko"
   tagline: "System Security Hunter. Python/Go/Rust.<br>MSCS at CU Boulder. Freelancer.<br>ヨルシカ ◂Ⓘ▸ maimaiDX"
   image:
-    src: /img/MilkDollar.jpeg
+    src: /img/MilkFish.jpeg
     alt: starneko
   actions:
     - theme: brand
