@@ -161,8 +161,6 @@ function getSidebar() {
       collapsed: false,
       link: '/labs/',
       items: [
-        { text: 'HTB Academy', link: '/labs/htb-academy/' },
-        { text: 'HTB Lab', link: '/labs/htb-lab/' },
         {
           text: 'pwn.college',
           collapsed: false,
