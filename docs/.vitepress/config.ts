@@ -182,7 +182,7 @@ function getSidebar() {
 }
 
 export default defineConfig({
-  title: '牛奶猫的猎人笔记',
+  title: '御坂晚的猎人笔记',
   description: "StarNekOvO's Security Research Notes",
   lang: 'zh-CN',
   base: '/', // 使用自定义域名时设置为根路径
@@ -204,9 +204,9 @@ export default defineConfig({
     ['meta', { name: 'apple-mobile-web-app-title', content: '猎人笔记' }],
     
     // SEO meta tags
-    ['meta', { name: 'keywords', content: 'starneko, 牛奶猫, StarNekOvO, security, CTF, pwn, writeup, Android security, kernel exploitation, 系统安全, 安全研究' }],
-    ['meta', { name: 'author', content: 'starneko, 牛奶猫' }],
-    ['meta', { name: 'description', content: '牛奶猫的猎人笔记 - starneko 的系统安全研究笔记与 Writeup。包含 CTF、PWN、Android 安全、内核利用等内容。' }],
+    ['meta', { name: 'keywords', content: 'starneko, misakabit, 牛奶猫, 御坂晚, StarNekOvO, security, CTF, pwn, writeup, Android security, kernel exploitation, 系统安全, 安全研究' }],
+    ['meta', { name: 'author', content: 'starneko, misakabit, 牛奶猫, 御坂晚' }],
+    ['meta', { name: 'description', content: '御坂晚的猎人笔记 - starneko / misakabit 的系统安全研究笔记与 Writeup。包含 CTF、PWN、Android 安全、内核利用等内容。' }],
     
     // Other meta tags
     ['link', { rel: 'stylesheet', href: '/custom.css' }],
@@ -214,29 +214,29 @@ export default defineConfig({
     ['link', { rel: 'canonical', href: 'https://starneko.com' }],
     
     // Open Graph meta tags
-    ['meta', { property: 'og:title', content: '牛奶猫的猎人笔记 - starneko' }],
+    ['meta', { property: 'og:title', content: '御坂晚的猎人笔记 - starneko / misakabit' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:url', content: 'https://starneko.com' }],
-    ['meta', { property: 'og:image', content: 'https://starneko.com/img/MilkFish.jpeg' }],
-    ['meta', { property: 'og:site_name', content: '牛奶猫的猎人笔记' }],
-    ['meta', { property: 'og:description', content: 'starneko (牛奶猫) 的系统安全研究笔记 - System Security Hunter. Python/Go/Rust. MSCS at CU Boulder.' }],
+    ['meta', { property: 'og:image', content: 'https://starneko.com/img/ryo.jpg' }],
+    ['meta', { property: 'og:site_name', content: '御坂晚的猎人笔记' }],
+    ['meta', { property: 'og:description', content: 'starneko / misakabit (牛奶猫 / 御坂晚) 的系统安全研究笔记 - System Security Hunter. Python/Go/Rust. MSCS at CU Boulder.' }],
     
     // Twitter Card meta tags
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:site', content: '@StarNekOvO' }],
     ['meta', { name: 'twitter:creator', content: '@StarNekOvO' }],
-    ['meta', { name: 'twitter:title', content: '牛奶猫的猎人笔记 - starneko' }],
-    ['meta', { name: 'twitter:description', content: 'starneko (牛奶猫) 的系统安全研究笔记 - System Security Hunter' }],
-    ['meta', { name: 'twitter:image', content: 'https://starneko.com/img/MilkFish.jpeg' }],
+    ['meta', { name: 'twitter:title', content: '御坂晚的猎人笔记 - starneko / misakabit' }],
+    ['meta', { name: 'twitter:description', content: 'starneko / misakabit (牛奶猫 / 御坂晚) 的系统安全研究笔记 - System Security Hunter' }],
+    ['meta', { name: 'twitter:image', content: 'https://starneko.com/img/ryo.jpg' }],
     
     // JSON-LD structured data for better SEO
     ['script', { type: 'application/ld+json' }, JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'Person',
       name: 'starneko',
-      alternateName: ['牛奶猫', 'StarNekOvO'],
+      alternateName: ['misakabit', '牛奶猫', '御坂晚', 'StarNekOvO'],
       url: 'https://starneko.com',
-      image: 'https://starneko.com/img/MilkFish.jpeg',
+      image: 'https://starneko.com/img/ryo.jpg',
       sameAs: [
         'https://github.com/StarNekOvO',
         'https://x.com/StarNekOvO',
@@ -249,21 +249,21 @@ export default defineConfig({
     ['script', { type: 'application/ld+json' }, JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: '牛奶猫的猎人笔记',
-      alternateName: ['StarNekOvO Blog', 'starneko notes'],
+      name: '御坂晚的猎人笔记',
+      alternateName: ['StarNekOvO Blog', 'starneko notes', 'misakabit notes'],
       url: 'https://starneko.com',
-      description: 'starneko (牛奶猫) 的系统安全研究笔记与 Writeup',
+      description: 'starneko / misakabit (牛奶猫 / 御坂晚) 的系统安全研究笔记与 Writeup',
       author: {
         '@type': 'Person',
         name: 'starneko',
-        alternateName: ['牛奶猫', 'StarNekOvO']
+        alternateName: ['misakabit', '牛奶猫', '御坂晚', 'StarNekOvO']
       },
       inLanguage: 'zh-CN'
     })],
   ],
 
   themeConfig: {
-    logo: '/img/MilkFish.jpeg',
+    logo: '/img/ryo.jpg',
     
     nav: [
       { text: 'Home', link: '/' },
@@ -300,7 +300,7 @@ export default defineConfig({
 
     footer: {
       message: 'Creative Commons Attribution-NonCommercial 4.0 International',
-      copyright: 'Copyright © starneko'
+      copyright: 'Copyright © starneko / misakabit'
     },
 
     search: {
