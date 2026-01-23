@@ -1,61 +1,84 @@
 <template>
   <div class="ip-calculator">
+    <!-- 输入区域 -->
     <div class="input-section">
-      <label>IP 地址 / CIDR</label>
+      <label class="input-label">IP 地址 / CIDR</label>
       <input 
         v-model="input" 
         @input="calculate"
+        class="input-field"
         placeholder="例如: 192.168.1.0/24 或 10.0.0.1"
       />
     </div>
 
-    <div v-if="result" class="result-section">
-      <h3>CIDR 信息</h3>
-      <table class="info-table">
-        <tbody>
-          <tr><td>IP 地址</td><td>{{ result.ip }}</td></tr>
-          <tr><td>前缀长度</td><td>/{{ result.prefix }}</td></tr>
-          <tr><td>子网掩码</td><td>{{ result.netmask }}</td></tr>
-          <tr><td>通配符掩码</td><td>{{ result.wildcard }}</td></tr>
-          <tr><td>网络地址</td><td>{{ result.network }}</td></tr>
-          <tr><td>广播地址</td><td>{{ result.broadcast }}</td></tr>
-          <tr><td>第一个主机</td><td>{{ result.firstHost }}</td></tr>
-          <tr><td>最后一个主机</td><td>{{ result.lastHost }}</td></tr>
-          <tr><td>可用主机数</td><td>{{ result.hostCount.toLocaleString() }}</td></tr>
-        </tbody>
-      </table>
+    <div v-if="error" class="error-box">{{ error }}</div>
 
-      <h3>IP 格式转换</h3>
-      <table class="info-table">
+    <!-- CIDR 信息 -->
+    <div v-if="result" class="info-panel">
+      <div class="panel-header">
+        <span class="panel-title">CIDR 信息</span>
+      </div>
+      <table class="data-table">
         <tbody>
-          <tr><td>二进制</td><td class="mono">{{ ipBinary }}</td></tr>
-          <tr><td>十六进制</td><td class="mono">0x{{ ipHex }}</td></tr>
-          <tr><td>十进制</td><td class="mono">{{ ipDecimal }}</td></tr>
-        </tbody>
-      </table>
-
-      <h3>IP 属性</h3>
-      <table class="info-table">
-        <tbody>
-          <tr><td>IP 类别</td><td>{{ ipClass }}</td></tr>
-          <tr><td>私有地址</td><td>{{ isPrivate ? '是' : '否' }}</td></tr>
+          <tr><td class="label-cell">IP 地址</td><td class="value-cell">{{ result.ip }}</td></tr>
+          <tr><td class="label-cell">前缀长度</td><td class="value-cell">/{{ result.prefix }}</td></tr>
+          <tr><td class="label-cell">子网掩码</td><td class="value-cell">{{ result.netmask }}</td></tr>
+          <tr><td class="label-cell">通配符掩码</td><td class="value-cell">{{ result.wildcard }}</td></tr>
+          <tr><td class="label-cell">网络地址</td><td class="value-cell">{{ result.network }}</td></tr>
+          <tr><td class="label-cell">广播地址</td><td class="value-cell">{{ result.broadcast }}</td></tr>
+          <tr><td class="label-cell">第一个主机</td><td class="value-cell">{{ result.firstHost }}</td></tr>
+          <tr><td class="label-cell">最后一个主机</td><td class="value-cell">{{ result.lastHost }}</td></tr>
+          <tr><td class="label-cell">可用主机数</td><td class="value-cell">{{ result.hostCount.toLocaleString() }}</td></tr>
         </tbody>
       </table>
     </div>
 
-    <div v-if="error" class="error">{{ error }}</div>
+    <!-- IP 格式转换 -->
+    <div v-if="result" class="info-panel">
+      <div class="panel-header">
+        <span class="panel-title">IP 格式转换</span>
+      </div>
+      <table class="data-table">
+        <tbody>
+          <tr><td class="label-cell">二进制</td><td class="value-cell mono">{{ ipBinary }}</td></tr>
+          <tr><td class="label-cell">十六进制</td><td class="value-cell mono">0x{{ ipHex }}</td></tr>
+          <tr><td class="label-cell">十进制</td><td class="value-cell mono">{{ ipDecimal }}</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    <div class="converter-section">
-      <h3>十进制 IP 转换</h3>
-      <div class="inline-convert">
+    <!-- IP 属性 -->
+    <div v-if="result" class="info-panel">
+      <div class="panel-header">
+        <span class="panel-title">IP 属性</span>
+      </div>
+      <table class="data-table">
+        <tbody>
+          <tr><td class="label-cell">IP 类别</td><td class="value-cell">{{ ipClass }}</td></tr>
+          <tr><td class="label-cell">私有地址</td><td class="value-cell">{{ isPrivate ? '是' : '否' }}</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 十进制转换 -->
+    <div class="converter-panel">
+      <div class="panel-header">
+        <span class="panel-title">十进制 IP 转换</span>
+      </div>
+      <div class="converter-body">
         <input 
           v-model="decimalInput" 
           @input="convertDecimal"
+          class="input-field compact"
           placeholder="输入十进制数字"
           type="number"
         />
-        <span class="arrow">→</span>
-        <input :value="decimalResult" readonly placeholder="IP 地址" />
+        <span class="arrow-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </span>
+        <input :value="decimalResult" class="input-field compact" readonly placeholder="IP 地址" />
       </div>
     </div>
   </div>
@@ -137,98 +160,114 @@ function convertDecimal() {
 
 <style scoped>
 .ip-calculator {
-  padding: 1rem 0;
+  margin-top: 1rem;
 }
 
+/* 输入区域 */
 .input-section {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
-.input-section label {
+.input-label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
   font-weight: 500;
+  color: var(--vp-c-text-2);
 }
 
-.input-section input {
+.input-field {
   width: 100%;
   max-width: 400px;
-  padding: 0.75rem;
-  border: 1px solid var(--vp-c-border);
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
-  font-size: 1rem;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
   font-family: var(--vp-font-family-mono);
+  font-size: 0.95rem;
+  transition: border-color 0.15s ease;
 }
 
-.result-section h3 {
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-  font-size: 1rem;
+.input-field:focus {
+  outline: none;
+  border-color: var(--vp-c-brand);
+}
+
+.input-field.compact {
+  max-width: 180px;
+}
+
+.error-box {
+  padding: 0.65rem 0.85rem;
+  background: var(--vp-c-danger-soft);
+  color: var(--vp-c-danger-1);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+/* 信息面板 */
+.info-panel,
+.converter-panel {
+  background: var(--vp-c-bg-soft);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.panel-header {
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.panel-title {
+  font-size: 0.9rem;
+  font-weight: 600;
   color: var(--vp-c-text-1);
 }
 
-.info-table {
+/* 数据表格 */
+.data-table {
   width: 100%;
-  max-width: 500px;
   border-collapse: collapse;
 }
 
-.info-table td {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--vp-c-border);
+.data-table td {
+  padding: 0.55rem 0.85rem;
+  font-size: 0.9rem;
 }
 
-.info-table tr td:first-child {
-  width: 140px;
+.data-table tr:not(:last-child) td {
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.label-cell {
+  width: 130px;
   font-weight: 500;
-  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-2);
 }
 
-.info-table tr td:last-child {
+.value-cell {
   font-family: var(--vp-font-family-mono);
 }
 
 .mono {
-  font-family: var(--vp-font-family-mono);
   word-break: break-all;
 }
 
-.error {
-  color: var(--vp-c-danger-1);
-  padding: 0.75rem;
-  background: var(--vp-c-danger-soft);
-  border-radius: 6px;
-  margin-top: 1rem;
-}
-
-.converter-section {
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--vp-c-border);
-}
-
-.converter-section h3 {
-  margin-bottom: 0.75rem;
-  font-size: 1rem;
-}
-
-.inline-convert {
+/* 转换区域 */
+.converter-body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  padding: 0.85rem;
   flex-wrap: wrap;
 }
 
-.inline-convert input {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 6px;
-  font-family: var(--vp-font-family-mono);
-  width: 180px;
-}
-
-.arrow {
+.arrow-icon {
   color: var(--vp-c-text-3);
-  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
 }
 </style>

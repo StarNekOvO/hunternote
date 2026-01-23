@@ -1,106 +1,113 @@
 <template>
   <div class="pwn-helper">
-    <div class="tabs">
-      <button :class="['tab', { active: activeTab === 'address' }]" @click="activeTab = 'address'">地址计算</button>
-      <button :class="['tab', { active: activeTab === 'endian' }]" @click="activeTab = 'endian'">字节序</button>
-      <button :class="['tab', { active: activeTab === 'shellcode' }]" @click="activeTab = 'shellcode'">Shellcode</button>
-      <button :class="['tab', { active: activeTab === 'padding' }]" @click="activeTab = 'padding'">Padding</button>
+    <!-- 标签页导航 -->
+    <div class="tool-tabs">
+      <button :class="['tab-btn', { active: activeTab === 'address' }]" @click="activeTab = 'address'">地址计算</button>
+      <button :class="['tab-btn', { active: activeTab === 'endian' }]" @click="activeTab = 'endian'">字节序</button>
+      <button :class="['tab-btn', { active: activeTab === 'shellcode' }]" @click="activeTab = 'shellcode'">Shellcode</button>
+      <button :class="['tab-btn', { active: activeTab === 'padding' }]" @click="activeTab = 'padding'">Padding</button>
     </div>
 
     <!-- 地址计算 -->
     <div v-if="activeTab === 'address'" class="tab-content">
-      <div class="form-group">
-        <label>基地址</label>
-        <input type="text" v-model="baseAddr" placeholder="0x7fff12340000" />
+      <div class="form-grid">
+        <div class="form-item">
+          <label class="form-label">基地址</label>
+          <input type="text" class="form-input" v-model="baseAddr" placeholder="0x7fff12340000" />
+        </div>
+        <div class="form-item">
+          <label class="form-label">偏移量 (可为负数)</label>
+          <input type="text" class="form-input" v-model="offset" placeholder="0x1000 或 -0x100" />
+        </div>
       </div>
-      <div class="form-group">
-        <label>偏移量 (可为负数)</label>
-        <input type="text" v-model="offset" placeholder="0x1000 或 -0x100" />
-      </div>
-      <div v-if="addressResult" class="result-box">
-        <span class="label">结果:</span>
-        <code>{{ addressResult }}</code>
-        <button class="copy-btn" @click="copy(addressResult)">复制</button>
+      <div v-if="addressResult" class="result-card">
+        <div class="result-row">
+          <span class="result-label">结果</span>
+          <code class="result-code">{{ addressResult }}</code>
+          <button class="btn-sm" @click="copy(addressResult)">复制</button>
+        </div>
       </div>
     </div>
 
     <!-- 字节序转换 -->
     <div v-if="activeTab === 'endian'" class="tab-content">
-      <div class="form-group">
-        <label>输入值 (hex)</label>
-        <input type="text" v-model="byteInput" placeholder="0xdeadbeef" />
-      </div>
-      <div class="form-group">
-        <label>字节数</label>
-        <select v-model="byteSize">
-          <option value="4">4 字节 (32-bit)</option>
-          <option value="8">8 字节 (64-bit)</option>
-        </select>
-      </div>
-      <div class="endian-results">
-        <div class="result-box">
-          <span class="label">大端序 (BE):</span>
-          <code>{{ bigEndian }}</code>
-          <button class="copy-btn" @click="copy(bigEndian)">复制</button>
+      <div class="form-grid">
+        <div class="form-item">
+          <label class="form-label">输入值 (hex)</label>
+          <input type="text" class="form-input" v-model="byteInput" placeholder="0xdeadbeef" />
         </div>
-        <div class="result-box">
-          <span class="label">小端序 (LE):</span>
-          <code>{{ littleEndian }}</code>
-          <button class="copy-btn" @click="copy(littleEndian)">复制</button>
+        <div class="form-item">
+          <label class="form-label">字节数</label>
+          <select class="form-select" v-model="byteSize">
+            <option value="4">4 字节 (32-bit)</option>
+            <option value="8">8 字节 (64-bit)</option>
+          </select>
+        </div>
+      </div>
+      <div class="result-card">
+        <div class="result-row">
+          <span class="result-label">大端序 (BE)</span>
+          <code class="result-code">{{ bigEndian }}</code>
+          <button class="btn-sm" @click="copy(bigEndian)" :disabled="!bigEndian">复制</button>
+        </div>
+        <div class="result-row">
+          <span class="result-label">小端序 (LE)</span>
+          <code class="result-code">{{ littleEndian }}</code>
+          <button class="btn-sm" @click="copy(littleEndian)" :disabled="!littleEndian">复制</button>
         </div>
       </div>
     </div>
 
     <!-- Shellcode 格式化 -->
     <div v-if="activeTab === 'shellcode'" class="tab-content">
-      <div class="form-group">
-        <label>输入 Shellcode</label>
-        <textarea v-model="shellcodeInput" placeholder="\x31\xc0\x50\x68... 或 31 c0 50 68..." rows="4"></textarea>
+      <div class="form-item">
+        <label class="form-label">输入 Shellcode</label>
+        <textarea class="form-textarea" v-model="shellcodeInput" placeholder="\x31\xc0\x50\x68... 或 31 c0 50 68..." rows="4"></textarea>
       </div>
-      <div class="form-group">
-        <label>输出格式</label>
-        <div class="format-btns">
-          <button :class="{ active: shellcodeFormat === 'c' }" @click="shellcodeFormat = 'c'">C</button>
-          <button :class="{ active: shellcodeFormat === 'python' }" @click="shellcodeFormat = 'python'">Python</button>
-          <button :class="{ active: shellcodeFormat === 'hex' }" @click="shellcodeFormat = 'hex'">Hex</button>
-          <button :class="{ active: shellcodeFormat === 'array' }" @click="shellcodeFormat = 'array'">Array</button>
-          <button :class="{ active: shellcodeFormat === 'nasm' }" @click="shellcodeFormat = 'nasm'">NASM</button>
+      <div class="form-item">
+        <label class="form-label">输出格式</label>
+        <div class="mode-buttons">
+          <button :class="['mode-btn', { active: shellcodeFormat === 'c' }]" @click="shellcodeFormat = 'c'">C</button>
+          <button :class="['mode-btn', { active: shellcodeFormat === 'python' }]" @click="shellcodeFormat = 'python'">Python</button>
+          <button :class="['mode-btn', { active: shellcodeFormat === 'hex' }]" @click="shellcodeFormat = 'hex'">Hex</button>
+          <button :class="['mode-btn', { active: shellcodeFormat === 'array' }]" @click="shellcodeFormat = 'array'">Array</button>
+          <button :class="['mode-btn', { active: shellcodeFormat === 'nasm' }]" @click="shellcodeFormat = 'nasm'">NASM</button>
         </div>
       </div>
-      <div v-if="formattedShellcode" class="result-box">
+      <div v-if="formattedShellcode" class="result-card">
         <div class="result-header">
-          <span class="label">长度: {{ shellcodeLength }} 字节</span>
-          <button class="copy-btn" @click="copy(formattedShellcode)">复制</button>
+          <span class="result-meta">长度: {{ shellcodeLength }} 字节</span>
+          <button class="btn-sm" @click="copy(formattedShellcode)">复制</button>
         </div>
-        <pre>{{ formattedShellcode }}</pre>
+        <pre class="result-pre">{{ formattedShellcode }}</pre>
       </div>
     </div>
 
     <!-- Padding 生成 -->
     <div v-if="activeTab === 'padding'" class="tab-content">
-      <div class="form-row">
-        <div class="form-group">
-          <label>长度</label>
-          <input type="number" v-model="paddingLength" placeholder="64" />
+      <div class="form-grid">
+        <div class="form-item">
+          <label class="form-label">长度</label>
+          <input type="number" class="form-input" v-model="paddingLength" placeholder="64" />
         </div>
-        <div class="form-group">
-          <label>填充字符</label>
-          <input type="text" v-model="paddingPattern" placeholder="A" maxlength="1" />
+        <div class="form-item">
+          <label class="form-label">填充字符</label>
+          <input type="text" class="form-input" v-model="paddingPattern" placeholder="A" maxlength="1" />
         </div>
       </div>
-      <div class="result-box">
+      <div class="result-card">
         <div class="result-header">
-          <span class="label">重复填充:</span>
-          <button class="copy-btn" @click="copy(generatedPadding)">复制</button>
+          <span class="result-meta">重复填充</span>
+          <button class="btn-sm" @click="copy(generatedPadding)">复制</button>
         </div>
-        <pre class="padding-output">{{ generatedPadding }}</pre>
+        <pre class="result-pre result-scroll">{{ generatedPadding }}</pre>
       </div>
-      <div class="result-box">
+      <div class="result-card">
         <div class="result-header">
-          <span class="label">循环模式 (用于定位偏移):</span>
-          <button class="copy-btn" @click="copy(cyclicPadding)">复制</button>
+          <span class="result-meta">循环模式 (用于定位偏移)</span>
+          <button class="btn-sm" @click="copy(cyclicPadding)">复制</button>
         </div>
-        <pre class="padding-output">{{ cyclicPadding }}</pre>
+        <pre class="result-pre result-scroll">{{ cyclicPadding }}</pre>
       </div>
     </div>
 
@@ -195,46 +202,43 @@ function copy(text: string) {
 
 <style scoped>
 .pwn-helper {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
-.loading-hint {
-  padding: 1rem;
-  text-align: center;
-  color: var(--vp-c-text-3);
-  font-size: 0.9rem;
-}
-
-.tabs {
+/* 标签页导航 */
+.tool-tabs {
   display: flex;
   gap: 0.5rem;
   border-bottom: 1px solid var(--vp-c-divider);
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
   flex-wrap: wrap;
 }
 
-.tab {
+.tab-btn {
   padding: 0.5rem 1rem;
   border: none;
   background: none;
   color: var(--vp-c-text-2);
+  font-size: 0.95rem;
   cursor: pointer;
   border-radius: 6px;
-  transition: all 0.2s;
+  transition: all 0.15s ease;
 }
 
-.tab:hover {
+.tab-btn:hover {
+  color: var(--vp-c-text-1);
   background: var(--vp-c-bg-soft);
 }
 
-.tab.active {
-  background: var(--vp-c-brand);
-  color: white;
+.tab-btn.active {
+  color: var(--vp-c-brand);
+  background: var(--vp-c-brand-soft);
+  font-weight: 500;
 }
 
 .tab-content {
-  animation: fadeIn 0.2s ease;
+  animation: fadeIn 0.15s ease;
 }
 
 @keyframes fadeIn {
@@ -242,120 +246,179 @@ function copy(text: string) {
   to { opacity: 1; }
 }
 
-.form-group {
+/* 表单布局 */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
   margin-bottom: 1rem;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: var(--vp-c-text-2);
-  font-size: 0.9rem;
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 0.75rem;
+.form-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--vp-c-text-2);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  padding: 0.7rem 0.85rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
   background: var(--vp-c-bg-soft);
   color: var(--vp-c-text-1);
   font-family: var(--vp-font-family-mono);
+  font-size: 0.9rem;
+  transition: border-color 0.15s ease;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
   outline: none;
   border-color: var(--vp-c-brand);
 }
 
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+.form-textarea {
+  resize: vertical;
 }
 
-.result-box {
-  background: var(--vp-c-bg-soft);
-  border-radius: 8px;
-  padding: 1rem;
-  margin-top: 1rem;
+/* 模式按钮组 */
+.mode-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
-.result-box .label {
+.mode-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  background: var(--vp-c-bg);
   color: var(--vp-c-text-2);
   font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-.result-box code {
-  font-family: var(--vp-font-family-mono);
-  margin-left: 0.5rem;
+.mode-btn:hover {
+  border-color: var(--vp-c-brand);
+  color: var(--vp-c-text-1);
 }
 
-.result-box pre {
-  margin: 0.5rem 0 0 0;
-  font-size: 0.9rem;
-  white-space: pre-wrap;
-  word-break: break-all;
+.mode-btn.active {
+  border-color: var(--vp-c-brand);
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand);
+  font-weight: 500;
+}
+
+/* 结果卡片 */
+.result-card {
+  background: var(--vp-c-bg-soft);
+  border-radius: 8px;
+  padding: 0.85rem;
+  margin-bottom: 0.75rem;
 }
 
 .result-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.5rem;
 }
 
-.copy-btn {
-  padding: 0.25rem 0.75rem;
+.result-meta {
+  font-size: 0.85rem;
+  color: var(--vp-c-text-2);
+}
+
+.result-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+.result-row:not(:last-child) {
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.result-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--vp-c-text-2);
+  min-width: 90px;
+  flex-shrink: 0;
+}
+
+.result-code {
+  flex: 1;
+  padding: 0.35rem 0.5rem;
+  background: var(--vp-c-bg);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  word-break: break-all;
+}
+
+.result-pre {
+  margin: 0;
+  padding: 0.65rem;
+  background: var(--vp-c-bg);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.result-scroll {
+  max-height: 100px;
+  overflow: auto;
+}
+
+/* 小按钮 */
+.btn-sm {
+  flex-shrink: 0;
+  padding: 0.3rem 0.6rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 4px;
   background: var(--vp-c-bg);
-  color: var(--vp-c-text-2);
-  font-size: 0.8rem;
+  color: var(--vp-c-text-3);
+  font-size: 0.75rem;
   cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-.copy-btn:hover {
-  background: var(--vp-c-bg-mute);
-}
-
-.format-btns {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.format-btns button {
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
-  background: var(--vp-c-bg-soft);
-  color: var(--vp-c-text-2);
-  cursor: pointer;
-}
-
-.format-btns button:hover {
+.btn-sm:hover:not(:disabled) {
   border-color: var(--vp-c-brand);
-}
-
-.format-btns button.active {
   background: var(--vp-c-brand);
-  border-color: var(--vp-c-brand);
   color: white;
 }
 
-.endian-results {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+.btn-sm:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
-.padding-output {
-  max-height: 100px;
-  overflow: auto;
+.loading-hint {
+  margin-top: 1rem;
+  padding: 1rem;
+  text-align: center;
+  color: var(--vp-c-text-3);
+  font-size: 0.85rem;
 }
 </style>

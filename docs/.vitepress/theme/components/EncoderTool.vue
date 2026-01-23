@@ -1,7 +1,8 @@
 <template>
   <div class="encoder-tool">
-    <div class="tool-controls">
-      <div class="mode-select">
+    <!-- 模式选择和方向控制 -->
+    <div class="tool-header">
+      <div class="mode-buttons">
         <button 
           v-for="m in modes" 
           :key="m.value"
@@ -11,28 +12,44 @@
           {{ m.label }}
         </button>
       </div>
-      <div class="direction-toggle">
-        <span :class="{ active: direction === 'encode' }">编码</span>
-        <button class="swap-btn" @click="swap">⇄</button>
-        <span :class="{ active: direction === 'decode' }">解码</span>
+      <div class="direction-control">
+        <span :class="['direction-label', { active: direction === 'encode' }]">编码</span>
+        <button class="direction-btn" @click="swap" title="切换方向">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/>
+          </svg>
+        </button>
+        <span :class="['direction-label', { active: direction === 'decode' }]">解码</span>
       </div>
     </div>
 
-    <div class="io-area">
-      <div class="input-section">
-        <div class="section-header">
-          <span>输入</span>
-          <button class="action-btn" @click="clearAll">清空</button>
+    <!-- 输入输出区域 -->
+    <div class="io-grid">
+      <div class="io-panel">
+        <div class="panel-header">
+          <span class="panel-title">输入</span>
+          <button class="btn-sm" @click="clearAll">清空</button>
         </div>
-        <textarea v-model="input" placeholder="在此输入文本..." rows="6"></textarea>
+        <textarea 
+          v-model="input" 
+          class="io-textarea" 
+          placeholder="在此输入文本..." 
+          rows="8"
+        ></textarea>
       </div>
 
-      <div class="output-section">
-        <div class="section-header">
-          <span>输出</span>
-          <button class="action-btn" @click="copyOutput">复制</button>
+      <div class="io-panel">
+        <div class="panel-header">
+          <span class="panel-title">输出</span>
+          <button class="btn-sm" @click="copyOutput" :disabled="!output">复制</button>
         </div>
-        <textarea :value="output" readonly placeholder="结果将显示在这里..." rows="6"></textarea>
+        <textarea 
+          :value="output" 
+          class="io-textarea" 
+          readonly 
+          placeholder="结果将显示在这里..." 
+          rows="8"
+        ></textarea>
       </div>
     </div>
 
@@ -141,26 +158,19 @@ function clearAll() {
 
 <style scoped>
 .encoder-tool {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
-.loading-hint {
-  padding: 1rem;
-  text-align: center;
-  color: var(--vp-c-text-3);
-  font-size: 0.9rem;
-}
-
-.tool-controls {
+.tool-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
-.mode-select {
+.mode-buttons {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
@@ -170,80 +180,115 @@ function clearAll() {
   padding: 0.5rem 1rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
-  background: var(--vp-c-bg-soft);
+  background: var(--vp-c-bg);
   color: var(--vp-c-text-2);
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.15s ease;
+}
+
+.mode-btn:hover {
+  border-color: var(--vp-c-brand);
+  color: var(--vp-c-text-1);
 }
 
 .mode-btn.active {
-  background: var(--vp-c-brand);
   border-color: var(--vp-c-brand);
-  color: white;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand);
+  font-weight: 500;
 }
 
-.direction-toggle {
+.direction-control {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--vp-c-text-2);
 }
 
-.direction-toggle span.active {
+.direction-label {
+  font-size: 0.9rem;
+  color: var(--vp-c-text-3);
+  transition: all 0.15s ease;
+}
+
+.direction-label.active {
   color: var(--vp-c-brand);
   font-weight: 600;
 }
 
-.swap-btn {
-  padding: 0.25rem 0.5rem;
+.direction-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
   border: 1px solid var(--vp-c-divider);
-  border-radius: 4px;
-  background: var(--vp-c-bg-soft);
+  border-radius: 6px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-2);
   cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-.io-area {
+.direction-btn:hover {
+  border-color: var(--vp-c-brand);
+  background: var(--vp-c-brand);
+  color: white;
+}
+
+.io-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
 @media (max-width: 640px) {
-  .io-area {
+  .io-grid {
     grid-template-columns: 1fr;
   }
 }
 
-.input-section, .output-section {
+.io-panel {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 
-.section-header {
+.panel-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
+}
+
+.panel-title {
+  font-size: 0.9rem;
+  font-weight: 600;
   color: var(--vp-c-text-1);
 }
 
-.action-btn {
-  padding: 0.25rem 0.5rem;
+.btn-sm {
+  padding: 0.3rem 0.6rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 4px;
-  background: var(--vp-c-bg-soft);
-  color: var(--vp-c-text-2);
-  font-size: 0.8rem;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-3);
+  font-size: 0.75rem;
   cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-.action-btn:hover {
+.btn-sm:hover:not(:disabled) {
+  border-color: var(--vp-c-brand);
   background: var(--vp-c-brand);
   color: white;
 }
 
-textarea {
+.btn-sm:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.io-textarea {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid var(--vp-c-divider);
@@ -253,10 +298,23 @@ textarea {
   font-family: var(--vp-font-family-mono);
   font-size: 0.9rem;
   resize: vertical;
+  transition: border-color 0.15s ease;
 }
 
-textarea:focus {
+.io-textarea:focus {
   outline: none;
   border-color: var(--vp-c-brand);
+}
+
+.io-textarea::placeholder {
+  color: var(--vp-c-text-3);
+}
+
+.loading-hint {
+  margin-top: 1rem;
+  padding: 1rem;
+  text-align: center;
+  color: var(--vp-c-text-3);
+  font-size: 0.85rem;
 }
 </style>

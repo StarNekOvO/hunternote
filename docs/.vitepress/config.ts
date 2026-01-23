@@ -279,7 +279,9 @@ export default defineConfig({
       {
         text: 'Tools',
         items: [
-          { text: 'rzweb <span style="font-size: 0.65em; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2px 6px; border-radius: 4px; margin-left: 6px; font-weight: 500;">Binary RE</span>', link: 'https://re.starneko.com/' },
+          { text: 'RzWeb <span style="font-size: 0.65em; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2px 6px; border-radius: 4px; margin-left: 6px; font-weight: 500;">Binary RE</span>', link: 'https://re.starneko.com/' },
+          { text: 'CyberChef <span style="font-size: 0.65em; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; padding: 2px 6px; border-radius: 4px; margin-left: 6px; font-weight: 500;">Misc</span>', link: 'https://misc.starneko.com/' },
+          { text: '图片工具 <span style="font-size: 0.65em; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 2px 6px; border-radius: 4px; margin-left: 6px; font-weight: 500;">NEW</span>', link: '/tools/image-tools' },
           { text: '编码解码', link: '/tools/encoder' },
           { text: '进制转换', link: '/tools/base-converter' },
           { text: '哈希计算', link: '/tools/hash' },

@@ -1,68 +1,89 @@
 <template>
   <div class="regex-tool">
-    <div class="pattern-input">
-      <div class="input-wrapper">
-        <span class="delimiter">/</span>
+    <!-- 正则表达式输入 -->
+    <div class="pattern-row">
+      <div class="pattern-wrapper">
+        <span class="pattern-delim">/</span>
         <input 
           type="text" 
           v-model="pattern"
           placeholder="输入正则表达式"
-          class="pattern-field"
+          class="pattern-input"
         />
-        <span class="delimiter">/{{ flags.join('') }}</span>
+        <span class="pattern-delim">/{{ flags.join('') }}</span>
       </div>
-      <button class="copy-btn" @click="copyPattern" :disabled="!pattern">复制</button>
+      <button class="btn-sm" @click="copyPattern" :disabled="!pattern">复制</button>
     </div>
 
-    <div v-if="error" class="error">{{ error }}</div>
+    <div v-if="error" class="error-box">{{ error }}</div>
 
-    <div class="flags">
-      <span class="flags-label">标志:</span>
-      <button 
-        v-for="f in availableFlags" 
-        :key="f.value"
-        :class="['flag-btn', { active: flags.includes(f.value) }]"
-        @click="toggleFlag(f.value)"
-      >
-        {{ f.label }}
-      </button>
-    </div>
-
-    <div class="examples">
-      <span class="examples-label">快速示例:</span>
-      <button 
-        v-for="ex in examples" 
-        :key="ex.name"
-        class="example-btn"
-        @click="useExample(ex)"
-      >
-        {{ ex.name }}
-      </button>
-    </div>
-
-    <div class="test-area">
-      <div class="input-section">
-        <label>测试文本</label>
-        <textarea v-model="testText" placeholder="输入要测试的文本..." rows="6"></textarea>
-      </div>
-
-      <div class="result-section">
-        <label>匹配结果 <span class="match-count" v-if="matches.length">({{ matches.length }} 处匹配)</span></label>
-        <div class="highlighted-text" v-html="highlightedText || '结果将高亮显示...'"></div>
+    <!-- 标志选择 -->
+    <div class="option-row">
+      <span class="option-label">标志</span>
+      <div class="mode-buttons">
+        <button 
+          v-for="f in availableFlags" 
+          :key="f.value"
+          :class="['mode-btn', { active: flags.includes(f.value) }]"
+          @click="toggleFlag(f.value)"
+        >
+          {{ f.label }}
+        </button>
       </div>
     </div>
 
-    <div v-if="matches.length" class="match-details">
-      <h3>匹配详情</h3>
-      <div class="match-list">
-        <div v-for="(m, i) in matches" :key="i" class="match-item">
-          <div class="match-header">
-            <span class="match-index">#{{ i + 1 }}</span>
-            <span class="match-pos">位置: {{ m.index }}</span>
+    <!-- 快速示例 -->
+    <div class="option-row">
+      <span class="option-label">示例</span>
+      <div class="mode-buttons">
+        <button 
+          v-for="ex in examples" 
+          :key="ex.name"
+          class="mode-btn"
+          @click="useExample(ex)"
+        >
+          {{ ex.name }}
+        </button>
+      </div>
+    </div>
+
+    <!-- 测试区域 -->
+    <div class="test-grid">
+      <div class="test-panel">
+        <div class="panel-header">
+          <span class="panel-title">测试文本</span>
+        </div>
+        <textarea 
+          v-model="testText" 
+          class="test-textarea"
+          placeholder="输入要测试的文本..." 
+          rows="8"
+        ></textarea>
+      </div>
+
+      <div class="test-panel">
+        <div class="panel-header">
+          <span class="panel-title">匹配结果</span>
+          <span class="match-badge" v-if="matches.length">{{ matches.length }} 处匹配</span>
+        </div>
+        <div class="result-display" v-html="highlightedText || '<span class=&quot;placeholder&quot;>结果将高亮显示...</span>'"></div>
+      </div>
+    </div>
+
+    <!-- 匹配详情 -->
+    <div v-if="matches.length" class="details-panel">
+      <div class="panel-header">
+        <span class="panel-title">匹配详情</span>
+      </div>
+      <div class="details-list">
+        <div v-for="(m, i) in matches" :key="i" class="detail-item">
+          <div class="detail-meta">
+            <span class="detail-index">#{{ i + 1 }}</span>
+            <span class="detail-pos">位置: {{ m.index }}</span>
           </div>
-          <code class="match-value">{{ m.match }}</code>
-          <div v-if="m.groups.length" class="match-groups">
-            <span v-for="(g, gi) in m.groups" :key="gi" class="group">
+          <code class="detail-value">{{ m.match }}</code>
+          <div v-if="m.groups.length" class="detail-groups">
+            <span v-for="(g, gi) in m.groups" :key="gi" class="group-tag">
               ${{ gi + 1 }}: {{ g || '(空)' }}
             </span>
           </div>
@@ -187,16 +208,18 @@ function useExample(ex: { name: string; pattern: string }) {
 
 <style scoped>
 .regex-tool {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
-.pattern-input {
+/* 正则输入行 */
+.pattern-row {
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
-.input-wrapper {
+.pattern-wrapper {
   flex: 1;
   display: flex;
   align-items: center;
@@ -204,209 +227,245 @@ function useExample(ex: { name: string; pattern: string }) {
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
   padding: 0 0.75rem;
+  transition: border-color 0.15s ease;
 }
 
-.delimiter {
+.pattern-wrapper:focus-within {
+  border-color: var(--vp-c-brand);
+}
+
+.pattern-delim {
   color: var(--vp-c-text-3);
   font-family: var(--vp-font-family-mono);
 }
 
-.pattern-field {
+.pattern-input {
   flex: 1;
   border: none;
   background: none;
   padding: 0.75rem 0.5rem;
   color: var(--vp-c-text-1);
   font-family: var(--vp-font-family-mono);
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
-.pattern-field:focus {
+.pattern-input:focus {
   outline: none;
 }
 
-.input-wrapper:focus-within {
-  border-color: var(--vp-c-brand);
-}
-
-.copy-btn {
-  padding: 0.75rem 1rem;
+.btn-sm {
+  flex-shrink: 0;
+  padding: 0.6rem 0.85rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
-  background: var(--vp-c-bg-soft);
-  color: var(--vp-c-text-2);
-  cursor: pointer;
-}
-
-.copy-btn:hover:not(:disabled) {
-  background: var(--vp-c-bg-mute);
-}
-
-.copy-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.error {
-  margin-top: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  background: var(--vp-c-danger-soft);
-  color: var(--vp-c-danger-1);
-  border-radius: 6px;
-  font-size: 0.9rem;
-}
-
-.flags, .examples {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  flex-wrap: wrap;
-}
-
-.flags-label, .examples-label {
-  color: var(--vp-c-text-2);
-  font-size: 0.9rem;
-}
-
-.flag-btn, .example-btn {
-  padding: 0.35rem 0.75rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 4px;
-  background: var(--vp-c-bg-soft);
+  background: var(--vp-c-bg);
   color: var(--vp-c-text-2);
   font-size: 0.85rem;
   cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-.flag-btn:hover, .example-btn:hover {
+.btn-sm:hover:not(:disabled) {
   border-color: var(--vp-c-brand);
-}
-
-.flag-btn.active {
   background: var(--vp-c-brand);
-  border-color: var(--vp-c-brand);
   color: white;
 }
 
-.test-area {
+.btn-sm:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.error-box {
+  margin-bottom: 1rem;
+  padding: 0.6rem 0.85rem;
+  background: var(--vp-c-danger-soft);
+  color: var(--vp-c-danger-1);
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+/* 选项行 */
+.option-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.option-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--vp-c-text-2);
+  min-width: 36px;
+}
+
+.mode-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.mode-btn {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 5px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-2);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.mode-btn:hover {
+  border-color: var(--vp-c-brand);
+  color: var(--vp-c-text-1);
+}
+
+.mode-btn.active {
+  border-color: var(--vp-c-brand);
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand);
+  font-weight: 500;
+}
+
+/* 测试区域 */
+.test-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
 }
 
 @media (max-width: 768px) {
-  .test-area {
+  .test-grid {
     grid-template-columns: 1fr;
   }
 }
 
-.input-section label, .result-section label {
-  display: block;
-  margin-bottom: 0.5rem;
+.test-panel {
+  background: var(--vp-c-bg-soft);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.panel-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.match-badge {
+  font-size: 0.75rem;
   font-weight: 500;
-}
-
-.match-count {
   color: var(--vp-c-brand);
-  font-weight: normal;
+  background: var(--vp-c-brand-soft);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
 }
 
-.input-section textarea {
+.test-textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-  background: var(--vp-c-bg-soft);
+  border: none;
+  background: transparent;
   color: var(--vp-c-text-1);
   font-family: var(--vp-font-family-mono);
   font-size: 0.9rem;
   resize: vertical;
 }
 
-.input-section textarea:focus {
+.test-textarea:focus {
   outline: none;
-  border-color: var(--vp-c-brand);
 }
 
-.highlighted-text {
-  min-height: 150px;
+.result-display {
+  min-height: 190px;
   padding: 0.75rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-  background: var(--vp-c-bg-soft);
   font-family: var(--vp-font-family-mono);
   font-size: 0.9rem;
   white-space: pre-wrap;
   word-break: break-all;
-  color: var(--vp-c-text-2);
+  color: var(--vp-c-text-1);
 }
 
-.highlighted-text :deep(mark) {
+.result-display :deep(.placeholder) {
+  color: var(--vp-c-text-3);
+}
+
+.result-display :deep(mark) {
   background: var(--vp-c-brand);
   color: white;
-  padding: 0 2px;
+  padding: 0.05em 0.15em;
   border-radius: 2px;
 }
 
-.match-details {
-  margin-top: 1.5rem;
-}
-
-.match-details h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1rem;
-}
-
-.match-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.match-item {
+/* 详情面板 */
+.details-panel {
+  margin-top: 1.25rem;
   background: var(--vp-c-bg-soft);
-  border-radius: 6px;
-  padding: 0.75rem;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-.match-header {
+.details-list {
+  padding: 0.5rem 0.85rem;
+}
+
+.detail-item {
+  padding: 0.65rem 0;
+}
+
+.detail-item:not(:last-child) {
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.detail-meta {
   display: flex;
   gap: 1rem;
-  margin-bottom: 0.5rem;
-  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.8rem;
 }
 
-.match-index {
+.detail-index {
   color: var(--vp-c-brand);
   font-weight: 600;
 }
 
-.match-pos {
+.detail-pos {
   color: var(--vp-c-text-3);
 }
 
-.match-value {
+.detail-value {
   display: block;
-  background: var(--vp-c-bg-alt);
-  padding: 0.5rem;
+  background: var(--vp-c-bg);
+  padding: 0.4rem 0.6rem;
   border-radius: 4px;
+  font-size: 0.85rem;
   word-break: break-all;
 }
 
-.match-groups {
+.detail-groups {
   margin-top: 0.5rem;
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
 }
 
-.group {
-  font-size: 0.85rem;
+.group-tag {
+  font-size: 0.8rem;
   color: var(--vp-c-text-2);
-  background: var(--vp-c-bg-alt);
-  padding: 0.25rem 0.5rem;
+  background: var(--vp-c-bg);
+  padding: 0.2rem 0.5rem;
   border-radius: 4px;
 }
 </style>

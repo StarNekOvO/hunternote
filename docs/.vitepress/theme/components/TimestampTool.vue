@@ -1,50 +1,63 @@
 <template>
   <div class="timestamp-tool">
-    <div class="current-time">
-      <div class="current-label">当前 Unix 时间戳</div>
-      <div class="current-value" @click="useCurrentTimestamp">
-        {{ currentTimestamp }}
-        <span class="click-hint">点击使用</span>
-      </div>
+    <!-- 当前时间戳显示 -->
+    <div class="current-panel" @click="useCurrentTimestamp">
+      <span class="current-label">当前 Unix 时间戳</span>
+      <span class="current-value">{{ currentTimestamp }}</span>
+      <span class="current-hint">点击使用</span>
     </div>
 
-    <div class="converter-sections">
-      <div class="section">
-        <h3>时间戳 → 日期</h3>
-        <div class="input-row">
+    <!-- 转换区域 -->
+    <div class="converter-grid">
+      <!-- 时间戳转日期 -->
+      <div class="converter-card">
+        <div class="card-header">
+          <span class="card-title">时间戳 → 日期</span>
+        </div>
+        <div class="card-body">
           <input 
             type="text" 
+            class="field-input"
             v-model="timestampInput"
             @input="timestampToDate"
             placeholder="输入时间戳（秒或毫秒）"
           />
-        </div>
-        <div v-if="convertedDate" class="result">
-          <pre>{{ convertedDate }}</pre>
-          <button class="copy-btn" @click="copy(convertedDate)">复制</button>
+          <div v-if="convertedDate" class="result-box">
+            <pre class="result-content">{{ convertedDate }}</pre>
+            <button class="btn-sm" @click="copy(convertedDate)">复制</button>
+          </div>
         </div>
       </div>
 
-      <div class="section">
-        <h3>日期 → 时间戳</h3>
-        <div class="input-row">
-          <input 
-            type="datetime-local" 
-            v-model="dateInput"
-            @input="dateToTimestamp"
-          />
-          <button class="now-btn" @click="useNow">现在</button>
+      <!-- 日期转时间戳 -->
+      <div class="converter-card">
+        <div class="card-header">
+          <span class="card-title">日期 → 时间戳</span>
         </div>
-        <div v-if="convertedTimestamp" class="result">
-          <pre>{{ convertedTimestamp }}</pre>
-          <button class="copy-btn" @click="copy(convertedTimestamp)">复制</button>
+        <div class="card-body">
+          <div class="input-group">
+            <input 
+              type="datetime-local" 
+              class="field-input"
+              v-model="dateInput"
+              @input="dateToTimestamp"
+            />
+            <button class="btn-primary" @click="useNow">现在</button>
+          </div>
+          <div v-if="convertedTimestamp" class="result-box">
+            <pre class="result-content">{{ convertedTimestamp }}</pre>
+            <button class="btn-sm" @click="copy(convertedTimestamp)">复制</button>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="reference">
-      <h3>常用时间戳参考</h3>
-      <table>
+    <!-- 参考表 -->
+    <div class="reference-panel">
+      <div class="panel-header">
+        <span class="panel-title">常用时间戳参考</span>
+      </div>
+      <table class="data-table">
         <thead>
           <tr>
             <th>描述</th>
@@ -53,9 +66,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Unix 纪元</td><td>0</td><td>1970-01-01 00:00:00 UTC</td></tr>
-          <tr><td>Y2K</td><td>946684800</td><td>2000-01-01 00:00:00 UTC</td></tr>
-          <tr><td>32 位溢出</td><td>2147483647</td><td>2038-01-19 03:14:07 UTC</td></tr>
+          <tr><td>Unix 纪元</td><td class="mono">0</td><td class="mono">1970-01-01 00:00:00 UTC</td></tr>
+          <tr><td>Y2K</td><td class="mono">946684800</td><td class="mono">2000-01-01 00:00:00 UTC</td></tr>
+          <tr><td>32 位溢出</td><td class="mono">2147483647</td><td class="mono">2038-01-19 03:14:07 UTC</td></tr>
         </tbody>
       </table>
     </div>
@@ -193,28 +206,34 @@ function copy(text: string) {
 
 <style scoped>
 .timestamp-tool {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
-.loading-hint {
-  padding: 1rem;
-  text-align: center;
-  color: var(--vp-c-text-3);
-  font-size: 0.9rem;
-}
-
-.current-time {
-  background: var(--vp-c-bg-soft);
-  border-radius: 8px;
+/* 当前时间戳面板 */
+.current-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 1.5rem;
-  text-align: center;
+  background: var(--vp-c-bg-soft);
+  border-radius: 10px;
   margin-bottom: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.current-panel:hover {
+  background: var(--vp-c-bg-elv);
+}
+
+.current-panel:hover .current-hint {
+  opacity: 1;
 }
 
 .current-label {
+  font-size: 0.85rem;
   color: var(--vp-c-text-2);
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .current-value {
@@ -222,136 +241,176 @@ function copy(text: string) {
   font-size: 2rem;
   font-weight: 600;
   color: var(--vp-c-brand);
-  cursor: pointer;
-  position: relative;
 }
 
-.click-hint {
-  position: absolute;
-  bottom: -1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+.current-hint {
   font-size: 0.75rem;
   color: var(--vp-c-text-3);
+  margin-top: 0.5rem;
   opacity: 0;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s ease;
 }
 
-.current-value:hover .click-hint {
-  opacity: 1;
-}
-
-.converter-sections {
+/* 转换卡片网格 */
+.converter-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
   margin-bottom: 1.5rem;
 }
 
-.section {
+.converter-card {
   background: var(--vp-c-bg-soft);
   border-radius: 8px;
-  padding: 1rem;
+  overflow: hidden;
 }
 
-.section h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1rem;
+.card-header {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
   color: var(--vp-c-text-1);
 }
 
-.input-row {
+.card-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.input-group {
   display: flex;
   gap: 0.5rem;
 }
 
-.input-row input {
+.field-input {
   flex: 1;
-  padding: 0.75rem;
+  padding: 0.7rem 0.85rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   font-family: var(--vp-font-family-mono);
+  font-size: 0.9rem;
+  transition: border-color 0.15s ease;
 }
 
-.input-row input:focus {
+.field-input:focus {
   outline: none;
   border-color: var(--vp-c-brand);
 }
 
-.now-btn {
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--vp-c-brand);
+.btn-primary {
+  flex-shrink: 0;
+  padding: 0.7rem 1rem;
+  border: none;
   border-radius: 6px;
   background: var(--vp-c-brand);
   color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
   cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-.result {
-  margin-top: 1rem;
+.btn-primary:hover {
+  background: var(--vp-c-brand-dark);
+}
+
+.result-box {
   display: flex;
   gap: 0.5rem;
   align-items: flex-start;
 }
 
-.result pre {
+.result-content {
   flex: 1;
   margin: 0;
-  padding: 0.75rem;
+  padding: 0.65rem 0.75rem;
   background: var(--vp-c-bg);
   border-radius: 6px;
   font-size: 0.85rem;
+  line-height: 1.5;
   white-space: pre-wrap;
 }
 
-.copy-btn {
-  padding: 0.5rem 0.75rem;
+.btn-sm {
+  flex-shrink: 0;
+  padding: 0.3rem 0.6rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 4px;
   background: var(--vp-c-bg);
-  color: var(--vp-c-text-2);
-  font-size: 0.8rem;
+  color: var(--vp-c-text-3);
+  font-size: 0.75rem;
   cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-.copy-btn:hover {
+.btn-sm:hover {
+  border-color: var(--vp-c-brand);
   background: var(--vp-c-brand);
   color: white;
 }
 
-.reference {
+/* 参考表 */
+.reference-panel {
   background: var(--vp-c-bg-soft);
   border-radius: 8px;
-  padding: 1rem;
+  overflow: hidden;
 }
 
-.reference h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1rem;
+.panel-header {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.panel-title {
+  font-size: 0.95rem;
+  font-weight: 600;
   color: var(--vp-c-text-1);
 }
 
-.reference table {
+.data-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.reference th,
-.reference td {
-  padding: 0.5rem;
+.data-table th,
+.data-table td {
+  padding: 0.6rem 1rem;
   text-align: left;
+}
+
+.data-table th {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--vp-c-text-2);
   border-bottom: 1px solid var(--vp-c-divider);
 }
 
-.reference th {
-  color: var(--vp-c-text-2);
-  font-weight: 500;
+.data-table td {
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--vp-c-divider);
 }
 
-.reference td {
+.data-table tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table .mono {
   font-family: var(--vp-font-family-mono);
-  font-size: 0.9rem;
+}
+
+.loading-hint {
+  margin-top: 1rem;
+  padding: 1rem;
+  text-align: center;
+  color: var(--vp-c-text-3);
+  font-size: 0.85rem;
 }
 </style>

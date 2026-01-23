@@ -1,51 +1,63 @@
 <template>
   <div class="hash-tool">
-    <div class="input-type-toggle">
+    <!-- 输入类型切换 -->
+    <div class="mode-buttons">
       <button 
-        :class="['toggle-btn', { active: inputType === 'text' }]"
+        :class="['mode-btn', { active: inputType === 'text' }]"
         @click="inputType = 'text'; fileInfo = null"
       >
         文本输入
       </button>
       <button 
-        :class="['toggle-btn', { active: inputType === 'file' }]"
+        :class="['mode-btn', { active: inputType === 'file' }]"
         @click="inputType = 'file'; input = ''"
       >
         文件上传
       </button>
     </div>
 
-    <div v-if="inputType === 'text'" class="text-input">
+    <!-- 文本输入区域 -->
+    <div v-if="inputType === 'text'" class="text-section">
       <textarea 
         v-model="input" 
+        class="input-textarea"
         placeholder="输入要计算哈希的文本..."
         rows="5"
       ></textarea>
-      <div class="input-actions">
-        <button class="calc-btn" @click="calculateAll" :disabled="!input || isCalculating || !wasmReady">
+      <div class="action-bar">
+        <button class="btn-primary" @click="calculateAll" :disabled="!input || isCalculating || !wasmReady">
           {{ isCalculating ? '计算中...' : '计算哈希' }}
         </button>
-        <button class="clear-btn" @click="clear">清空</button>
+        <button class="btn-secondary" @click="clear">清空</button>
       </div>
     </div>
 
-    <div v-else class="file-input">
-      <label class="file-drop">
+    <!-- 文件上传区域 -->
+    <div v-else class="file-section">
+      <label class="upload-zone">
         <input type="file" @change="handleFile" />
-        <div class="drop-content">
+        <svg class="upload-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+        </svg>
+        <p class="upload-text">
           <template v-if="!fileInfo">点击或拖拽文件到这里</template>
           <template v-else>{{ fileInfo.name }} ({{ formatSize(fileInfo.size) }})</template>
-        </div>
+        </p>
       </label>
     </div>
 
-    <div v-if="Object.keys(hashResults).length" class="results">
-      <h3>计算结果</h3>
-      <div v-for="algo in algorithms" :key="algo" class="result-row">
-        <div class="algo-name">{{ algo }}</div>
-        <div class="hash-value">
-          <code>{{ hashResults[algo] || '计算中...' }}</code>
-          <button class="copy-btn" @click="copyHash(hashResults[algo])">复制</button>
+    <!-- 结果展示 -->
+    <div v-if="Object.keys(hashResults).length" class="results-panel">
+      <div class="panel-header">
+        <span class="panel-title">计算结果</span>
+      </div>
+      <div class="results-list">
+        <div v-for="algo in algorithms" :key="algo" class="result-item">
+          <span class="algo-label">{{ algo }}</span>
+          <div class="hash-content">
+            <code class="hash-value">{{ hashResults[algo] || '计算中...' }}</code>
+            <button class="btn-sm" @click="copyHash(hashResults[algo])" :disabled="!hashResults[algo]">复制</button>
+          </div>
         </div>
       </div>
     </div>
@@ -126,39 +138,45 @@ function formatSize(bytes: number): string {
 
 <style scoped>
 .hash-tool {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
-.loading-hint {
-  padding: 1rem;
-  text-align: center;
-  color: var(--vp-c-text-3);
-  font-size: 0.9rem;
-}
-
-.input-type-toggle {
+.mode-buttons {
   display: flex;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
-.toggle-btn {
+.mode-btn {
   padding: 0.5rem 1rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
-  background: var(--vp-c-bg-soft);
+  background: var(--vp-c-bg);
   color: var(--vp-c-text-2);
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.15s ease;
 }
 
-.toggle-btn.active {
-  background: var(--vp-c-brand);
+.mode-btn:hover {
   border-color: var(--vp-c-brand);
-  color: white;
+  color: var(--vp-c-text-1);
 }
 
-.text-input textarea {
+.mode-btn.active {
+  border-color: var(--vp-c-brand);
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand);
+  font-weight: 500;
+}
+
+.text-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.input-textarea {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid var(--vp-c-divider);
@@ -168,123 +186,182 @@ function formatSize(bytes: number): string {
   font-family: var(--vp-font-family-mono);
   font-size: 0.9rem;
   resize: vertical;
+  transition: border-color 0.15s ease;
 }
 
-.input-actions {
+.input-textarea:focus {
+  outline: none;
+  border-color: var(--vp-c-brand);
+}
+
+.input-textarea::placeholder {
+  color: var(--vp-c-text-3);
+}
+
+.action-bar {
   display: flex;
   gap: 0.5rem;
-  margin-top: 0.75rem;
 }
 
-.calc-btn, .clear-btn {
-  padding: 0.5rem 1rem;
+.btn-primary {
+  padding: 0.6rem 1.25rem;
   border: none;
   border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.calc-btn {
   background: var(--vp-c-brand);
   color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-.calc-btn:hover:not(:disabled) {
+.btn-primary:hover:not(:disabled) {
   background: var(--vp-c-brand-dark);
 }
 
-.calc-btn:disabled {
+.btn-primary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.clear-btn {
-  background: var(--vp-c-bg-soft);
+.btn-secondary {
+  padding: 0.6rem 1rem;
   border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  background: var(--vp-c-bg);
   color: var(--vp-c-text-2);
-}
-
-.file-input {
-  margin-bottom: 1rem;
-}
-
-.file-drop {
-  display: block;
-  padding: 2rem;
-  border: 2px dashed var(--vp-c-divider);
-  border-radius: 8px;
-  text-align: center;
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.15s ease;
 }
 
-.file-drop:hover {
+.btn-secondary:hover {
   border-color: var(--vp-c-brand);
-}
-
-.file-drop input {
-  display: none;
-}
-
-.results {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  background: var(--vp-c-bg-soft);
-  border-radius: 8px;
-}
-
-.results h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1rem;
   color: var(--vp-c-text-1);
 }
 
-.result-row {
+.file-section {
+  margin-bottom: 1rem;
+}
+
+.upload-zone {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  padding: 0.5rem 0;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+  border: 2px dashed var(--vp-c-divider);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.upload-zone:hover {
+  border-color: var(--vp-c-brand);
+  background: var(--vp-c-bg-soft);
+}
+
+.upload-zone input {
+  display: none;
+}
+
+.upload-icon {
+  color: var(--vp-c-text-3);
+  margin-bottom: 0.75rem;
+}
+
+.upload-text {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--vp-c-text-2);
+}
+
+.results-panel {
+  margin-top: 1.5rem;
+  background: var(--vp-c-bg-soft);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.panel-header {
+  padding: 0.75rem 1rem;
   border-bottom: 1px solid var(--vp-c-divider);
 }
 
-.result-row:last-child {
-  border-bottom: none;
+.panel-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
 }
 
-.algo-name {
-  width: 80px;
+.results-list {
+  padding: 0.5rem 1rem;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0;
+}
+
+.result-item:not(:last-child) {
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.algo-label {
+  width: 72px;
+  flex-shrink: 0;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--vp-c-brand);
 }
 
-.hash-value {
+.hash-content {
   flex: 1;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  min-width: 0;
 }
 
-.hash-value code {
+.hash-value {
   flex: 1;
-  padding: 0.25rem 0.5rem;
+  padding: 0.35rem 0.5rem;
   background: var(--vp-c-bg);
   border-radius: 4px;
   font-size: 0.8rem;
   word-break: break-all;
 }
 
-.copy-btn {
-  padding: 0.25rem 0.5rem;
+.btn-sm {
+  flex-shrink: 0;
+  padding: 0.3rem 0.6rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 4px;
   background: var(--vp-c-bg);
-  color: var(--vp-c-text-2);
+  color: var(--vp-c-text-3);
   font-size: 0.75rem;
   cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-.copy-btn:hover {
+.btn-sm:hover:not(:disabled) {
+  border-color: var(--vp-c-brand);
   background: var(--vp-c-brand);
   color: white;
+}
+
+.btn-sm:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.loading-hint {
+  margin-top: 1rem;
+  padding: 1rem;
+  text-align: center;
+  color: var(--vp-c-text-3);
+  font-size: 0.85rem;
 }
 </style>
