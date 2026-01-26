@@ -100,6 +100,168 @@
       </template>
     </div>
 
+    <!-- 大小调整工具 -->
+    <div v-show="activeTab === 'resize'" class="tool-panel">
+      <div v-if="!resizeImage" class="upload-area" @click="triggerResizeUpload" @dragover.prevent @drop.prevent="handleResizeDrop">
+        <input ref="resizeFileInput" type="file" accept="image/*" @change="handleResizeUpload" hidden />
+        <div class="upload-content">
+          <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+          </svg>
+          <p class="upload-text">点击或拖拽图片到此处</p>
+          <p class="upload-hint">支持 JPG、PNG、WebP 等格式</p>
+        </div>
+      </div>
+
+      <template v-else>
+        <div class="editor-layout">
+          <div class="editor-main">
+            <div class="canvas-container">
+              <canvas ref="resizeCanvas"></canvas>
+            </div>
+          </div>
+          <div class="editor-sidebar">
+            <div class="file-info">
+              <div class="info-row">
+                <span class="info-label">文件名</span>
+                <span class="info-value text-truncate">{{ resizeFileName }}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">原始大小</span>
+                <span class="info-value">{{ formatFileSize(resizeOriginalSize) }}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">原始尺寸</span>
+                <span class="info-value">{{ resizeOriginalWidth }} x {{ resizeOriginalHeight }} px</span>
+              </div>
+            </div>
+
+            <div class="control-section">
+              <div class="control-label">调整模式</div>
+              <div class="mode-toggle compact">
+                <button :class="['mode-btn', { active: resizeMode === 'dimension' }]" @click="resizeMode = 'dimension'">按尺寸</button>
+                <button :class="['mode-btn', { active: resizeMode === 'filesize' }]" @click="resizeMode = 'filesize'">按文件大小</button>
+              </div>
+            </div>
+
+            <!-- 按尺寸调整 -->
+            <template v-if="resizeMode === 'dimension'">
+              <div class="control-section">
+                <div class="control-label">快捷尺寸</div>
+                <div class="preset-grid">
+                  <button 
+                    v-for="preset in dimensionPresets" 
+                    :key="preset.label"
+                    class="preset-btn"
+                    @click="applyDimensionPreset(preset)"
+                  >
+                    {{ preset.label }}
+                  </button>
+                </div>
+              </div>
+
+              <div class="control-section">
+                <div class="control-label">自定义尺寸</div>
+                <div class="resize-inputs">
+                  <div class="size-input-group">
+                    <label>宽度</label>
+                    <input type="number" v-model.number="resizeWidth" @input="onResizeWidthChange" min="1" max="10000" />
+                  </div>
+                  <span class="size-separator">x</span>
+                  <div class="size-input-group">
+                    <label>高度</label>
+                    <input type="number" v-model.number="resizeHeight" @input="onResizeHeightChange" min="1" max="10000" />
+                  </div>
+                </div>
+                <label class="checkbox-row" style="margin-top: 0.5rem;">
+                  <input type="checkbox" v-model="resizeLockRatio" />
+                  <span>锁定比例</span>
+                </label>
+              </div>
+
+              <div class="result-preview" v-if="resizeWidth !== resizeOriginalWidth || resizeHeight !== resizeOriginalHeight">
+                <span class="result-label">调整后</span>
+                <span class="result-value">{{ resizeWidth }} x {{ resizeHeight }} px</span>
+                <span class="result-ratio" :class="{ shrink: resizeWidth < resizeOriginalWidth }">
+                  {{ Math.round(resizeWidth / resizeOriginalWidth * 100) }}%
+                </span>
+              </div>
+            </template>
+
+            <!-- 按文件大小调整 -->
+            <template v-else>
+              <div class="control-section">
+                <div class="control-label">目标文件大小</div>
+                <div class="size-limit-input">
+                  <input type="number" v-model.number="targetFileSize" min="1" max="10000" />
+                  <select v-model="targetFileSizeUnit">
+                    <option value="kb">KB</option>
+                    <option value="mb">MB</option>
+                  </select>
+                </div>
+                <div class="preset-grid" style="margin-top: 0.5rem;">
+                  <button class="preset-btn" @click="targetFileSize = 100; targetFileSizeUnit = 'kb'">100KB</button>
+                  <button class="preset-btn" @click="targetFileSize = 200; targetFileSizeUnit = 'kb'">200KB</button>
+                  <button class="preset-btn" @click="targetFileSize = 500; targetFileSizeUnit = 'kb'">500KB</button>
+                  <button class="preset-btn" @click="targetFileSize = 1; targetFileSizeUnit = 'mb'">1MB</button>
+                </div>
+              </div>
+
+              <div class="control-section">
+                <div class="control-label">最大尺寸限制 (可选)</div>
+                <div class="resize-inputs">
+                  <div class="size-input-group">
+                    <label>最大宽度</label>
+                    <input type="number" v-model.number="maxDimensionWidth" min="0" max="10000" placeholder="不限" />
+                  </div>
+                  <span class="size-separator">x</span>
+                  <div class="size-input-group">
+                    <label>最大高度</label>
+                    <input type="number" v-model.number="maxDimensionHeight" min="0" max="10000" placeholder="不限" />
+                  </div>
+                </div>
+                <p class="hint-text">设为 0 表示不限制该方向</p>
+              </div>
+
+              <div class="control-section">
+                <div class="control-label">输出格式</div>
+                <select v-model="resizeOutputFormat" class="select-input">
+                  <option value="jpeg">JPEG (推荐用于压缩)</option>
+                  <option value="webp">WebP (更高压缩率)</option>
+                  <option value="png">PNG (无损，文件较大)</option>
+                </select>
+              </div>
+
+              <div class="info-box" v-if="compressResult">
+                <div class="compress-result">
+                  <div class="result-item">
+                    <span class="result-label">调整后尺寸</span>
+                    <span class="result-value">{{ compressResult.width }} x {{ compressResult.height }} px</span>
+                  </div>
+                  <div class="result-item">
+                    <span class="result-label">预估大小</span>
+                    <span class="result-value">{{ formatFileSize(compressResult.size) }}</span>
+                  </div>
+                  <div class="result-item">
+                    <span class="result-label">压缩率</span>
+                    <span class="result-value success">{{ Math.round((1 - compressResult.size / resizeOriginalSize) * 100) }}%</span>
+                  </div>
+                </div>
+              </div>
+            </template>
+
+            <div class="action-buttons">
+              <button class="btn-primary" @click="applyResize" :disabled="resizeProcessing">
+                {{ resizeProcessing ? '处理中...' : (resizeMode === 'dimension' ? '调整并下载' : '压缩并下载') }}
+              </button>
+              <button class="btn-secondary" @click="previewCompress" v-if="resizeMode === 'filesize'" :disabled="resizeProcessing">预估大小</button>
+              <button class="btn-text" @click="clearResize">更换图片</button>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+
     <!-- 水印工具 -->
     <div v-show="activeTab === 'watermark'" class="tool-panel">
       <div v-if="!watermarkImage" class="upload-area" @click="triggerWatermarkUpload" @dragover.prevent @drop.prevent="handleWatermarkDrop">
@@ -365,6 +527,7 @@ import { ref, onUnmounted } from 'vue'
 
 const tabs = [
   { id: 'crop', label: '裁剪' },
+  { id: 'resize', label: '大小调整' },
   { id: 'watermark', label: '水印' },
   { id: 'blind', label: '盲水印' },
   { id: 'convert', label: '格式转换' },
@@ -789,6 +952,273 @@ function clearCrop() {
   cropImage.value = null
   cropImageObj.value = null
   if (cropFileInput.value) cropFileInput.value.value = ''
+}
+
+// ========== 大小调整功能 ==========
+const resizeFileInput = ref<HTMLInputElement | null>(null)
+const resizeCanvas = ref<HTMLCanvasElement | null>(null)
+const resizeImage = ref<string | null>(null)
+const resizeImageObj = ref<HTMLImageElement | null>(null)
+const resizeFileName = ref('')
+const resizeOriginalSize = ref(0)
+const resizeOriginalWidth = ref(0)
+const resizeOriginalHeight = ref(0)
+
+const resizeMode = ref<'dimension' | 'filesize'>('dimension')
+const resizeWidth = ref(0)
+const resizeHeight = ref(0)
+const resizeLockRatio = ref(true)
+const resizeProcessing = ref(false)
+
+// 文件大小模式
+const targetFileSize = ref(200)
+const targetFileSizeUnit = ref<'kb' | 'mb'>('kb')
+const maxDimensionWidth = ref(0)
+const maxDimensionHeight = ref(0)
+const resizeOutputFormat = ref('jpeg')
+const compressResult = ref<{ width: number; height: number; size: number } | null>(null)
+
+const dimensionPresets = [
+  { label: '200x200', width: 200, height: 200 },
+  { label: '500x500', width: 500, height: 500 },
+  { label: '800x800', width: 800, height: 800 },
+  { label: '1000x1000', width: 1000, height: 1000 },
+  { label: '1920x1080', width: 1920, height: 1080 },
+  { label: '1080x1920', width: 1080, height: 1920 },
+]
+
+function triggerResizeUpload() {
+  resizeFileInput.value?.click()
+}
+
+function handleResizeUpload(e: Event) {
+  const file = (e.target as HTMLInputElement).files?.[0]
+  if (file) loadResizeImage(file)
+}
+
+function handleResizeDrop(e: DragEvent) {
+  const file = e.dataTransfer?.files[0]
+  if (file && file.type.startsWith('image/')) loadResizeImage(file)
+}
+
+function loadResizeImage(file: File) {
+  const url = URL.createObjectURL(file)
+  resizeImage.value = url
+  resizeFileName.value = file.name
+  resizeOriginalSize.value = file.size
+  compressResult.value = null
+  
+  const img = new Image()
+  img.onload = () => {
+    resizeImageObj.value = img
+    resizeOriginalWidth.value = img.width
+    resizeOriginalHeight.value = img.height
+    resizeWidth.value = img.width
+    resizeHeight.value = img.height
+    setTimeout(() => renderResizePreview(), 50)
+  }
+  img.src = url
+}
+
+function renderResizePreview() {
+  if (!resizeCanvas.value || !resizeImageObj.value) return
+  
+  const canvas = resizeCanvas.value
+  const ctx = canvas.getContext('2d')!
+  const img = resizeImageObj.value
+  
+  const maxSize = 400
+  const scale = Math.min(1, maxSize / Math.max(img.width, img.height))
+  canvas.width = img.width * scale
+  canvas.height = img.height * scale
+  
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+}
+
+function onResizeWidthChange() {
+  if (resizeLockRatio.value && resizeOriginalWidth.value > 0) {
+    const ratio = resizeOriginalHeight.value / resizeOriginalWidth.value
+    resizeHeight.value = Math.round(resizeWidth.value * ratio)
+  }
+}
+
+function onResizeHeightChange() {
+  if (resizeLockRatio.value && resizeOriginalHeight.value > 0) {
+    const ratio = resizeOriginalWidth.value / resizeOriginalHeight.value
+    resizeWidth.value = Math.round(resizeHeight.value * ratio)
+  }
+}
+
+function applyDimensionPreset(preset: { width: number; height: number }) {
+  // 如果锁定比例，按比例缩放到 preset 尺寸内
+  if (resizeLockRatio.value) {
+    const ratio = resizeOriginalWidth.value / resizeOriginalHeight.value
+    if (ratio > preset.width / preset.height) {
+      // 宽度限制
+      resizeWidth.value = Math.min(preset.width, resizeOriginalWidth.value)
+      resizeHeight.value = Math.round(resizeWidth.value / ratio)
+    } else {
+      // 高度限制
+      resizeHeight.value = Math.min(preset.height, resizeOriginalHeight.value)
+      resizeWidth.value = Math.round(resizeHeight.value * ratio)
+    }
+  } else {
+    resizeWidth.value = preset.width
+    resizeHeight.value = preset.height
+  }
+}
+
+async function applyResize() {
+  if (!resizeImageObj.value) return
+  resizeProcessing.value = true
+  
+  try {
+    if (resizeMode.value === 'dimension') {
+      await resizeByDimension()
+    } else {
+      await resizeByFileSize()
+    }
+  } finally {
+    resizeProcessing.value = false
+  }
+}
+
+async function resizeByDimension() {
+  if (!resizeImageObj.value) return
+  
+  const img = resizeImageObj.value
+  const canvas = document.createElement('canvas')
+  canvas.width = resizeWidth.value
+  canvas.height = resizeHeight.value
+  
+  const ctx = canvas.getContext('2d')!
+  ctx.imageSmoothingEnabled = true
+  ctx.imageSmoothingQuality = 'high'
+  ctx.drawImage(img, 0, 0, resizeWidth.value, resizeHeight.value)
+  
+  const link = document.createElement('a')
+  const baseName = resizeFileName.value.replace(/\.[^.]+$/, '')
+  link.download = `${baseName}_${resizeWidth.value}x${resizeHeight.value}.png`
+  link.href = canvas.toDataURL('image/png')
+  link.click()
+}
+
+async function resizeByFileSize() {
+  if (!resizeImageObj.value) return
+  
+  const targetBytes = targetFileSizeUnit.value === 'kb' 
+    ? targetFileSize.value * 1024 
+    : targetFileSize.value * 1024 * 1024
+  
+  const result = await compressToTargetSize(resizeImageObj.value, targetBytes, true)
+  
+  if (result) {
+    const link = document.createElement('a')
+    const baseName = resizeFileName.value.replace(/\.[^.]+$/, '')
+    link.download = `${baseName}_compressed.${resizeOutputFormat.value}`
+    link.href = result.dataUrl
+    link.click()
+  }
+}
+
+async function previewCompress() {
+  if (!resizeImageObj.value) return
+  resizeProcessing.value = true
+  
+  try {
+    const targetBytes = targetFileSizeUnit.value === 'kb' 
+      ? targetFileSize.value * 1024 
+      : targetFileSize.value * 1024 * 1024
+    
+    const result = await compressToTargetSize(resizeImageObj.value, targetBytes, false)
+    
+    if (result) {
+      compressResult.value = {
+        width: result.width,
+        height: result.height,
+        size: result.size
+      }
+    }
+  } finally {
+    resizeProcessing.value = false
+  }
+}
+
+async function compressToTargetSize(
+  img: HTMLImageElement, 
+  targetBytes: number, 
+  download: boolean
+): Promise<{ dataUrl: string; width: number; height: number; size: number } | null> {
+  let width = img.width
+  let height = img.height
+  const ratio = width / height
+  
+  // 应用最大尺寸限制
+  if (maxDimensionWidth.value > 0 && width > maxDimensionWidth.value) {
+    width = maxDimensionWidth.value
+    height = Math.round(width / ratio)
+  }
+  if (maxDimensionHeight.value > 0 && height > maxDimensionHeight.value) {
+    height = maxDimensionHeight.value
+    width = Math.round(height * ratio)
+  }
+  
+  const mimeType = resizeOutputFormat.value === 'webp' ? 'image/webp' 
+    : resizeOutputFormat.value === 'png' ? 'image/png' 
+    : 'image/jpeg'
+  
+  // 二分查找最佳质量和尺寸
+  let quality = 0.92
+  let minQuality = 0.1
+  let scale = 1
+  let minScale = 0.1
+  let bestResult: { dataUrl: string; width: number; height: number; size: number } | null = null
+  
+  // 先尝试只调整质量
+  for (let i = 0; i < 10; i++) {
+    const canvas = document.createElement('canvas')
+    canvas.width = Math.round(width * scale)
+    canvas.height = Math.round(height * scale)
+    
+    const ctx = canvas.getContext('2d')!
+    ctx.imageSmoothingEnabled = true
+    ctx.imageSmoothingQuality = 'high'
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+    
+    const dataUrl = canvas.toDataURL(mimeType, quality)
+    const size = Math.round((dataUrl.length - `data:${mimeType};base64,`.length) * 0.75)
+    
+    bestResult = { dataUrl, width: canvas.width, height: canvas.height, size }
+    
+    if (size <= targetBytes) {
+      break
+    }
+    
+    // 如果质量已经很低，尝试缩小尺寸
+    if (quality <= minQuality) {
+      scale *= 0.85
+      quality = 0.85
+      if (scale < minScale) break
+    } else {
+      quality = Math.max(minQuality, quality - 0.1)
+    }
+  }
+  
+  return bestResult
+}
+
+function clearResize() {
+  if (resizeImage.value) URL.revokeObjectURL(resizeImage.value)
+  resizeImage.value = null
+  resizeImageObj.value = null
+  resizeFileName.value = ''
+  resizeOriginalSize.value = 0
+  resizeOriginalWidth.value = 0
+  resizeOriginalHeight.value = 0
+  resizeWidth.value = 0
+  resizeHeight.value = 0
+  compressResult.value = null
+  if (resizeFileInput.value) resizeFileInput.value.value = ''
 }
 
 // ========== 水印功能 ==========
@@ -1250,6 +1680,7 @@ function formatFileSize(bytes: number): string {
 // 清理
 onUnmounted(() => {
   clearCrop()
+  clearResize()
   clearWatermark()
   clearBlindEncode()
   clearBlindDecode()
@@ -1831,5 +2262,139 @@ onUnmounted(() => {
 .lock-ratio {
   padding-bottom: 0.4rem;
   font-size: 0.8rem;
+}
+
+/* 预设按钮网格 */
+.preset-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.preset-btn {
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-2);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.preset-btn:hover {
+  border-color: var(--vp-c-brand);
+  color: var(--vp-c-brand);
+  background: var(--vp-c-brand-soft);
+}
+
+/* 文件大小输入 */
+.size-limit-input {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.size-limit-input input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: var(--vp-font-family-mono);
+}
+
+.size-limit-input select {
+  padding: 0.5rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  font-size: 0.9rem;
+}
+
+/* 结果预览 */
+.result-preview {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: var(--vp-c-bg-soft);
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.result-preview .result-label {
+  color: var(--vp-c-text-2);
+}
+
+.result-preview .result-value {
+  color: var(--vp-c-text-1);
+  font-family: var(--vp-font-family-mono);
+}
+
+.result-preview .result-ratio {
+  margin-left: auto;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.result-preview .result-ratio.shrink {
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+}
+
+/* 压缩结果 */
+.compress-result {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.compress-result .result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.compress-result .result-label {
+  color: var(--vp-c-text-2);
+}
+
+.compress-result .result-value {
+  font-family: var(--vp-font-family-mono);
+  font-weight: 500;
+}
+
+.compress-result .result-value.success {
+  color: #22c55e;
+}
+
+/* 提示文字 */
+.hint-text {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--vp-c-text-3);
+}
+
+/* 紧凑模式切换 */
+.mode-toggle.compact {
+  margin-bottom: 0;
+}
+
+.mode-toggle.compact .mode-btn {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+/* 文本截断 */
+.text-truncate {
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
