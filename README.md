@@ -82,6 +82,28 @@ npm run build:wasm
 
 WASM 文件已预编译并提交到仓库，CI 只需运行 `npm run build`
 
+## 更换头像/Favicon
+
+将新头像图片（推荐 1024x1024 正方形）放入 `docs/public/img/` 目录，然后运行：
+
+```bash
+IMG=xxxxx.jpg && cd docs/public && \
+magick img/$IMG -resize 16x16 favicon-16x16.png && \
+magick img/$IMG -resize 32x32 favicon-32x32.png && \
+magick img/$IMG -resize 180x180 apple-touch-icon.png && \
+magick img/$IMG -resize 192x192 android-chrome-192x192.png && \
+magick img/$IMG -resize 512x512 android-chrome-512x512.png && \
+magick img/$IMG -define icon:auto-resize=48,32,16 favicon.ico && \
+echo "Icons generated!"
+```
+
+然后更新以下文件中的图片路径：
+
+| 文件 | 需要更新的字段 |
+|------|---------------|
+| `docs/.vitepress/config.ts` | `themeConfig.logo`, `og:image`, `twitter:image`, JSON-LD `image` |
+| `docs/index.md` | `hero.image.src` |
+
 ## 功能特性
 
 - Rust + WebAssembly 在线工具（Hash、编码、进制转换、时间戳、PWN 辅助、正则、IP/CIDR）

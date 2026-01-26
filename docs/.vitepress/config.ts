@@ -217,7 +217,7 @@ export default defineConfig({
     ['meta', { property: 'og:title', content: '御坂晚的笨蛋笔记 - starneko / misakabit' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:url', content: 'https://starneko.com' }],
-    ['meta', { property: 'og:image', content: 'https://starneko.com/img/ryo.jpg' }],
+    ['meta', { property: 'og:image', content: 'https://starneko.com/img/Mahiro.jpg' }],
     ['meta', { property: 'og:site_name', content: '御坂晚的笨蛋笔记' }],
     ['meta', { property: 'og:description', content: 'starneko / misakabit (牛奶猫 / 御坂晚) 的系统安全研究笔记 - System Security Hunter. Python/Go/Rust. MSCS at CU Boulder.' }],
     
@@ -227,7 +227,7 @@ export default defineConfig({
     ['meta', { name: 'twitter:creator', content: '@StarNekOvO' }],
     ['meta', { name: 'twitter:title', content: '御坂晚的笨蛋笔记 - starneko / misakabit' }],
     ['meta', { name: 'twitter:description', content: 'starneko / misakabit (牛奶猫 / 御坂晚) 的系统安全研究笔记 - System Security Hunter' }],
-    ['meta', { name: 'twitter:image', content: 'https://starneko.com/img/ryo.jpg' }],
+    ['meta', { name: 'twitter:image', content: 'https://starneko.com/img/Mahiro.jpg' }],
     
     // JSON-LD structured data for better SEO
     ['script', { type: 'application/ld+json' }, JSON.stringify({
@@ -236,7 +236,7 @@ export default defineConfig({
       name: 'starneko',
       alternateName: ['misakabit', '牛奶猫', '御坂晚', 'StarNekOvO'],
       url: 'https://starneko.com',
-      image: 'https://starneko.com/img/ryo.jpg',
+      image: 'https://starneko.com/img/Mahiro.jpg',
       sameAs: [
         'https://github.com/StarNekOvO',
         'https://x.com/StarNekOvO',
@@ -263,7 +263,7 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    logo: '/img/ryo.jpg',
+    logo: '/img/Mahiro.jpg',
     
     nav: [
       { text: 'Home', link: '/' },
