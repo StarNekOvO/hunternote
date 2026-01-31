@@ -125,6 +125,12 @@ function getSidebar() {
       items: []
     },
     {
+      text: 'Papers',
+      collapsed: false,
+      link: '/papers/',
+      items: []
+    },
+    {
       text: 'CTFs',
       collapsed: false,
       link: '/ctfs/',
