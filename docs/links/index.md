@@ -108,16 +108,6 @@
     </a>
   </div>
 
-  <div class="friend-item">
-    <a href="https://www.zh314.xyz" target="_blank" rel="noopener noreferrer">
-      <div class="friend-avatar">
-        <img src="https://www.zh314.xyz/img/avatar.png" alt="hsn's blog" loading="lazy" />
-      </div>
-      <div class="friend-name">hsn's blog</div>
-      <div class="friend-url">www.zh314.xyz</div>
-      <div class="friend-desc">是想长头发但是还在敲代码的hsn!</div>
-    </a>
-  </div>
 </div>
 
 <style>
