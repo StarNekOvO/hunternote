@@ -158,3 +158,95 @@
 2. 同时处理 `:root.dark` 暗色模式
 3. 使用 `-webkit-backdrop-filter` 兼容 Safari
 4. 背景图片放在 `docs/public/img/` 目录
+
+## 头像光环配色方案
+
+### 方案 1：全彩虹（原版）
+包含红、黄、青、蓝、紫色，适合热烈活泼风格。
+
+```css
+background: conic-gradient(
+  from 0deg,
+  #ff6b6b,  /* 红色 */
+  #feca57,  /* 黄色 */
+  #48dbfb,  /* 青色 */
+  #54a0ff,  /* 蓝色 */
+  #5f27cd,  /* 紫色 */
+  #ff6b6b
+);
+
+/* 发光效果 */
+box-shadow: 
+  0 0 20px rgba(255, 107, 107, 0.5),
+  0 0 40px rgba(254, 202, 87, 0.3),
+  0 0 60px rgba(72, 219, 251, 0.2);
+```
+
+### 方案 2：青蓝紫粉（当前使用）
+去掉红黄，只保留冷色调，适合清新柔和风格。
+
+```css
+background: conic-gradient(
+  from 0deg,
+  #48dbfb,  /* 青色 */
+  #54a0ff,  /* 蓝色 */
+  #a78bfa,  /* 淡紫 */
+  #f472b6,  /* 粉色 */
+  #48dbfb,
+  #54a0ff,
+  #a78bfa,
+  #f472b6,
+  #48dbfb
+);
+
+/* 发光效果 */
+box-shadow: 
+  0 0 20px rgba(72, 219, 251, 0.5),
+  0 0 40px rgba(167, 139, 250, 0.4),
+  0 0 60px rgba(244, 114, 182, 0.3);
+```
+
+### 方案 3：青蓝紫粉渐变（当前使用）
+青色到淡紫到浅粉柔和过渡，去掉纯蓝纯粉，更加柔和细腻。
+
+```css
+background: conic-gradient(
+  from 0deg,
+  #7dd3fc,  /* 青色 */
+  #93c5fd,  /* 浅蓝 */
+  #a5b4fc,  /* 蓝紫 */
+  #c4b5fd,  /* 淡紫 */
+  #e9d5ff,  /* 浅紫 */
+  #fce7f3,  /* 淡粉 */
+  #fbcfe8,  /* 浅粉 */
+  #e9d5ff,
+  #c4b5fd,
+  #a5b4fc,
+  #93c5fd,
+  #7dd3fc,
+  /* 循环第二遍 */
+  #93c5fd,
+  #a5b4fc,
+  #c4b5fd,
+  #e9d5ff,
+  #fce7f3,
+  #fbcfe8,
+  #e9d5ff,
+  #c4b5fd,
+  #a5b4fc,
+  #93c5fd,
+  #7dd3fc
+);
+
+/* 发光效果 */
+box-shadow: 
+  0 0 20px rgba(96, 165, 250, 0.5),
+  0 0 40px rgba(255, 255, 255, 0.4),
+  0 0 60px rgba(244, 114, 182, 0.3);
+```
+
+### 切换方法
+
+修改 [BAHero.vue](components/BAHero.vue) 中的 `.info-card::before` 样式：
+1. 替换 `background: conic-gradient(...)` 中的颜色
+2. 替换 `box-shadow` 和 `@keyframes ssr-glow` 中的发光颜色

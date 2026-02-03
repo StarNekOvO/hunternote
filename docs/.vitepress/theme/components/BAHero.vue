@@ -238,21 +238,108 @@ onMounted(() => {
   width: 96px;
   height: 96px;
   border-radius: 50%;
-  border: 3px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   position: absolute;
   top: -48px;
-  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
   object-fit: cover;
+  z-index: 1;
+}
+
+/* SSR 彩色光环容器 */
+.info-card::before {
+  content: '';
+  position: absolute;
+  top: -52px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    #7dd3fc,
+    #93c5fd,
+    #a5b4fc,
+    #c4b5fd,
+    #e9d5ff,
+    #fce7f3,
+    #fbcfe8,
+    #e9d5ff,
+    #c4b5fd,
+    #a5b4fc,
+    #93c5fd,
+    #7dd3fc,
+    #93c5fd,
+    #a5b4fc,
+    #c4b5fd,
+    #e9d5ff,
+    #fce7f3,
+    #fbcfe8,
+    #e9d5ff,
+    #c4b5fd,
+    #a5b4fc,
+    #93c5fd,
+    #7dd3fc
+  );
+  animation: ssr-rotate 3s linear infinite;
+  z-index: 0;
+}
+
+/* 内层遮罩 */
+.info-card::after {
+  content: '';
+  position: absolute;
+  top: -48px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--card-bg-start);
+  z-index: 0;
+}
+
+@keyframes ssr-rotate {
+  from {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+/* 外发光效果 */
+
+.info-card::before {
+  box-shadow: 
+    0 0 20px rgba(96, 165, 250, 0.5),
+    0 0 40px rgba(255, 255, 255, 0.4),
+    0 0 60px rgba(244, 114, 182, 0.3);
+  animation: ssr-rotate 3s linear infinite, ssr-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes ssr-glow {
+  from {
+    box-shadow: 
+      0 0 20px rgba(96, 165, 250, 0.5),
+      0 0 40px rgba(255, 255, 255, 0.4),
+      0 0 60px rgba(244, 114, 182, 0.3);
+  }
+  to {
+    box-shadow: 
+      0 0 30px rgba(244, 114, 182, 0.5),
+      0 0 50px rgba(255, 255, 255, 0.5),
+      0 0 70px rgba(96, 165, 250, 0.4);
+  }
 }
 
 .avatar:hover {
   transform: rotate(360deg) scale(1.08);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 :root.dark .avatar {
-  border-color: rgba(255, 255, 255, 0.2);
+  border: none;
 }
 
 .name {
