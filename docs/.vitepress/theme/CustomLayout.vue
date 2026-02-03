@@ -1,5 +1,11 @@
 <template>
-  <div>
+  <div class="custom-layout">
+    <!-- Global background -->
+    <div class="global-bg">
+      <img :src="isDark ? '/img/banner-dark.webp' : '/img/banner-light.webp'" alt="" class="global-bg-img" />
+      <div class="global-bg-overlay"></div>
+    </div>
+    
     <!-- Homepage: BA Hero with navbar -->
     <template v-if="isHome">
       <Layout>
@@ -47,7 +53,7 @@ import Fireworks from './components/Fireworks.vue'
 import MusicPlayer from './components/MusicPlayer.vue'
 
 const { Layout } = DefaultTheme
-const { frontmatter } = useData()
+const { frontmatter, isDark } = useData()
 
 const isHome = computed(() => frontmatter.value.layout === 'home')
 
@@ -63,6 +69,109 @@ onMounted(() => {
 </script>
 
 <style>
+/* Global background for all pages */
+.custom-layout {
+  position: relative;
+  min-height: 100vh;
+}
+
+.global-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  background: linear-gradient(135deg, #e8f4fc 0%, #f0e6fa 50%, #fce4ec 100%);
+}
+
+:root.dark .global-bg {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #172554 100%);
+}
+
+.global-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  inset: 0;
+}
+
+.global-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+:root.dark .global-bg-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+}
+
+/* Make VitePress components transparent */
+.VPNav,
+.VPNavBar,
+.VPSidebar,
+.VPContent,
+.VPDoc,
+.VPFooter,
+.vp-doc,
+.main,
+.VPDocAside,
+.VPDocAsideOutline,
+.aside,
+.aside-container,
+.aside-content,
+.content,
+.content-body,
+.content-container,
+.VPDocAsideCarbonAds {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Content area transparent */
+.VPDoc .container {
+  background: transparent !important;
+}
+
+:root.dark .VPDoc .container {
+  background: transparent !important;
+}
+
+/* Sidebar transparent */
+.VPSidebar {
+  background: transparent !important;
+  border-right: none !important;
+}
+
+:root.dark .VPSidebar {
+  background: transparent !important;
+  border-right: none !important;
+}
+
+/* Navbar transparent */
+.VPNavBar,
+.VPNavBar.has-sidebar {
+  background: transparent !important;
+  border-bottom: none !important;
+}
+
+:root.dark .VPNavBar,
+:root.dark .VPNavBar.has-sidebar {
+  background: transparent !important;
+  border-bottom: none !important;
+}
+
+/* Remove all borders */
+.VPNavBar .divider,
+.VPNavBar .divider-line {
+  background: transparent !important;
+}
+
+.VPSidebar .curtain {
+  background: transparent !important;
+}
+
 /* 隐藏首页所有默认内容 */
 .VPHome .VPHero,
 .VPHome .VPFeatures,
@@ -99,14 +208,5 @@ onMounted(() => {
 /* 首页导航透明 */
 .VPHome .VPNav {
   background: transparent !important;
-}
-
-.VPHome .VPNavBar {
-  background: rgba(255, 255, 255, 0.85) !important;
-  backdrop-filter: blur(12px);
-}
-
-.dark .VPHome .VPNavBar {
-  background: rgba(20, 20, 35, 0.85) !important;
 }
 </style>
