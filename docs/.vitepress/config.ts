@@ -308,8 +308,8 @@ export default defineConfig({
     ],
 
     footer: {
-      message: 'Creative Commons Attribution-NonCommercial 4.0 International',
-      copyright: 'Copyright © starneko / misakabit'
+      message: '',
+      copyright: '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;vertical-align:middle;"><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height:14px" alt="CC"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height:14px" alt="BY"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="height:14px" alt="NC"></a> · © starneko (misakabit)'
     },
 
     search: {
@@ -335,7 +335,10 @@ export default defineConfig({
   },
 
   markdown: {
-    lineNumbers: true
+    lineNumbers: true,
+    languageAlias: {
+      'nasm': 'asm'
+    }
   },
 
   vite: {

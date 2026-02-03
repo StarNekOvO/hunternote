@@ -9,11 +9,26 @@
     "build:all": "npm run build:wasm && npm run build",
     "preview": "vitepress preview docs"
   },
-  "keywords": ["security", "ctf", "pwn", "writeup", "vitepress", "starneko", "牛奶猫", "StarNekOvO", "android security", "kernel exploitation"],
+  "keywords": [
+    "security",
+    "ctf",
+    "pwn",
+    "writeup",
+    "vitepress",
+    "starneko",
+    "牛奶猫",
+    "StarNekOvO",
+    "android security",
+    "kernel exploitation"
+  ],
   "author": "starneko (牛奶猫)",
   "license": "CC-BY-NC-4.0",
   "description": "御坂晚的笨蛋笔记 - starneko 的系统安全研究笔记与 Writeup",
   "devDependencies": {
+    "@types/animejs": "^3.1.13",
     "vitepress": "^1.6.4"
+  },
+  "dependencies": {
+    "animejs": "^3.2.2"
   }
 }

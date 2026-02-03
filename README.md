@@ -15,10 +15,17 @@ hunternote/
 ├── docs/
 │   ├── .vitepress/         # VitePress 配置
 │   │   ├── theme/          # 自定义主题
-│   │   │   ├── components/ # Vue 工具组件
+│   │   │   ├── components/ # Vue 组件
+│   │   │   │   ├── BAHero.vue        # 首页 Hero（毛玻璃卡片、打字特效）
+│   │   │   │   ├── Splash.vue        # 加载动画
+│   │   │   │   ├── Fireworks.vue     # 点击烟花特效
+│   │   │   │   ├── MusicPlayer.vue   # BGM 播放器
+│   │   │   │   └── ...
 │   │   │   └── wasm-loader.ts
 │   │   └── wasm/           # wasm-pack 输出 (构建生成)
 │   ├── public/             # 静态资源
+│   │   ├── audio/          # BGM 音频
+│   │   └── img/            # 图片资源
 │   ├── ctfs/               # CTF 平台 Writeup
 │   │   ├── buuctf/
 │   │   ├── ctfshow/
@@ -41,6 +48,22 @@ hunternote/
 ├── package.json
 └── README.md
 ```
+
+## 功能特性
+
+### 主题效果
+- **首页 Hero** - Blue Archive 风格毛玻璃卡片、3D 视差、打字机特效
+- **加载动画** - BA 风格 Splash 呼吸动画
+- **点击烟花** - 全局点击粒子特效
+- **BGM 播放器** - 导航栏音乐控制
+- **深色模式** - 完整的亮/暗主题支持
+
+### 技术工具
+- **Rust + WebAssembly** 在线工具（Hash、编码、进制转换、时间戳、PWN 辅助、正则、IP/CIDR）
+- 自动部署到 GitHub Pages
+- 本地搜索功能
+- 响应式设计
+- SEO 优化
 
 ## 快速开始
 
@@ -103,16 +126,6 @@ echo "Icons generated!"
 |------|---------------|
 | `docs/.vitepress/config.ts` | `themeConfig.logo`, `og:image`, `twitter:image`, JSON-LD `image` |
 | `docs/index.md` | `hero.image.src` |
-
-## 功能特性
-
-- Rust + WebAssembly 在线工具（Hash、编码、进制转换、时间戳、PWN 辅助、正则、IP/CIDR）
-- 自动部署到 GitHub Pages
-- 本地搜索功能
-- 响应式设计
-- 深色模式支持
-- 友链
-- SEO 优化
 
 ## 在线工具
 
