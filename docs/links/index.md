@@ -37,6 +37,18 @@
   </div>
 
   <div class="friend-item">
+    <a href="https://清凤.fun" target="_blank" rel="noopener noreferrer">
+      <div class="friend-avatar">
+        <img src="https://清凤.fun/images/logo/logo.webp" alt="清凤小栈" loading="lazy" />
+      </div>
+      <div class="friend-name">清凤小栈</div>
+      <div class="friend-url">清凤.fun</div>
+      <div class="friend-desc">清凤和Kilock的温馨小屋</div>
+      <div class="friend-rss">rss: https://清凤.fun/rss.xml</div>
+    </a>
+  </div>
+
+  <div class="friend-item">
     <a href="https://www.zh314.xyz" target="_blank" rel="noopener noreferrer">
       <div class="friend-avatar">
         <img src="/img/hsn.png" alt="hsn's blog" loading="lazy" />
@@ -171,6 +183,13 @@
   font-size: 0.9rem;
   color: var(--vp-c-text-2);
   word-break: break-all;
+}
+
+.friend-rss {
+  font-size: 0.9rem;
+  color: var(--vp-c-text-2);
+  word-break: break-all;
+  margin-top: 0.25rem;
 }
 
 .friend-item:hover .friend-name {
