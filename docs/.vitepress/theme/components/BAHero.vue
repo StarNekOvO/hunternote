@@ -176,12 +176,11 @@ onMounted(() => {
 .bg-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(2px);
+  background: transparent;
 }
 
 :root.dark .bg-overlay {
-  background: rgba(0, 0, 0, 0.3);
+  background: transparent;
 }
 
 .ba-hero-content {

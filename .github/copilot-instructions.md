@@ -21,7 +21,7 @@ This repository is a personal security research blog built with **VitePress**. I
 - **Adding Content**:
     1. Create a `.md` file in the appropriate subdirectory under `docs/`.
     2. **Crucial**: Update `getSidebar()` in `docs/.vitepress/config.ts` to include the new file in the sidebar navigation.
-    3. **Crucial**: Update `docs/sitemap/index.md` and `public/sitemap.xml` to maintain the manual sitemap.
+    3. **Crucial**: Update `public/sitemap.xml` to maintain the manual sitemap.
     4. If adding images, place them in `docs/public/img/` and reference them as `![alt](/img/filename.png)`.
 
 ## Coding Conventions & Patterns
@@ -30,10 +30,11 @@ This repository is a personal security research blog built with **VitePress**. I
 - **Tone**: Maintain a direct, technical, and objective tone. Avoid "book-like" or overly dramatic phrasing (e.g., "揭开...神秘面纱", "带你走进...的世界").
 - **No "Thinking Questions"**: Do not use a "Thinking Questions" (思考题) section. Instead, directly provide a "Background/Analysis/Result" (背景/分析/结果) style deep dive to explain edge cases or complex concepts.
 - **Sidebar**: Maintain the hierarchical structure in `docs/.vitepress/config.ts`. Use `collapsed: false` for active sections.
-- **Links Page**: `docs/links/index.md` uses a custom HTML structure for the friends list. Follow the `<div class="friend-item">` pattern when adding new links.
+- **Links Page**: Friends data is managed in `docs/.vitepress/theme/components/LinksPage.vue`. The page uses `layout: home` and supports carousel (desktop default) and grid (mobile default) views. To add a friend, update the `friends` array in LinksPage.vue with `name`, `link`, `avatar`, `desc`, and optional `socialLinks`.
 - **Internal Links**: Use root-relative links (e.g., `/notes/android/android-evolution`) for internal navigation.
 - **Images**: Always use the `/img/` prefix for images stored in `docs/public/img/`.
 - **No Emoji**: Do not use emoji characters anywhere in the project (titles, content, navigation, etc.). Use text or icons instead.
+- **Background Blur**: Homepage and links page use clear backgrounds (no blur), while document pages use blurred backgrounds via `global-bg-overlay`.
 
 ## Example: Adding a new CTF Writeup
 1. Create `docs/ctfs/new-platform/challenge.md`.

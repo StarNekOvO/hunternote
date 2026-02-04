@@ -17,6 +17,9 @@ hunternote/
 │   │   ├── theme/          # 自定义主题
 │   │   │   ├── components/ # Vue 组件
 │   │   │   │   ├── BAHero.vue        # 首页 Hero（毛玻璃卡片、打字特效）
+│   │   │   │   ├── LinksPage.vue     # 友链页（carousel/grid 双视图）
+│   │   │   │   ├── FriendCard.vue    # 友链卡片（彩虹光环头像）
+│   │   │   │   ├── FriendsCarousel.vue # 友链滚动轮播
 │   │   │   │   ├── Splash.vue        # 加载动画
 │   │   │   │   ├── Fireworks.vue     # 点击烟花特效
 │   │   │   │   ├── MusicPlayer.vue   # BGM 播放器
@@ -53,10 +56,12 @@ hunternote/
 
 ### 主题效果
 - **首页 Hero** - Blue Archive 风格毛玻璃卡片、3D 视差、打字机特效
+- **友链页** - 双视图模式（桌面端滚动轮播、移动端卡片网格）、彩虹光环头像
 - **加载动画** - BA 风格 Splash 呼吸动画
 - **点击烟花** - 全局点击粒子特效
 - **BGM 播放器** - 导航栏音乐控制
 - **深色模式** - 完整的亮/暗主题支持
+- **背景分层** - 首页/友链页清晰背景，文档页毛玻璃背景
 
 ### 技术工具
 - **Rust + WebAssembly** 在线工具（Hash、编码、进制转换、时间戳、PWN 辅助、正则、IP/CIDR）

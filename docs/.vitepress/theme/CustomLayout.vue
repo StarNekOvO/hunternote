@@ -1,5 +1,5 @@
 <template>
-  <div class="custom-layout">
+  <div class="custom-layout" :class="{ 'no-blur': isHome || isLinks }">
     <!-- Global background -->
     <div class="global-bg">
       <div class="global-bg-img" aria-hidden="true"></div>
@@ -17,6 +17,27 @@
         <template #home-hero-before>
           <ClientOnly>
             <BAHero />
+          </ClientOnly>
+        </template>
+        <template #home-hero-info><span></span></template>
+        <template #home-hero-image><span></span></template>
+        <template #home-hero-actions><span></span></template>
+        <template #home-features-before><span></span></template>
+        <template #home-features-after><span></span></template>
+      </Layout>
+    </template>
+
+    <!-- Links page: custom full-width layout -->
+    <template v-else-if="isLinks">
+      <Layout>
+        <template #nav-bar-content-after>
+          <ClientOnly>
+            <MusicPlayer />
+          </ClientOnly>
+        </template>
+        <template #home-hero-before>
+          <ClientOnly>
+            <LinksPage />
           </ClientOnly>
         </template>
         <template #home-hero-info><span></span></template>
@@ -45,17 +66,20 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import DefaultTheme from 'vitepress/theme'
-import { useData } from 'vitepress'
+import { useData, useRoute } from 'vitepress'
 import ReadingTime from './components/ReadingTime.vue'
 import BAHero from './components/BAHero.vue'
 import Splash from './components/Splash.vue'
 import Fireworks from './components/Fireworks.vue'
 import MusicPlayer from './components/MusicPlayer.vue'
+import LinksPage from './components/LinksPage.vue'
 
 const { Layout } = DefaultTheme
 const { frontmatter } = useData()
+const route = useRoute()
 
-const isHome = computed(() => frontmatter.value.layout === 'home')
+const isHome = computed(() => frontmatter.value.layout === 'home' && !route.path.includes('/links'))
+const isLinks = computed(() => frontmatter.value.layout === 'home' && route.path.includes('/links'))
 
 // 只在首次访问首页时显示 Splash
 const showSplash = ref(false)
@@ -111,6 +135,17 @@ onMounted(() => {
 :root.dark .global-bg-overlay {
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(8px);
+}
+
+/* 首页和友链页不要全局模糊 */
+.no-blur .global-bg-overlay {
+  background: transparent;
+  backdrop-filter: none;
+}
+
+:root.dark .no-blur .global-bg-overlay {
+  background: transparent;
+  backdrop-filter: none;
 }
 
 /* Make VitePress components transparent */
