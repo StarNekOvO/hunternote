@@ -104,7 +104,7 @@ const typeWriter = () => {
   if (charIndex < props.motto.length) {
     displayMotto.value += props.motto[charIndex]
     charIndex++
-    setTimeout(typeWriter, Math.random() * 100 + 50)
+    setTimeout(typeWriter, Math.random() * 60 + 60)
   }
 }
 
