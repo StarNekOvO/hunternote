@@ -1,6 +1,5 @@
 <template>
   <div class="terminal-container">
-    <div class="scanlines"></div>
     <div class="terminal-content" ref="terminalBody" @click="focusInput">
       <pre class="ascii-art"> ____  _              _   _      _
 / ___|| |_ __ _ _ __ | \ | | ___| | _____
@@ -589,30 +588,6 @@ onMounted(() => {
   min-height: calc(100vh - 64px);
   padding: 40px 20px;
   overflow: hidden;
-}
-
-.scanlines {
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.03) 2px,
-    rgba(0, 0, 0, 0.03) 4px
-  );
-  pointer-events: none;
-  z-index: 10;
-}
-
-:root.dark .scanlines {
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 255, 65, 0.015) 2px,
-    rgba(0, 255, 65, 0.015) 4px
-  );
 }
 
 .terminal-content {
