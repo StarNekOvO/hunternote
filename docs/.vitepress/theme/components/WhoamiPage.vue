@@ -1,5 +1,5 @@
 <template>
-  <div class="terminal-container">
+  <div class="terminal-container" v-if="!isExited">
     <div class="terminal-content" ref="terminalBody" @click="focusInput">
       <pre class="ascii-art"> ____  _              _   _      _
 / ___|| |_ __ _ _ __ | \ | | ___| | _____
@@ -41,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 
 interface OutputBlock {
   prompt?: string
@@ -167,6 +167,7 @@ const isTyping = ref(false)
 const isInteractive = ref(false)
 const userInput = ref('')
 const cwd = ref('/home/starneko')
+const isExited = ref(false)
 const commandHistory: string[] = []
 let historyIndex = -1
 let ctfConfig: CTFConfig | null = null
@@ -296,6 +297,19 @@ const xorDecrypt = (encryptedB64: string, key: string): string => {
   return result
 }
 
+const setWhoamiExitedClass = (enabled: boolean) => {
+  const root = document.querySelector('.custom-layout')
+  if (!root) return
+  root.classList.toggle('whoami-exited', enabled)
+}
+
+const exitTerminal = () => {
+  isExited.value = true
+  isInteractive.value = false
+  currentTyping.value = false
+  setWhoamiExitedClass(true)
+}
+
 // Commands
 const executeCommand = async (input: string): Promise<string> => {
   const trimmed = input.trim()
@@ -316,6 +330,7 @@ const executeCommand = async (input: string): Promise<string> => {
   cat <file>        display file contents
   file <path>       determine file type
   ./flag <key>      decrypt /flag (root only)
+  exit              close terminal UI
   clear             clear terminal
   
 <span class="dim">Hint: There might be something interesting in /</span>`
@@ -455,6 +470,10 @@ Download: ${escapeHtml(ctfConfig?.binary || '/ctf/re_checkin')}
       visibleBlocks.value = []
       return ''
 
+    case 'exit':
+      exitTerminal()
+      return ''
+
     default:
       return `<span class="dim">${escapeHtml(cmd)}: command not found</span>`
   }
@@ -477,7 +496,8 @@ const handleKeydown = async (e: KeyboardEvent) => {
     
     const output = await executeCommand(cmd)
     pushBlock({ prompt: promptSnapshot, command: cmd, output })
-    
+    if (isExited.value) return
+
     await nextTick()
     scrollToBottom()
     inputEl.value?.focus()
@@ -499,7 +519,7 @@ const handleKeydown = async (e: KeyboardEvent) => {
   } else if (e.key === 'Tab') {
     e.preventDefault()
     // Simple tab completion for commands
-    const cmds = ['help', 'whoami', 'pwd', 'cd', 'ls', 'cat', 'file', 'clear', './flag']
+    const cmds = ['help', 'whoami', 'pwd', 'cd', 'ls', 'cat', 'file', 'clear', './flag', 'exit']
     const matches = cmds.filter(c => c.startsWith(userInput.value))
     if (matches.length === 1) userInput.value = matches[0] + ' '
   } else if (e.key === 'l' && e.ctrlKey) {
@@ -580,9 +600,23 @@ const runIntro = async () => {
 onMounted(() => {
   runIntro()
 })
+
+onUnmounted(() => {
+  setWhoamiExitedClass(false)
+})
 </script>
 
 <style scoped>
+:global(.custom-layout.whoami-exited .global-bg-overlay) {
+  background: transparent !important;
+  backdrop-filter: none !important;
+}
+
+:global(:root.dark .custom-layout.whoami-exited .global-bg-overlay) {
+  background: transparent !important;
+  backdrop-filter: none !important;
+}
+
 .terminal-container {
   position: relative;
   min-height: calc(100vh - 64px);
