@@ -475,6 +475,18 @@ onMounted(() => {
     height: 80px;
     top: -40px;
   }
+  /* 移动端调整彩色光环尺寸 */
+  .info-card::before {
+    top: -44px;
+    width: 88px;
+    height: 88px;
+  }
+  /* 移动端调整内层遮罩尺寸 */
+  .info-card::after {
+    top: -40px;
+    width: 80px;
+    height: 80px;
+  }
   .name {
     margin-top: 1rem;
   }
