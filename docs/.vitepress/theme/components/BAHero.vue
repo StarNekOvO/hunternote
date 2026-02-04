@@ -30,8 +30,6 @@
         </div>
         <div class="nav-links">
           <a :href="primaryAction.link">{{ primaryAction.text }}</a>
-          <span class="divider">/</span>
-          <a :href="secondaryAction.link">{{ secondaryAction.text }}</a>
         </div>
       </div>
     </div>
@@ -92,7 +90,7 @@ const props = withDefaults(defineProps<{
   avatar: '/img/Mahiro.jpg',
   bgLight: '/img/banner-light.webp',
   bgDark: '/img/banner-dark.webp',
-  primaryAction: () => ({ text: 'Get Started', link: '/notes/' }),
+  primaryAction: () => ({ text: 'LINK START', link: '/notes/' }),
   secondaryAction: () => ({ text: 'whoami', link: '/whoami/' }),
 })
 
@@ -454,15 +452,6 @@ onMounted(() => {
 
 :root.dark .nav-links a:hover {
   color: #b8d4e8;
-}
-
-.divider {
-  color: #ccc;
-  user-select: none;
-}
-
-:root.dark .divider {
-  color: #555;
 }
 
 @media (max-width: 640px) {

@@ -1,34 +1,40 @@
 <template>
-  <div class="friend-card" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
-    <a :href="link" target="_blank" rel="noopener noreferrer">
+  <div
+    ref="cardRef"
+    class="friend-card"
+    :style="cardStyle"
+    @mousemove="onMouseMove"
+    @mouseleave="onMouseLeave"
+  >
+    <a class="main-link" :href="link" target="_blank" rel="noopener noreferrer">
       <!-- 彩色光环头像 -->
       <div class="avatar-container">
         <div class="avatar-ring"></div>
         <img :src="avatar" :alt="name" class="avatar" loading="lazy" @error="onAvatarError" />
       </div>
-      
+
       <!-- 信息区 -->
       <div class="info">
         <div class="name">{{ name }}</div>
         <div class="url">{{ displayUrl }}</div>
         <div v-if="desc" class="desc">{{ desc }}</div>
       </div>
-      
-      <!-- 社交图标 -->
-      <div v-if="socialLinks && socialLinks.length" class="social-links">
-        <a 
-          v-for="social in socialLinks" 
-          :key="social.url" 
-          :href="social.url" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          :title="social.name"
-          @click.stop
-        >
-          <component :is="getIcon(social.type)" class="social-icon" />
-        </a>
-      </div>
     </a>
+
+    <!-- 社交图标（避免嵌套 a） -->
+    <div v-if="socialLinks && socialLinks.length" class="social-links">
+      <a
+        v-for="social in socialLinks"
+        :key="social.url"
+        :href="social.url"
+        target="_blank"
+        rel="noopener noreferrer"
+        :title="social.name"
+        @click.stop
+      >
+        <component :is="getIcon(social.type)" class="social-icon" />
+      </a>
+    </div>
   </div>
 </template>
 
@@ -43,7 +49,54 @@ const props = defineProps<{
   socialLinks?: Array<{ type: string; url: string; name: string }>
 }>()
 
-const isHovered = ref(false)
+const cardRef = ref<HTMLElement | null>(null)
+
+const rotateX = ref(0)
+const rotateY = ref(0)
+const gradientAngle = ref(135)
+const mouseX = ref(50)
+const mouseY = ref(50)
+
+const PARALLAX_FACTOR = 18
+
+const cardStyle = computed(() => {
+  return {
+    '--rx': `${rotateX.value}deg`,
+    '--ry': `${rotateY.value}deg`,
+    '--ga': `${gradientAngle.value}deg`,
+    '--mx': `${mouseX.value}%`,
+    '--my': `${mouseY.value}%`,
+  } as Record<string, string>
+})
+
+const onMouseMove = (e: MouseEvent) => {
+  if (!cardRef.value) return
+  window.requestAnimationFrame(() => {
+    const rect = cardRef.value!.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
+
+    rotateY.value = (e.clientX - centerX) / PARALLAX_FACTOR
+    rotateX.value = -(e.clientY - centerY) / PARALLAX_FACTOR
+
+    const dx = e.clientX - centerX
+    const dy = e.clientY - centerY
+    gradientAngle.value = Math.atan2(dy, dx) * (180 / Math.PI) + 90
+
+    const px = ((e.clientX - rect.left) / rect.width) * 100
+    const py = ((e.clientY - rect.top) / rect.height) * 100
+    mouseX.value = Math.min(100, Math.max(0, px))
+    mouseY.value = Math.min(100, Math.max(0, py))
+  })
+}
+
+const onMouseLeave = () => {
+  rotateX.value = 0
+  rotateY.value = 0
+  gradientAngle.value = 135
+  mouseX.value = 50
+  mouseY.value = 50
+}
 
 const displayUrl = computed(() => {
   try {
@@ -102,7 +155,15 @@ const getIcon = (type: string) => {
 
 <style scoped>
 .friend-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(240, 248, 255, 0.6));
+  --rx: 0deg;
+  --ry: 0deg;
+  --ga: 135deg;
+  --mx: 50%;
+  --my: 50%;
+  --lift-y: 0px;
+  --scale: 1;
+
+  background: linear-gradient(var(--ga), rgba(255, 255, 255, 0.7), rgba(240, 248, 255, 0.6));
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border-radius: 20px;
@@ -110,24 +171,47 @@ const getIcon = (type: string) => {
   padding-top: 3.5rem;
   position: relative;
   margin-top: 40px;
-  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: perspective(900px) translateY(var(--lift-y)) scale(var(--scale)) rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease;
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.1),
     0 0 0 1px rgba(255, 255, 255, 0.4) inset;
 }
 
 :root.dark .friend-card {
-  background: linear-gradient(135deg, rgba(30, 30, 50, 0.7), rgba(40, 35, 60, 0.6));
+  background: linear-gradient(var(--ga), rgba(30, 30, 50, 0.7), rgba(40, 35, 60, 0.6));
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.4),
     0 0 0 1px rgba(255, 255, 255, 0.08) inset;
 }
 
+.friend-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  background: radial-gradient(
+    520px circle at var(--mx) var(--my),
+    rgba(99, 102, 241, 0.14),
+    rgba(244, 114, 182, 0.08) 30%,
+    rgba(255, 255, 255, 0) 60%
+  );
+}
+
 .friend-card:hover {
-  transform: translateY(-8px) scale(1.02);
+  --lift-y: -8px;
+  --scale: 1.02;
   box-shadow: 
     0 20px 40px rgba(0, 0, 0, 0.15),
     0 0 30px rgba(102, 126, 234, 0.2);
+}
+
+.friend-card:hover::after {
+  opacity: 1;
 }
 
 :root.dark .friend-card:hover {
@@ -136,12 +220,13 @@ const getIcon = (type: string) => {
     0 0 30px rgba(102, 126, 234, 0.3);
 }
 
-.friend-card a {
+.main-link {
   text-decoration: none;
   color: inherit;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 /* 头像容器 */
@@ -196,8 +281,9 @@ const getIcon = (type: string) => {
   transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.friend-card:hover .avatar {
-  transform: scale(1.08) rotate(5deg);
+.avatar-container:hover .avatar {
+  transform: rotate(360deg) scale(1.08);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* 信息区 */
@@ -254,6 +340,8 @@ const getIcon = (type: string) => {
   display: flex;
   gap: 0.8rem;
   margin-top: 1rem;
+  width: 100%;
+  justify-content: center;
 }
 
 .social-links a {

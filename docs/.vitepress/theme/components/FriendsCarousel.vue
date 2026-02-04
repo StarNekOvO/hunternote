@@ -105,9 +105,11 @@ onUnmounted(() => {
 /* 禁用卡片的 hover 缩放以避免滚动时的抖动 */
 .carousel-item :deep(.friend-card) {
   margin-top: 0;
+  --scale: 1;
 }
 
 .carousel-item :deep(.friend-card:hover) {
-  transform: translateY(-8px);
+  --lift-y: -8px;
+  --scale: 1;
 }
 </style>
