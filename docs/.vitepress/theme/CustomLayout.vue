@@ -50,6 +50,11 @@
     
     <!-- Other pages: use default Layout -->
     <Layout v-else>
+      <template #nav-bar-content-after>
+        <ClientOnly>
+          <MusicPlayer />
+        </ClientOnly>
+      </template>
       <template #doc-before>
         <ReadingTime />
       </template>
