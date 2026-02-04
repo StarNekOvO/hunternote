@@ -6,6 +6,18 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+# CTF secrets - DO NOT COMMIT
+scripts/ctf/.keys
+scripts/ctf/challenges-src/
+
+# CTF local build artifacts (keep published binaries under docs/public/ctf/challenges)
+scripts/ctf/a.out
+scripts/ctf/*.o
+scripts/ctf/*.out
+scripts/ctf/*.elf
+scripts/ctf/*.bin
+scripts/ctf/re_checkin
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -147,6 +159,8 @@ node_modules
 .vitepress/dist
 .vitepress/cache
 .DS_Store
+*.dSYM/
+*.dSYM
 .idea
 .vscode
 

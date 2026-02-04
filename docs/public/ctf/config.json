@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "name": "Check-in",
+  "difficulty": "Easy",
+  "category": "RE",
+  "binary": "/ctf/re_checkin",
+  "binaryType": "Mach-O 64-bit executable arm64",
+  "hint": "Use a reverse engineering tool to analyze the binary.",
+  "tools": "https://re.starneko.com/",
+  "keyHash": "892042350455782e017f75eaa1a3147b84c558b690b35cd06a3af44bf2eea71e",
+  "encryptedFlag": "IiVBQ1xdW1hMfHFzbw==",
+  "successMessage": "Access granted. Welcome to my world."
+}
