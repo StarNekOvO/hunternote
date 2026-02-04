@@ -215,15 +215,24 @@ function copy(text: string) {
   flex-direction: column;
   align-items: center;
   padding: 1.5rem;
-  background: var(--vp-c-bg-soft);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
   border-radius: 10px;
   margin-bottom: 1.5rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
+:root.dark .current-panel {
+  background: rgba(0, 0, 0, 0.3);
+}
+
 .current-panel:hover {
-  background: var(--vp-c-bg-elv);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+:root.dark .current-panel:hover {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .current-panel:hover .current-hint {
@@ -260,9 +269,14 @@ function copy(text: string) {
 }
 
 .converter-card {
-  background: var(--vp-c-bg-soft);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
   border-radius: 8px;
   overflow: hidden;
+}
+
+:root.dark .converter-card {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .card-header {
@@ -293,11 +307,16 @@ function copy(text: string) {
   padding: 0.7rem 0.85rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
-  background: var(--vp-c-bg);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
   color: var(--vp-c-text-1);
   font-family: var(--vp-font-family-mono);
   font-size: 0.9rem;
   transition: border-color 0.15s ease;
+}
+
+:root.dark .field-input {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .field-input:focus {
@@ -332,11 +351,15 @@ function copy(text: string) {
   flex: 1;
   margin: 0;
   padding: 0.65rem 0.75rem;
-  background: var(--vp-c-bg);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 6px;
   font-size: 0.85rem;
   line-height: 1.5;
   white-space: pre-wrap;
+}
+
+:root.dark .result-content {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .btn-sm {
@@ -344,7 +367,7 @@ function copy(text: string) {
   padding: 0.3rem 0.6rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 4px;
-  background: var(--vp-c-bg);
+  background: transparent;
   color: var(--vp-c-text-3);
   font-size: 0.75rem;
   cursor: pointer;
@@ -359,9 +382,14 @@ function copy(text: string) {
 
 /* 参考表 */
 .reference-panel {
-  background: var(--vp-c-bg-soft);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
   border-radius: 8px;
   overflow: hidden;
+}
+
+:root.dark .reference-panel {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .panel-header {

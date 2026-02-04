@@ -218,7 +218,7 @@ function copy(text: string) {
 .tab-btn {
   padding: 0.5rem 1rem;
   border: none;
-  background: none;
+  background: transparent;
   color: var(--vp-c-text-2);
   font-size: 0.95rem;
   cursor: pointer;
@@ -228,13 +228,21 @@ function copy(text: string) {
 
 .tab-btn:hover {
   color: var(--vp-c-text-1);
-  background: var(--vp-c-bg-soft);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+:root.dark .tab-btn:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .tab-btn.active {
   color: var(--vp-c-brand);
-  background: var(--vp-c-brand-soft);
+  background: rgba(255, 255, 255, 0.5);
   font-weight: 500;
+}
+
+:root.dark .tab-btn.active {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .tab-content {
@@ -279,11 +287,18 @@ function copy(text: string) {
   padding: 0.7rem 0.85rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
-  background: var(--vp-c-bg-soft);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
   color: var(--vp-c-text-1);
   font-family: var(--vp-font-family-mono);
   font-size: 0.9rem;
   transition: border-color 0.15s ease;
+}
+
+:root.dark .form-input,
+:root.dark .form-select,
+:root.dark .form-textarea {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .form-input:focus,
@@ -308,7 +323,7 @@ function copy(text: string) {
   padding: 0.5rem 1rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
-  background: var(--vp-c-bg);
+  background: transparent;
   color: var(--vp-c-text-2);
   font-size: 0.85rem;
   cursor: pointer;
@@ -318,21 +333,35 @@ function copy(text: string) {
 .mode-btn:hover {
   border-color: var(--vp-c-brand);
   color: var(--vp-c-text-1);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+:root.dark .mode-btn:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .mode-btn.active {
   border-color: var(--vp-c-brand);
-  background: var(--vp-c-brand-soft);
+  background: rgba(255, 255, 255, 0.5);
   color: var(--vp-c-brand);
   font-weight: 500;
 }
 
+:root.dark .mode-btn.active {
+  background: rgba(0, 0, 0, 0.4);
+}
+
 /* 结果卡片 */
 .result-card {
-  background: var(--vp-c-bg-soft);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
   border-radius: 8px;
   padding: 0.85rem;
   margin-bottom: 0.75rem;
+}
+
+:root.dark .result-card {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .result-header {
@@ -369,20 +398,28 @@ function copy(text: string) {
 .result-code {
   flex: 1;
   padding: 0.35rem 0.5rem;
-  background: var(--vp-c-bg);
+  background: rgba(255, 255, 255, 0.4);
   border-radius: 4px;
   font-size: 0.85rem;
   word-break: break-all;
 }
 
+:root.dark .result-code {
+  background: rgba(0, 0, 0, 0.3);
+}
+
 .result-pre {
   margin: 0;
   padding: 0.65rem;
-  background: var(--vp-c-bg);
+  background: rgba(255, 255, 255, 0.4);
   border-radius: 6px;
   font-size: 0.85rem;
   white-space: pre-wrap;
   word-break: break-all;
+}
+
+:root.dark .result-pre {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .result-scroll {
@@ -396,7 +433,7 @@ function copy(text: string) {
   padding: 0.3rem 0.6rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 4px;
-  background: var(--vp-c-bg);
+  background: transparent;
   color: var(--vp-c-text-3);
   font-size: 0.75rem;
   cursor: pointer;

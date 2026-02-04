@@ -223,11 +223,16 @@ function useExample(ex: { name: string; pattern: string }) {
   flex: 1;
   display: flex;
   align-items: center;
-  background: var(--vp-c-bg-soft);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
   padding: 0 0.75rem;
   transition: border-color 0.15s ease;
+}
+
+:root.dark .pattern-wrapper {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .pattern-wrapper:focus-within {
@@ -258,7 +263,7 @@ function useExample(ex: { name: string; pattern: string }) {
   padding: 0.6rem 0.85rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
-  background: var(--vp-c-bg);
+  background: transparent;
   color: var(--vp-c-text-2);
   font-size: 0.85rem;
   cursor: pointer;
@@ -311,7 +316,7 @@ function useExample(ex: { name: string; pattern: string }) {
   padding: 0.4rem 0.75rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 5px;
-  background: var(--vp-c-bg);
+  background: transparent;
   color: var(--vp-c-text-2);
   font-size: 0.8rem;
   cursor: pointer;
@@ -321,13 +326,22 @@ function useExample(ex: { name: string; pattern: string }) {
 .mode-btn:hover {
   border-color: var(--vp-c-brand);
   color: var(--vp-c-text-1);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+:root.dark .mode-btn:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .mode-btn.active {
   border-color: var(--vp-c-brand);
-  background: var(--vp-c-brand-soft);
+  background: rgba(255, 255, 255, 0.5);
   color: var(--vp-c-brand);
   font-weight: 500;
+}
+
+:root.dark .mode-btn.active {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 /* 测试区域 */
@@ -345,9 +359,14 @@ function useExample(ex: { name: string; pattern: string }) {
 }
 
 .test-panel {
-  background: var(--vp-c-bg-soft);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
   border-radius: 8px;
   overflow: hidden;
+}
+
+:root.dark .test-panel {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .panel-header {
@@ -412,9 +431,14 @@ function useExample(ex: { name: string; pattern: string }) {
 /* 详情面板 */
 .details-panel {
   margin-top: 1.25rem;
-  background: var(--vp-c-bg-soft);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
   border-radius: 8px;
   overflow: hidden;
+}
+
+:root.dark .details-panel {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .details-list {
@@ -447,11 +471,15 @@ function useExample(ex: { name: string; pattern: string }) {
 
 .detail-value {
   display: block;
-  background: var(--vp-c-bg);
+  background: rgba(255, 255, 255, 0.5);
   padding: 0.4rem 0.6rem;
   border-radius: 4px;
   font-size: 0.85rem;
   word-break: break-all;
+}
+
+:root.dark .detail-value {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .detail-groups {
@@ -464,8 +492,12 @@ function useExample(ex: { name: string; pattern: string }) {
 .group-tag {
   font-size: 0.8rem;
   color: var(--vp-c-text-2);
-  background: var(--vp-c-bg);
+  background: rgba(255, 255, 255, 0.5);
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
+}
+
+:root.dark .group-tag {
+  background: rgba(0, 0, 0, 0.3);
 }
 </style>

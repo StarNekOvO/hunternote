@@ -1705,7 +1705,7 @@ onUnmounted(() => {
 .tab-btn {
   padding: 0.5rem 1rem;
   border: none;
-  background: none;
+  background: transparent;
   color: var(--vp-c-text-2);
   font-size: 0.95rem;
   cursor: pointer;
@@ -1715,13 +1715,21 @@ onUnmounted(() => {
 
 .tab-btn:hover {
   color: var(--vp-c-text-1);
-  background: var(--vp-c-bg-soft);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+:root.dark .tab-btn:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .tab-btn.active {
   color: var(--vp-c-brand);
-  background: var(--vp-c-brand-soft);
+  background: rgba(255, 255, 255, 0.5);
   font-weight: 500;
+}
+
+:root.dark .tab-btn.active {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 /* 上传区域 */
@@ -1846,7 +1854,7 @@ onUnmounted(() => {
 .ratio-btn {
   padding: 0.4rem 0.5rem;
   border: 1px solid var(--vp-c-divider);
-  background: var(--vp-c-bg);
+  background: transparent;
   border-radius: 6px;
   font-size: 0.8rem;
   color: var(--vp-c-text-2);
@@ -1856,12 +1864,21 @@ onUnmounted(() => {
 
 .ratio-btn:hover {
   border-color: var(--vp-c-brand);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+:root.dark .ratio-btn:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .ratio-btn.active {
   border-color: var(--vp-c-brand);
-  background: var(--vp-c-brand-soft);
+  background: rgba(255, 255, 255, 0.5);
   color: var(--vp-c-brand);
+}
+
+:root.dark .ratio-btn.active {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 /* 旋转控制 */
@@ -1884,7 +1901,7 @@ onUnmounted(() => {
   width: 36px;
   height: 36px;
   border: 1px solid var(--vp-c-divider);
-  background: var(--vp-c-bg);
+  background: transparent;
   border-radius: 6px;
   cursor: pointer;
   display: flex;
@@ -1895,7 +1912,11 @@ onUnmounted(() => {
 
 .icon-btn:hover {
   border-color: var(--vp-c-brand);
-  background: var(--vp-c-brand-soft);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+:root.dark .icon-btn:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .icon-btn svg {
@@ -1918,7 +1939,7 @@ onUnmounted(() => {
   gap: 0.4rem;
   padding: 0.5rem;
   border: 1px solid var(--vp-c-divider);
-  background: var(--vp-c-bg);
+  background: transparent;
   border-radius: 6px;
   font-size: 0.8rem;
   color: var(--vp-c-text-2);
@@ -1928,12 +1949,21 @@ onUnmounted(() => {
 
 .flip-btn:hover {
   border-color: var(--vp-c-brand);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+:root.dark .flip-btn:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .flip-btn.active {
   border-color: var(--vp-c-brand);
-  background: var(--vp-c-brand-soft);
+  background: rgba(255, 255, 255, 0.5);
   color: var(--vp-c-brand);
+}
+
+:root.dark .flip-btn.active {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .flip-btn svg {
@@ -1947,9 +1977,14 @@ onUnmounted(() => {
   padding: 0.6rem 0.75rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
-  background: var(--vp-c-bg);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
   color: var(--vp-c-text-1);
   font-size: 0.9rem;
+}
+
+:root.dark .text-input {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .text-input:focus {
@@ -1962,10 +1997,15 @@ onUnmounted(() => {
   padding: 0.6rem 0.75rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
-  background: var(--vp-c-bg);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
   color: var(--vp-c-text-1);
   font-size: 0.9rem;
   cursor: pointer;
+}
+
+:root.dark .select-input {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .slider {
@@ -2084,7 +2124,7 @@ onUnmounted(() => {
   padding: 0.6rem 1rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
-  background: var(--vp-c-bg);
+  background: transparent;
   color: var(--vp-c-text-1);
   font-size: 0.85rem;
   cursor: pointer;
@@ -2093,7 +2133,11 @@ onUnmounted(() => {
 
 .btn-secondary:hover {
   border-color: var(--vp-c-brand);
-  background: var(--vp-c-bg-soft);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+:root.dark .btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .btn-text {
@@ -2122,7 +2166,7 @@ onUnmounted(() => {
   flex: 1;
   padding: 0.6rem 1rem;
   border: 1px solid var(--vp-c-divider);
-  background: var(--vp-c-bg);
+  background: transparent;
   border-radius: 6px;
   font-size: 0.9rem;
   color: var(--vp-c-text-2);
@@ -2132,13 +2176,22 @@ onUnmounted(() => {
 
 .mode-btn:hover {
   border-color: var(--vp-c-brand);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+:root.dark .mode-btn:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .mode-btn.active {
   border-color: var(--vp-c-brand);
-  background: var(--vp-c-brand-soft);
+  background: rgba(255, 255, 255, 0.5);
   color: var(--vp-c-brand);
   font-weight: 500;
+}
+
+:root.dark .mode-btn.active {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 /* 对比视图 */

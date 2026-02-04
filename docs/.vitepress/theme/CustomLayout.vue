@@ -2,7 +2,7 @@
   <div class="custom-layout">
     <!-- Global background -->
     <div class="global-bg">
-      <img :src="isDark ? '/img/banner-dark.webp' : '/img/banner-light.webp'" alt="" class="global-bg-img" />
+      <div class="global-bg-img" aria-hidden="true"></div>
       <div class="global-bg-overlay"></div>
     </div>
     
@@ -53,7 +53,7 @@ import Fireworks from './components/Fireworks.vue'
 import MusicPlayer from './components/MusicPlayer.vue'
 
 const { Layout } = DefaultTheme
-const { frontmatter, isDark } = useData()
+const { frontmatter } = useData()
 
 const isHome = computed(() => frontmatter.value.layout === 'home')
 
@@ -87,12 +87,18 @@ onMounted(() => {
 }
 
 .global-bg-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
   position: absolute;
   inset: 0;
+  background-image: url('/img/banner-light.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+:root.dark .global-bg-img {
+  background-image: url('/img/banner-dark.webp');
 }
 
 .global-bg-overlay {
@@ -170,6 +176,62 @@ onMounted(() => {
 
 .VPSidebar .curtain {
   background: transparent !important;
+}
+
+.aside-curtain {
+  display: none !important;
+}
+
+/* LocalNav (small screens) transparent */
+.VPLocalNav,
+.VPLocalNav.has-sidebar {
+  background: transparent !important;
+  border-bottom: none !important;
+}
+
+/* Sidebar and outline text contrast */
+.VPSidebar .text,
+.VPSidebar .link,
+.VPSidebar .item .text,
+.VPDocAsideOutline .outline-link {
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+.VPSidebarItem.is-active .text,
+.VPDocAsideOutline .outline-link.active {
+  color: rgba(0, 0, 0, 0.95) !important;
+}
+
+:root.dark .VPSidebar .text,
+:root.dark .VPSidebar .link,
+:root.dark .VPSidebar .item .text,
+:root.dark .VPDocAsideOutline .outline-link {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+:root.dark .VPSidebarItem.is-active .text,
+:root.dark .VPDocAsideOutline .outline-link.active {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* 搜索按钮透明 */
+@media (min-width: 768px) {
+  .DocSearch-Button {
+    background: rgba(255, 255, 255, 0.5) !important;
+    backdrop-filter: blur(8px) !important;
+  }
+  
+  .DocSearch-Button:hover {
+    background: rgba(255, 255, 255, 0.6) !important;
+  }
+}
+
+:root.dark .DocSearch-Button {
+  background: rgba(0, 0, 0, 0.4) !important;
+}
+
+:root.dark .DocSearch-Button:hover {
+  background: rgba(0, 0, 0, 0.5) !important;
 }
 
 /* 隐藏首页所有默认内容 */

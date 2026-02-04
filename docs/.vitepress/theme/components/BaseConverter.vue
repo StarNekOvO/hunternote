@@ -164,7 +164,7 @@ function copy(value: string) {
   padding: 0.3rem 0.6rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 4px;
-  background: var(--vp-c-bg);
+  background: transparent;
   color: var(--vp-c-text-3);
   font-size: 0.75rem;
   cursor: pointer;
@@ -186,11 +186,16 @@ function copy(value: string) {
   padding: 0.7rem 0.85rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
-  background: var(--vp-c-bg-soft);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
   color: var(--vp-c-text-1);
   font-family: var(--vp-font-family-mono);
   font-size: 0.95rem;
   transition: border-color 0.15s ease;
+}
+
+:root.dark .field-input {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .field-input:focus {
@@ -210,7 +215,7 @@ function copy(value: string) {
   padding: 0.5rem 1rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
-  background: var(--vp-c-bg);
+  background: transparent;
   color: var(--vp-c-text-2);
   font-size: 0.9rem;
   cursor: pointer;
@@ -220,13 +225,23 @@ function copy(value: string) {
 .btn-secondary:hover {
   border-color: var(--vp-c-brand);
   color: var(--vp-c-text-1);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+:root.dark .btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .reference-panel {
   margin-top: 2rem;
-  background: var(--vp-c-bg-soft);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
   border-radius: 8px;
   overflow: hidden;
+}
+
+:root.dark .reference-panel {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .panel-header {

@@ -182,11 +182,16 @@ function convertDecimal() {
   padding: 0.7rem 0.85rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
-  background: var(--vp-c-bg-soft);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
   color: var(--vp-c-text-1);
   font-family: var(--vp-font-family-mono);
   font-size: 0.95rem;
   transition: border-color 0.15s ease;
+}
+
+:root.dark .input-field {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .input-field:focus {
@@ -210,10 +215,16 @@ function convertDecimal() {
 /* 信息面板 */
 .info-panel,
 .converter-panel {
-  background: var(--vp-c-bg-soft);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 1rem;
+}
+
+:root.dark .info-panel,
+:root.dark .converter-panel {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .panel-header {

@@ -180,7 +180,7 @@ function clearAll() {
   padding: 0.5rem 1rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
-  background: var(--vp-c-bg);
+  background: transparent;
   color: var(--vp-c-text-2);
   font-size: 0.9rem;
   cursor: pointer;
@@ -190,13 +190,22 @@ function clearAll() {
 .mode-btn:hover {
   border-color: var(--vp-c-brand);
   color: var(--vp-c-text-1);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+:root.dark .mode-btn:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .mode-btn.active {
   border-color: var(--vp-c-brand);
-  background: var(--vp-c-brand-soft);
+  background: rgba(255, 255, 255, 0.5);
   color: var(--vp-c-brand);
   font-weight: 500;
+}
+
+:root.dark .mode-btn.active {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .direction-control {
@@ -224,7 +233,7 @@ function clearAll() {
   height: 32px;
   border: 1px solid var(--vp-c-divider);
   border-radius: 6px;
-  background: var(--vp-c-bg);
+  background: transparent;
   color: var(--vp-c-text-2);
   cursor: pointer;
   transition: all 0.15s ease;
@@ -270,7 +279,7 @@ function clearAll() {
   padding: 0.3rem 0.6rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 4px;
-  background: var(--vp-c-bg);
+  background: transparent;
   color: var(--vp-c-text-3);
   font-size: 0.75rem;
   cursor: pointer;
@@ -293,12 +302,17 @@ function clearAll() {
   padding: 0.75rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
-  background: var(--vp-c-bg-soft);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
   color: var(--vp-c-text-1);
   font-family: var(--vp-font-family-mono);
   font-size: 0.9rem;
   resize: vertical;
   transition: border-color 0.15s ease;
+}
+
+:root.dark .io-textarea {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .io-textarea:focus {
