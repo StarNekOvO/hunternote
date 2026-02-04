@@ -190,7 +190,7 @@ onMounted(() => {
   align-items: center;
   padding: 2rem;
   z-index: 1;
-  transition: transform 0.15s ease-out;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   will-change: transform;
 }
 
