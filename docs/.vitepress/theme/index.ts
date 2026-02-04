@@ -10,6 +10,7 @@ import PwnHelper from './components/PwnHelper.vue'
 import RegexTool from './components/RegexTool.vue'
 import IpCalculator from './components/IpCalculator.vue'
 import ImageTool from './components/ImageTool.vue'
+import WhoamiPage from './components/WhoamiPage.vue'
 
 export default {
   extends: DefaultTheme,
@@ -23,5 +24,6 @@ export default {
     app.component('RegexTool', RegexTool)
     app.component('IpCalculator', IpCalculator)
     app.component('ImageTool', ImageTool)
+    app.component('WhoamiPage', WhoamiPage)
   }
 } satisfies Theme

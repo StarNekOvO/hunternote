@@ -179,7 +179,7 @@ onMounted(() => {
   background: transparent !important;
 }
 
-/* Sidebar transparent */
+/* Sidebar transparent on desktop */
 .VPSidebar {
   background: transparent !important;
   border-right: none !important;
@@ -188,6 +188,19 @@ onMounted(() => {
 :root.dark .VPSidebar {
   background: transparent !important;
   border-right: none !important;
+}
+
+/* Mobile sidebar needs solid background for readability */
+@media (max-width: 959px) {
+  .VPSidebar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(12px) !important;
+  }
+  
+  :root.dark .VPSidebar {
+    background: rgba(30, 30, 40, 0.95) !important;
+    backdrop-filter: blur(12px) !important;
+  }
 }
 
 /* Navbar transparent */
