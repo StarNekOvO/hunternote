@@ -1,6 +1,6 @@
 <template>
   <div class="terminal-container" v-if="!isExited">
-    <div class="terminal-content" ref="terminalBody" @click="focusInput">
+    <div class="terminal-content" ref="terminalBody" @click="focusInput($event)">
       <pre class="ascii-art"> ____  _              _   _      _
 / ___|| |_ __ _ _ __ | \ | | ___| | _____
 \___ \| __/ _` | '__|  \| |/ _ \ |/ / _ \
@@ -69,20 +69,26 @@ interface CTFConfig {
   successMessage: string
 }
 
+const getSiteOrigin = (): string => {
+  if (typeof window === 'undefined') return ''
+  return window.location?.origin || ''
+}
+
+const getDownloadUrl = (): string => {
+  const origin = getSiteOrigin()
+  const base = (import.meta as any).env?.BASE_URL as string | undefined
+  const normalizedBase = base && base.startsWith('/') ? base : '/'
+  const relativePath = 'ctf/re_checkin'
+  const fullPath = normalizedBase.endsWith('/') ? `${normalizedBase}${relativePath}` : `${normalizedBase}/${relativePath}`
+  return origin ? `${origin}${fullPath}` : `/${fullPath.replace(/^\/+/, '')}`
+}
+
 // Virtual File System
 const fileSystem: Record<string, FSNode> = {
   '/': {
     type: 'dir',
     children: {
       'bin': { type: 'dir', children: {} },
-      'ctf': {
-        type: 'dir',
-        children: {
-          // This is a virtual placeholder for the downloadable challenge binary.
-          // Real file is served from docs/public (same URL path).
-          're_checkin': { type: 'file', content: '::BINARY::' }
-        }
-      },
       'etc': {
         type: 'dir',
         children: {
@@ -390,11 +396,6 @@ const executeCommand = async (input: string): Promise<string> => {
     case 'cat': {
       if (!args[0]) return 'cat: missing operand'
       const resolved = resolvePath(args[0])
-      const binaryPath = ctfConfig?.binary || '/ctf/re_checkin'
-      if (resolved === binaryPath) {
-        return `<span class="dim">This is a downloadable binary.</span>
-<span class="dim">URL: ${escapeHtml(binaryPath)}</span>`
-      }
       const node = getNode(args[0])
       if (!node) return `cat: ${escapeHtml(args[0])}: No such file or directory`
       if (node.type === 'dir') return `cat: ${escapeHtml(args[0])}: Is a directory`
@@ -408,10 +409,6 @@ const executeCommand = async (input: string): Promise<string> => {
     case 'file': {
       if (!args[0]) return 'file: missing operand'
       const resolved = resolvePath(args[0])
-      const binaryPath = ctfConfig?.binary || '/ctf/re_checkin'
-      if (resolved === binaryPath) {
-        return `${escapeHtml(resolved)}: ${escapeHtml(ctfConfig?.binaryType || 'binary data')}`
-      }
       const node = getNode(args[0])
       if (!node) return `${escapeHtml(args[0])}: cannot open (No such file or directory)`
       if (node.type === 'dir') return `${resolved}: directory`
@@ -419,7 +416,7 @@ const executeCommand = async (input: string): Promise<string> => {
         return `${resolved}: encrypted data, requires key to decrypt
 <span class="dim">
 To decrypt this file, you need to:
-1. Download the challenge: ${escapeHtml(ctfConfig?.binary || '/ctf/re_checkin')}
+1. Download: ${escapeHtml(getDownloadUrl())}
 2. Analyze it to get the key
 3. Run: ./flag &lt;key&gt;
 
@@ -440,7 +437,7 @@ Difficulty: ${ctfConfig?.difficulty || 'Easy'} | Category: ${ctfConfig?.category
         return `Usage: ./flag &lt;key&gt;
 <span class="dim">
 Analyze the challenge to get the key.
-Download: ${escapeHtml(ctfConfig?.binary || '/ctf/re_checkin')}
+Download: ${escapeHtml(getDownloadUrl())}
 
     Tools: ${escapeHtml(ctfConfig?.tools || 'https://re.starneko.com/')}
     Difficulty: ${ctfConfig?.difficulty || 'Easy'} | Category: ${ctfConfig?.category || 'RE'}
@@ -534,8 +531,10 @@ const scrollToBottom = () => {
   }
 }
 
-const focusInput = () => {
+const focusInput = (_e?: MouseEvent) => {
   if (!isInteractive.value) return
+  const sel = typeof window !== 'undefined' ? window.getSelection?.() : null
+  if (sel && !sel.isCollapsed && sel.toString().trim().length > 0) return
   const el = inputEl.value
   if (!el) return
   el.focus()
