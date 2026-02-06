@@ -2,7 +2,6 @@
 
 从用户态 C 到 Linux 内核开发的跨越。
 
----
 
 ## 概念速览
 
@@ -21,7 +20,6 @@
 | 输出 | printf | printk |
 | 标准库 | libc | 无，只有内核 API |
 
----
 
 ## 核心概念
 
@@ -85,7 +83,6 @@ if (condition) {
 > ./scripts/checkpatch.pl -f your_code.c
 > ```
 
----
 
 ## 基础用法
 
@@ -176,7 +173,6 @@ dmesg
 cat /var/log/kern.log
 ```
 
----
 
 ## 进阶用法
 
@@ -286,7 +282,6 @@ err_res1:
 > [!NOTE]
 > 这种 goto 用法在内核中是**推荐的**，比嵌套 if 更清晰。
 
----
 
 ## 实战场景
 
@@ -395,7 +390,6 @@ module_init(binder_init);
 > [!NOTE]
 > **CVE-2023-20938** 就发生在 Binder 驱动中，因 `binder_node` 的 UAF 导致。
 
----
 
 ## 常见陷阱
 
@@ -453,7 +447,6 @@ void *ptr = devm_kmalloc(dev, size, GFP_KERNEL);
 // 设备卸载时自动释放
 ```
 
----
 
 ## 深入阅读
 
@@ -466,7 +459,6 @@ void *ptr = devm_kmalloc(dev, size, GFP_KERNEL);
 - [06 - 驱动开发](./06-driver-dev.md) - 字符设备、ioctl
 - [Android 内核安全](/notes/android/05-kernel/) - 内核攻击面
 
----
 
 ## 下一步
 

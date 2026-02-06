@@ -2,7 +2,6 @@
 
 在 C 和 Rust 中嵌入 ARM64 汇编。
 
----
 
 ## 概念速览
 
@@ -17,7 +16,6 @@
 - 访问处理器特性 (PAC, BTI)
 - Hook 代码中的原子操作
 
----
 
 ## GCC 扩展汇编语法
 
@@ -133,7 +131,6 @@ asm volatile(
 );
 ```
 
----
 
 ## 实用案例
 
@@ -217,7 +214,6 @@ static inline void isb(void) {
 }
 ```
 
----
 
 ## Rust asm!
 
@@ -300,7 +296,6 @@ fn atomic_add(ptr: *mut i32, val: i32) -> i32 {
 }
 ```
 
----
 
 ## 实战场景
 
@@ -410,7 +405,6 @@ fn main() {
 }
 ```
 
----
 
 ## 常见陷阱
 
@@ -481,7 +475,6 @@ asm("ldr %w0, [%1]"
     : "r"(ptr));
 ```
 
----
 
 ## Android 场景
 
@@ -521,7 +514,6 @@ static inline int __bionic_cmpxchg(int32_t old_value,
 #define smp_rmb()   asm volatile("dmb ishld" ::: "memory")
 ```
 
----
 
 ## 深入阅读
 
@@ -533,7 +525,6 @@ static inline int __bionic_cmpxchg(int32_t old_value,
 - [02 - 调用约定](./02-calling-conventions.md) - 寄存器使用
 - [06 - 内存破坏](./06-memory-corruption.md) - 原子操作漏洞
 
----
 
 ## 下一步
 

@@ -2,7 +2,6 @@
 
 Android Root 工具的 C/内核层实现分析。
 
----
 
 ## 概念速览
 
@@ -19,7 +18,6 @@ Android Root 工具的 C/内核层实现分析。
 | KernelSU | 内核模块 | 较高 |
 | su 二进制 | setuid | 低（已过时）|
 
----
 
 ## 核心概念
 
@@ -71,7 +69,6 @@ commit_creds(new_cred);
 // 进程现在是 root！
 ```
 
----
 
 ## KernelSU 实现
 
@@ -176,7 +173,6 @@ static void setup_selinux_context(void)
 }
 ```
 
----
 
 ## Magisk 实现
 
@@ -247,7 +243,6 @@ static void hide_from_app(pid_t pid) {
 > [!NOTE]
 > MagiskHide 已被 Zygisk DenyList 取代。
 
----
 
 ## 实战场景
 
@@ -324,7 +319,6 @@ static void run_modules(void) {
 }
 ```
 
----
 
 ## Root 检测与绕过
 
@@ -359,7 +353,6 @@ __system_property_get("ro.debuggable", value);
 // 3. 不用于恶意目的
 ```
 
----
 
 ## 常见陷阱
 
@@ -398,7 +391,6 @@ if (is_allowed(current)) {
 pr_info("Granting root to pid %d\n", task_pid_nr(current));
 ```
 
----
 
 ## 深入阅读
 
@@ -410,7 +402,6 @@ pr_info("Granting root to pid %d\n", task_pid_nr(current));
 - [SELinux for Android](/notes/android/05-kernel/01-selinux)
 - [内核安全](/notes/android/05-kernel/)
 
----
 
 ## 系列总结
 
@@ -421,7 +412,6 @@ C Essentials 完成！你现在应该能够：
 - ✅ 阅读和编写内核模块
 - ✅ 理解 Android 驱动和 Root 工具
 
----
 
 ## 下一步
 

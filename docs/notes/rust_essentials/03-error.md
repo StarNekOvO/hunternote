@@ -2,7 +2,6 @@
 
 Rust 错误处理的最佳实践。
 
----
 
 ## 概念速览
 
@@ -20,7 +19,6 @@ Rust 错误处理的最佳实践。
 | Go | (value, error) | 冗长 |
 | Rust | Result + ? | 编译时检查，简洁 |
 
----
 
 ## panic!
 
@@ -57,7 +55,6 @@ RUST_BACKTRACE=1 cargo run
 RUST_BACKTRACE=full cargo run
 ```
 
----
 
 ## Result 深入
 
@@ -116,7 +113,6 @@ fn complex_operation() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
----
 
 ## 自定义错误
 
@@ -217,7 +213,6 @@ fn main() {
 }
 ```
 
----
 
 ## 错误处理模式
 
@@ -271,7 +266,6 @@ fn try_all() -> Vec<Result<i32, Error>> {
 }
 ```
 
----
 
 ## 实战场景
 
@@ -374,7 +368,6 @@ fn main() {
 }
 ```
 
----
 
 ## 常见陷阱
 
@@ -416,7 +409,6 @@ fn process() -> Result<(), AppError> { ... }
 fn process() -> anyhow::Result<()> { ... }
 ```
 
----
 
 ## 深入阅读
 
@@ -429,7 +421,6 @@ fn process() -> anyhow::Result<()> { ... }
 - [02 - 类型系统](./02-types.md) - Result 和 Option
 - [04 - 并发](./04-concurrency.md) - 并发中的错误处理
 
----
 
 ## 下一步
 

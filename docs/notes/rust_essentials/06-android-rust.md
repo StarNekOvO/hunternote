@@ -2,7 +2,6 @@
 
 Android 系统中的 Rust：Keystore2、Binder、系统组件。
 
----
 
 ## 概念速览
 
@@ -20,7 +19,6 @@ Android 系统中的 Rust：Keystore2、Binder、系统组件。
 | 2023 | Android 14 | 更多组件 |
 | 2024 | Android 15 | 持续扩展 |
 
----
 
 ## AOSP Rust 构建
 
@@ -62,7 +60,6 @@ rust_binary {
 | `libserde` | 序列化 |
 | `libtokio` | 异步运行时 |
 
----
 
 ## Keystore2
 
@@ -116,7 +113,6 @@ impl IKeystoreService for KeystoreService {
 - 无 UAF
 - 正确的并发处理
 
----
 
 ## Binder Rust
 
@@ -174,7 +170,6 @@ fn main() {
 }
 ```
 
----
 
 ## 日志与调试
 
@@ -204,7 +199,6 @@ fn main() {
 adb logcat -s MyService
 ```
 
----
 
 ## 实战场景
 
@@ -284,7 +278,6 @@ fn process_message(data: &[u8]) -> Result<Message, Error> {
 > [!NOTE]
 > Rust 的内存安全仍可能被 unsafe 代码绕过，或存在逻辑漏洞。
 
----
 
 ## 与 C/C++ 集成
 
@@ -334,7 +327,6 @@ fn main() {
 }
 ```
 
----
 
 ## 常见陷阱
 
@@ -385,7 +377,6 @@ fn process(input: Option<String>) -> Result<String> {
 }
 ```
 
----
 
 ## 深入阅读
 
@@ -398,7 +389,6 @@ fn process(input: Option<String>) -> Result<String> {
 - [05 - Unsafe Rust](./05-unsafe.md) - FFI 基础
 - [07 - Magisk Rust](./07-magisk-rust.md) - 工具中的 Rust
 
----
 
 ## 下一步
 

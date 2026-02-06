@@ -2,7 +2,6 @@
 
 栈溢出、堆溢出、UAF、Double-Free、类型混淆。
 
----
 
 ## 概念速览
 
@@ -20,7 +19,6 @@
 - 70%+ 的高危漏洞是内存安全问题
 - UAF 是最常见的 Android 内核漏洞
 
----
 
 ## 栈溢出
 
@@ -94,7 +92,6 @@ void vulnerable(char *input) {
 - 格式化字符串读取
 - 覆盖时跳过 canary
 
----
 
 ## 堆溢出
 
@@ -152,7 +149,6 @@ void *c = malloc(0x100);  // C 占据 A 的位置
 // 溢出 C 可以覆盖 B
 ```
 
----
 
 ## Use-After-Free (UAF)
 
@@ -234,7 +230,6 @@ register_callback(thread, func);
 5. Root!
 ```
 
----
 
 ## Double-Free
 
@@ -266,7 +261,6 @@ void *c = malloc(100);  // 也返回 a 的地址！
 // 如果 c 包含函数指针，可被控制
 ```
 
----
 
 ## 类型混淆
 
@@ -306,7 +300,6 @@ union binder_object {
 // 如果类型判断错误，字段解释错误
 ```
 
----
 
 ## 实战场景
 
@@ -416,7 +409,6 @@ CVE-2020-0041: Binder 竞态 UAF
 - 权限提升
 ```
 
----
 
 ## 防护机制
 
@@ -463,7 +455,6 @@ R-X: 可读执行，不可写 (代码段)
 只在调试编译启用
 ```
 
----
 
 ## 常见陷阱
 
@@ -503,7 +494,6 @@ void *b = malloc(100);
 // - 理解 allocator 行为
 ```
 
----
 
 ## 深入阅读
 
@@ -516,7 +506,6 @@ void *b = malloc(100);
 - [05 - 控制流劫持](./05-control-flow-hijack.md) - 利用内存破坏
 - [07 - Exploit 开发](./07-exploit-development.md) - 完整利用
 
----
 
 ## 下一步
 

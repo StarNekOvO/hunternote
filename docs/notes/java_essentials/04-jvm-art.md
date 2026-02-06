@@ -2,7 +2,6 @@
 
 Java 虚拟机基础和 Android 运行时。
 
----
 
 ## 概念速览
 
@@ -21,7 +20,6 @@ Java 虚拟机基础和 Android 运行时。
 | Android 版本 | - | 4.4 以前 | 5.0+ |
 | 性能 | 中等 | 较慢 | 快 |
 
----
 
 ## JVM 基础
 
@@ -119,7 +117,6 @@ protected Class<?> loadClass(String name) {
       Major GC / Full GC
 ```
 
----
 
 ## Android ART
 
@@ -183,7 +180,6 @@ ART GC 类型:
 - 分代策略
 - 压缩减少碎片
 
----
 
 ## 反射
 
@@ -234,7 +230,6 @@ Method getApplication = activityThread.getMethod("getApplication");
 Application app = (Application) getApplication.invoke(thread);
 ```
 
----
 
 ## JNI
 
@@ -293,7 +288,6 @@ Java_com_example_NativeLib_processArray(JNIEnv *env, jobject thiz, jintArray arr
 | String | jstring | - |
 | int[] | jintArray | - |
 
----
 
 ## 实战场景
 
@@ -367,7 +361,6 @@ System.out.printf("Max: %dMB, Used: %dMB\n",
 System.gc();
 ```
 
----
 
 ## 常见陷阱
 
@@ -402,7 +395,6 @@ JNIEXPORT void JNICALL method(JNIEnv *env, ...) {
 // 会导致 ClassLoader 和所有加载的类无法回收
 ```
 
----
 
 ## 深入阅读
 
@@ -414,7 +406,6 @@ JNIEXPORT void JNICALL method(JNIEnv *env, ...) {
 - [05 - Smali 与逆向](./05-smali.md) - DEX 字节码
 - [07 - Xposed/LSPosed](./07-xposed-lsposed.md) - Hook 技术
 
----
 
 ## 下一步
 

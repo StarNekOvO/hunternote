@@ -2,7 +2,6 @@
 
 Android Framework 核心组件分析。
 
----
 
 ## 概念速览
 
@@ -32,7 +31,6 @@ Android Framework 核心组件分析。
 └─────────────────────────────────────────┘
 ```
 
----
 
 ## system_server
 
@@ -61,7 +59,6 @@ frameworks/base/services/core/java/com/android/server/pm/  ← PMS
 frameworks/base/services/core/java/com/android/server/wm/  ← WMS
 ```
 
----
 
 ## Binder Java 层
 
@@ -113,7 +110,6 @@ public static void addService(String name, IBinder service) {
 }
 ```
 
----
 
 ## AMS (ActivityManagerService)
 
@@ -163,7 +159,6 @@ if (specialCondition) {
 > [!CAUTION]
 > 这类漏洞允许后台 App 在前台显示界面，可用于钓鱼攻击。
 
----
 
 ## PMS (PackageManagerService)
 
@@ -213,7 +208,6 @@ DEX 优化 (dex2oat)
 - 读取任意应用私有数据
 - 执行任意应用上下文代码
 
----
 
 ## 权限系统
 
@@ -253,7 +247,6 @@ PackageManagerService.checkUidPermission(...)  // 声明权限
 // 权限检查和操作之间的 TOCTOU
 ```
 
----
 
 ## 实战场景
 
@@ -299,7 +292,6 @@ Java.perform(function() {
 });
 ```
 
----
 
 ## CVE 研究方法
 
@@ -324,7 +316,6 @@ https://cs.android.com/
 https://android.googlesource.com/
 ```
 
----
 
 ## 常见陷阱
 
@@ -357,7 +348,6 @@ int userId = UserHandle.getUserId(callingUid);
 // 0 = 主用户, 10+ = 工作配置文件/访客
 ```
 
----
 
 ## 深入阅读
 
@@ -370,7 +360,6 @@ int userId = UserHandle.getUserId(callingUid);
 - [AMS 深度解析](/notes/android/03-services/01-ams)
 - [PMS 深度解析](/notes/android/03-services/02-pms)
 
----
 
 ## 下一步
 

@@ -2,7 +2,6 @@
 
 Android 安全研究的汇编基础：从寄存器到 Exploit 开发。
 
----
 
 ## 为什么要学汇编？
 
@@ -23,7 +22,6 @@ CVE-2019-2215: Binder UAF
 
 如果看不懂这 28 条 gadget，就无法理解这个漏洞是如何变成 root 的。
 
----
 
 ## 学习路径
 
@@ -45,7 +43,6 @@ Week 3-4: Exploit (Chapter 05-07)
 
 **预计时间：** 20-30 小时（每天 1-2 小时，2-3 周）
 
----
 
 ## 前置要求
 
@@ -56,7 +53,6 @@ Week 3-4: Exploit (Chapter 05-07)
 | Android 基础 | 推荐 | NDK、adb |
 | x86 汇编 | 可选 | 有帮助但不必须 |
 
----
 
 ## ARM64 vs 其他架构
 
@@ -73,7 +69,6 @@ Week 3-4: Exploit (Chapter 05-07)
 - 授权灵活（厂商可定制）
 - 生态成熟
 
----
 
 ## 与其他语言笔记的关系
 
@@ -95,7 +90,6 @@ Week 3-4: Exploit (Chapter 05-07)
 - Java/ART 运行时也是 native 代码
 - Rust 的 unsafe 最终也是汇编
 
----
 
 ## 推荐工具
 
@@ -128,7 +122,6 @@ adb shell
 adb push exploit /data/local/tmp/
 ```
 
----
 
 ## 快速开始（10 分钟）
 
@@ -196,7 +189,6 @@ aarch64-linux-gnu-gdb hello
 (gdb) info registers
 ```
 
----
 
 ## 章节目录
 
@@ -218,7 +210,6 @@ aarch64-linux-gnu-gdb hello
 | [06 - 内存破坏](./06-memory-corruption.md) | 栈溢出、堆溢出、UAF | ⭐⭐⭐⭐ |
 | [07 - Exploit 开发](./07-exploit-development.md) | 完整 exploit、shellcode | ⭐⭐⭐⭐⭐ |
 
----
 
 ## 相关 CVE 速览
 
@@ -232,7 +223,6 @@ aarch64-linux-gnu-gdb hello
 | CVE-2022-20186 | GPU 驱动 | 06 |
 | CVE-2023-20938 | Binder UAF | 05, 06 |
 
----
 
 ## 深入阅读
 
@@ -248,7 +238,6 @@ aarch64-linux-gnu-gdb hello
 - [Azeria Labs ARM Assembly](https://azeria-labs.com/writing-arm-assembly-part-1/)
 - [ARM64 Syscall Table](https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md#arm64-64_bit)
 
----
 
 ## 下一步
 

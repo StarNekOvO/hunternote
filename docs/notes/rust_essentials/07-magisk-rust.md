@@ -2,7 +2,6 @@
 
 Magisk 的 Rust 组件分析：magiskpolicy、magiskboot。
 
----
 
 ## 概念速览
 
@@ -20,7 +19,6 @@ Magisk 的 Rust 组件分析：magiskpolicy、magiskboot。
 | busybox | 工具集 | C |
 | magiskinit | 启动注入 | C/C++ |
 
----
 
 ## magiskboot
 
@@ -82,7 +80,6 @@ fn extract_segment(data: &[u8], offset: usize, size: usize) -> Result<Vec<u8>> {
 // C++ 版本需要手动检查，容易遗漏
 ```
 
----
 
 ## magiskpolicy
 
@@ -158,7 +155,6 @@ impl PolicyPatcher {
 }
 ```
 
----
 
 ## C++/Rust 互操作
 
@@ -217,7 +213,6 @@ pub fn process_cpp_buffer(ptr: *const u8, len: usize) -> Result<Vec<u8>> {
 }
 ```
 
----
 
 ## 实战场景
 
@@ -300,7 +295,6 @@ fn parse_module_prop(content: &str) -> Result<ModuleConfig> {
 }
 ```
 
----
 
 ## 安全考量
 
@@ -364,7 +358,6 @@ impl Drop for CppImage {
 }
 ```
 
----
 
 ## 常见陷阱
 
@@ -412,7 +405,6 @@ fn parse_policy_version(data: &[u8]) -> Result<u32> {
 }
 ```
 
----
 
 ## 深入阅读
 
@@ -424,7 +416,6 @@ fn parse_policy_version(data: &[u8]) -> Result<u32> {
 - [05 - Unsafe Rust](./05-unsafe.md) - FFI 和 unsafe
 - [C 07 - KernelSU/Magisk](../c_essentials/07-ksu-magisk-native) - 内核层实现
 
----
 
 ## 系列总结
 
@@ -436,7 +427,6 @@ Rust Essentials 完成！你现在应该能够：
 - ✅ 理解和审计 unsafe 代码
 - ✅ 分析 Android/Magisk 中的 Rust 组件
 
----
 
 ## 下一步
 

@@ -2,7 +2,6 @@
 
 多线程、同步、锁、线程池、Android Handler。
 
----
 
 ## 概念速览
 
@@ -26,7 +25,6 @@ Low-level:   Thread, volatile
 - 后台任务使用 Handler、AsyncTask、Coroutine
 - 严格的线程策略（StrictMode）
 
----
 
 ## 线程基础
 
@@ -88,7 +86,6 @@ t.interrupt();
 if (Thread.interrupted()) { ... }
 ```
 
----
 
 ## 同步机制
 
@@ -160,7 +157,6 @@ AtomicReference<String> ref = new AtomicReference<>("init");
 ref.set("new");
 ```
 
----
 
 ## Lock 接口
 
@@ -244,7 +240,6 @@ public void put(Object item) throws InterruptedException {
 }
 ```
 
----
 
 ## 线程池
 
@@ -293,7 +288,6 @@ ThreadPoolExecutor executor = new ThreadPoolExecutor(
 | DiscardPolicy | 静默丢弃 |
 | DiscardOldestPolicy | 丢弃最老任务 |
 
----
 
 ## Android Handler
 
@@ -356,7 +350,6 @@ bgHandler.post(() -> {
 thread.quitSafely();
 ```
 
----
 
 ## 实战场景
 
@@ -426,7 +419,6 @@ CompletableFuture.allOf(f1, f2).thenRun(() -> {
 });
 ```
 
----
 
 ## 常见陷阱
 
@@ -483,7 +475,6 @@ static class MyHandler extends Handler {
 }
 ```
 
----
 
 ## 深入阅读
 
@@ -495,7 +486,6 @@ static class MyHandler extends Handler {
 - [02 - 集合框架](./02-collections.md) - 并发集合
 - [06 - AOSP 实战](./06-android-java.md) - system_server 线程模型
 
----
 
 ## 下一步
 

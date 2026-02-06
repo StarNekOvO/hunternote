@@ -2,7 +2,6 @@
 
 Java 核心语法快速回顾，为 Android Framework 开发打基础。
 
----
 
 ## 概念速览
 
@@ -24,7 +23,6 @@ Java 核心语法快速回顾，为 Android Framework 开发打基础。
 | 面向对象 | 无 | 完整支持 |
 | 编译目标 | 机器码 | 字节码 |
 
----
 
 ## 核心概念
 
@@ -57,7 +55,6 @@ javac HelloWorld.java
 java HelloWorld
 ```
 
----
 
 ## 基础用法
 
@@ -200,7 +197,6 @@ Arrays.fill(arr1, 0);                 // 填充
 int[] copy = Arrays.copyOf(arr2, 10); // 复制
 ```
 
----
 
 ## 进阶用法
 
@@ -312,7 +308,6 @@ Throwable
     └── IOException        ← 检查异常
 ```
 
----
 
 ## 实战场景
 
@@ -394,7 +389,6 @@ public class FileDemo {
 }
 ```
 
----
 
 ## 常见陷阱
 
@@ -458,7 +452,6 @@ BigDecimal y = new BigDecimal("0.2");
 BigDecimal z = x.add(y);  // 精确
 ```
 
----
 
 ## 深入阅读
 
@@ -470,7 +463,6 @@ BigDecimal z = x.add(y);  // 精确
 - [01 - 面向对象](./01-oop.md) - 类、继承、接口
 - [04 - JVM 与 ART](./04-jvm-art.md) - 深入运行时
 
----
 
 ## 下一步
 

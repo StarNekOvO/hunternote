@@ -2,7 +2,6 @@
 
 Java 数据结构：List、Set、Map、队列。
 
----
 
 ## 概念速览
 
@@ -29,7 +28,6 @@ Java 数据结构：List、Set、Map、队列。
         HashMap  TreeMap  LinkedHashMap
 ```
 
----
 
 ## List (有序可重复)
 
@@ -90,7 +88,6 @@ Integer[] arr = list.toArray(new Integer[0]);
 List<Integer> copy = new ArrayList<>(list);
 ```
 
----
 
 ## Set (无序不重复)
 
@@ -129,7 +126,6 @@ Set<Integer> unique = new HashSet<>(numbers);
 System.out.println(unique);  // [1, 2, 3]
 ```
 
----
 
 ## Map (键值对)
 
@@ -197,7 +193,6 @@ map.replaceAll((k, v) -> v * 2);
 - 链表长度 > 8 转红黑树 (Java 8+)
 - 容量总是 2 的幂
 
----
 
 ## 队列
 
@@ -241,7 +236,6 @@ PriorityQueue<Integer> maxHeap = new PriorityQueue<>(
 );
 ```
 
----
 
 ## Stream API (Java 8+)
 
@@ -303,7 +297,6 @@ String joined = names.stream()
     .collect(Collectors.joining(", "));  // "Alice, Bob, Charlie, Alice"
 ```
 
----
 
 ## 实战场景
 
@@ -365,7 +358,6 @@ cache.get("a");     // 访问 a
 cache.put("d", 4);  // 淘汰 b (最久未使用)
 ```
 
----
 
 ## 常见陷阱
 
@@ -417,7 +409,6 @@ List<String> list = Arrays.asList("a", "b", "c");
 List<String> mutableList = new ArrayList<>(Arrays.asList("a", "b", "c"));
 ```
 
----
 
 ## 深入阅读
 
@@ -429,7 +420,6 @@ List<String> mutableList = new ArrayList<>(Arrays.asList("a", "b", "c"));
 - [03 - 并发编程](./03-concurrency.md) - 并发集合
 - [00 - 基础语法](./00-basics.md) - 数组基础
 
----
 
 ## 下一步
 

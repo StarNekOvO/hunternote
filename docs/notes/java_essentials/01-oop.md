@@ -2,7 +2,6 @@
 
 Java 的核心范式：类、继承、接口、多态。
 
----
 
 ## 概念速览
 
@@ -17,7 +16,6 @@ Java 的核心范式：类、继承、接口、多态。
 - 解耦和可测试性
 - 适合大型团队协作
 
----
 
 ## 核心概念
 
@@ -90,7 +88,6 @@ Counter c2 = new Counter();
 System.out.println(Counter.getCount());  // 2
 ```
 
----
 
 ## 继承
 
@@ -198,7 +195,6 @@ public class Person {
 > [!CAUTION]
 > 重写 `equals` 必须同时重写 `hashCode`，否则 HashMap 等会出问题。
 
----
 
 ## 接口
 
@@ -267,7 +263,6 @@ System.out.println(add.calculate(3, 2));  // 5
 System.out.println(sub.calculate(3, 2));  // 1
 ```
 
----
 
 ## 抽象类
 
@@ -314,7 +309,6 @@ public class Rectangle extends Shape {
 | 继承 | 单继承 | 多实现 |
 | 使用场景 | is-a 关系 | can-do 能力 |
 
----
 
 ## 多态
 
@@ -355,7 +349,6 @@ if (animal instanceof Dog dog) {
 }
 ```
 
----
 
 ## 内部类
 
@@ -409,7 +402,6 @@ Runnable task = new Runnable() {
 Runnable lambdaTask = () -> System.out.println("Running");
 ```
 
----
 
 ## 实战场景
 
@@ -506,7 +498,6 @@ public class Subject {
 }
 ```
 
----
 
 ## 常见陷阱
 
@@ -561,7 +552,6 @@ public class Stack {
 }
 ```
 
----
 
 ## 深入阅读
 
@@ -573,7 +563,6 @@ public class Stack {
 - [02 - 集合框架](./02-collections.md) - List, Map, Set
 - [06 - AOSP 实战](./06-android-java.md) - Framework 中的 OOP
 
----
 
 ## 下一步
 

@@ -2,7 +2,6 @@
 
 突破安全边界：裸指针、FFI、内联汇编。
 
----
 
 ## 概念速览
 
@@ -18,7 +17,6 @@
 4. 实现 unsafe trait
 5. 访问 union 字段
 
----
 
 ## 裸指针
 
@@ -78,7 +76,6 @@ fn main() {
 }
 ```
 
----
 
 ## FFI (Foreign Function Interface)
 
@@ -163,7 +160,6 @@ struct Point {
 // };
 ```
 
----
 
 ## Unsafe Trait
 
@@ -195,7 +191,6 @@ struct NotSync {
 // unsafe impl Sync for NotSync {}  // 危险！
 ```
 
----
 
 ## 可变静态变量
 
@@ -230,7 +225,6 @@ fn increment() {
 }
 ```
 
----
 
 ## 实战场景
 
@@ -323,7 +317,6 @@ unsafe fn decode_image(data: *const u8, len: usize) -> Image {
 > [!CAUTION]
 > unsafe 代码中的边界检查省略是常见漏洞来源。
 
----
 
 ## Unsafe 最佳实践
 
@@ -385,7 +378,6 @@ impl Drop for SafeWrapper {
 }
 ```
 
----
 
 ## 常见陷阱
 
@@ -428,7 +420,6 @@ fn bad_aliasing() {
 }
 ```
 
----
 
 ## 深入阅读
 
@@ -440,7 +431,6 @@ fn bad_aliasing() {
 - [06 - AOSP Rust](./06-android-rust.md) - FFI 在 Android 中的应用
 - [07 - Magisk Rust](./07-magisk-rust.md) - C++/Rust 互操作
 
----
 
 ## 下一步
 

@@ -2,7 +2,6 @@
 
 复合数据类型：将相关数据组织在一起。
 
----
 
 ## 概念速览
 
@@ -23,7 +22,6 @@
 | 访问控制 | ✗ | ✓ (public/private) |
 | 内存布局 | 可预测 | JVM 管理 |
 
----
 
 ## 核心概念
 
@@ -75,7 +73,6 @@ typedef struct file_operations fops_t;
 2. 更容易 grep 搜索
 3. 避免隐藏复杂性
 
----
 
 ## 基础用法
 
@@ -135,7 +132,6 @@ for (int i = 0; i < 100; i++) {
 }
 ```
 
----
 
 ## 进阶用法
 
@@ -255,7 +251,6 @@ buf->len = 100;
 strcpy(buf->data, "Hello");
 ```
 
----
 
 ## 实战场景
 
@@ -335,7 +330,6 @@ offsetof(d) = 16
 sizeof = 24
 ```
 
----
 
 ## 常见陷阱
 
@@ -393,7 +387,6 @@ struct data d;
 struct data d = {0};  // 全部清零
 ```
 
----
 
 ## 深入阅读
 
@@ -405,7 +398,6 @@ struct data d = {0};  // 全部清零
 - [05 - 内核开发](./05-kernel-style.md) - 内核数据结构风格
 - [02 - Binder 解析](/notes/android/02-ipc/00-binder-deep-dive) - Binder 结构详解
 
----
 
 ## 下一步
 

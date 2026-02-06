@@ -2,7 +2,6 @@
 
 DEX 字节码、Smali 语法、逆向工具。
 
----
 
 ## 概念速览
 
@@ -22,7 +21,6 @@ APK → 解包 → classes.dex → baksmali → .smali 文件
                              smali → classes.dex → 重打包 → 签名
 ```
 
----
 
 ## Smali 语法
 
@@ -138,7 +136,6 @@ aget v0, v1, v2
 aput v0, v1, v2
 ```
 
----
 
 ## 逆向工具
 
@@ -213,7 +210,6 @@ Java.perform(function() {
 });
 ```
 
----
 
 ## 实战场景
 
@@ -301,7 +297,6 @@ public int add(int a, int b) {
 .end method
 ```
 
----
 
 ## 常见混淆手段
 
@@ -349,7 +344,6 @@ goto :fake_code
 # 永远不执行的代码
 ```
 
----
 
 ## 常见陷阱
 
@@ -380,7 +374,6 @@ zipalign -v 4 app_modified.apk app_aligned.apk
 apksigner sign --ks my.keystore app_aligned.apk
 ```
 
----
 
 ## 深入阅读
 
@@ -392,7 +385,6 @@ apksigner sign --ks my.keystore app_aligned.apk
 - [04 - JVM 与 ART](./04-jvm-art.md) - DEX 格式
 - [07 - Xposed/LSPosed](./07-xposed-lsposed.md) - Hook 开发
 
----
 
 ## 下一步
 

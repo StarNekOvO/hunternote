@@ -2,8 +2,6 @@
 
 ARM64 架构、寄存器、基本指令。
 
----
-
 ## 概念速览
 
 **ARM64 是什么？**
@@ -13,8 +11,6 @@ ARM 的 64 位指令集架构（也叫 AArch64），Android 主流处理器架�
 - 所有 Android 漏洞最终都是汇编层面的内存破坏
 - 理解寄存器才能构造 ROP chain
 - 逆向 native 库必须读懂汇编
-
----
 
 ## 核心概念
 
@@ -104,7 +100,6 @@ b.hi label         // if C=1 && Z=0 (大于, 无符号)
 b.lo label         // if C=0 (小于, 无符号)
 ```
 
----
 
 ## 基础指令
 
@@ -223,7 +218,6 @@ svc #0               // 触发系统调用
 | 220 | clone | flags, stack, ... |
 | 29 | ioctl | fd, cmd, arg |
 
----
 
 ## 实战场景
 
@@ -337,7 +331,6 @@ qemu-aarch64 ./add ; echo $?
 # 输出: 30
 ```
 
----
 
 ## 常见陷阱
 
@@ -401,7 +394,6 @@ str x0, [sp]
 
 **原因：** ARM64 要求 SP 在函数调用时 16 字节对齐
 
----
 
 ## Android 场景
 
@@ -450,7 +442,6 @@ ghidra libc.so
    22190: d65f03c0  ret
 ```
 
----
 
 ## 深入阅读
 
@@ -462,7 +453,6 @@ ghidra libc.so
 - [01 - 内存寻址](./01-memory-addressing.md) - 寻址模式详解
 - [02 - 调用约定](./02-calling-conventions.md) - 函数调用深入
 
----
 
 ## 下一步
 

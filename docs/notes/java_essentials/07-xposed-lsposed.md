@@ -2,7 +2,6 @@
 
 Android Java 层 Hook 框架。
 
----
 
 ## 概念速览
 
@@ -24,7 +23,6 @@ Android Java 层 Hook 框架。
 | LSPosed | 8.1+ | 活跃 |
 | LSPatch | 无 Root | 活跃 |
 
----
 
 ## 工作原理
 
@@ -59,7 +57,6 @@ Magisk + Zygisk
 - 模块隔离，更稳定
 - 只 Hook 选定的应用
 
----
 
 ## LSPosed 开发
 
@@ -118,7 +115,6 @@ dependencies {
 }
 ```
 
----
 
 ## Hook API
 
@@ -220,7 +216,6 @@ for (Method method : clazz.getDeclaredMethods()) {
 }
 ```
 
----
 
 ## 实战场景
 
@@ -335,7 +330,6 @@ XposedHelpers.findAndHookMethod(
 );
 ```
 
----
 
 ## LSPosed 特有功能
 
@@ -389,7 +383,6 @@ public class MainHook implements IXposedHookInitPackageResources {
 }
 ```
 
----
 
 ## 调试技巧
 
@@ -420,7 +413,6 @@ try {
 }
 ```
 
----
 
 ## 常见陷阱
 
@@ -448,7 +440,6 @@ XposedHelpers.findClass("com.target.app.MyClass", lpparam.classLoader);
 // 注意同步问题
 ```
 
----
 
 ## 深入阅读
 
@@ -460,7 +451,6 @@ XposedHelpers.findClass("com.target.app.MyClass", lpparam.classLoader);
 - [05 - Smali 与逆向](./05-smali.md) - 静态分析配合
 - [04 - JVM 与 ART](./04-jvm-art.md) - 运行时原理
 
----
 
 ## 系列总结
 
@@ -472,7 +462,6 @@ Java Essentials 完成！你现在应该能够：
 - ✅ 分析 AOSP Framework
 - ✅ 开发 Xposed/LSPosed 模块
 
----
 
 ## 下一步
 

@@ -2,7 +2,6 @@
 
 Rust 的枚举、Option、Result、泛型、Trait。
 
----
 
 ## 概念速览
 
@@ -20,7 +19,6 @@ Rust 的枚举、Option、Result、泛型、Trait。
 | 错误处理 | 返回码 | 异常 | Result |
 | 泛型 | 无（宏） | 类型擦除 | 单态化 |
 
----
 
 ## 枚举
 
@@ -84,7 +82,6 @@ fn main() {
 }
 ```
 
----
 
 ## Option
 
@@ -141,7 +138,6 @@ if let Some(n) = x {
 }
 ```
 
----
 
 ## Result
 
@@ -214,7 +210,6 @@ let opt: Option<i32> = result.ok();
 let chained = result.and_then(|n| Ok(n + 1));
 ```
 
----
 
 ## 泛型
 
@@ -282,7 +277,6 @@ fn main() {
 }
 ```
 
----
 
 ## Trait
 
@@ -395,7 +389,6 @@ fn main() {
 }
 ```
 
----
 
 ## 实战场景
 
@@ -467,7 +460,6 @@ fn main() {
 }
 ```
 
----
 
 ## 常见陷阱
 
@@ -503,7 +495,6 @@ fn foo() -> dyn Summary { ... }
 fn foo() -> Box<dyn Summary> { ... }
 ```
 
----
 
 ## 深入阅读
 
@@ -515,7 +506,6 @@ fn foo() -> Box<dyn Summary> { ... }
 - [03 - 错误处理](./03-error.md) - 深入 Result 模式
 - [04 - 并发](./04-concurrency.md) - Send/Sync Trait
 
----
 
 ## 下一步
 

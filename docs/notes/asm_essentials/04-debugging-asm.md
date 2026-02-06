@@ -2,7 +2,6 @@
 
 GDB、Ghidra、crash dump 分析。
 
----
 
 ## 概念速览
 
@@ -16,7 +15,6 @@ GDB、Ghidra、crash dump 分析。
 - 开发 exploit 时调试
 - 逆向闭源组件
 
----
 
 ## GDB 基础
 
@@ -77,7 +75,6 @@ gdb -p <pid>
 (gdb) return              # 强制从当前函数返回
 ```
 
----
 
 ## GEF (GDB 增强)
 
@@ -115,7 +112,6 @@ $x2  : 0x0000000000000005
    0x400584 <main+4>     mov    x29, sp
 ```
 
----
 
 ## 反汇编工具
 
@@ -166,7 +162,6 @@ analyzeHeadless /path/to/project ProjectName \
 - Tab: 伪代码
 ```
 
----
 
 ## Crash Dump 分析
 
@@ -222,7 +217,6 @@ adb shell dmesg | tail -50
 [  123.456802] sp : 0xffffffc012345670
 ```
 
----
 
 ## 实战场景
 
@@ -310,7 +304,6 @@ ldr x8, [x8, #0x548]      // GetStringUTFChars offset
 blr x8
 ```
 
----
 
 ## 常见陷阱
 
@@ -355,7 +348,6 @@ adb shell "echo 0 > /proc/sys/kernel/randomize_va_space"
 (gdb) break *0x400100 if $x0 == 42
 ```
 
----
 
 ## Android 调试
 
@@ -391,7 +383,6 @@ lldb
 (lldb) attach <pid>
 ```
 
----
 
 ## 深入阅读
 
@@ -404,7 +395,6 @@ lldb
 - [05 - 控制流劫持](./05-control-flow-hijack.md) - 调试 ROP chain
 - [07 - Exploit 开发](./07-exploit-development.md) - 完整调试流程
 
----
 
 ## 下一步
 

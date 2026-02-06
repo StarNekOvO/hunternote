@@ -2,7 +2,6 @@
 
 理解内存布局和动态分配是分析内存安全漏洞的基础。
 
----
 
 ## 概念速览
 
@@ -20,7 +19,6 @@
 | C | 手动 malloc/free | 程序员 |
 | Rust | 所有权系统 | 编译器 |
 
----
 
 ## 核心概念
 
@@ -118,7 +116,6 @@ void func(int arg1, int arg2) {
 - Android: jemalloc / scudo
 - 内核: slab, slub
 
----
 
 ## 基础用法
 
@@ -177,7 +174,6 @@ arr = new_arr;  // 原 arr 可能已失效
 > [!WARNING]
 > `realloc` 可能移动内存块！不要保留旧指针。
 
----
 
 ## 进阶用法
 
@@ -227,7 +223,6 @@ void *code = mmap(NULL, 4096,
 // Android/内核常用于驱动内存映射
 ```
 
----
 
 ## 实战场景
 
@@ -300,7 +295,6 @@ gcc -fsanitize=address -g memory_test.c -o test
 - Memory Leak
 - Double Free
 
----
 
 ## 常见漏洞类型
 
@@ -350,7 +344,6 @@ void vulnerable(char *input) {
 
 **可能覆盖返回地址 → RCE**
 
----
 
 ## 常见陷阱
 
@@ -398,7 +391,6 @@ free(p);
 p = NULL;
 ```
 
----
 
 ## 深入阅读
 
@@ -410,7 +402,6 @@ p = NULL;
 - [05 - 内核开发](./05-kernel-style.md) - kmalloc/vmalloc
 - [Android CVE 分析](/notes/android/08-practical/04-cve-studies) - 实际漏洞案例
 
----
 
 ## 下一步
 

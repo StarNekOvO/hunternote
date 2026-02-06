@@ -2,7 +2,6 @@
 
 字符设备、设备模型、ioctl、HAL 和 GKI。
 
----
 
 ## 概念速览
 
@@ -27,7 +26,6 @@
 └─────────────────────────────────────┘
 ```
 
----
 
 ## 核心概念
 
@@ -84,7 +82,6 @@ static const struct file_operations my_fops = {
 | unlocked_ioctl | `ioctl(fd, cmd, arg)` |
 | mmap | `mmap(...)` |
 
----
 
 ## 基础用法
 
@@ -251,7 +248,6 @@ static long my_ioctl(struct file *file, unsigned int cmd,
 | `_IOW(type, nr, datatype)` | 写入驱动 |
 | `_IOWR(type, nr, datatype)` | 双向传输 |
 
----
 
 ## 进阶用法
 
@@ -320,7 +316,6 @@ static void __exit my_exit(void)
 
 **优点：** 无需手动分配设备号、创建类等。
 
----
 
 ## 实战场景
 
@@ -395,7 +390,6 @@ static int custom_get_value(struct custom_hw_device *dev, int *value)
 }
 ```
 
----
 
 ## Android GKI
 
@@ -427,7 +421,6 @@ GKI 模式：
 2. 不能随意修改核心内核
 3. 驱动必须以模块形式
 
----
 
 ## 常见陷阱
 
@@ -471,7 +464,6 @@ atomic_inc(&counter);
 
 不同驱动使用相同的 magic number 和命令号。
 
----
 
 ## 深入阅读
 
@@ -483,7 +475,6 @@ atomic_inc(&counter);
 - [Binder 深度解析](/notes/android/02-ipc/00-binder-deep-dive)
 - [Android 内核安全](/notes/android/05-kernel/)
 
----
 
 ## 下一步
 

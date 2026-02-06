@@ -2,7 +2,6 @@
 
 Rust 的无畏并发：编译时防止数据竞争。
 
----
 
 ## 概念速览
 
@@ -20,7 +19,6 @@ Rust 的无畏并发：编译时防止数据竞争。
 | Go | 运行时检测 | 无 |
 | Rust | 编译时防止 | 无 |
 
----
 
 ## 线程基础
 
@@ -66,7 +64,6 @@ fn main() {
 }
 ```
 
----
 
 ## Send 和 Sync
 
@@ -102,7 +99,6 @@ fn main() {
 }
 ```
 
----
 
 ## Arc (原子引用计数)
 
@@ -130,7 +126,6 @@ fn main() {
 }
 ```
 
----
 
 ## Mutex (互斥锁)
 
@@ -200,7 +195,6 @@ fn main() {
 }
 ```
 
----
 
 ## Channel (通道)
 
@@ -262,7 +256,6 @@ fn main() {
 }
 ```
 
----
 
 ## async/await
 
@@ -329,7 +322,6 @@ async fn main() {
 }
 ```
 
----
 
 ## 实战场景
 
@@ -408,7 +400,6 @@ async fn main() {
 }
 ```
 
----
 
 ## 常见陷阱
 
@@ -466,7 +457,6 @@ tokio::task::spawn_blocking(|| {
 }).await;
 ```
 
----
 
 ## 深入阅读
 
@@ -479,7 +469,6 @@ tokio::task::spawn_blocking(|| {
 - [05 - Unsafe Rust](./05-unsafe.md) - 原子操作
 - [06 - AOSP Rust](./06-android-rust.md) - Android 异步实践
 
----
 
 ## 下一步
 

@@ -2,7 +2,6 @@
 
 ROP、JOP、ret2libc、SROP 技术详解。
 
----
 
 ## 概念速览
 
@@ -14,7 +13,6 @@ ROP、JOP、ret2libc、SROP 技术详解。
 - 绕过 DEP (W^X) 的必要手段
 - 几乎所有内存漏洞的利用都需要
 
----
 
 ## 核心概念
 
@@ -42,7 +40,6 @@ PAN:     内核不能执行用户态代码
 不注入代码，而是复用已有代码 → ROP/JOP
 ```
 
----
 
 ## ROP (Return-Oriented Programming)
 
@@ -132,7 +129,6 @@ ret
 # 如果 gadget 消耗的栈空间不是 16 的倍数，需要填充
 ```
 
----
 
 ## JOP (Jump-Oriented Programming)
 
@@ -168,7 +164,6 @@ br x16               // 跳转
 ldr x16, [x0] ; br x16  // 间接调用
 ```
 
----
 
 ## ret2libc
 
@@ -209,7 +204,6 @@ binsh_addr = libc_base + next(libc.search(b"/bin/sh"))
 # - 自己写入内存
 ```
 
----
 
 ## SROP (Sigreturn-Oriented Programming)
 
@@ -263,7 +257,6 @@ payload = bytes(frame)
 - 只需要一个 gadget: `mov x8, #0x8b; svc #0` (sigreturn)
 - 适合 gadget 稀缺的情况
 
----
 
 ## 实战场景
 
@@ -371,7 +364,6 @@ struct rop_chain {
 };
 ```
 
----
 
 ## 防护与绕过
 
@@ -412,7 +404,6 @@ bti c              // 只允许从 blr 跳入
 // - 减少可用 gadget
 ```
 
----
 
 ## 常见陷阱
 
@@ -448,7 +439,6 @@ system_addr = 0x7fff00001234  # 包含 00
 # 解决：选择不含 NULL 的 gadget
 ```
 
----
 
 ## 深入阅读
 
@@ -462,7 +452,6 @@ system_addr = 0x7fff00001234  # 包含 00
 - [06 - 内存破坏](./06-memory-corruption.md) - 触发控制流劫持
 - [07 - Exploit 开发](./07-exploit-development.md) - 完整 exploit
 
----
 
 ## 下一步
 

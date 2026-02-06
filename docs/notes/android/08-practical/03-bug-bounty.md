@@ -360,7 +360,6 @@ protected void onCreate(Bundle savedInstanceState) {
 - [x] 复现视频 (repro.mp4)
 - [x] 完整日志 (logs.txt)
 
----
 假设分配 CVE: CVE-2024-XXXXX
 假设修复版本: 2024-04 Security Patch
 ```
