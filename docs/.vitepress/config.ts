@@ -160,6 +160,21 @@ function getSidebar() {
             { text: '06 AOSP Rust', link: '/notes/rust_essentials/06-android-rust' },
             { text: '07 Magisk Rust', link: '/notes/rust_essentials/07-magisk-rust' },
           ]
+        },
+        {
+          text: 'ARM64 Assembly',
+          link: '/notes/asm_essentials/',
+          collapsed: true,
+          items: [
+            { text: '00 ARM64 基础', link: '/notes/asm_essentials/00-arm64-basics' },
+            { text: '01 内存寻址', link: '/notes/asm_essentials/01-memory-addressing' },
+            { text: '02 调用约定', link: '/notes/asm_essentials/02-calling-conventions' },
+            { text: '03 Inline 汇编', link: '/notes/asm_essentials/03-inline-asm' },
+            { text: '04 调试技巧', link: '/notes/asm_essentials/04-debugging-asm' },
+            { text: '05 控制流劫持', link: '/notes/asm_essentials/05-control-flow-hijack' },
+            { text: '06 内存破坏', link: '/notes/asm_essentials/06-memory-corruption' },
+            { text: '07 Exploit 开发', link: '/notes/asm_essentials/07-exploit-development' },
+          ]
         }
       ]
     },
