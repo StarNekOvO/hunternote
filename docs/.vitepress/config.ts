@@ -115,6 +115,51 @@ function getSidebar() {
               ]
             }
           ]
+        },
+        {
+          text: 'C Essentials',
+          link: '/notes/c_essentials/',
+          collapsed: true,
+          items: [
+            { text: '00 基础语法', link: '/notes/c_essentials/00-basics' },
+            { text: '01 指针与内存', link: '/notes/c_essentials/01-pointers' },
+            { text: '02 内存管理', link: '/notes/c_essentials/02-memory' },
+            { text: '03 结构体', link: '/notes/c_essentials/03-structures' },
+            { text: '04 预处理器', link: '/notes/c_essentials/04-preprocessor' },
+            { text: '05 内核开发', link: '/notes/c_essentials/05-kernel-style' },
+            { text: '06 驱动开发', link: '/notes/c_essentials/06-driver-dev' },
+            { text: '07 KernelSU/Magisk', link: '/notes/c_essentials/07-ksu-magisk-native' },
+          ]
+        },
+        {
+          text: 'Java Essentials',
+          link: '/notes/java_essentials/',
+          collapsed: true,
+          items: [
+            { text: '00 基础语法', link: '/notes/java_essentials/00-basics' },
+            { text: '01 面向对象', link: '/notes/java_essentials/01-oop' },
+            { text: '02 集合框架', link: '/notes/java_essentials/02-collections' },
+            { text: '03 并发编程', link: '/notes/java_essentials/03-concurrency' },
+            { text: '04 JVM 与 ART', link: '/notes/java_essentials/04-jvm-art' },
+            { text: '05 Smali 逆向', link: '/notes/java_essentials/05-smali' },
+            { text: '06 AOSP 实战', link: '/notes/java_essentials/06-android-java' },
+            { text: '07 Xposed/LSPosed', link: '/notes/java_essentials/07-xposed-lsposed' },
+          ]
+        },
+        {
+          text: 'Rust Essentials',
+          link: '/notes/rust_essentials/',
+          collapsed: true,
+          items: [
+            { text: '00 基础语法', link: '/notes/rust_essentials/00-basics' },
+            { text: '01 所有权', link: '/notes/rust_essentials/01-ownership' },
+            { text: '02 类型系统', link: '/notes/rust_essentials/02-types' },
+            { text: '03 错误处理', link: '/notes/rust_essentials/03-error' },
+            { text: '04 并发编程', link: '/notes/rust_essentials/04-concurrency' },
+            { text: '05 Unsafe Rust', link: '/notes/rust_essentials/05-unsafe' },
+            { text: '06 AOSP Rust', link: '/notes/rust_essentials/06-android-rust' },
+            { text: '07 Magisk Rust', link: '/notes/rust_essentials/07-magisk-rust' },
+          ]
         }
       ]
     },
@@ -140,8 +185,8 @@ function getSidebar() {
           text: 'CTFshow',
           link: '/ctfs/ctfshow/',
           items: [
-            { 
-              text: 'PWN VIP 360', 
+            {
+              text: 'PWN VIP 360',
               link: '/ctfs/ctfshow/pwnvip360/',
               collapsed: false,
               items: [
@@ -192,33 +237,33 @@ export default defineConfig({
   description: "StarNekOvO's Security Research Notes",
   lang: 'zh-CN',
   base: '/', // 使用自定义域名时设置为根路径
-  
+
   head: [
     // Favicons
     ['link', { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' }],
     ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' }],
     ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }],
-    
+
     // Web App Manifest
     ['link', { rel: 'manifest', href: '/site.webmanifest' }],
-    
+
     // Theme color for mobile browsers
     ['meta', { name: 'theme-color', content: '#ffffff' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'default' }],
     ['meta', { name: 'apple-mobile-web-app-title', content: '笨蛋笔记' }],
-    
+
     // SEO meta tags
     ['meta', { name: 'keywords', content: 'starneko, misakabit, 牛奶猫, 御坂晚, StarNekOvO, security, CTF, pwn, writeup, Android security, kernel exploitation, 系统安全, 安全研究' }],
     ['meta', { name: 'author', content: 'starneko, misakabit, 牛奶猫, 御坂晚' }],
     ['meta', { name: 'description', content: '御坂晚的笨蛋笔记 - starneko / misakabit 的系统安全研究笔记与 Writeup。包含 CTF、PWN、Android 安全、内核利用等内容。' }],
-    
+
     // Other meta tags
     ['link', { rel: 'stylesheet', href: '/custom.css' }],
     ['link', { rel: 'sitemap', type: 'application/xml', href: '/sitemap.xml' }],
     ['link', { rel: 'canonical', href: 'https://starneko.com' }],
-    
+
     // Open Graph meta tags
     ['meta', { property: 'og:title', content: '御坂晚的笨蛋笔记 - starneko / misakabit' }],
     ['meta', { property: 'og:type', content: 'website' }],
@@ -226,7 +271,7 @@ export default defineConfig({
     ['meta', { property: 'og:image', content: 'https://starneko.com/img/Mahiro.jpg' }],
     ['meta', { property: 'og:site_name', content: '御坂晚的笨蛋笔记' }],
     ['meta', { property: 'og:description', content: 'starneko / misakabit (牛奶猫 / 御坂晚) 的系统安全研究笔记 - System Security Hunter. Python/Go/Rust. MSCS at CU Boulder.' }],
-    
+
     // Twitter Card meta tags
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:site', content: '@StarNekOvO' }],
@@ -234,7 +279,7 @@ export default defineConfig({
     ['meta', { name: 'twitter:title', content: '御坂晚的笨蛋笔记 - starneko / misakabit' }],
     ['meta', { name: 'twitter:description', content: 'starneko / misakabit (牛奶猫 / 御坂晚) 的系统安全研究笔记 - System Security Hunter' }],
     ['meta', { name: 'twitter:image', content: 'https://starneko.com/img/Mahiro.jpg' }],
-    
+
     // JSON-LD structured data for better SEO
     ['script', { type: 'application/ld+json' }, JSON.stringify({
       '@context': 'https://schema.org',
@@ -270,7 +315,7 @@ export default defineConfig({
 
   themeConfig: {
     logo: '/img/Mahiro.jpg',
-    
+
     nav: [
       { text: 'Home', link: '/' },
       {
