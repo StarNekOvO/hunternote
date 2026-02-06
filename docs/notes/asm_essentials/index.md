@@ -1,6 +1,6 @@
 # ARM64 Assembly Essentials
 
-Android 安全研究的汇编基础：从寄存器到 Exploit 开发。
+Android 汇编速查与实战：从寄存器到 Exploit 开发
 
 
 ## 为什么要学汇编？

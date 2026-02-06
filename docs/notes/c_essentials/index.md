@@ -1,6 +1,6 @@
 # C Essentials for Android Development
 
-C 语言速查与实战教程，为 Android 内核、驱动、Native 层开发打基础。
+C 语言速查与其在 Android 内核、驱动、Native 层开发中的应用
 
 ## 为什么学 C
 

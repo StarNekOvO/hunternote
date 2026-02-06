@@ -14,7 +14,7 @@ function getSidebar() {
           items: [
             {
               text: '0 Foundation',
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: '0x00 环境', link: '/notes/android/00-foundation/00-environment-setup' },
                 { text: '0x01 架构演进', link: '/notes/android/00-foundation/01-architecture-overview' },
@@ -23,7 +23,7 @@ function getSidebar() {
             },
             {
               text: '1 Sandbox',
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: 'Overview', link: '/notes/android/01-sandbox/' },
                 { text: '1x00 UID/GID 隔离', link: '/notes/android/01-sandbox/00-uid-gid-isolation' },
@@ -35,7 +35,7 @@ function getSidebar() {
             },
             {
               text: '2 IPC',
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: 'Overview', link: '/notes/android/02-ipc/' },
                 { text: '2x00 Binder 深度解析', link: '/notes/android/02-ipc/00-binder-deep-dive' },
@@ -46,7 +46,7 @@ function getSidebar() {
             },
             {
               text: '3 System Services',
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: 'Overview', link: '/notes/android/03-services/' },
                 { text: '3x00 system_server 架构', link: '/notes/android/03-services/00-system-server' },
@@ -58,7 +58,7 @@ function getSidebar() {
             },
             {
               text: '4 Native Layer',
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: 'Overview', link: '/notes/android/04-native/' },
                 { text: '4x00 Bionic Libc', link: '/notes/android/04-native/00-bionic-libc' },
@@ -70,7 +70,7 @@ function getSidebar() {
             },
             {
               text: '5 Kernel Security',
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: 'Overview', link: '/notes/android/05-kernel/' },
                 { text: '5x00 内核概览', link: '/notes/android/05-kernel/00-kernel-overview' },
@@ -83,7 +83,7 @@ function getSidebar() {
             },
             {
               text: '6 Hardware Security',
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: 'Overview', link: '/notes/android/06-hardware/' },
                 { text: '6x00 TrustZone', link: '/notes/android/06-hardware/00-trustzone' },
@@ -94,7 +94,7 @@ function getSidebar() {
             },
             {
               text: '7 Special Topics',
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: 'Overview', link: '/notes/android/07-special/' },
                 { text: '7x00 WebView 安全', link: '/notes/android/07-special/00-webview' },
@@ -104,7 +104,7 @@ function getSidebar() {
             },
             {
               text: '8 Practical Research',
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: 'Overview', link: '/notes/android/08-practical/' },
                 { text: '8x00 研究方法论', link: '/notes/android/08-practical/00-methodology' },
@@ -117,9 +117,24 @@ function getSidebar() {
           ]
         },
         {
+          text: 'ARM64 Asm Essentials',
+          link: '/notes/asm_essentials/',
+          collapsed: false,
+          items: [
+            { text: '00 ARM64 基础', link: '/notes/asm_essentials/00-arm64-basics' },
+            { text: '01 内存寻址', link: '/notes/asm_essentials/01-memory-addressing' },
+            { text: '02 调用约定', link: '/notes/asm_essentials/02-calling-conventions' },
+            { text: '03 Inline 汇编', link: '/notes/asm_essentials/03-inline-asm' },
+            { text: '04 调试技巧', link: '/notes/asm_essentials/04-debugging-asm' },
+            { text: '05 控制流劫持', link: '/notes/asm_essentials/05-control-flow-hijack' },
+            { text: '06 内存破坏', link: '/notes/asm_essentials/06-memory-corruption' },
+            { text: '07 Exploit 开发', link: '/notes/asm_essentials/07-exploit-development' },
+          ]
+        },
+        {
           text: 'C Essentials',
           link: '/notes/c_essentials/',
-          collapsed: true,
+          collapsed: false,
           items: [
             { text: '00 基础语法', link: '/notes/c_essentials/00-basics' },
             { text: '01 指针与内存', link: '/notes/c_essentials/01-pointers' },
@@ -134,7 +149,7 @@ function getSidebar() {
         {
           text: 'Java Essentials',
           link: '/notes/java_essentials/',
-          collapsed: true,
+          collapsed: false,
           items: [
             { text: '00 基础语法', link: '/notes/java_essentials/00-basics' },
             { text: '01 面向对象', link: '/notes/java_essentials/01-oop' },
@@ -149,7 +164,7 @@ function getSidebar() {
         {
           text: 'Rust Essentials',
           link: '/notes/rust_essentials/',
-          collapsed: true,
+          collapsed: false,
           items: [
             { text: '00 基础语法', link: '/notes/rust_essentials/00-basics' },
             { text: '01 所有权', link: '/notes/rust_essentials/01-ownership' },
@@ -159,21 +174,6 @@ function getSidebar() {
             { text: '05 Unsafe Rust', link: '/notes/rust_essentials/05-unsafe' },
             { text: '06 AOSP Rust', link: '/notes/rust_essentials/06-android-rust' },
             { text: '07 Magisk Rust', link: '/notes/rust_essentials/07-magisk-rust' },
-          ]
-        },
-        {
-          text: 'ARM64 Assembly',
-          link: '/notes/asm_essentials/',
-          collapsed: true,
-          items: [
-            { text: '00 ARM64 基础', link: '/notes/asm_essentials/00-arm64-basics' },
-            { text: '01 内存寻址', link: '/notes/asm_essentials/01-memory-addressing' },
-            { text: '02 调用约定', link: '/notes/asm_essentials/02-calling-conventions' },
-            { text: '03 Inline 汇编', link: '/notes/asm_essentials/03-inline-asm' },
-            { text: '04 调试技巧', link: '/notes/asm_essentials/04-debugging-asm' },
-            { text: '05 控制流劫持', link: '/notes/asm_essentials/05-control-flow-hijack' },
-            { text: '06 内存破坏', link: '/notes/asm_essentials/06-memory-corruption' },
-            { text: '07 Exploit 开发', link: '/notes/asm_essentials/07-exploit-development' },
           ]
         }
       ]

@@ -1,6 +1,6 @@
 # Java Essentials for Android Development
 
-Java 语言教程，为 Android Framework 和应用开发打基础。
+Java 语言速查，及其在 Android Framework 和应用开发中的应用
 
 ## 为什么学 Java
 
