@@ -1,0 +1,171 @@
+# 按层级查看
+
+## Kernel
+- [CVE-2011-1823](../vault/CVE-2011-1823.md) · Kernel/Core · 历史版本
+- [CVE-2012-4220](../vault/CVE-2012-4220.md) · Kernel/Core · 历史版本
+- [CVE-2013-6282](../vault/CVE-2013-6282.md) · Kernel/Core · 历史版本
+- [CVE-2014-3153](../vault/CVE-2014-3153.md) · Kernel/Core · 历史版本
+- [CVE-2016-2504](../vault/CVE-2016-2504.md) · Kernel/Core · 历史版本
+- [CVE-2016-5195](../vault/CVE-2016-5195.md) · Kernel/Core · 历史版本
+- [CVE-2016-5340](../vault/CVE-2016-5340.md) · Kernel/Core · 历史版本
+- [CVE-2017-13180](../vault/CVE-2017-13180.md) · Binder · 历史版本
+- [CVE-2017-8236](../vault/CVE-2017-8236.md) · Kernel/Core · 历史版本
+- [CVE-2018-11937](../vault/CVE-2018-11937.md) · GPU · 历史版本
+- [CVE-2019-10567](../vault/CVE-2019-10567.md) · Kernel/Core · 历史版本
+- [CVE-2019-2213](../vault/CVE-2019-2213.md) · Binder · 历史版本
+- [CVE-2019-2215](../vault/CVE-2019-2215.md) · Binder · 历史版本
+- [CVE-2020-0041](../vault/CVE-2020-0041.md) · Binder · 历史版本
+- [CVE-2020-0478](../vault/CVE-2020-0478.md) · USB/Audio · 历史版本
+- [CVE-2020-11179](../vault/CVE-2020-11179.md) · Kernel/Core · 历史版本
+- [CVE-2021-0661](../vault/CVE-2021-0661.md) · Kernel/Core · 历史版本
+- [CVE-2021-0928](../vault/CVE-2021-0928.md) · Binder · 历史版本
+- [CVE-2021-1048](../vault/CVE-2021-1048.md) · Kernel/Core · 历史版本
+- [CVE-2021-1905](../vault/CVE-2021-1905.md) · GPU · 历史版本
+- [CVE-2021-25337](../vault/CVE-2021-25337.md) · GPU · 历史版本
+- [CVE-2022-0847](../vault/CVE-2022-0847.md) · Kernel/Core · Android 13
+- [CVE-2022-20186](../vault/CVE-2022-20186.md) · GPU · Android 13
+- [CVE-2022-22057](../vault/CVE-2022-22057.md) · GPU · Android 13
+- [CVE-2022-4543](../vault/CVE-2022-4543.md) · Kernel/Core · Android 13
+- [CVE-2023-20938](../vault/CVE-2023-20938.md) · Binder · Android 13
+- [CVE-2023-21255](../vault/CVE-2023-21255.md) · Binder · Android 13
+- [CVE-2023-21647](../vault/CVE-2023-21647.md) · Kernel/Core · Android 13
+- [CVE-2024-53104](../vault/CVE-2024-53104.md) · USB/Audio · Android 14
+- [CVE-2025-0078](../vault/CVE-2025-0078.md) · Kernel/Core · Android 15
+- [CVE-2025-22413](../vault/CVE-2025-22413.md) · Kernel/Core · Android 15
+- [CVE-2025-38352](../vault/CVE-2025-38352.md) · Kernel/Core · Android 15
+- [CVE-2025-48633](../vault/CVE-2025-48633.md) · Binder · Android 15
+- [CVE-2025-68260](../vault/CVE-2025-68260.md) · Binder · Android 15
+
+## Framework
+- [CVE-2016-2503](../vault/CVE-2016-2503.md) · System/Framework · 历史版本
+- [CVE-2017-0692](../vault/CVE-2017-0692.md) · AMS · 历史版本
+- [CVE-2017-0752](../vault/CVE-2017-0752.md) · WMS · 历史版本
+- [CVE-2017-13156](../vault/CVE-2017-13156.md) · PMS · 历史版本
+- [CVE-2018-9489](../vault/CVE-2018-9489.md) · AMS · 历史版本
+- [CVE-2019-2208](../vault/CVE-2019-2208.md) · System/Framework · 历史版本
+- [CVE-2020-0034](../vault/CVE-2020-0034.md) · PMS · 历史版本
+- [CVE-2020-0069](../vault/CVE-2020-0069.md) · WMS · 历史版本
+- [CVE-2020-0096](../vault/CVE-2020-0096.md) · AMS · 历史版本
+- [CVE-2020-0188](../vault/CVE-2020-0188.md) · System/Framework · 历史版本
+- [CVE-2020-0213](../vault/CVE-2020-0213.md) · System/Framework · 历史版本
+- [CVE-2020-0418](../vault/CVE-2020-0418.md) · System/Framework · 历史版本
+- [CVE-2021-0306](../vault/CVE-2021-0306.md) · AMS · 历史版本
+- [CVE-2021-0478](../vault/CVE-2021-0478.md) · PMS · 历史版本
+- [CVE-2021-0487](../vault/CVE-2021-0487.md) · WMS · 历史版本
+- [CVE-2021-0490](../vault/CVE-2021-0490.md) · System/Framework · 历史版本
+- [CVE-2021-0691](../vault/CVE-2021-0691.md) · System/Framework · 历史版本
+- [CVE-2021-0921](../vault/CVE-2021-0921.md) · PMS · 历史版本
+- [CVE-2022-20006](../vault/CVE-2022-20006.md) · System/Framework · Android 13
+- [CVE-2023-21089](../vault/CVE-2023-21089.md) · AMS · Android 13
+- [CVE-2023-21292](../vault/CVE-2023-21292.md) · AMS · Android 13
+- [CVE-2024-0025](../vault/CVE-2024-0025.md) · AMS · Android 14
+- [CVE-2024-0044](../vault/CVE-2024-0044.md) · PMS · Android 14
+- [CVE-2024-43090](../vault/CVE-2024-43090.md) · System/Framework · Android 14
+- [CVE-2025-0076](../vault/CVE-2025-0076.md) · System/Framework · Android 15
+- [CVE-2025-26443](../vault/CVE-2025-26443.md) · System/Framework · Android 15
+- [CVE-2025-48545](../vault/CVE-2025-48545.md) · System/Framework · Android 15
+
+## Native
+- [CVE-2012-2900](../vault/CVE-2012-2900.md) · NFC · 历史版本
+- [CVE-2012-6636](../vault/CVE-2012-6636.md) · WebView · 历史版本
+- [CVE-2014-1939](../vault/CVE-2014-1939.md) · WebView · 历史版本
+- [CVE-2014-6041](../vault/CVE-2014-6041.md) · WebView · 历史版本
+- [CVE-2015-1538](../vault/CVE-2015-1538.md) · Media · 历史版本
+- [CVE-2015-3825](../vault/CVE-2015-3825.md) · Linker · 历史版本
+- [CVE-2015-3843](../vault/CVE-2015-3843.md) · Media · 历史版本
+- [CVE-2015-3860](../vault/CVE-2015-3860.md) · WebView · 历史版本
+- [CVE-2015-6606](../vault/CVE-2015-6606.md) · NFC · 历史版本
+- [CVE-2015-6639](../vault/CVE-2015-6639.md) · Keystore · 历史版本
+- [CVE-2016-2431](../vault/CVE-2016-2431.md) · Keystore · 历史版本
+- [CVE-2016-3893](../vault/CVE-2016-3893.md) · Linker · 历史版本
+- [CVE-2016-3920](../vault/CVE-2016-3920.md) · NFC · 历史版本
+- [CVE-2017-0643](../vault/CVE-2017-0643.md) · Media · 历史版本
+- [CVE-2017-0647](../vault/CVE-2017-0647.md) · NFC · 历史版本
+- [CVE-2017-0781](../vault/CVE-2017-0781.md) · Bluetooth · 历史版本
+- [CVE-2017-0782](../vault/CVE-2017-0782.md) · Bluetooth · 历史版本
+- [CVE-2017-0785](../vault/CVE-2017-0785.md) · Bluetooth · 历史版本
+- [CVE-2017-1000412](../vault/CVE-2017-1000412.md) · Keystore · 历史版本
+- [CVE-2018-11976](../vault/CVE-2018-11976.md) · Keystore · 历史版本
+- [CVE-2018-9411](../vault/CVE-2018-9411.md) · Media · 历史版本
+- [CVE-2018-9549](../vault/CVE-2018-9549.md) · Media · 历史版本
+- [CVE-2019-16253](../vault/CVE-2019-16253.md) · Media · 历史版本
+- [CVE-2019-17390](../vault/CVE-2019-17390.md) · Keystore · 历史版本
+- [CVE-2019-2054](../vault/CVE-2019-2054.md) · Linker · 历史版本
+- [CVE-2019-2107](../vault/CVE-2019-2107.md) · Media · 历史版本
+- [CVE-2019-2114](../vault/CVE-2019-2114.md) · NFC · 历史版本
+- [CVE-2019-2219](../vault/CVE-2019-2219.md) · Media · 历史版本
+- [CVE-2019-5241](../vault/CVE-2019-5241.md) · Keystore · 历史版本
+- [CVE-2019-9506](../vault/CVE-2019-9506.md) · Bluetooth · 历史版本
+- [CVE-2020-0018](../vault/CVE-2020-0018.md) · Keystore · 历史版本
+- [CVE-2020-0022](../vault/CVE-2020-0022.md) · Bluetooth · 历史版本
+- [CVE-2020-0261](../vault/CVE-2020-0261.md) · Linker · 历史版本
+- [CVE-2020-0286](../vault/CVE-2020-0286.md) · Bluetooth · 历史版本
+- [CVE-2020-0441](../vault/CVE-2020-0441.md) · Keystore · 历史版本
+- [CVE-2020-0451](../vault/CVE-2020-0451.md) · Media · 历史版本
+- [CVE-2020-25279](../vault/CVE-2020-25279.md) · Media · 历史版本
+- [CVE-2020-3909](../vault/CVE-2020-3909.md) · Bluetooth · 历史版本
+- [CVE-2020-6418](../vault/CVE-2020-6418.md) · WebView · 历史版本
+- [CVE-2021-0430](../vault/CVE-2021-0430.md) · NFC · 历史版本
+- [CVE-2021-0642](../vault/CVE-2021-0642.md) · Media · 历史版本
+- [CVE-2021-0920](../vault/CVE-2021-0920.md) · ART · 历史版本
+- [CVE-2021-25444](../vault/CVE-2021-25444.md) · Keystore · 历史版本
+- [CVE-2021-30551](../vault/CVE-2021-30551.md) · WebView · 历史版本
+- [CVE-2021-36133](../vault/CVE-2021-36133.md) · Keystore · 历史版本
+- [CVE-2022-1096](../vault/CVE-2022-1096.md) · WebView · Android 13
+- [CVE-2022-20216](../vault/CVE-2022-20216.md) · Bluetooth · Android 13
+- [CVE-2023-21273](../vault/CVE-2023-21273.md) · ART · Android 13
+- [CVE-2023-44095](../vault/CVE-2023-44095.md) · ART · Android 13
+- [CVE-2023-4863](../vault/CVE-2023-4863.md) · WebView · Android 13
+- [CVE-2024-29745](../vault/CVE-2024-29745.md) · WebView · Android 14
+- [CVE-2024-29779](../vault/CVE-2024-29779.md) · Keystore · Android 14
+- [CVE-2024-36971](../vault/CVE-2024-36971.md) · ART · Android 14
+- [CVE-2024-40660](../vault/CVE-2024-40660.md) · ART · Android 14
+- [CVE-2024-43080](../vault/CVE-2024-43080.md) · ART · Android 14
+- [CVE-2024-43081](../vault/CVE-2024-43081.md) · ART · Android 14
+- [CVE-2024-43093](../vault/CVE-2024-43093.md) · ART · Android 14
+- [CVE-2024-45445](../vault/CVE-2024-45445.md) · Keystore · Android 14
+- [CVE-2024-49733](../vault/CVE-2024-49733.md) · ART · Android 14
+- [CVE-2024-49744](../vault/CVE-2024-49744.md) · ART · Android 14
+- [CVE-2025-20655](../vault/CVE-2025-20655.md) · Keystore · Android 15
+- [CVE-2025-22432](../vault/CVE-2025-22432.md) · ART · Android 15
+- [CVE-2025-26464](../vault/CVE-2025-26464.md) · ART · Android 15
+- [CVE-2025-27363](../vault/CVE-2025-27363.md) · ART · Android 15
+- [CVE-2025-32323](../vault/CVE-2025-32323.md) · ART · Android 15
+- [CVE-2025-48530](../vault/CVE-2025-48530.md) · ART · Android 15
+- [CVE-2025-48535](../vault/CVE-2025-48535.md) · ART · Android 15
+- [CVE-2025-48543](../vault/CVE-2025-48543.md) · ART · Android 15
+- [CVE-2025-48554](../vault/CVE-2025-48554.md) · ART · Android 15
+- [CVE-2025-48593](../vault/CVE-2025-48593.md) · ART · Android 15
+
+## 未分类
+- [CVE-2016-5349](../vault/CVE-2016-5349.md) · Other · 历史版本
+- [CVE-2017-13077](../vault/CVE-2017-13077.md) · Other · 历史版本
+- [CVE-2017-5624](../vault/CVE-2017-5624.md) · Other · 历史版本
+- [CVE-2018-9468](../vault/CVE-2018-9468.md) · Other · 历史版本
+- [CVE-2018-9581](../vault/CVE-2018-9581.md) · Other · 历史版本
+- [CVE-2019-2025](../vault/CVE-2019-2025.md) · Other · 历史版本
+- [CVE-2019-2043](../vault/CVE-2019-2043.md) · Other · 历史版本
+- [CVE-2019-2232](../vault/CVE-2019-2232.md) · Other · 历史版本
+- [CVE-2020-3702](../vault/CVE-2020-3702.md) · Other · 历史版本
+- [CVE-2021-0326](../vault/CVE-2021-0326.md) · Other · 历史版本
+- [CVE-2021-0340](../vault/CVE-2021-0340.md) · Other · 历史版本
+- [CVE-2021-0600](../vault/CVE-2021-0600.md) · Other · 历史版本
+- [CVE-2021-25369](../vault/CVE-2021-25369.md) · Other · 历史版本
+- [CVE-2022-20158](../vault/CVE-2022-20158.md) · Other · Android 13
+- [CVE-2022-20409](../vault/CVE-2022-20409.md) · Other · Android 13
+- [CVE-2023-21036](../vault/CVE-2023-21036.md) · Other · Android 13
+- [CVE-2023-21492](../vault/CVE-2023-21492.md) · Other · Android 13
+- [CVE-2023-4211](../vault/CVE-2023-4211.md) · Other · Android 13
+- [CVE-2024-20832](../vault/CVE-2024-20832.md) · Other · Android 14
+- [CVE-2024-20865](../vault/CVE-2024-20865.md) · Other · Android 14
+- [CVE-2024-31320](../vault/CVE-2024-31320.md) · Other · Android 14
+- [CVE-2024-32896](../vault/CVE-2024-32896.md) · Other · Android 14
+- [CVE-2024-40650](../vault/CVE-2024-40650.md) · Other · Android 14
+- [CVE-2024-40652](../vault/CVE-2024-40652.md) · Other · Android 14
+- [CVE-2024-49721](../vault/CVE-2024-49721.md) · Other · Android 14
+- [CVE-2024-50302](../vault/CVE-2024-50302.md) · Other · Android 14
+- [CVE-2024-53150](../vault/CVE-2024-53150.md) · Other · Android 14
+- [CVE-2024-53197](../vault/CVE-2024-53197.md) · Other · Android 14
+- [CVE-2025-0091](../vault/CVE-2025-0091.md) · Other · Android 15
+- [CVE-2025-48524](../vault/CVE-2025-48524.md) · Other · Android 15
+

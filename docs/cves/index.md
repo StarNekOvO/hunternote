@@ -1,141 +1,280 @@
 # CVEs
 
-漏洞复现、POC、EXP
+CVE 文档已按“每个 CVE 一篇”完成初始化。
 
-## CVE 学习路径
+## 索引入口
 
-本节提供 Android 安全漏洞的系统学习路径，从基础到高级逐步深入。
+- [按版本查看](indexes/by-version.md) - Android 13/14/15 相关 CVE
+- [按层级查看](indexes/by-layer.md) - Kernel/Framework/Native
+- [按组件查看](indexes/by-component.md) - Binder/PMS/GPU 等
 
-### 入门级 (Beginner)
+## 全量 CVE 列表
 
-建议从以下类型开始，这些漏洞原理清晰、复现相对简单：
+以下按年份折叠显示。
 
-| CVE | 年份 | 类型 | 组件 | 学习重点 |
-|-----|------|------|------|----------|
-| CVE-2019-2215 | 2019 | UAF | Binder 驱动 | 内核 UAF 基础、Binder 机制 |
-| CVE-2020-0041 | 2020 | 越界写 | Binder | 内核堆操作、对象布局 |
-| CVE-2021-0920 | 2021 | 条件竞争 | Unix Socket | 文件描述符生命周期 |
-| CVE-2017-13156 | 2017 | 签名绕过 | APK 签名 | Janus 攻击、ZIP/DEX 解析 |
-| CVE-2020-0096 | 2020 | 逻辑漏洞 | AMS | StrandHogg 2.0、任务栈劫持 |
 
-**学习建议**：
-1. 先阅读漏洞公告和补丁 diff
-2. 搭建对应版本的测试环境
-3. 尝试理解触发路径
-4. 参考公开 PoC 进行复现
+<details>
+<summary>2025</summary>
 
-### 进阶级 (Intermediate)
+- [CVE-2025-0076](vault/CVE-2025-0076.md)
+- [CVE-2025-0078](vault/CVE-2025-0078.md)
+- [CVE-2025-0091](vault/CVE-2025-0091.md)
+- [CVE-2025-20655](vault/CVE-2025-20655.md)
+- [CVE-2025-22413](vault/CVE-2025-22413.md)
+- [CVE-2025-22432](vault/CVE-2025-22432.md)
+- [CVE-2025-26443](vault/CVE-2025-26443.md)
+- [CVE-2025-26464](vault/CVE-2025-26464.md)
+- [CVE-2025-27363](vault/CVE-2025-27363.md)
+- [CVE-2025-32323](vault/CVE-2025-32323.md)
+- [CVE-2025-38352](vault/CVE-2025-38352.md)
+- [CVE-2025-48524](vault/CVE-2025-48524.md)
+- [CVE-2025-48530](vault/CVE-2025-48530.md)
+- [CVE-2025-48535](vault/CVE-2025-48535.md)
+- [CVE-2025-48543](vault/CVE-2025-48543.md)
+- [CVE-2025-48545](vault/CVE-2025-48545.md)
+- [CVE-2025-48554](vault/CVE-2025-48554.md)
+- [CVE-2025-48593](vault/CVE-2025-48593.md)
+- [CVE-2025-48633](vault/CVE-2025-48633.md)
+- [CVE-2025-68260](vault/CVE-2025-68260.md)
 
-需要更深入理解系统机制：
 
-| CVE | 年份 | 类型 | 组件 | 学习重点 |
-|-----|------|------|------|----------|
-| CVE-2022-0847 | 2022 | 逻辑漏洞 | Pipe | Dirty Pipe、Page Cache |
-| CVE-2022-20409 | 2022 | UAF | io_uring | 现代内核子系统 |
-| CVE-2023-21036 | 2023 | 信息泄露 | aCropalypse | 截图编辑器数据残留 |
-| CVE-2023-20938 | 2023 | UAF | Binder | 现代 Binder 利用 |
-| CVE-2023-4863 | 2023 | 堆溢出 | libwebp | 图片解析漏洞 |
-| CVE-2024-31320 | 2024 | 权限提升 | Framework | Android 12/12L 提权 |
+</details>
 
-**学习建议**：
-1. 深入阅读相关子系统源码
-2. 理解缓解机制如何被绕过
-3. 尝试编写完整 exploit
-4. 分析补丁的完整性
+<details>
+<summary>2024</summary>
 
-### 高级级 (Advanced) - 2024/2025 野外利用
+- [CVE-2024-0025](vault/CVE-2024-0025.md)
+- [CVE-2024-0044](vault/CVE-2024-0044.md)
+- [CVE-2024-20832](vault/CVE-2024-20832.md)
+- [CVE-2024-20865](vault/CVE-2024-20865.md)
+- [CVE-2024-29745](vault/CVE-2024-29745.md)
+- [CVE-2024-29779](vault/CVE-2024-29779.md)
+- [CVE-2024-31320](vault/CVE-2024-31320.md)
+- [CVE-2024-32896](vault/CVE-2024-32896.md)
+- [CVE-2024-36971](vault/CVE-2024-36971.md)
+- [CVE-2024-40650](vault/CVE-2024-40650.md)
+- [CVE-2024-40652](vault/CVE-2024-40652.md)
+- [CVE-2024-40660](vault/CVE-2024-40660.md)
+- [CVE-2024-43080](vault/CVE-2024-43080.md)
+- [CVE-2024-43081](vault/CVE-2024-43081.md)
+- [CVE-2024-43090](vault/CVE-2024-43090.md)
+- [CVE-2024-43093](vault/CVE-2024-43093.md)
+- [CVE-2024-45445](vault/CVE-2024-45445.md)
+- [CVE-2024-49721](vault/CVE-2024-49721.md)
+- [CVE-2024-49733](vault/CVE-2024-49733.md)
+- [CVE-2024-49744](vault/CVE-2024-49744.md)
+- [CVE-2024-50302](vault/CVE-2024-50302.md)
+- [CVE-2024-53104](vault/CVE-2024-53104.md)
+- [CVE-2024-53150](vault/CVE-2024-53150.md)
+- [CVE-2024-53197](vault/CVE-2024-53197.md)
 
-涉及复杂利用链和现代缓解绕过，多为野外真实攻击：
 
-| CVE | 年份 | 类型 | 组件 | 学习重点 |
-|-----|------|------|------|----------|
-| CVE-2024-53104 | 2024 | OOB 写 | USB UVC 驱动 | USB 攻击面、物理访问利用 |
-| CVE-2024-50302 | 2024 | 信息泄露 | HID 子系统 | USB HID 报告解析 |
-| CVE-2024-53150 | 2024 | OOB 读 | USB Audio | 利用链组件 |
-| CVE-2024-53197 | 2024 | 权限提升 | ALSA USB | Cellebrite 利用链 |
-| CVE-2024-43093 | 2024 | 权限提升 | Framework | 沙箱逃逸、数据目录访问 |
-| CVE-2024-32896 | 2024 | 权限提升 | Framework | 本地提权无需额外权限 |
-| CVE-2025-38352 | 2025 | 条件竞争 | POSIX Timer | Chronomaly、竞争窗口扩展 |
-| CVE-2025-0091 | 2025 | 权限提升 | System | 最新系统组件漏洞 |
+</details>
 
-**野外利用案例 - Cellebrite UFED 攻击链**：
-2024-2025 年间，安全研究人员发现 Cellebrite 数字取证工具利用 USB 漏洞链攻击目标设备：
-1. CVE-2024-53104 (UVC) - 初始代码执行
-2. CVE-2024-50302 (HID) - 泄露内核内存/凭据
-3. CVE-2024-53150/53197 (Audio) - 完成提权
+<details>
+<summary>2023</summary>
 
-**学习建议**：
-1. 学习现代缓解机制 (MTE/PAC/CFI)
-2. 研究利用链构造方法
-3. 关注安全会议最新研究
-4. 尝试发现变种或绕过
+- [CVE-2023-20938](vault/CVE-2023-20938.md)
+- [CVE-2023-21036](vault/CVE-2023-21036.md)
+- [CVE-2023-21089](vault/CVE-2023-21089.md)
+- [CVE-2023-21255](vault/CVE-2023-21255.md)
+- [CVE-2023-21273](vault/CVE-2023-21273.md)
+- [CVE-2023-21292](vault/CVE-2023-21292.md)
+- [CVE-2023-21492](vault/CVE-2023-21492.md)
+- [CVE-2023-21647](vault/CVE-2023-21647.md)
+- [CVE-2023-4211](vault/CVE-2023-4211.md)
+- [CVE-2023-44095](vault/CVE-2023-44095.md)
+- [CVE-2023-4863](vault/CVE-2023-4863.md)
 
-## 按组件分类
 
-### 内核漏洞 (2023-2025)
-| CVE | 年份 | 组件 | 描述 |
-|-----|------|------|------|
-| CVE-2024-53104 | 2024 | USB UVC | 视频帧解析越界写 |
-| CVE-2024-50302 | 2024 | USB HID | 未初始化内存读取 |
-| CVE-2024-53150 | 2024 | USB Audio | 越界读 |
-| CVE-2024-53197 | 2024 | ALSA | 提权 |
-| CVE-2023-20938 | 2023 | Binder | UAF |
-| CVE-2025-38352 | 2025 | POSIX Timer | 竞争条件 |
+</details>
 
-### Framework 漏洞 (2023-2025)
-| CVE | 年份 | 组件 | 描述 |
-|-----|------|------|------|
-| CVE-2024-43093 | 2024 | Framework | 敏感目录访问 |
-| CVE-2024-32896 | 2024 | Framework | 本地提权 |
-| CVE-2024-31320 | 2024 | Framework | Android 12 提权 |
-| CVE-2024-40650 | 2024 | System | 本地提权 |
-| CVE-2024-40652 | 2024 | System | 本地提权 |
-| CVE-2024-49721 | 2024 | Framework | 权限绕过 |
+<details>
+<summary>2022</summary>
 
-### 厂商驱动漏洞
-| CVE | 年份 | 厂商 | 描述 |
-|-----|------|------|------|
-| CVE-2024-20832 | 2024 | Samsung | Bootloader 攻击 |
-| CVE-2024-20865 | 2024 | Samsung | 启动链持久化 |
-| CVE-2023-21492 | 2023 | Samsung | Kernel 信息泄露 |
-| CVE-2023-4211 | 2023 | Arm Mali | GPU 驱动 UAF |
+- [CVE-2022-0847](vault/CVE-2022-0847.md)
+- [CVE-2022-1096](vault/CVE-2022-1096.md)
+- [CVE-2022-20006](vault/CVE-2022-20006.md)
+- [CVE-2022-20158](vault/CVE-2022-20158.md)
+- [CVE-2022-20186](vault/CVE-2022-20186.md)
+- [CVE-2022-20216](vault/CVE-2022-20216.md)
+- [CVE-2022-20409](vault/CVE-2022-20409.md)
+- [CVE-2022-22057](vault/CVE-2022-22057.md)
+- [CVE-2022-4543](vault/CVE-2022-4543.md)
 
-## 按年份索引
 
-### 2025 年
-- CVE-2025-38352: POSIX Timer 竞争条件
-- CVE-2025-0091/0095/0096: System 组件提权
-- 持续更新中...
+</details>
 
-### 2024 年 (重点)
-**内核**:
-- CVE-2024-53104, CVE-2024-50302, CVE-2024-53150, CVE-2024-53197 (USB 攻击链)
+<details>
+<summary>2021</summary>
 
-**Framework/System**:
-- CVE-2024-43093 (野外利用)
-- CVE-2024-32896 (野外利用)
-- CVE-2024-31320, CVE-2024-40650/52/54/55/57
+- [CVE-2021-0306](vault/CVE-2021-0306.md)
+- [CVE-2021-0326](vault/CVE-2021-0326.md)
+- [CVE-2021-0340](vault/CVE-2021-0340.md)
+- [CVE-2021-0430](vault/CVE-2021-0430.md)
+- [CVE-2021-0478](vault/CVE-2021-0478.md)
+- [CVE-2021-0487](vault/CVE-2021-0487.md)
+- [CVE-2021-0490](vault/CVE-2021-0490.md)
+- [CVE-2021-0600](vault/CVE-2021-0600.md)
+- [CVE-2021-0642](vault/CVE-2021-0642.md)
+- [CVE-2021-0661](vault/CVE-2021-0661.md)
+- [CVE-2021-0691](vault/CVE-2021-0691.md)
+- [CVE-2021-0920](vault/CVE-2021-0920.md)
+- [CVE-2021-0921](vault/CVE-2021-0921.md)
+- [CVE-2021-0928](vault/CVE-2021-0928.md)
+- [CVE-2021-1048](vault/CVE-2021-1048.md)
+- [CVE-2021-1905](vault/CVE-2021-1905.md)
+- [CVE-2021-25337](vault/CVE-2021-25337.md)
+- [CVE-2021-25369](vault/CVE-2021-25369.md)
+- [CVE-2021-25444](vault/CVE-2021-25444.md)
+- [CVE-2021-30551](vault/CVE-2021-30551.md)
+- [CVE-2021-36133](vault/CVE-2021-36133.md)
 
-### 2023 年
-- CVE-2023-21036: aCropalypse 截图信息泄露
-- CVE-2023-20938: Binder UAF
-- CVE-2023-4863: libwebp 堆溢出 (影响 Chrome/Android)
-- CVE-2023-4211: Mali GPU 驱动 UAF
-- CVE-2023-21492: Samsung 内核信息泄露
 
-## 资源链接
+</details>
 
-### 官方资源
-- [Android Security Bulletins](https://source.android.com/docs/security/bulletin)
-- [Google 2024 Android Security Paper](https://services.google.com/fh/files/misc/android-security-paper-2024.pdf)
-- [NVD - Android CVEs](https://nvd.nist.gov/vuln/search/results?query=android)
+<details>
+<summary>2020</summary>
 
-### PoC 仓库
-- [Chronomaly CVE-2025-38352](https://github.com/farazsth98/chronomaly)
-- [Android Kernel CVE PoCs](https://github.com/ScottyBauer/Android_Kernel_CVE_POCs)
-- [Google Project Zero Issues](https://bugs.chromium.org/p/project-zero/issues/list)
+- [CVE-2020-0018](vault/CVE-2020-0018.md)
+- [CVE-2020-0022](vault/CVE-2020-0022.md)
+- [CVE-2020-0034](vault/CVE-2020-0034.md)
+- [CVE-2020-0041](vault/CVE-2020-0041.md)
+- [CVE-2020-0069](vault/CVE-2020-0069.md)
+- [CVE-2020-0096](vault/CVE-2020-0096.md)
+- [CVE-2020-0188](vault/CVE-2020-0188.md)
+- [CVE-2020-0213](vault/CVE-2020-0213.md)
+- [CVE-2020-0261](vault/CVE-2020-0261.md)
+- [CVE-2020-0286](vault/CVE-2020-0286.md)
+- [CVE-2020-0418](vault/CVE-2020-0418.md)
+- [CVE-2020-0441](vault/CVE-2020-0441.md)
+- [CVE-2020-0451](vault/CVE-2020-0451.md)
+- [CVE-2020-0478](vault/CVE-2020-0478.md)
+- [CVE-2020-11179](vault/CVE-2020-11179.md)
+- [CVE-2020-25279](vault/CVE-2020-25279.md)
+- [CVE-2020-3702](vault/CVE-2020-3702.md)
+- [CVE-2020-3909](vault/CVE-2020-3909.md)
+- [CVE-2020-6418](vault/CVE-2020-6418.md)
 
-### 分析文章
-- [Project Zero Blog](https://googleprojectzero.blogspot.com/)
-- [Quarkslab Blog](https://blog.quarkslab.com/)
-- [Amnesty International - Cellebrite 分析](https://www.amnesty.org/en/latest/research/)
+
+</details>
+
+<details>
+<summary>2019</summary>
+
+- [CVE-2019-10567](vault/CVE-2019-10567.md)
+- [CVE-2019-16253](vault/CVE-2019-16253.md)
+- [CVE-2019-17390](vault/CVE-2019-17390.md)
+- [CVE-2019-2025](vault/CVE-2019-2025.md)
+- [CVE-2019-2043](vault/CVE-2019-2043.md)
+- [CVE-2019-2054](vault/CVE-2019-2054.md)
+- [CVE-2019-2107](vault/CVE-2019-2107.md)
+- [CVE-2019-2114](vault/CVE-2019-2114.md)
+- [CVE-2019-2208](vault/CVE-2019-2208.md)
+- [CVE-2019-2213](vault/CVE-2019-2213.md)
+- [CVE-2019-2215](vault/CVE-2019-2215.md)
+- [CVE-2019-2219](vault/CVE-2019-2219.md)
+- [CVE-2019-2232](vault/CVE-2019-2232.md)
+- [CVE-2019-5241](vault/CVE-2019-5241.md)
+- [CVE-2019-9506](vault/CVE-2019-9506.md)
+
+
+</details>
+
+<details>
+<summary>2018</summary>
+
+- [CVE-2018-11937](vault/CVE-2018-11937.md)
+- [CVE-2018-11976](vault/CVE-2018-11976.md)
+- [CVE-2018-9411](vault/CVE-2018-9411.md)
+- [CVE-2018-9468](vault/CVE-2018-9468.md)
+- [CVE-2018-9489](vault/CVE-2018-9489.md)
+- [CVE-2018-9549](vault/CVE-2018-9549.md)
+- [CVE-2018-9581](vault/CVE-2018-9581.md)
+
+
+</details>
+
+<details>
+<summary>2017</summary>
+
+- [CVE-2017-0643](vault/CVE-2017-0643.md)
+- [CVE-2017-0647](vault/CVE-2017-0647.md)
+- [CVE-2017-0692](vault/CVE-2017-0692.md)
+- [CVE-2017-0752](vault/CVE-2017-0752.md)
+- [CVE-2017-0781](vault/CVE-2017-0781.md)
+- [CVE-2017-0782](vault/CVE-2017-0782.md)
+- [CVE-2017-0785](vault/CVE-2017-0785.md)
+- [CVE-2017-1000412](vault/CVE-2017-1000412.md)
+- [CVE-2017-13077](vault/CVE-2017-13077.md)
+- [CVE-2017-13156](vault/CVE-2017-13156.md)
+- [CVE-2017-13180](vault/CVE-2017-13180.md)
+- [CVE-2017-5624](vault/CVE-2017-5624.md)
+- [CVE-2017-8236](vault/CVE-2017-8236.md)
+
+
+</details>
+
+<details>
+<summary>2016</summary>
+
+- [CVE-2016-2431](vault/CVE-2016-2431.md)
+- [CVE-2016-2503](vault/CVE-2016-2503.md)
+- [CVE-2016-2504](vault/CVE-2016-2504.md)
+- [CVE-2016-3893](vault/CVE-2016-3893.md)
+- [CVE-2016-3920](vault/CVE-2016-3920.md)
+- [CVE-2016-5195](vault/CVE-2016-5195.md)
+- [CVE-2016-5340](vault/CVE-2016-5340.md)
+- [CVE-2016-5349](vault/CVE-2016-5349.md)
+
+
+</details>
+
+<details>
+<summary>2015</summary>
+
+- [CVE-2015-1538](vault/CVE-2015-1538.md)
+- [CVE-2015-3825](vault/CVE-2015-3825.md)
+- [CVE-2015-3843](vault/CVE-2015-3843.md)
+- [CVE-2015-3860](vault/CVE-2015-3860.md)
+- [CVE-2015-6606](vault/CVE-2015-6606.md)
+- [CVE-2015-6639](vault/CVE-2015-6639.md)
+
+
+</details>
+
+<details>
+<summary>2014</summary>
+
+- [CVE-2014-1939](vault/CVE-2014-1939.md)
+- [CVE-2014-3153](vault/CVE-2014-3153.md)
+- [CVE-2014-6041](vault/CVE-2014-6041.md)
+
+
+</details>
+
+<details>
+<summary>2013</summary>
+
+- [CVE-2013-6282](vault/CVE-2013-6282.md)
+
+
+</details>
+
+<details>
+<summary>2012</summary>
+
+- [CVE-2012-2900](vault/CVE-2012-2900.md)
+- [CVE-2012-4220](vault/CVE-2012-4220.md)
+- [CVE-2012-6636](vault/CVE-2012-6636.md)
+
+
+</details>
+
+<details>
+<summary>2011</summary>
+
+- [CVE-2011-1823](vault/CVE-2011-1823.md)
+
+
+</details>

@@ -1,4 +1,55 @@
 import { defineConfig } from 'vitepress'
+import { readdirSync } from 'node:fs'
+import { resolve } from 'node:path'
+
+const CVE_FILE_RE = /^CVE-(\d{4})-(\d{4,7})\.md$/
+
+function getCveSidebarItems() {
+  const indexItems = [
+    { text: '总览', link: '/cves/' },
+    { text: '按版本查看', link: '/cves/indexes/by-version' },
+    { text: '按层级查看', link: '/cves/indexes/by-layer' },
+    { text: '按组件查看', link: '/cves/indexes/by-component' },
+  ]
+
+  const byYear = new Map<string, Array<{ text: string; link: string }>>()
+
+  try {
+    const cveVaultDir = resolve(__dirname, '..', 'cves', 'vault')
+    const files = readdirSync(cveVaultDir)
+      .filter((name) => CVE_FILE_RE.test(name))
+      .sort((a, b) => b.localeCompare(a, 'en', { numeric: true }))
+
+    for (const file of files) {
+      const cve = file.replace(/\.md$/, '')
+      const year = cve.slice(4, 8)
+      const item = { text: cve, link: `/cves/vault/${cve}` }
+      if (!byYear.has(year)) {
+        byYear.set(year, [])
+      }
+      byYear.get(year)!.push(item)
+    }
+  } catch (error) {
+    console.warn('[vitepress] Failed to scan CVE vault:', error)
+  }
+
+  const yearItems = Array.from(byYear.entries())
+    .sort((a, b) => Number(b[0]) - Number(a[0]))
+    .map(([year, items]) => ({
+      text: year,
+      collapsed: true,
+      items,
+    }))
+
+  return [
+    {
+      text: '索引',
+      collapsed: false,
+      items: indexItems,
+    },
+    ...yearItems,
+  ]
+}
 
 function getSidebar() {
   return [
@@ -182,7 +233,7 @@ function getSidebar() {
       text: 'CVEs',
       collapsed: false,
       link: '/cves/',
-      items: []
+      items: getCveSidebarItems()
     },
     {
       text: 'Papers',
@@ -415,4 +466,3 @@ export default defineConfig({
     }
   }
 })
-

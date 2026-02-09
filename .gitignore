@@ -163,6 +163,7 @@ node_modules
 *.dSYM
 .idea
 .vscode
+.npm-cache/
 
 # Rust / Cargo
 **/target/

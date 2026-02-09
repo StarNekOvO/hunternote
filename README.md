@@ -39,6 +39,7 @@ hunternote/
 │   │   ├── htb-lab/
 │   │   └── pwn-college/
 │   ├── cves/               # CVE 漏洞复现
+│   │   └── vault/          # CVE 文档库
 │   ├── notes/              # 技术学习笔记
 │   │   └── android/        # Android 安全
 │   ├── tools/              # 在线工具
