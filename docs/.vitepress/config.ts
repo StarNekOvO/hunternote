@@ -15,22 +15,22 @@ function getCveSidebarItems() {
   const byYear = new Map<string, Array<{ text: string; link: string }>>()
 
   try {
-    const cveVaultDir = resolve(__dirname, '..', 'cves', 'vault')
-    const files = readdirSync(cveVaultDir)
+    const cveVendorDir = resolve(__dirname, '..', 'cves', 'vendor')
+    const files = readdirSync(cveVendorDir)
       .filter((name) => CVE_FILE_RE.test(name))
       .sort((a, b) => b.localeCompare(a, 'en', { numeric: true }))
 
     for (const file of files) {
       const cve = file.replace(/\.md$/, '')
       const year = cve.slice(4, 8)
-      const item = { text: cve, link: `/cves/vault/${cve}` }
+      const item = { text: cve, link: `/cves/vendor/${cve}` }
       if (!byYear.has(year)) {
         byYear.set(year, [])
       }
       byYear.get(year)!.push(item)
     }
   } catch (error) {
-    console.warn('[vitepress] Failed to scan CVE vault:', error)
+    console.warn('[vitepress] Failed to scan CVE vendor:', error)
   }
 
   const yearItems = Array.from(byYear.entries())
@@ -47,7 +47,11 @@ function getCveSidebarItems() {
       collapsed: false,
       items: indexItems,
     },
-    ...yearItems,
+    {
+      text: '漏洞库',
+      collapsed: true,
+      items: yearItems,
+    },
   ]
 }
 
