@@ -5,8 +5,8 @@ import { resolve } from 'node:path'
 const CVE_FILE_RE = /^CVE-(\d{4})-(\d{4,7})\.md$/
 
 function getCveSidebarItems() {
+  const overviewItem = { text: '总览', link: '/cves/' }
   const indexItems = [
-    { text: '总览', link: '/cves/' },
     { text: '按版本查看', link: '/cves/indexes/by-version' },
     { text: '按层级查看', link: '/cves/indexes/by-layer' },
     { text: '按组件查看', link: '/cves/indexes/by-component' },
@@ -42,13 +42,14 @@ function getCveSidebarItems() {
     }))
 
   return [
+    overviewItem,
     {
       text: '索引',
       collapsed: false,
       items: indexItems,
     },
     {
-      text: '漏洞库',
+      text: '漏洞列表',
       collapsed: true,
       items: yearItems,
     },
