@@ -55,72 +55,6 @@ Android 的存储机制经历了一场从“公共广场”到“私人公寓”
 
 ## 4. 真实漏洞案例分析
 
-### 4.1 CVE-2019-2219 - MediaProvider 路径遍历
-
-**影响版本**：Android 8.0 - 10.0
-
-**漏洞原理**：
-
-在 Scoped Storage 引入之前，`MediaProvider` 在处理 `_data` 列（文件路径）时未进行充分的路径规范化。
-
-```java
-// 简化的漏洞代码（MediaProvider）
-public Cursor query(Uri uri, String[] projection, ...) {
-    String path = uri.getQueryParameter("path");
-    
-    // 危险：直接使用用户提供的路径
-    File file = new File(path);
-    if (!file.exists()) {
-        return null;
-    }
-    
-    // 返回文件信息（包括内容）
-    MatrixCursor cursor = new MatrixCursor(projection);
-    cursor.addRow(new Object[]{file.getName(), file.length(), ...});
-    return cursor;
-}
-```
-
-**攻击演示**：
-
-```java
-// 恶意应用
-Uri uri = Uri.parse("content://media/external/file");
-uri = uri.buildUpon()
-    .appendQueryParameter("path", "/data/data/com.android.settings/shared_prefs/settings.xml")
-    .build();
-
-Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-// 成功读取其他应用的私有文件！
-```
-
-**利用价值**：
-- 读取任意应用的私有文件（SharedPreferences、数据库）
-- 窃取登录凭证、API token
-- 提取加密密钥
-
-**修复**：
-1. 添加路径白名单：只允许访问公共媒体目录
-2. 使用 `realpath()` 规范化路径，检测 `../` 遍历
-3. 引入 Scoped Storage，从根本上限制访问范围
-
-### 4.2 CVE-2020-0418 - FileProvider 符号链接攻击
-
-**漏洞原理**：
-
-`FileProvider` 在处理共享文件时，未检查符号链接，导致可以读取任意文件。
-
-```xml
-<!-- 配置文件 file_paths.xml -->
-<paths>
-    <external-path name="shared" path="shared/" />
-    <!-- 意图：只共享 /sdcard/Android/data/com.example/shared/ -->
-</paths>
-```
-
-**攻击步骤**：
-
-```bash
 # 1. 在共享目录创建符号链接
 adb shell
 cd /sdcard/Android/data/com.example.app/shared/
@@ -159,7 +93,7 @@ public ParcelFileDescriptor openFile(Uri uri, String mode) {
 }
 ```
 
-### 4.3 CVE-2021-0478 - MediaStore 注入攻击
+### 4.3 [CVE-2021-0478](../../../cves/entries/CVE-2021-0478.md) - MediaStore 注入攻击
 
 **漏洞原理**：
 
@@ -193,31 +127,6 @@ getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values
 - 权限提升：修改文件所有者信息
 
 **修复**：使用参数化查询（Prepared Statements）。
-
-### 4.4 CVE-2022-20006 - Download Provider 路径劫持
-
-**场景**：DownloadManager 下载文件到公共目录
-
-**漏洞**：
-
-```java
-// 用户请求下载到 /sdcard/Download/file.apk
-DownloadManager.Request request = new DownloadManager.Request(uri);
-request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "file.apk");
-```
-
-**攻击**：
-1. 攻击者在下载完成前，抢先创建符号链接：
-   ```bash
-   ln -s /data/app/com.system.app/base.apk /sdcard/Download/file.apk
-   ```
-2. DownloadManager 以 system 权限写入，覆盖系统应用
-3. 实现提权或代码注入
-
-**防御**：
-- 下载前检查目标路径是否已存在
-- 使用 `O_EXCL` 标志创建文件（原子操作）
-- 下载到私有目录，完成后再移动
 
 ## 5. 存储安全审计方法
 

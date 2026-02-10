@@ -2,7 +2,6 @@
 
 ROP、JOP、ret2libc、SROP 技术详解。
 
-
 ## 概念速览
 
 **控制流劫持是什么？**
@@ -12,7 +11,6 @@ ROP、JOP、ret2libc、SROP 技术详解。
 - 代码执行的关键步骤
 - 绕过 DEP (W^X) 的必要手段
 - 几乎所有内存漏洞的利用都需要
-
 
 ## 核心概念
 
@@ -39,7 +37,6 @@ PAN:     内核不能执行用户态代码
 绕过方式:
 不注入代码，而是复用已有代码 → ROP/JOP
 ```
-
 
 ## ROP (Return-Oriented Programming)
 
@@ -129,7 +126,6 @@ ret
 # 如果 gadget 消耗的栈空间不是 16 的倍数，需要填充
 ```
 
-
 ## JOP (Jump-Oriented Programming)
 
 ### 原理
@@ -163,7 +159,6 @@ blr x8               // 调用 x8 指向的函数
 br x16               // 跳转
 ldr x16, [x0] ; br x16  // 间接调用
 ```
-
 
 ## ret2libc
 
@@ -203,7 +198,6 @@ binsh_addr = libc_base + next(libc.search(b"/bin/sh"))
 # - "/system/bin/sh"
 # - 自己写入内存
 ```
-
 
 ## SROP (Sigreturn-Oriented Programming)
 
@@ -256,7 +250,6 @@ payload = bytes(frame)
 - 一次控制所有寄存器
 - 只需要一个 gadget: `mov x8, #0x8b; svc #0` (sigreturn)
 - 适合 gadget 稀缺的情况
-
 
 ## 实战场景
 
@@ -333,38 +326,6 @@ io = process(["./vuln", payload])
 io.interactive()
 ```
 
-### Lab 3: CVE-2019-2215 ROP 分析
-
-**目标：** 分析真实 exploit 的 ROP chain
-
-```
-CVE-2019-2215: Binder UAF
-
-漏洞: binder_thread 对象 UAF
-触发: Racing between epoll and binder
-
-ROP Chain 分析:
-1. 泄露内核地址 (通过 /proc/kallsyms 或信息泄露)
-2. 堆喷射控制 binder_thread
-3. 触发 UAF，执行 ROP
-
-关键 gadget:
-- commit_creds(prepare_kernel_cred(0))
-- 返回用户态
-```
-
-**公开 exploit 结构：**
-```c
-// 简化的 gadget chain
-struct rop_chain {
-    uint64_t pop_x0;           // 加载 x0
-    uint64_t init_cred;        // init_cred 地址
-    uint64_t commit_creds;     // commit_creds 地址
-    uint64_t ret_to_user;      // 返回用户态
-};
-```
-
-
 ## 防护与绕过
 
 ### 防护机制
@@ -404,7 +365,6 @@ bti c              // 只允许从 blr 跳入
 // - 减少可用 gadget
 ```
 
-
 ## 常见陷阱
 
 ### ❌ 陷阱 1: Gadget 副作用
@@ -439,7 +399,6 @@ system_addr = 0x7fff00001234  # 包含 00
 # 解决：选择不含 NULL 的 gadget
 ```
 
-
 ## 深入阅读
 
 **推荐资源：**
@@ -451,7 +410,6 @@ system_addr = 0x7fff00001234  # 包含 00
 - [04 - 调试技巧](./04-debugging-asm.md) - 调试 ROP
 - [06 - 内存破坏](./06-memory-corruption.md) - 触发控制流劫持
 - [07 - Exploit 开发](./07-exploit-development.md) - 完整 exploit
-
 
 ## 下一步
 

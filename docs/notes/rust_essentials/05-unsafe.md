@@ -299,7 +299,7 @@ fn main() {
 }
 ```
 
-### Lab 3: CVE-2025-48530 分析
+### Lab 3: [CVE-2025-48530](../../cves/entries/CVE-2025-48530.md) 分析
 
 **CrabbyAVIF 中的 unsafe 漏洞：**
 

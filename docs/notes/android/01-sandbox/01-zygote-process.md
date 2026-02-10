@@ -66,12 +66,6 @@ Linux Capabilities 将 root 权限细分为多个子项（如 `CAP_NET_RAW`, `CA
 
 历史上曾出现过多个与 Zygote 降权流程相关的安全问题，典型场景包括：
 
-### 5.1 Capabilities 残留 (CVE-2019-2025)
-
-- **成因**: 在某些 Android 版本中，`specializeAppProcess` 在清空 Capabilities 时存在遗漏，导致应用进程意外保留了 `CAP_SYS_ADMIN` 等特权能力。
-- **影响**: 攻击者可以利用这些残留的 Capabilities 执行挂载文件系统、修改内核参数等高权限操作，从而突破沙箱。
-- **修复**: 在 Native 层的 `DropCapabilitiesBoundingSet` 函数中添加了完整性校验，确保所有 Capabilities 位都被清零。
-
 ### 5.2 SELinux 上下文切换时序问题
 
 - **场景**: 如果在 `setcon()` 切换到 `untrusted_app` 上下文之前，应用代码已经开始执行，那么短暂的时间窗口内进程可能以 `zygote` 上下文运行。

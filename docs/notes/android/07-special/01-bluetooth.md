@@ -42,72 +42,6 @@ Android 的蓝牙协议栈是近年远程RCE漏洞的重灾区。
 
 ## 2. 历史重大漏洞分析
 
-### 2.1 BlueBorne系列(2017) - CVE-2017-0781/0782/0785
-
-**影响范围**：Android 3.0-8.0，数十亿设备
-
-**核心漏洞**：
-
-**CVE-2017-0781 (信息泄露)**:
-- **位置**：`btif/src/btif_pan.c` 中 PAN profile处理
-- **根因**：栈地址泄露，为ASLR bypass铺路
-- **触发**：无需配对，通过BNEP协议包触发
-
-**CVE-2017-0782 (RCE - 最critical)**:
-- **位置**：`stack/l2cap/l2c_main.c` L2CAP分片重组
-- **根因**：
-  ```cpp
-  // 伪代码示意
-  if (total_length > L2CAP_MTU) {
-      buffer = malloc(total_length);  // 用户可控
-  }
-  // 后续写入未检查每个分片长度
-  memcpy(buffer + offset, fragment_data, fragment_len);
-  ```
-- **利用**：heap overflow → ROP chain
-- **无交互**：仅需蓝牙打开
-
-**CVE-2017-0785 (中间人攻击)**:
-- **位置**：BNEP配置协商
-- **根因**：身份验证绕过
-- **场景**：PAN连接过程
-
-**攻击链**：
-```text
-1. 扫描发现目标设备(蓝牙MAC)
-2. 通过CVE-2017-0781泄露栈地址 → 破解ASLR
-3. 通过CVE-2017-0782发送畸形L2CAP包 → 堆溢出
-4. ROP/shellcode执行 → 获得com.android.bluetooth进程权限
-5. 进一步提权或横向移动
-```
-
-### 2.2 BlueFrag(2020) - CVE-2020-0022
-
-**影响**：Android 8.0-9.0
-
-**根因**：L2CAP reassembly逻辑错误
-```cpp
-// simplified vulnerable code
-void reassemble_fragments() {
-    uint16_t total_len = first_fragment->length;
-    buffer = malloc(total_len);
-    
-    for (frag in fragments) {
-        memcpy(buffer + offset, frag->data, frag->len);  
-        offset += frag->len;  // ❌ 未检查offset < total_len
-    }
-}
-```
-
-**触发条件**：
-- 目标蓝牙已打开
-- 无需配对
-- 发送精心构造的L2CAP分片序列
-
-**实战价值**：
-- 零点击RCE（无用户交互）
-- 可蠕虫化传播
-
 ### 2.3 BrakTooth系列(2021) - 芯片层漏洞
 
 **特点**：影响蓝牙芯片固件而非Android系统
@@ -126,12 +60,7 @@ HCI命令 → 芯片固件 → LMP消息解析 → 固件崩溃/代码执行
 
 ### 2.4 近期持续漏洞
 
-**CVE-2022-20216 (GATT UAF)**:
-- BLE GATT服务器释放后使用
-- 影响Android 10-12
-- 需要已配对设备触发
-
-**CVE-2023-20938 (L2CAP整数溢出)**:
+**[CVE-2023-20938](../../../cves/entries/CVE-2023-20938.md) (L2CAP整数溢出)**:
 - 又一次L2CAP解析问题
 - 证明此类攻击面仍未完全收敛
 
@@ -280,8 +209,6 @@ pip install pybluez PyBluez-wheels scapy
 ```
 
 ### 5.2 PoC开发流程
-
-**BlueFrag(CVE-2020-0022)复现示例思路**：
 
 ```python
 #!/usr/bin/env python3

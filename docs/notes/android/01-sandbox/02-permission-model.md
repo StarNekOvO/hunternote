@@ -93,45 +93,6 @@ sequenceDiagram
 4. **PermissionManagerService (PMS)**: AMS 最终查询 PMS。PMS 会检查内存中的权限表，判断该 UID 是否拥有目标权限。
 5. **结果返回**: 如果未授权，抛出 `SecurityException`。
 
-## 6. CVE 案例分析：CVE-2021-0691 (权限绕过)
-
-该漏洞存在于 `PermissionController` 的自动授权流程中。
-
-### 6.1 漏洞原理
-
-在 Android 11 中，系统为某些特殊场景（如设备管理器、辅助功能服务）提供了"预授权"机制。`PermissionController` 会根据应用的角色（Role）自动授予相关权限。
-
-漏洞的触发条件：
-
-1. 攻击者安装一个恶意应用，声明了某个需要预授权的角色（如 `ROLE_SMS`）。
-2. 在调用 `grantRuntimePermissions()` 时，`PermissionController` 会查询 `RoleManager` 获取该角色对应的包名。
-3. 由于 RoleManager 的查询结果可以被 IPC 中间人攻击（通过 Intent 重定向），攻击者可以伪造一个"系统推荐的 SMS 应用"身份。
-4. `PermissionController` 未对返回的包名进行 UID 一致性校验，直接为攻击者应用授予了 `READ_SMS`、`SEND_SMS` 等危险权限。
-
-### 6.2 攻击演示
-
-```java
-// 攻击者在 Manifest 中声明
-<intent-filter>
-    <action android:name="android.app.role.action.REQUEST_ROLE" />
-    <category android:name="android.intent.category.DEFAULT" />
-</intent-filter>
-
-// 拦截系统的 Role 查询请求，返回伪造的包名
-Intent fakeIntent = new Intent();
-fakeIntent.putExtra("android.app.extra.ROLE_NAME", "android.app.role.SMS");
-fakeIntent.putExtra("android.intent.extra.PACKAGE_NAME", "com.attacker.app");
-startActivity(fakeIntent);
-```
-
-### 6.3 修复方案
-
-Google 在 `PermissionController` 中添加了多层防护：
-
-1. 在授予权限前，通过 `PackageManager.getPackageUid()` 验证包名与调用方 UID 是否匹配。
-2. 对 `RoleManager` 的返回结果进行签名校验，确保只有系统签名的应用才能声明敏感角色。
-3. 引入了 `GRANT_RUNTIME_PERMISSIONS` 系统权限，限制普通应用无法触发自动授权流程。
-
 ## 7. Canyie (残页) 相关 CVE
 
 > GitHub: https://github.com/canyie | Blog: https://blog.canyie.top
@@ -140,9 +101,9 @@ Google 在 `PermissionController` 中添加了多层防护：
 
 | CVE | 类型 | 简介 | 公告 |
 |-----|------|------|------|
-| CVE-2024-43090 | ID/High | 权限状态信息泄露，可探测其他应用的权限授予情况 | [ASB 2024-11](https://source.android.com/docs/security/bulletin/2024-11-01) |
-| CVE-2025-0076 | ID/High | Framework 层敏感数据泄露，可获取其他用户/应用的私有信息 | [ASB 2025-02](https://source.android.com/docs/security/bulletin/2025-02-01) |
-| CVE-2025-48545 | ID/High | Framework 信息泄露，跨用户数据访问 | [ASB 2025-06](https://source.android.com/docs/security/bulletin/2025-06-01) |
+| [CVE-2024-43090](../../../cves/entries/CVE-2024-43090.md) | ID/High | 权限状态信息泄露，可探测其他应用的权限授予情况 | [ASB 2024-11](https://source.android.com/docs/security/bulletin/2024-11-01) |
+| [CVE-2025-0076](../../../cves/entries/CVE-2025-0076.md) | ID/High | Framework 层敏感数据泄露，可获取其他用户/应用的私有信息 | [ASB 2025-02](https://source.android.com/docs/security/bulletin/2025-02-01) |
+| [CVE-2025-48545](../../../cves/entries/CVE-2025-48545.md) | ID/High | Framework 信息泄露，跨用户数据访问 | [ASB 2025-06](https://source.android.com/docs/security/bulletin/2025-06-01) |
 
 > **注**：ID = Information Disclosure，常见利用场景包括：绕过 ASLR、探测应用安装状态、泄露用户隐私数据、为后续提权收集信息。
 

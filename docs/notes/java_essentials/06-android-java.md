@@ -138,7 +138,7 @@ ActivityStarter.execute()
 通知目标 App 启动 Activity
 ```
 
-### CVE-2024-0025 分析
+### [CVE-2024-0025](../../cves/entries/CVE-2024-0025.md) 分析
 
 **后台启动绕过漏洞：**
 
@@ -191,7 +191,7 @@ DEX 优化 (dex2oat)
 更新 packages.xml
 ```
 
-### CVE-2024-0044 分析
+### [CVE-2024-0044](../../cves/entries/CVE-2024-0044.md) 分析
 
 **run-as 任意应用身份漏洞：**
 

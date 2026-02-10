@@ -93,32 +93,6 @@ void handle_request(const char* filename) {
 
 攻击者传入 `"; rm -rf /data"`，执行任意命令。
 
-### 1.3 真实案例：CVE-2019-2043 (installd Socket 漏洞)
-
-**漏洞原理**：
-
-installd 守护进程在处理 `dexopt` 命令时，未正确校验路径参数。
-
-```c
-// 简化的漏洞代码
-int do_dexopt(const char* apk_path, const char* dex_path) {
-    // 危险：未规范化路径
-    int fd = open(dex_path, O_WRONLY | O_CREAT);
-    // 写入优化后的 dex 文件
-}
-```
-
-**攻击流程**：
-1. 恶意应用连接到 `/dev/socket/installd`（通过系统 API 间接调用）
-2. 发送 `dexopt` 命令，传入 `dex_path = "../../data/system/users/0/settings_system.xml"`
-3. installd 以 root 权限创建/覆盖任意文件
-4. 提权成功
-
-**修复**：
-- 添加路径规范化（`realpath()`）
-- 限制允许的目录白名单
-- 增强 SELinux 策略（限制 installd 可写路径）
-
 ### 1.4 审计方法
 
 **枚举系统中的 UDS**：
@@ -254,48 +228,6 @@ void* addr = mmap(NULL, size, PROT_WRITE, MAP_SHARED, received_fd, 0);
 ```
 
 **防御**：发送方在传递 FD 前调用 `ashmem_pin_region()`。
-
-### 2.3 真实案例：CVE-2020-0286 (Bluetooth Stack)
-
-**漏洞原理**：
-
-Bluetooth 协议栈在处理音频数据时，使用共享内存在不同进程间传递音频缓冲区。
-
-```c
-// 简化的漏洞代码
-struct AudioBuffer {
-    uint32_t size;
-    uint8_t data[];
-};
-
-void processAudio(AudioBuffer* buf) {
-    if (buf->size > MAX_SIZE) return;
-    
-    // TOCTOU 窗口
-    for (int i = 0; i < buf->size; i++) {  // buf->size 可能被修改
-        processRawbyte(buf->data[i]);      // 越界访问
-    }
-}
-```
-
-**攻击**：
-1. 恶意应用建立蓝牙音频连接
-2. 创建共享内存，设置 `size = 1000`（合法）
-3. 系统开始处理音频
-4. 在循环执行期间，应用修改 `size = 100000`
-5. 触发堆溢出 -> 代码执行
-
-**修复**：
-```c
-void processAudio(AudioBuffer* buf) {
-    uint32_t size = buf->size;  // 先拷贝到本地
-    if (size > MAX_SIZE) return;
-    
-    for (int i = 0; i < size; i++) {  // 使用本地副本
-        processByte(buf->data[i]);
-    }
-}
-```
 
 ### 2.4 审计方法
 
@@ -458,21 +390,6 @@ Java.perform(function() {
 ## 5. 综合案例：多 IPC 机制的组合攻击
 
 真实攻击往往结合多种 IPC 机制：
-
-### 案例：CVE-2021-0642 (Media 提权链)
-
-**攻击链**：
-
-1. **Binder 入口**：应用调用 `MediaPlayer.setDataSource()`
-2. **FD 传递**：通过 Binder 传递 media 文件的 FD 到 `mediaserver`
-3. **共享内存**：`mediaserver` 使用 ashmem 与 codec HAL 共享解码缓冲区
-4. **UDS 通信**：Codec HAL 通过 Unix Socket 与内核驱动通信
-5. **漏洞触发**：在共享内存的 TOCTOU 窗口，应用修改缓冲区大小字段
-6. **内核提权**：Codec HAL 触发内核驱动的堆溢出
-
-**关键点**：
-- 每个 IPC 边界都有潜在的输入验证问题
-- 攻击者通过组合多个"小问题"构造完整利用链
 
 ## 6. IPC 安全审计通用 Checklist
 

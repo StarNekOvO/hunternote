@@ -388,7 +388,7 @@ module_init(binder_init);
 ```
 
 > [!NOTE]
-> **CVE-2023-20938** 就发生在 Binder 驱动中，因 `binder_node` 的 UAF 导致。
+> **[CVE-2023-20938](../../cves/entries/CVE-2023-20938.md)** 就发生在 Binder 驱动中，因 `binder_node` 的 UAF 导致。
 
 
 ## 常见陷阱

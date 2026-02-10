@@ -29,7 +29,7 @@ Rust 语言教程，为 Android 内存安全组件开发打基础。
 
 | CVE | 组件 | 类型 |
 |-----|------|------|
-| CVE-2025-48530 | CrabbyAVIF | 缓冲区溢出 (unsafe，发布前修复) |
-| CVE-2025-68260 | Binder Rust | 竞态条件 (**首个内核 Rust CVE**) |
+| [CVE-2025-48530](../../cves/entries/CVE-2025-48530.md) | CrabbyAVIF | 缓冲区溢出 (unsafe，发布前修复) |
+| [CVE-2025-68260](../../cves/entries/CVE-2025-68260.md) | Binder Rust | 竞态条件 (**首个内核 Rust CVE**) |
 
 > Rust 使内存安全漏洞：76% (2019) → <20% (2025)

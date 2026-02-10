@@ -16,16 +16,16 @@
 
 | CVE | 类型 | 模块 | 简介 |
 |-----|------|------|------|
-| **CVE-2024-0044** | EoP/High | PMS | packages.list 注入 → run-as 任意应用提权 (**有完整 writeup**) |
-| CVE-2024-43080 | EoP/High | System | 权限校验缺陷，本地提权无需额外权限 |
-| CVE-2024-43081 | EoP/High | Framework | 调用者身份校验不当导致提权 |
-| CVE-2024-49733 | ID/High | Framework | 敏感用户/应用数据泄露 |
-| CVE-2024-49744 | EoP/High | Framework | 权限校验绕过，本地提权 |
-| CVE-2025-22432 | EoP/High | System | 输入验证不当，可执行任意代码 |
-| CVE-2025-26464 | EoP/High | AppSearch | 跨应用数据访问权限绕过 |
-| CVE-2025-32323 | EoP/High | DocumentsUI | 文件访问权限绕过 |
-| CVE-2025-48535 | EoP/High | Settings | 权限校验缺陷导致提权 |
-| CVE-2025-48554 | DoS/High | Framework | 异常处理不当导致 system_server 崩溃 |
+| **[CVE-2024-0044](../../../cves/entries/CVE-2024-0044.md)** | EoP/High | PMS | packages.list 注入 → run-as 任意应用提权 (**有完整 writeup**) |
+| [CVE-2024-43080](../../../cves/entries/CVE-2024-43080.md) | EoP/High | System | 权限校验缺陷，本地提权无需额外权限 |
+| [CVE-2024-43081](../../../cves/entries/CVE-2024-43081.md) | EoP/High | Framework | 调用者身份校验不当导致提权 |
+| [CVE-2024-49733](../../../cves/entries/CVE-2024-49733.md) | ID/High | Framework | 敏感用户/应用数据泄露 |
+| [CVE-2024-49744](../../../cves/entries/CVE-2024-49744.md) | EoP/High | Framework | 权限校验绕过，本地提权 |
+| [CVE-2025-22432](../../../cves/entries/CVE-2025-22432.md) | EoP/High | System | 输入验证不当，可执行任意代码 |
+| [CVE-2025-26464](../../../cves/entries/CVE-2025-26464.md) | EoP/High | AppSearch | 跨应用数据访问权限绕过 |
+| [CVE-2025-32323](../../../cves/entries/CVE-2025-32323.md) | EoP/High | DocumentsUI | 文件访问权限绕过 |
+| [CVE-2025-48535](../../../cves/entries/CVE-2025-48535.md) | EoP/High | Settings | 权限校验缺陷导致提权 |
+| [CVE-2025-48554](../../../cves/entries/CVE-2025-48554.md) | DoS/High | Framework | 异常处理不当导致 system_server 崩溃 |
 
 > **CVE-2024-0044** 有完整的 PoC 与技术分析，详见 [02-pms](/notes/android/03-services/02-pms)。
 

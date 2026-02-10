@@ -21,51 +21,7 @@ Android Runtime (ART) 是 Android 上应用（以及部分系统服务）使用�
 
 ## 2. 代表性CVE案例
 
-### 2.1 CVE-2017-13156 (DEX解析整数溢出)
-
-**位置**：DEX文件解析
-
-**根因**：计算DEX代码区大小时整数溢出
-
-```c
-// 简化的漏洞代码
-uint32_t code_size = insns_size_in_code_units * 2;  // 溢出
-void *code_buf = malloc(code_size);  // 分配过小
-// 后续拷贝导致堆溢出
-```
-
-**影响**：加载恶意DEX文件可导致RCE
-
-### 2.2 CVE-2020-0041 (JIT类型混淆)
-
-**位置**：ART JIT编译器
-
-**根因**：JIT优化时对对象类型推断错误
-
-**攻击链**：
-```text
-1. 构造特定Java代码模式
-2. 触发JIT编译
-3. 编译器类型推断错误
-4. 生成错误的机器码
-5. 运行时类型混淆
-6. 内存破坏/RCE
-```
-
-### 2.3 CVE-2021-0642 (Verifier绕过)
-
-**位置**：DEX字节码验证器
-
-**根因**：Verifier对特定指令序列的分析不完整
-
-**触发**：
-```text
-构造畸形字节码 → 通过Verifier检查
-→ 运行时违反类型安全
-→ 内存破坏
-```
-
-### 2.4 CVE-2021-0928 (ClassLoader信息泄露)
+### 2.4 [CVE-2021-0928](../../../cves/entries/CVE-2021-0928.md) (ClassLoader信息泄露)
 
 **根因**：多ClassLoader场景下类加载错误
 

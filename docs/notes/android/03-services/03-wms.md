@@ -314,7 +314,6 @@ if (layer->isSecure()) {
 
 **虚拟显示器绕过 (历史漏洞)**：
 ```java
-// CVE-2020-0069 类似问题
 // 创建虚拟显示器时，FLAG_SECURE 未正确传递
 
 DisplayManager dm = getSystemService(DisplayManager.class);
@@ -431,10 +430,6 @@ public class OverlayDetector {
 
 | CVE | 类型 | 描述 |
 |-----|------|------|
-| CVE-2020-0096 | 任务劫持 | StrandHogg 2.0，通过 startActivities 劫持任务栈 |
-| CVE-2017-0752 | Overlay | Toast 窗口绕过权限覆盖 |
-| CVE-2020-0069 | FLAG_SECURE 绕过 | MediaProjection 可捕获安全窗口 |
-| CVE-2021-0487 | 权限绕过 | 后台启动 Activity 绕过 |
 
 ## 7. 参考资源
 

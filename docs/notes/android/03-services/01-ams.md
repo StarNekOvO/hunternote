@@ -59,50 +59,6 @@ AMS 是 Android 的“总调度室”，负责管理所有组件的生命周期�
 
 ## 4. 代表性CVE案例
 
-### 4.1 CVE-2017-0692 (PendingIntent权限提升)
-
-**根因**：系统组件创建的PendingIntent未设置`FLAG_IMMUTABLE`
-
-**攻击链**：
-```text
-1. 恶意应用向系统组件发送精心构造的请求
-2. 系统组件创建PendingIntent并传递给恶意应用
-3. 恶意应用修改Intent的action/component
-4. 触发PendingIntent时以系统权限执行恶意操作
-```
-
-**缓解**：Android 12+默认要求`FLAG_IMMUTABLE`
-
-### 4.2 CVE-2018-9489 (Activity劫持)
-
-**根因**：`taskAffinity`与`allowTaskReparenting`配合的UI欺骗
-
-**场景**：
-```xml
-<!-- 恶意应用manifest -->
-<activity 
-    android:name=".FakeActivity"
-    android:taskAffinity="com.victim.app"
-    android:allowTaskReparenting="true">
-</activity>
-```
-
-**影响**：用户以为在使用银行应用，实际已被切换到钓鱼界面
-
-### 4.3 CVE-2021-0306 (Broadcast权限绕过)
-
-**位置**：AMS广播分发逻辑
-
-**根因**：某些系统广播的权限检查可被绕过
-
-**影响**：未授权应用可接收敏感系统广播(如电话状态/位置更新)
-
-### 4.4 CVE-2021-0921 (Service启动限制绕过)
-
-**根因**：后台启动Service的白名单检查不完整
-
-**触发**：通过特定Intent flag组合绕过Android 8+的后台启动限制
-
 ## 5. 常见漏洞模式清单（审计 checklist）
 
 - **身份与权限**

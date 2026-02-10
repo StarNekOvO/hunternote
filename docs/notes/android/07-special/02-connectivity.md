@@ -34,8 +34,6 @@
 
 ### 1.2 重大WiFi漏洞
 
-**CVE-2017-13077~13088 (KRACK - Key Reinstallation Attack)**：
-
 **影响范围**：WPA2协议本身缺陷
 
 **原理**：
@@ -48,11 +46,7 @@
 - Android 6.0+受影响
 - 通过OTA更新修复
 
-**CVE-2019-9506 (KNOB - Key Negotiation of Bluetooth)**：
-
 虽然主要影响Bluetooth，但WiFi Direct同样存在密钥协商问题。
-
-**CVE-2020-3702 (Qualcomm WiFi固件堆溢出)**：
 
 **位置**：Qualcomm WiFi芯片固件
 
@@ -63,8 +57,6 @@
 - 固件堆溢出
 - 可能实现WiFi固件RCE
 
-**CVE-2020-3909 (Kr00k)**：
-
 **影响**：Broadcom/Cypress WiFi芯片
 
 **根因**：断开连接时用全零密钥加密剩余数据
@@ -73,8 +65,6 @@
 - 攻击者强制断开目标设备
 - 捕获后续使用全零密钥加密的数据包
 - 解密泄露的数据
-
-**CVE-2021-0326 (WiFi HAL堆溢出)**：
 
 **位置**：Android WiFi HAL实现
 
@@ -89,8 +79,6 @@ void handle_rtt_results(wifi_rtt_result *results, int num_results) {
 }
 ```
 
-**CVE-2022-20158 (wificond OOB)**：
-
 **位置**：wificond扫描结果处理
 
 **根因**：解析WiFi扫描结果时的信息元素(IE)长度未验证
@@ -101,7 +89,7 @@ void handle_rtt_results(wifi_rtt_result *results, int num_results) {
 
 | CVE | 类型 | 简介 | 公告 |
 |-----|------|------|------|
-| CVE-2025-48524 | DoS/High | WiFi 服务异常输入处理导致拒绝服务，可远程触发 WiFi 功能不可用 | [ASB 2025-06](https://source.android.com/docs/security/bulletin/2025-06-01) |
+| [CVE-2025-48524](../../../cves/entries/CVE-2025-48524.md) | DoS/High | WiFi 服务异常输入处理导致拒绝服务，可远程触发 WiFi 功能不可用 | [ASB 2025-06](https://source.android.com/docs/security/bulletin/2025-06-01) |
 
 ### 1.3 WiFi攻击面
 
@@ -237,13 +225,9 @@ NDEF消息
 
 ### 2.3 历史NFC漏洞
 
-**CVE-2012-2900 (Android NFC UAF)**：
-
 **位置**：NFC Service处理NDEF消息
 
 **根因**：异步处理导致UAF
-
-**CVE-2015-6606 (Stagefright via NFC)**：
 
 **触发**：通过NFC传输包含Stagefright漏洞的媒体文件
 
@@ -255,8 +239,6 @@ NDEF消息
 → Stagefright解析
 → RCE
 ```
-
-**CVE-2016-3920 (NFC NDEF OOB)**：
 
 **位置**：NDEF消息解析
 
@@ -274,19 +256,13 @@ void parse_ndef(uint8_t *data, size_t len) {
 }
 ```
 
-**CVE-2017-0647 (NFC Service信息泄露)**：
-
 **根因**：NFC Service权限检查不当
 
 **影响**：未授权应用可读取NFC标签内容
 
-**CVE-2019-2114 (NFC Integer Overflow)**：
-
 **位置**：NFC HAL
 
 **根因**：处理NFC-DEP(Data Exchange Protocol)时整数溢出
-
-**CVE-2021-0430 (NFC Beam OOB)**：
 
 **位置**：Android Beam (已在Android 10移除)
 
@@ -299,8 +275,6 @@ void parse_ndef(uint8_t *data, size_t len) {
 **安全问题**：
 - 支付应用的HCE服务被劫持
 - APDU (Application Protocol Data Unit)命令注入
-
-**CVE-2018-9489 (HCE权限绕过)**：
 
 **根因**：恶意应用可注册与支付应用相同的AID (Application Identifier)
 
@@ -392,8 +366,6 @@ find . -name "*nfc*" -o -name "*pn5*"
 
 ### 3.2 基带固件漏洞
 
-**CVE-2016-5340 (Qualcomm基带RCE)**：
-
 **位置**：Qualcomm Hexagon DSP基带固件
 
 **根因**：处理畸形LTE消息时缓冲区溢出
@@ -403,8 +375,6 @@ find . -name "*nfc*" -o -name "*pn5*"
 **影响**：
 - 基带RCE
 - 可能提权到应用处理器
-
-**CVE-2019-2232 (Shannon基带RCE)**：
 
 **影响范围**：Samsung Exynos基带(Shannon modem)
 
@@ -416,13 +386,9 @@ find . -name "*nfc*" -o -name "*pn5*"
 - 基带代码执行
 - 网络流量劫持
 
-**CVE-2020-25279 (MediaTek基带权限提升)**：
-
 **位置**：MediaTek LTE协议栈
 
 **根因**：AT命令处理不当
-
-**CVE-2021-25369 (Exynos基带堆溢出)**：
 
 **根因**：处理NR (5G New Radio) RRC消息时的内存错误
 
@@ -431,8 +397,6 @@ find . -name "*nfc*" -o -name "*pn5*"
 - 无需用户交互的远程利用
 
 ### 3.3 RIL层漏洞
-
-**CVE-2015-3843 (Stagefright via MMS)**：
 
 虽然是媒体漏洞，但触发路径经过RIL：
 ```text
@@ -444,13 +408,9 @@ find . -name "*nfc*" -o -name "*pn5*"
 → RCE
 ```
 
-**CVE-2016-5349 (RIL信息泄露)**：
-
 **根因**：RIL权限检查不足
 
 **影响**：未授权应用可读取IMSI/IMEI
-
-**CVE-2017-0647 (Telephony权限绕过)**：
 
 **根因**：TelephonyManager API权限检查缺陷
 

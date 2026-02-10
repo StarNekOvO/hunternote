@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 import { readdirSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 const CVE_FILE_RE = /^CVE-(\d{4})-(\d{4,7})\.md$/
 
@@ -10,27 +11,28 @@ function getCveSidebarItems() {
     { text: '按版本查看', link: '/cves/indexes/by-version' },
     { text: '按层级查看', link: '/cves/indexes/by-layer' },
     { text: '按组件查看', link: '/cves/indexes/by-component' },
+    { text: '按漏洞类型查看', link: '/cves/indexes/by-cwe' },
   ]
 
   const byYear = new Map<string, Array<{ text: string; link: string }>>()
 
   try {
-    const cveVendorDir = resolve(__dirname, '..', 'cves', 'vendor')
-    const files = readdirSync(cveVendorDir)
-      .filter((name) => CVE_FILE_RE.test(name))
-      .sort((a, b) => b.localeCompare(a, 'en', { numeric: true }))
+    const cveEntriesDir = resolve(dirname(fileURLToPath(import.meta.url)), '..', 'cves', 'entries')
+    const files = readdirSync(cveEntriesDir)
+      .filter((name: string) => CVE_FILE_RE.test(name))
+      .sort((a: string, b: string) => b.localeCompare(a, 'en', { numeric: true }))
 
     for (const file of files) {
       const cve = file.replace(/\.md$/, '')
       const year = cve.slice(4, 8)
-      const item = { text: cve, link: `/cves/vendor/${cve}` }
+      const item = { text: cve, link: `/cves/entries/${cve}` }
       if (!byYear.has(year)) {
         byYear.set(year, [])
       }
       byYear.get(year)!.push(item)
     }
   } catch (error) {
-    console.warn('[vitepress] Failed to scan CVE vendor:', error)
+    console.warn('[vitepress] Failed to scan CVE entries:', error)
   }
 
   const yearItems = Array.from(byYear.entries())

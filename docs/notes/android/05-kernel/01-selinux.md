@@ -319,7 +319,7 @@ sesearch -T sepolicy.bin | grep -v 'type_transition'
 seinfo -t sepolicy.bin | xargs -I {} sesearch -A -s {} -p permissive sepolicy.bin
 ```
 
-## 8. CVE-2025-0078 分析
+## 8. [CVE-2025-0078](../../../cves/entries/CVE-2025-0078.md) 分析
 
 CVE-2025-0078 是一个 SELinux 策略评估中的逻辑错误漏洞，影响 Android 内核的权限检查流程。
 

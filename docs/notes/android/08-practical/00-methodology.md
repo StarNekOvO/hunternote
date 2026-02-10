@@ -485,7 +485,6 @@ adb shell cat /proc/kallsyms           # 内核符号 (需root)
 
 1. 信息收集
    - 阅读 AOSP 源码: frameworks/base/services/core/java/.../ClipboardService.java
-   - 查看历史 CVE: CVE-2021-0340 等
    - 理解接口: setPrimaryClip, getPrimaryClip
 
 2. 攻击面分析

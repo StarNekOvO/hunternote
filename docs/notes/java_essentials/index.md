@@ -26,12 +26,9 @@ Java 语言速查，及其在 Android Framework 和应用开发中的应用
 
 | CVE | 组件 | 类型 |
 |-----|------|------|
-| CVE-2023-21089 | AMS | 后台服务保活 (LPE) |
-| CVE-2023-21292 | AMS | confused deputy |
-| CVE-2023-21273 | System | RCE (Critical) |
-| CVE-2024-0025 | AMS | 后台启动绕过 |
-| CVE-2024-0044 | PMS | run-as any app |
-| CVE-2024-43093 | ExtStorage | 路径绕过 (野外利用) |
-| CVE-2025-48543 | ART | UAF 沙箱逃逸 |
-| CVE-2025-48593 | System | Zero-click RCE |
-| CVE-2025-48633 | Framework | Binder 身份伪造 |
+| [CVE-2024-0025](../../cves/entries/CVE-2024-0025.md) | AMS | 后台启动绕过 |
+| [CVE-2024-0044](../../cves/entries/CVE-2024-0044.md) | PMS | run-as any app |
+| [CVE-2024-43093](../../cves/entries/CVE-2024-43093.md) | ExtStorage | 路径绕过 (野外利用) |
+| [CVE-2025-48543](../../cves/entries/CVE-2025-48543.md) | ART | UAF 沙箱逃逸 |
+| [CVE-2025-48593](../../cves/entries/CVE-2025-48593.md) | System | Zero-click RCE |
+| [CVE-2025-48633](../../cves/entries/CVE-2025-48633.md) | Framework | Binder 身份伪造 |

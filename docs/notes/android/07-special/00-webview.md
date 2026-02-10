@@ -78,31 +78,7 @@ WebView 的安全挑战来自多层叠加：
 
 WebView基于Chromium，Chrome的高危漏洞会同步影响Android。
 
-**CVE-2020-6418 (V8 Type Confusion RCE)**：
-- **根因**：V8 JavaScript引擎的类型混淆
-- **触发**：特制JavaScript代码触发JIT编译器错误
-- **影响**：渲染进程RCE
-- **利用链**：
-  ```text
-  恶意网页 → V8类型混淆 → 渲染进程RCE
-      → 沙箱逃逸(需额外漏洞) → Browser进程控制
-      → App进程攻击(通过IPC)
-  ```
-
-**CVE-2021-30551 (V8 Turbofan OOB)**：
-- **位置**：V8优化编译器Turbofan
-- **根因**：越界访问导致任意读写
-- **实战**：被用于Pwn2Own竞赛
-- **修复**：Chrome 91 / WebView同步更新
-
-**CVE-2022-1096 (V8 UAF in Animation)**：
-- 野外利用(ITW)被Google TAG发现
-- 渲染进程UAF → RCE
-- 需要结合沙箱逃逸才能完整攻击
-
 ### 2.2 JS Bridge经典漏洞
-
-**CVE-2012-6636 (addJavascriptInterface RCE)**：
 
 **历史背景**：Android 4.2前的灾难性设计缺陷
 
@@ -161,8 +137,6 @@ android.openUrl('file:///data/data/com.victim.app/databases/secrets.db');
 
 ### 2.3 File协议UXSS (Universal XSS)
 
-**CVE-2014-6041 / CVE-2015-3860系列**：
-
 **根因**：`file://` 协议的同源策略处理错误
 
 ```javascript
@@ -190,8 +164,6 @@ webView.getSettings().setAllowUniversalAccessFromFileURLs(true);  // ❌ 更高�
 - 下载的HTML文件被WebView打开
 
 ### 2.4 Intent Scheme劫持
-
-**CVE-2014-1939 类问题**：
 
 ```java
 // 应用代码

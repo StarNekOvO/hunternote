@@ -100,8 +100,6 @@ long device_ioctl(...) {
 
 ### 2.1 Binder漏洞系列
 
-**CVE-2019-2215 (Bad Binder)**：
-
 **影响**：Android 7.0-9.0，影响数亿设备
 
 **根因**：Binder驱动UAF漏洞
@@ -129,14 +127,7 @@ void binder_thread_release(...) {
 - 绕过SELinux
 - Project Zero公开披露，被广泛利用
 
-**CVE-2020-0041 (另一个Binder UAF)**：
-- 类似的Binder引用计数问题
-- Android 7-10受影响
-- Google 2020年2月修复
-
 ### 2.2 GPU驱动漏洞 (高通Adreno)
-
-**CVE-2016-2504 / CVE-2016-5340系列**：
 
 **位置**：高通Adreno GPU内核驱动(`kgsl`)
 
@@ -155,14 +146,7 @@ int kgsl_ioctl_map_user_mem(...) {
 - 任意内核内存读写
 - 完整LPE链
 
-**CVE-2018-11937 (Adreno UAF)**：
-- GPU命令队列管理UAF
-- 竞态条件触发
-- 影响高通平台设备
-
 ### 2.3 Camera驱动漏洞
-
-**CVE-2019-10567 (高通Camera)**：
 
 **根因**：MSM camera驱动整数溢出
 ```c
@@ -178,13 +162,7 @@ buffer = kmalloc(total_size, GFP_KERNEL);  // 分配过小
 // 后续越界写
 ```
 
-**CVE-2017-8236 (MSM Camera UAF)**：
-- Camera驱动release路径竞态
-- 多线程并发触发UAF
-
 ### 2.4 Dirty COW类通用漏洞
-
-**CVE-2016-5195 (Dirty COW)**：
 
 **根因**：Linux内核copy-on-write竞态条件
 
@@ -197,7 +175,7 @@ buffer = kmalloc(total_size, GFP_KERNEL);  // 分配过小
 
 **修复**：内核补丁 + 应用沙箱加固
 
-**CVE-2022-0847 (Dirty Pipe)**：
+**[CVE-2022-0847](../../../cves/entries/CVE-2022-0847.md) (Dirty Pipe)**：
 - Dirty COW的现代变种
 - Linux 5.8-5.16内核
 - 影响新版Android设备
@@ -206,16 +184,11 @@ buffer = kmalloc(total_size, GFP_KERNEL);  // 分配过小
 ### 2.5 特定SoC漏洞
 
 **高通相关**：
-- CVE-2020-11179: WLAN驱动OOB写
-- CVE-2021-1905: GPU内存管理UAF  
-- CVE-2023-21647: Display驱动整数溢出
+- [CVE-2021-1905](../../../cves/entries/CVE-2021-1905.md): GPU内存管理UAF  
 
 **联发科相关**：
-- CVE-2020-0069: GPU驱动UAF
-- CVE-2021-0661: Camera驱动竞态
 
 **三星Exynos**：
-- CVE-2021-25337: Mali GPU驱动UAF
 
 ## 3. 攻击面枚举实战
 

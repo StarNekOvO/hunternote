@@ -2,7 +2,6 @@
 
 栈溢出、堆溢出、UAF、Double-Free、类型混淆。
 
-
 ## 概念速览
 
 **内存破坏漏洞类型：**
@@ -18,7 +17,6 @@
 **Android 安全统计：**
 - 70%+ 的高危漏洞是内存安全问题
 - UAF 是最常见的 Android 内核漏洞
-
 
 ## 栈溢出
 
@@ -92,7 +90,6 @@ void vulnerable(char *input) {
 - 格式化字符串读取
 - 覆盖时跳过 canary
 
-
 ## 堆溢出
 
 ### bionic libc 堆结构
@@ -148,7 +145,6 @@ void *c = malloc(0x100);  // C 占据 A 的位置
 // 现在 C 和 B 相邻
 // 溢出 C 可以覆盖 B
 ```
-
 
 ## Use-After-Free (UAF)
 
@@ -210,27 +206,6 @@ register_callback(thread, func);
 // Thread 2: thread->death_callback();  // UAF!
 ```
 
-### CVE-2019-2215 分析
-
-```
-漏洞位置: drivers/android/binder.c
-漏洞类型: UAF (binder_thread)
-
-触发:
-1. 创建 binder 文件描述符
-2. 用 epoll 监控
-3. 关闭 fd，触发 binder_release
-4. epoll 仍持有引用 → UAF
-
-利用:
-1. 释放 binder_thread
-2. 堆喷射覆盖 → 控制函数指针
-3. 触发回调 → ROP chain
-4. commit_creds(prepare_kernel_cred(0))
-5. Root!
-```
-
-
 ## Double-Free
 
 ### 原理
@@ -260,7 +235,6 @@ void *c = malloc(100);  // 也返回 a 的地址！
 // 修改 b 会影响 c
 // 如果 c 包含函数指针，可被控制
 ```
-
 
 ## 类型混淆
 
@@ -299,7 +273,6 @@ union binder_object {
 
 // 如果类型判断错误，字段解释错误
 ```
-
 
 ## 实战场景
 
@@ -392,7 +365,6 @@ int main() {
 **目标：** 分析真实 Android CVE
 
 ```
-CVE-2020-0041: Binder 竞态 UAF
 
 位置: drivers/android/binder.c
 
@@ -408,7 +380,6 @@ CVE-2020-0041: Binder 竞态 UAF
 - 内核代码执行
 - 权限提升
 ```
-
 
 ## 防护机制
 
@@ -455,7 +426,6 @@ R-X: 可读执行，不可写 (代码段)
 只在调试编译启用
 ```
 
-
 ## 常见陷阱
 
 ### ❌ 陷阱 1: 堆布局不稳定
@@ -494,7 +464,6 @@ void *b = malloc(100);
 // - 理解 allocator 行为
 ```
 
-
 ## 深入阅读
 
 **推荐资源：**
@@ -505,7 +474,6 @@ void *b = malloc(100);
 **相关章节：**
 - [05 - 控制流劫持](./05-control-flow-hijack.md) - 利用内存破坏
 - [07 - Exploit 开发](./07-exploit-development.md) - 完整利用
-
 
 ## 下一步
 

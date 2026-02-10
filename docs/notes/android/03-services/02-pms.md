@@ -45,50 +45,13 @@ Android 12 起，若组件声明 `intent-filter` 但未显式声明 `android:exp
 
 ## 4. 代表性CVE案例
 
-### 4.1 CVE-2017-13156 (Janus签名绕过)
-
-**根因**：V1签名未覆盖整个APK，DEX文件可被附加在APK头部
-
-**攻击链**：
-```text
-1. 创建合法签名的恶意APK
-2. 在APK文件头部附加恶意DEX
-3. PMS签名验证通过(仅检查ZIP部分)
-4. DexClassLoader加载头部DEX(未被签名保护)
-5. 执行恶意代码
-```
-
-**修复**：增强APK解析，拒绝包含额外DEX的包
-
-### 4.2 CVE-2020-0034 (权限持久化)
-
-**根因**：包更新时权限撤销逻辑错误
-
-**触发**：
-```text
-1. 恶意应用请求危险权限并获得授权
-2. 应用卸载但保留数据
-3. 同签名的新版本安装
-4. 权限意外被保留(应该重新请求)
-```
-
-**影响**：权限提升，用户无感知授权
-
-### 4.3 CVE-2021-0478 (PackageInstaller提权)
+### 4.3 [CVE-2021-0478](../../../cves/entries/CVE-2021-0478.md) (PackageInstaller提权)
 
 **位置**：PackageInstaller权限检查
 
 **根因**：安装会话创建时的调用者UID检查不足
 
 **影响**：无权限应用可安装任意包
-
-### 4.4 CVE-2021-0921 (Signature Spoofing)
-
-**根因**：APK签名解析时对V2/V3 block处理不当
-
-**触发**：精心构造的APK signing block可绕过签名检查
-
-**影响**：恶意应用可伪装成系统应用签名
 
 ## 5. 安装/更新的主链路（概念层）
 
@@ -153,7 +116,7 @@ Android 12 起，若组件声明 `intent-filter` 但未显式声明 `android:exp
 
 > GitHub: https://github.com/canyie | Blog: https://blog.canyie.top
 
-### 9.1 CVE-2024-0044 深度分析 (packages.list 注入 → run-as 任意应用提权)
+### 9.1 [CVE-2024-0044](../../../cves/entries/CVE-2024-0044.md) 深度分析 (packages.list 注入 → run-as 任意应用提权)
 
 这是一个非常经典的案例：原始漏洞由 Meta Red Team X 的 Tom Hebb 发现，Canyie 在原始补丁发布 2 个月后发现了绕过方式。
 
@@ -251,7 +214,6 @@ run-as victim
 - [原始漏洞分析 (Meta)](https://rtx.meta.security/exploitation/2024/03/04/Android-run-as-forgery.html)
 - [ASB 2024-03 (原始补丁)](https://source.android.com/docs/security/bulletin/2024-03-01)
 - [ASB 2024-10 (绕过修复)](https://source.android.com/docs/security/bulletin/2024-10-01)
-
 
 ## 参考（AOSP）
 

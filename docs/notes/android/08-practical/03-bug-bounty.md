@@ -353,7 +353,6 @@ protected void onCreate(Bundle savedInstanceState) {
 
 ## 参考资料
 - https://cwe.mitre.org/data/definitions/926.html (CWE-926)
-- 类似漏洞: CVE-2020-0188, CVE-2021-0600
 
 ## 附件清单
 - [x] PoC 源码 (poc.zip)
@@ -465,7 +464,6 @@ protected void onCreate(Bundle savedInstanceState) {
 
 **技巧 4: 关联已知漏洞**
 如果你的发现与已知 CVE 类似或是变体，引用它们可以帮助评审者快速理解：
-> 此漏洞与 CVE-2020-0188 属于同类问题 (Intent Redirection)，
 > 但影响不同组件 (SystemUI vs Settings)。
 
 **技巧 5: 准备 FAQ**

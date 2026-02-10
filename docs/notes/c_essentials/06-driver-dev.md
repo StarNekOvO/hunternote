@@ -349,7 +349,7 @@ static long binder_ioctl(struct file *filp, unsigned int cmd,
 }
 ```
 
-### Lab 2: CVE-2024-53104 分析
+### Lab 2: [CVE-2024-53104](../../cves/entries/CVE-2024-53104.md) 分析
 
 USB Video Class 驱动的 OOB 写漏洞：
 

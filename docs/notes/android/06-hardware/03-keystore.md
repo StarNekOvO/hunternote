@@ -240,7 +240,7 @@ KeyGenParameterSpec.Builder builder = new KeyGenParameterSpec.Builder(...)
 
 ### 4.1 历史漏洞
 
-**CVE-2024-29779: KeyMint 设备保护绕过**
+**[CVE-2024-29779](../../../cves/entries/CVE-2024-29779.md): KeyMint 设备保护绕过**
 ```
 漏洞类型: 逻辑漏洞
 影响: 绕过设备保护机制
@@ -253,7 +253,7 @@ KeyGenParameterSpec.Builder builder = new KeyGenParameterSpec.Builder(...)
 修复: 2024 安全补丁更新
 ```
 
-**CVE-2025-20655: Keymaster 越界读取**
+**[CVE-2025-20655](../../../cves/entries/CVE-2025-20655.md): Keymaster 越界读取**
 ```
 漏洞类型: OOB Read
 影响: 信息泄露
@@ -266,7 +266,7 @@ KeyGenParameterSpec.Builder builder = new KeyGenParameterSpec.Builder(...)
 修复: 2025 年 4 月安全更新
 ```
 
-**CVE-2024-45445: Keystore 资源泄露**
+**[CVE-2024-45445](../../../cves/entries/CVE-2024-45445.md): Keystore 资源泄露**
 ```
 漏洞类型: 资源耗尽
 影响: 拒绝服务

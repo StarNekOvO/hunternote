@@ -404,7 +404,7 @@ READ of size 4 at 0x602000000010
 ```
 
 > [!CAUTION]
-> **CVE-2023-20938** (Binder driver) 就是 UAF 漏洞，攻击者可利用它获取内核权限。
+> **[CVE-2023-20938](../../cves/entries/CVE-2023-20938.md)** (Binder driver) 就是 UAF 漏洞，攻击者可利用它获取内核权限。
 
 
 ## 常见陷阱

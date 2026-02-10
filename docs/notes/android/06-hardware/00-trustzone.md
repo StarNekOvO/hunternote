@@ -72,8 +72,6 @@ TEE漏洞的研究价值在于：
 
 ### 2.1 Qualcomm QSEE漏洞
 
-**CVE-2015-6639 (Widevine QSEE提权)**：
-
 **根因**：QSEE Widevine TA命令处理缺陷
 
 ```c
@@ -91,8 +89,6 @@ int handle_command(uint32_t cmd_id, void *req, size_t req_len) {
 - TEE内存破坏
 - 可能实现TEE代码执行
 
-**CVE-2016-2431/2432 (QSEE内核提权)**：
-
 **根因**：QSEE内核驱动与TA通信的验证不足
 
 **攻击链**：
@@ -103,8 +99,6 @@ int handle_command(uint32_t cmd_id, void *req, size_t req_len) {
 → 控制TA执行流
 → 导出密钥/绕过认证
 ```
-
-**CVE-2018-11976 (QSEE Keymaster)**：
 
 **位置**：Keymaster TA命令处理
 
@@ -124,16 +118,12 @@ void *buffer = malloc(total_size);  // 分配过小
 
 ### 2.2 Samsung Teegris漏洫
 
-**CVE-2020-0018 (Teegris提权)**：
-
 **根因**：Teegris内核内存管理漏洞
 
 **影响**：
 - TEE内核代码执行
 - 影响Samsung Galaxy S10/S20等旗舰机
 - 可绕过Knox安全
-
-**CVE-2021-25444 (Teegris TA堆溢出)**：
 
 **位置**：指纹识别TA
 
@@ -144,8 +134,6 @@ void *buffer = malloc(total_size);  // 分配过小
 - 可能泄露已注册指纹数据
 
 ### 2.3 Google Trusty漏洞
-
-**CVE-2020-0441 (Trusty UAF)**：
 
 **位置**：Trusty IPC消息处理
 
@@ -163,8 +151,6 @@ async_send_msg(port, msg);  // UAF
 - Trusty内核内存破坏
 - 可能实现TEE RCE
 
-**CVE-2021-0921 (Gatekeeper TA)**：
-
 **根因**：Gatekeeper TA整数溢出
 
 **触发**：构造特殊的密码验证请求
@@ -175,11 +161,7 @@ async_send_msg(port, msg);  // UAF
 
 ### 2.4 OP-TEE开源实现漏洞
 
-**CVE-2017-1000412 (OP-TEE UAF)**：
-
 **根因**：TA加载过程中内存管理错误
-
-**CVE-2021-36133 (OP-TEE整数溢出)**：
 
 **位置**：ELF loader
 
@@ -188,11 +170,8 @@ async_send_msg(port, msg);  // UAF
 ### 2.5 厂商特有问题
 
 **联发科TrustZone**：
-- CVE-2020-0069: TEE驱动竞态条件
-- CVE-2019-17390: DRM TA内存破坏
 
 **华为可信执行环境**：
-- CVE-2019-5241: iTrustee内存管理漏洞
 
 ## 3. 攻击面分析
 

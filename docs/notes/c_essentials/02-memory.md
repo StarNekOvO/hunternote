@@ -316,7 +316,7 @@ int x = *p; // UAF 读
 3. 通过 A 的指针访问 B 的数据
 
 > [!NOTE]
-> **CVE-2023-20938** (Binder UAF) 就是这类漏洞。
+> **[CVE-2023-20938](../../cves/entries/CVE-2023-20938.md)** (Binder UAF) 就是这类漏洞。
 
 ### ❌ Double-Free
 

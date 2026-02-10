@@ -137,50 +137,6 @@ class MediaHal {
 
 多线程同时调用 `configure` 和 `processData` 可能导致状态不一致。
 
-### 6.2 真实案例：CVE-2020-0478 (MediaCodec HAL UAF)
-
-**影响版本**：Android 8.0 - 11.0
-
-**漏洞原理**：
-
-MediaCodec HAL 在处理配置变更时存在 UAF 漏洞。
-
-```cpp
-// 简化的漏洞代码
-void MediaCodecHal::reconfigure(const Config& newConfig) {
-    freeOldBuffers();  // 释放旧的缓冲区
-    
-    // 竞态窗口：如果此时有回调正在访问缓冲区...
-    
-    allocateNewBuffers(newConfig);
-}
-
-void MediaCodecHal::onFrameRendered(int bufferId) {
-    Buffer* buf = getBuffer(bufferId);  // UAF：可能访问已释放的内存
-    // ...
-}
-```
-
-**攻击流程**：
-1. 应用调用 `reconfigure()` 触发缓冲区释放
-2. 在重新分配之前，利用竞态条件触发 `onFrameRendered()` 回调
-3. 回调访问已释放的内存 -> UAF
-4. 通过堆喷射控制被释放内存的内容
-5. 劫持控制流，实现 MediaCodec 进程内的代码执行
-6. 结合其他漏洞提权到 system 或 root
-
-**修复**：
-- 添加引用计数和锁机制
-- 确保回调执行前检查对象有效性
-
-### 6.3 CVE-2019-2213 (Binder UAF in HAL)
-
-这是另一个经典的 HAL 层漏洞，涉及 hwbinder 的对象生命周期管理。
-
-**成因**：某些 HAL 服务在注销时未正确清理 Binder 引用，导致客户端仍持有指向已释放对象的 handle。
-
-**利用价值**：UAF 漏洞在 Native 层通常可以直接转化为代码执行。
-
 ## 7. 研究与审计方法
 
 ### 7.1 从接口定义入手

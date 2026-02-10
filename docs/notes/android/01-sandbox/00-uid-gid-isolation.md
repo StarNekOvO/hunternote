@@ -62,25 +62,6 @@ if (fs_prepare_dir_strict(path, 0751, uid, gid) != 0) {
 
 **注意**：AOSP 官方口径是从 Android 13 起废弃“共用 UID”（Shared UID）。实际设备/应用是否还能使用，取决于目标版本与兼容性策略；跨应用共享能力更推荐使用 `ContentProvider`/`Service` 等显式 IPC 机制。
 
-## 4. CVE 案例分析：CVE-2018-9468
-
-这是一个典型的利用 `sharedUserId` 机制缺陷实现的沙箱绕过漏洞。
-
-### 4.1 漏洞背景
-在 Android 8.x 中，`PackageManagerService` 在处理 APK 更新时，对 `sharedUserId` 的签名验证存在时序问题（TOCTOU）。
-
-### 4.2 攻击路径
-1. 攻击者首先安装一个合法的应用 A（声明 `sharedUserId="com.example.shared"`，正常签名）。
-2. 制作恶意应用 B，同样声明相同的 `sharedUserId`，但使用不同的签名。
-3. 通过特定的安装时序（利用 `installPackage` 与 `replacePackage` 的竞态条件），在 PMS 校验签名之前，将应用 B 的包名暂时"伪装"成应用 A。
-4. PMS 在检查 `sharedUserId` 时，误以为两个应用已经共享 UID，跳过了严格的签名对比。
-5. 安装成功后，应用 B 获得了应用 A 的 UID，可以访问其私有数据。
-
-如果应用 A 本身拥有较高权限（如预装应用的 `system` UID），这将导致完全的沙箱突破。
-
-### 4.3 修复
-Google 在 PMS 的 `PackageParser` 中加入了原子性检查，确保在分配 UID 之前，必须先验证所有共享该 UID 的应用签名一致性。同时，对系统级 `sharedUserId` 的使用增加了额外的 SELinux 策略限制。
-
 ## 5. 边界与局限性：为什么仅有 UID 隔离是不够的？
 
 虽然 UID/GID 提供了基础的隔离，但在复杂的 Android 环境中，它并非万能。

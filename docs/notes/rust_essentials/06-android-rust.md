@@ -254,7 +254,7 @@ pub fn rust_process(data: &[u8]) -> Vec<u8> {
 }
 ```
 
-### Lab 3: CVE-2025-68260 分析
+### Lab 3: [CVE-2025-68260](../../cves/entries/CVE-2025-68260.md) 分析
 
 **AOSP Rust 组件的漏洞模式：**
 

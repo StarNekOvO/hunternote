@@ -379,10 +379,6 @@ Bootloader 是 AVB 验证的执行者，其自身安全性直接决定整个信�
 
 ### 7.2 历史漏洞案例
 
-**CVE-2017-5624 (OnePlus)**：
-- fastboot oem 命令可在锁定状态下刷写任意分区
-- 完全绕过 AVB 保护
-
 **EDL (Emergency Download) 模式滥用**：
 - 高通设备的 EDL 模式可绕过 bootloader
 - 利用泄露的 firehose 程序实现底层读写

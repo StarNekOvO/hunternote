@@ -2,7 +2,6 @@
 
 Android 汇编速查与实战：从寄存器到 Exploit 开发
 
-
 ## 为什么要学汇编？
 
 **安全研究绑定汇编的三个理由：**
@@ -14,14 +13,12 @@ Android 汇编速查与实战：从寄存器到 Exploit 开发
 **一个真实场景：**
 
 ```
-CVE-2019-2215: Binder UAF
 ├── 漏洞成因: C 代码逻辑错误
 ├── 触发路径: ioctl 系统调用
 └── 利用方式: ROP chain → 28 条 ARM64 gadget → root
 ```
 
 如果看不懂这 28 条 gadget，就无法理解这个漏洞是如何变成 root 的。
-
 
 ## 学习路径
 
@@ -43,7 +40,6 @@ Week 3-4: Exploit (Chapter 05-07)
 
 **预计时间：** 20-30 小时（每天 1-2 小时，2-3 周）
 
-
 ## 前置要求
 
 | 要求 | 程度 | 说明 |
@@ -52,7 +48,6 @@ Week 3-4: Exploit (Chapter 05-07)
 | Linux 命令行 | 必需 | GDB 基本操作 |
 | Android 基础 | 推荐 | NDK、adb |
 | x86 汇编 | 可选 | 有帮助但不必须 |
-
 
 ## ARM64 vs 其他架构
 
@@ -68,7 +63,6 @@ Week 3-4: Exploit (Chapter 05-07)
 - 功耗低（移动设备核心需求）
 - 授权灵活（厂商可定制）
 - 生态成熟
-
 
 ## 与其他语言笔记的关系
 
@@ -89,7 +83,6 @@ Week 3-4: Exploit (Chapter 05-07)
 - C 代码编译后就是汇编
 - Java/ART 运行时也是 native 代码
 - Rust 的 unsafe 最终也是汇编
-
 
 ## 推荐工具
 
@@ -121,7 +114,6 @@ Week 3-4: Exploit (Chapter 05-07)
 adb shell
 adb push exploit /data/local/tmp/
 ```
-
 
 ## 快速开始（10 分钟）
 
@@ -189,7 +181,6 @@ aarch64-linux-gnu-gdb hello
 (gdb) info registers
 ```
 
-
 ## 章节目录
 
 ### 基础篇
@@ -210,19 +201,15 @@ aarch64-linux-gnu-gdb hello
 | [06 - 内存破坏](./06-memory-corruption.md) | 栈溢出、堆溢出、UAF | ⭐⭐⭐⭐ |
 | [07 - Exploit 开发](./07-exploit-development.md) | 完整 exploit、shellcode | ⭐⭐⭐⭐⭐ |
 
-
 ## 相关 CVE 速览
 
 本系列会分析以下真实漏洞：
 
 | CVE | 类型 | 章节 |
 |-----|------|------|
-| CVE-2019-2215 | Binder UAF | 05, 06, 07 |
-| CVE-2020-0041 | Binder 竞态 | 06 |
-| CVE-2021-0920 | socket UAF | 06 |
-| CVE-2022-20186 | GPU 驱动 | 06 |
-| CVE-2023-20938 | Binder UAF | 05, 06 |
-
+| [CVE-2021-0920](../../cves/entries/CVE-2021-0920.md) | socket UAF | 06 |
+| [CVE-2022-20186](../../cves/entries/CVE-2022-20186.md) | GPU 驱动 | 06 |
+| [CVE-2023-20938](../../cves/entries/CVE-2023-20938.md) | Binder UAF | 05, 06 |
 
 ## 深入阅读
 
@@ -237,7 +224,6 @@ aarch64-linux-gnu-gdb hello
 **在线资源：**
 - [Azeria Labs ARM Assembly](https://azeria-labs.com/writing-arm-assembly-part-1/)
 - [ARM64 Syscall Table](https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md#arm64-64_bit)
-
 
 ## 下一步
 

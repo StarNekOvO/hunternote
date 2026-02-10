@@ -185,73 +185,7 @@ Binder 采用引用计数管理对象生命周期。
 
 ## 3. 真实漏洞案例深度分析
 
-### 3.1 CVE-2019-2215 (Bad Binder) - UAF 提权
-
-**影响版本**：Android 7.0 - 9.0
-
-**漏洞原理**：
-
-在 Binder 驱动的线程退出处理流程中存在 UAF 漏洞。
-
-**触发路径**：
-```c
-// drivers/android/binder.c (漏洞版本)
-static int binder_thread_release(struct binder_proc *proc,
-                                  struct binder_thread *thread) {
-    // ...
-    while (!list_empty(&thread->todo)) {
-        w = list_first_entry(&thread->todo, struct binder_work, entry);
-        list_del_init(&w->entry);
-        if (w->type == BINDER_WORK_TRANSACTION_COMPLETE) {
-            kfree(w);  // 释放 work
-        }
-    }
-    // ...
-}
-```
-
-问题：如果在 `kfree(w)` 之后，另一个线程仍然持有 `w` 的指针并访问，就会触发 UAF。
-
-**利用思路**：
-1. 创建多个 Binder 线程
-2. 构造竞态条件：一个线程退出时释放 `binder_work`，另一个线程同时访问
-3. 通过堆喷射控制被释放内存的内容
-4. 伪造内核对象，劫持控制流
-5. 提权到 Root，禁用 SELinux
-
-**影响**：
-- 本地提权（LPE）
-- 完全突破沙箱
-- 被广泛用于 Android Root 工具
-
-**修复**：
-Google 在 `binder_thread_release` 中添加了同步机制，确保在释放 work 之前，所有引用都已失效。
-
-### 3.2 CVE-2020-0041 - Binder 整数溢出
-
-**影响版本**：Android 7.0 - 10.0
-
-**漏洞原理**：
-
-在 `binder_alloc_new_buf_locked()` 中，缓冲区大小计算存在整数溢出。
-
-```c
-// 简化的漏洞代码
-size_t size = offsets_size + extra_buffers_size;  // 可能溢出
-struct binder_buffer *buffer = kmalloc(size);     // 分配了过小的缓冲区
-```
-
-如果攻击者传入巨大的 `offsets_size`，导致 `size` 溢出为一个很小的值，后续拷贝数据时就会越界写入。
-
-**利用**：
-- 堆溢出 -> 劫持内核对象
-- 提权或内核代码执行
-
-**防御**：
-- 添加溢出检查：`check_add_overflow()`
-- 限制最大分配大小
-
-### 3.3 CVE-2021-0928 - 混淆代理（Confused Deputy）
+### 3.3 [CVE-2021-0928](../../../cves/entries/CVE-2021-0928.md) - 混淆代理（Confused Deputy）
 
 **场景**：`PackageManagerService` 代理安装流程
 
