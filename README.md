@@ -131,6 +131,7 @@ echo "Icons generated!"
 | 文件 | 需要更新的字段 |
 |------|---------------|
 | `docs/.vitepress/config.ts` | `themeConfig.logo`, `og:image`, `twitter:image`, JSON-LD `image` |
+| `docs/.vitepress/theme/components/BAHero.vue` | `avatar` |
 | `docs/index.md` | `hero.image.src` |
 
 ## 在线工具
