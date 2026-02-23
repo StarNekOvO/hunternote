@@ -83,7 +83,7 @@ const props = withDefaults(defineProps<{
   primaryAction?: { text: string; link: string }
   secondaryAction?: { text: string; link: string }
 }>(), {
-  welcomeText: '御坂晚的笨蛋笔记',
+  welcomeText: '牛奶喵的笨蛋笔记',
   name: 'starneko',
   alias: 'misakabit',
   motto: 'System Security Hunter. Python/Go/Rust.\nMSCS at CU Boulder. Freelancer.\nヨルシカ ◂Ⓘ▸ maimaiDX',

@@ -1,4 +1,4 @@
-# 御坂晚的笨蛋笔记
+# 牛奶喵的笨蛋笔记
 
 [![Deploy](https://img.shields.io/badge/deploy-GitHub%20Pages-blue)](https://starneko.com)
 [![VitePress](https://img.shields.io/badge/VitePress-1.6.4-brightgreen)](https://vitepress.dev)
