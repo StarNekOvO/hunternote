@@ -23,7 +23,7 @@
   ],
   "author": "starneko (牛奶猫)",
   "license": "CC-BY-NC-4.0",
-  "description": "御坂晚的笨蛋笔记 - starneko 的系统安全研究笔记与 Writeup",
+  "description": "牛奶喵的笨蛋笔记 - starneko 的系统安全研究笔记与 Writeup",
   "devDependencies": {
     "@types/animejs": "^3.1.13",
     "@types/node": "^25.2.2",
