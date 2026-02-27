@@ -233,6 +233,10 @@ function getSidebar() {
             { text: '06 AOSP Rust', link: '/notes/rust_essentials/06-android-rust' },
             { text: '07 Magisk Rust', link: '/notes/rust_essentials/07-magisk-rust' },
           ]
+        },
+        {
+          text: 'English Learning',
+          link: '/notes/english_learning/',
         }
       ]
     },
