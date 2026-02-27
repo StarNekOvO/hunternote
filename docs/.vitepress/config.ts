@@ -237,6 +237,10 @@ function getSidebar() {
         {
           text: 'English Learning',
           link: '/notes/english_learning/',
+          collapsed: true,
+          items: [
+            { text: '资源索引', link: '/notes/english_learning/resources' },
+          ]
         }
       ]
     },
