@@ -54,12 +54,12 @@
 
 ### `/english-lesson` — Agent 主导课堂
 
-Agent 选择安全/技术领域的英文材料，带你完成一次 10-15 分钟的互动练习。可指定方向：
+Agent 选择英文材料，带你完成一次 10-15 分钟的互动练习。支持指定技能类型和领域，可组合：
 
 ```
-/english-lesson writing
-/english-lesson vocabulary
-/english-lesson reading
+/english-lesson writing          # 按技能
+/english-lesson daily            # 按领域（日常/学术/技术/文化/职场）
+/english-lesson daily writing    # 组合：日常场景的写作练习
 ```
 
-不指定方向时 agent 自动选题。
+不指定时 agent 随机轮换领域和技能，保持多样性。
