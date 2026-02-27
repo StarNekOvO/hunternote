@@ -12,3 +12,7 @@
 - [Java Essentials](/notes/java_essentials/) - Framework / Smali / Xposed
 - [Rust Essentials](/notes/rust_essentials/) - 内存安全 / AOSP Rust
 - [ARM64 Assembly](/notes/asm_essentials/) - 逆向 / ROP / Exploit 开发
+
+## Other
+
+- [English Learning](/notes/english_learning/) - 实用高效的英语学习资源与方法论
