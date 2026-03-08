@@ -105,6 +105,12 @@ const friends = [
     ]
   },
   {
+    name: 'CAOMEI',
+    link: 'http://blog.awacat.cc',
+    avatar: 'http://blog.awacat.cc/favicon.png',
+    desc: '小草莓！'
+  },
+  {
     name: '小小柳之絮',
     link: 'https://www.gymxbl.com',
     avatar: '/img/gymxbl.png',
