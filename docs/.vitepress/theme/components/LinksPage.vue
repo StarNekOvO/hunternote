@@ -64,12 +64,12 @@ const friends = [
     ]
   },
   {
-    name: '洛忆雨Yiur',
-    link: 'https://www.yiurblog.top',
-    avatar: 'https://www.yiurblog.top/head.jpg',
+    name: '编汐译梦CacheTide',
+    link: 'https://www.cachetide.top',
+    avatar: 'https://www.cachetide.top/favicon.jpg',
     desc: '无人相伴的路，惝恍迷离的舞',
     socialLinks: [
-      { type: 'github', url: 'https://github.com/thisisluoyiyu', name: 'GitHub' },
+      { type: 'github', url: 'https://github.com/CacheTide', name: 'GitHub' },
       { type: 'bilibili', url: 'https://space.bilibili.com/159435471', name: 'Bilibili' },
       { type: 'telegram', url: 'https://t.me/Luo_yiyu', name: 'Telegram' }
     ]
