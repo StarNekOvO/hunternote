@@ -108,7 +108,12 @@ const friends = [
     name: 'CAOMEI',
     link: 'http://blog.awacat.cc',
     avatar: 'http://blog.awacat.cc/favicon.png',
-    desc: '小草莓！'
+    desc: '小草莓！',
+    socialLinks: [
+      { type: 'github', url: 'https://github.com/MinecraftYYDS', name: 'GitHub' },
+      { type: 'twitter', url: 'https://x.com/wxb_NB', name: 'Twitter' },
+      { type: 'telegram', url: 'https://t.me/awa_cat', name: 'Telegram' }
+    ]
   },
   {
     name: '小小柳之絮',
