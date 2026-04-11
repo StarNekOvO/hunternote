@@ -85,9 +85,9 @@ const friends = [
     ]
   },
   {
-    name: '清凤小栈'，
+    name: '清凤小栈',
     link: 'https://清凤.fun',
-    avatar: 'https://清凤.fun/images/logo/logo.webp'，
+    avatar: 'https://清凤.fun/images/logo/logo.webp',
     desc: '清凤和Kilock的温馨小屋',
     socialLinks: [
       { type: 'rss', url: 'https://清凤.fun/rss.xml', name: 'RSS' }
