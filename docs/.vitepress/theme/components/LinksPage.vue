@@ -85,9 +85,9 @@ const friends = [
     ]
   },
   {
-    name: '清凤小栈',
+    name: '清凤小栈'，
     link: 'https://清凤.fun',
-    avatar: 'https://清凤.fun/images/logo/logo.webp',
+    avatar: 'https://清凤.fun/images/logo/logo.webp'，
     desc: '清凤和Kilock的温馨小屋',
     socialLinks: [
       { type: 'rss', url: 'https://清凤.fun/rss.xml', name: 'RSS' }
@@ -108,7 +108,12 @@ const friends = [
     name: 'CAOMEI',
     link: 'http://blog.awacat.cc',
     avatar: 'http://blog.awacat.cc/favicon.png',
-    desc: '小草莓！'
+    desc: '小草莓！',
+    socialLinks: [
+      { type: 'github', url: 'https://github.com/MinecraftYYDS', name: 'GitHub' },
+      { type: 'twitter', url: 'https://x.com/wxb_NB', name: 'Twitter' },
+      { type: 'telegram', url: 'https://t.me/awa_cat', name: 'Telegram' }
+    ]
   },
   {
     name: '小小柳之絮',
