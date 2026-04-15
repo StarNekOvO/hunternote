@@ -5,7 +5,7 @@
 ## 1. Zygote 的启动与预加载
 
 Zygote 是由 `init` 进程根据 `init.rc` 脚本启动的。它的核心任务是：
-1. **启动 ART 虚拟机**: 初始化 Android 运行时环境。
+1. **初始化 ART 运行时**: Zygote 的底层实现为 `app_process64`/`app_process32`，在启动过程中完成 ART 虚拟机的初始化（而非启动独立的 VM 进程）。
 2. **预加载核心类与资源**: 加载数千个常用的 Java 类（如 `android.widget.*`）和系统资源。
 3. **监听 Socket**: 打开 `/dev/socket/zygote`，等待来自 `system_server` 的进程创建请求。
 
@@ -70,7 +70,7 @@ Linux Capabilities 将 root 权限细分为多个子项（如 `CAP_NET_RAW`, `CA
 
 - **场景**: 如果在 `setcon()` 切换到 `untrusted_app` 上下文之前，应用代码已经开始执行，那么短暂的时间窗口内进程可能以 `zygote` 上下文运行。
 - **风险**: 攻击者可以通过竞态条件在此窗口内访问本不该访问的系统资源。
-- **防御**: Zygote 在 Android 8.0 后将 SELinux 切换提前到 `fork` 之后的第一步，并在切换完成前阻止任何应用代码执行。
+- **防御**: 现代 Android 在 `specializeAppProcess()` 中确保 SELinux 上下文切换先于任何应用代码执行。（注：关于 Android 8.0 具体将此切换提前到 fork 之后第一步的说法，未在主流文献中得到确认，实际实现可能因版本而异。）
 
 ## 参考（AOSP）
 

@@ -31,7 +31,7 @@ Android 的蓝牙协议栈是近年远程RCE漏洞的重灾区。
 
 **Fluoride vs Gabeldorsche**:
 - **Fluoride**：Android传统蓝牙栈(至Android 12)
-- **Gabeldorsche**：重构版蓝牙栈(Android 13+)，引入gRPC与Rust组件
+- **Gabeldorsche**：Google 重构的蓝牙栈（逐步引入，Android 13 起更广泛采用），引入 Rust 组件以提升内存安全性
 
 **核心协议**:
 - **L2CAP**：逻辑链路控制与适配协议，提供分片重组
@@ -60,9 +60,9 @@ HCI命令 → 芯片固件 → LMP消息解析 → 固件崩溃/代码执行
 
 ### 2.4 近期持续漏洞
 
-**[CVE-2023-20938](../../../cves/entries/CVE-2023-20938.md) (L2CAP整数溢出)**:
-- 又一次L2CAP解析问题
-- 证明此类攻击面仍未完全收敛
+> 注：此前本节曾将 CVE-2023-20938 列为 L2CAP 整数溢出漏洞，但该 CVE 实际为 Binder 驱动 UAF 漏洞，与蓝牙无关，已移除。
+
+L2CAP 协议解析仍是蓝牙安全的高发攻击面，历史上多次出现类似漏洞，证明此类攻击面仍未完全收敛。
 
 ## 3. 攻击面深度剖析
 

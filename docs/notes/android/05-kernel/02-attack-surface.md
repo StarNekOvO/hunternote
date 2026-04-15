@@ -171,15 +171,14 @@ buffer = kmalloc(total_size, GFP_KERNEL);  // 分配过小
 - 注入代码到system进程
 - 持久化root权限
 
-**影响**：Android 4.0-7.1.2全版本
+**影响**：影响 Linux kernel 2.6.22 起的所有版本，涉及 Android 全版本直到安全补丁修复（7.1.1 已包含修复补丁）
 
 **修复**：内核补丁 + 应用沙箱加固
 
 **[CVE-2022-0847](../../../cves/entries/CVE-2022-0847.md) (Dirty Pipe)**：
-- Dirty COW的现代变种
+- Dirty Pipe (CVE-2022-0847) 与 Dirty COW (CVE-2016-5195) 虽然都允许写入只读文件，但根因完全不同：Dirty COW 是内存管理子系统的 copy-on-write 竞争条件，Dirty Pipe 是管道子系统中 `PIPE_BUF_FLAG_CAN_MERGE` 标志未正确初始化。
 - Linux 5.8-5.16内核
 - 影响新版Android设备
-- 可覆盖只读文件内容
 
 ### 2.5 特定SoC漏洞
 

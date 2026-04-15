@@ -195,7 +195,7 @@ Android 的 seccomp 策略通常位于：
 
 ### 3.2 应用进程策略 (Zygote fork)
 
-通过 Zygote fork 出的应用进程默认继承 seccomp filter：
+应用进程的 seccomp filter 由 Bionic (libc) 在初始化阶段安装（而非从 Zygote 进程通过 fork 继承）。Bionic 在 `__libc_init` 中调用 `__libc_init_seccomp()` 设置系统调用过滤规则：
 
 ```bash
 # 检查应用进程的 seccomp 状态

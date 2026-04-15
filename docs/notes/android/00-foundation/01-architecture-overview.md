@@ -163,7 +163,7 @@
 - **限制安装旧版应用**：为防止恶意软件利用旧版API漏洞，系统默认阻止安装面向过时 Android 版本（Android 5.1 及更早）的应用。
 - **更精细的数据共享控制**：当应用试图与第三方共享位置数据时，系统会弹出额外通知，让用户决定是否批准。
 - **凭据管理器 (Credential Manager)**：整合了多种认证方式，简化了登录流程，并为 Passkey 等现代认证标准提供原生支持。
-- **强制要求 64 位应用**：不再支持 32 位应用，全面转向 64 位，利用现代处理器的性能和安全优势。
+- **推进 64 位过渡**：Google Play 要求应用提供 64 位支持；部分设备仅搭载 64 位 Zygote，但 AOSP 层面仍保留 `app_process32` 以兼容遗留应用。
 - **AVF (Android Virtualization Framework)**：引入 pKVM，将高敏感任务（如密钥管理、DRM）从主系统隔离到受保护的虚拟机中（展开见 [AVF](/notes/android/05-kernel/04-avf)）。
 - **MTE (Memory Tagging Extension)**：硬件级内存安全检测，旨在从根源上终结 UAF 和 Buffer Overflow 等内存破坏漏洞（缓解/加固视角可对照 [Kernel Mitigations](/notes/android/05-kernel/03-mitigations)）。
 

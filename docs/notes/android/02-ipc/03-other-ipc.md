@@ -227,7 +227,7 @@ void* addr = mmap(NULL, size, PROT_WRITE, MAP_SHARED, received_fd, 0);
 // 接收方可以修改数据！
 ```
 
-**防御**：发送方在传递 FD 前调用 `ashmem_pin_region()`。
+**防御**：发送方在传递 FD 前调用 `ashmem_set_prot_region()` 限制 mmap 权限。
 
 ### 2.4 审计方法
 

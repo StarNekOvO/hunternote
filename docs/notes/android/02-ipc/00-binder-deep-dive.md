@@ -98,7 +98,7 @@ struct binder_transaction {
 **Binder 的数据流**：
 ```
 [Client 用户空间] -> [内核 Binder 缓冲区] == [Server mmap 区域] -> [Server 用户空间]
-                   拷贝 1 次              零拷贝（映射）
+                   一次拷贝              mmap 映射（避免了第二次拷贝）
 ```
 
 关键点：
@@ -185,24 +185,23 @@ Binder 采用引用计数管理对象生命周期。
 
 ## 3. 真实漏洞案例深度分析
 
-### 3.3 [CVE-2021-0928](../../../cves/entries/CVE-2021-0928.md) - 混淆代理（Confused Deputy）
+### 3.3 [CVE-2021-0928](../../../cves/entries/CVE-2021-0928.md) - Parcel 序列化不匹配（Launch Anywhere）
 
-**场景**：`PackageManagerService` 代理安装流程
+**CVE-2021-0928 (Parcel 序列化不匹配)**：`OutputConfiguration` 类的 `writeToParcel()` 与 `createFromParcel()` 实现不一致，导致 Bundle 在序列化/反序列化时产生差异。攻击者可利用此不匹配构造恶意 Bundle，实现 launch-anywhere 攻击（在任意上下文中启动 Activity）。
 
 **漏洞链路**：
-1. 低权限应用 A 请求 `PackageInstaller` 服务安装一个 APK
-2. `PackageInstaller` 作为 system_server 的一部分，拥有 `INSTALL_PACKAGES` 权限
-3. `PackageInstaller` 在内部调用 `PackageManagerService.installPackage()`，此时 **calling UID 是 system_server**
-4. `PackageManagerService` 没有正确追溯"原始请求方"，误以为是系统自己发起的安装
-5. 应用 A 成功安装了本不该安装的 APK（如系统签名应用）
+1. `OutputConfiguration` 的 `writeToParcel()` 写入的字段顺序/数量与 `createFromParcel()` 读取时不一致
+2. 当包含该对象的 Bundle 被 system_server 反序列化再重新序列化时，后续字段的偏移产生偏差
+3. 攻击者精心构造 Bundle，使得第一次解析时看起来无害，但经过 system_server 中转后第二次解析时产生不同的对象
+4. 利用此差异可以在 Bundle 中注入任意 Intent，实现 launch-anywhere（以 system 身份启动任意 Activity）
 
 **根本原因**：
-- `PackageInstaller` 在代理请求时调用了 `clearCallingIdentity()`
-- `PackageManagerService` 未对"间接调用"做额外身份验证
+- `OutputConfiguration` 的 Parcelable 实现中 `writeToParcel()` 与 `createFromParcel()` 不对称
+- Android 的 Bundle 延迟反序列化机制使得同一 Bundle 在不同解析阶段可产生不同结果
 
 **修复**：
-- 在 PMS 中添加 "originating UID" 参数，记录真实的请求发起方
-- 对系统级安装操作增加签名校验
+- 修正 `OutputConfiguration` 的 `writeToParcel()` 与 `createFromParcel()`，确保字段读写完全一致
+- 加强 Parcelable 实现的一致性检查
 
 ### 3.4 Parcel 反序列化漏洞模式
 

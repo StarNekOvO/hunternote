@@ -185,7 +185,9 @@ adb connect 127.0.0.1:6520
 |------|------|
 | `frameworks/base/` | Java Framework 核心实现 |
 | `frameworks/native/` | Native Framework (Binder, SurfaceFlinger) |
-| `system/core/` | 系统核心组件 (init, adbd, logd) |
+| `system/core/` | 最小可启动环境（init 等） |
+| `system/adb/` | Android Debug Bridge |
+| `system/logging/` | logd、logcat 等日志组件 |
 | `system/sepolicy/` | SELinux 策略定义 |
 | `bionic/` | Android C 库实现 |
 | `packages/modules/Virtualization/` | AVF / pKVM 相关实现 |

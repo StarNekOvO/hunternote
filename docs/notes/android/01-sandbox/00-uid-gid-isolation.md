@@ -11,7 +11,8 @@ Android 安全模型的核心建立在 Linux 的 **DAC (Discretionary Access Con
 ### 1.1 AID 的分配范围
 Android 在 `system/core/include/private/android_filesystem_config.h` 中定义了 AID 的分配规则：
 
-- **System UID (0 - 999)**: 预留给内核和核心系统进程（如 `root`, `system`, `radio`, `bluetooth`）。
+- **Root 与保留 UID (0 - 999)**: 包括 `root`(0) 及部分保留用途。
+- **核心系统服务 UID (1000 - 9999)**: 包括 `system`(1000)、`radio`(1001)、`bluetooth`(1002)、`shell`(2000) 等 AID 定义。
 - **App UID (10000 - 19999)**: 分配给普通安装的应用。
 - **Isolated UID (99000 - 99999)**: 用于隔离进程（如 Chrome 的渲染进程），这些进程权限极低。
 

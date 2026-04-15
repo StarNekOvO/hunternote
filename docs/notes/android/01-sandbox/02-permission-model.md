@@ -33,7 +33,7 @@ Android 将权限分为四个主要等级，决定了系统如何授予这些权
 
 从 Android 6.0 (API 23) 开始，危险权限不再在安装时授予，而是在应用运行时弹出对话框。
 
-- **底层实现**: 权限状态存储在 `settings.xml` 中。当用户点击“允许”时，`PermissionManagerService` 会更新该应用的权限位。
+- **底层实现**: 权限状态存储在 `/data/system/packages.xml`（Android 12 前）或 `/data/misc_de/<userId>/apexdata/com.android.permission/runtime-permissions.xml`（Android 12+）中。当用户点击”允许”时，`PermissionManagerService` 会更新该应用的权限位。
 - **撤销机制**: 用户可以随时在设置中撤销权限。系统会通过重启应用进程来确保权限变更立即生效（因为 GID 列表只能在进程创建时设置）。
 
 ## 4. 权限审计：`dumpsys package`
@@ -65,33 +65,30 @@ runtime permissions:
 sequenceDiagram
     participant App
     participant Framework
-    participant AMS
-    participant PMS
+    participant PermMgr as PackageManagerService / PermissionManagerService
     participant Kernel
     
     App->>Framework: 调用敏感 API
-    Framework->>Framework: checkPermission()
-    Framework->>AMS: 跨进程请求校验
-    AMS->>PMS: 查询权限状态
-    PMS->>PMS: 检查内存权限表
+    Framework->>Framework: Context.checkPermission()
+    Framework->>PermMgr: ActivityManager.checkPermission() → 最终由 PMS/PermissionManager 查询权限状态
+    PermMgr->>PermMgr: 检查内存权限表
     alt 权限已授予
-        PMS->>Kernel: 验证 GID (如 inet)
-        Kernel-->>PMS: 通过
-        PMS-->>AMS: PERMISSION_GRANTED
-        AMS-->>App: 继续执行
+        PermMgr->>Kernel: 验证 GID (如 inet)
+        Kernel-->>PermMgr: 通过
+        PermMgr-->>App: PERMISSION_GRANTED，继续执行
     else 权限未授予
-        PMS-->>AMS: PERMISSION_DENIED
-        AMS-->>App: SecurityException
+        PermMgr-->>App: PERMISSION_DENIED → SecurityException
     end
 ```
 
 关键步骤：
 
+权限校验通过 `PackageManagerService`（或 Android 11+ 拆分出的 `PermissionManagerService`）直接完成，调用方通过 `Context.checkPermission()` → `ActivityManager.checkPermission()` → 最终由 PMS/PermissionManager 查询权限状态。
+
 1. **API 调用**: 应用调用 Framework 接口。
-2. **ContextImpl**: 内部调用 `checkPermission()`。
-3. **ActivityManagerService (AMS)**: 跨进程请求 AMS 进行校验。
-4. **PermissionManagerService (PMS)**: AMS 最终查询 PMS。PMS 会检查内存中的权限表，判断该 UID 是否拥有目标权限。
-5. **结果返回**: 如果未授权，抛出 `SecurityException`。
+2. **ContextImpl**: 内部调用 `Context.checkPermission()`。
+3. **PackageManagerService (PMS) / PermissionManagerService**: 权限校验由 `PackageManagerService`（Android 11 之前）或拆分出的 `PermissionManagerService`（Android 11+）直接完成，检查内存中的权限表，判断该 UID 是否拥有目标权限。
+4. **结果返回**: 如果未授权，抛出 `SecurityException`。
 
 ## 7. Canyie (残页) 相关 CVE
 

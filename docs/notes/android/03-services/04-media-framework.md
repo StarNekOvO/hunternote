@@ -9,7 +9,7 @@
 - 进程边界多（系统不断拆分权限与沙箱）
 
 ## 1. 架构演进
-- **早期**: `mediaserver` 进程拥有巨大权限，一个解析漏洞即可 Root。
+- **早期**: `mediaserver` 进程拥有巨大权限，一个解析漏洞可获得 mediaserver 进程权限（UID media），配合内核提权漏洞可实现完整 Root。
 - **现代**: 拆分为多个低权限进程（`mediacodec`, `mediaextractor`），并受到严格的 seccomp 限制。
 
 可以把演进目标概括为：
@@ -124,7 +124,7 @@ u:r:mediadrmserver:s0
 **禁止的syscall**：网络、进程创建、内核调试接口
 
 检查方式：
-- `adb shell cat /proc/<pid>/status | grep Seccomp`（显示2=严格过滤）
+- `adb shell cat /proc/<pid>/status | grep Seccomp`（Seccomp 字段值含义：0=禁用，1=strict 模式（仅允许 read/write/exit/sigreturn），2=filter 模式（BPF 过滤器）。Android 媒体进程使用 seccomp-bpf（值为 2，即 filter 模式）。）
 - 尝试被禁止的syscall会触发 `SIGSYS`
 
 ### 4.4 动态更新与 Fuzzing

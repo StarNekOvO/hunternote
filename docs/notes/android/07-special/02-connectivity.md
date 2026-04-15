@@ -89,7 +89,7 @@ void handle_rtt_results(wifi_rtt_result *results, int num_results) {
 
 | CVE | 类型 | 简介 | 公告 |
 |-----|------|------|------|
-| [CVE-2025-48524](../../../cves/entries/CVE-2025-48524.md) | DoS/High | WiFi 服务异常输入处理导致拒绝服务，可远程触发 WiFi 功能不可用 | [ASB 2025-06](https://source.android.com/docs/security/bulletin/2025-06-01) |
+| [CVE-2025-48524](../../../cves/entries/CVE-2025-48524.md) | DoS/High | WiFi 服务异常输入处理导致拒绝服务，可远程触发 WiFi 功能不可用（注：此 CVE 编号及描述未经独立验证，与仓库内 CVE 条目元数据存在不一致，请读者自行核实） | [ASB 2025-06](https://source.android.com/docs/security/bulletin/2025-06-01) |
 
 ### 1.3 WiFi攻击面
 

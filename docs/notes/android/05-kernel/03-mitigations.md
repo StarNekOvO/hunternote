@@ -36,7 +36,7 @@ adb shell cat /proc/kallsyms | head -5
 
 | 技术 | 原理 | 代表性研究 |
 |------|------|------------|
-| Linear Map 非随机化 | Pixel 设备的线性映射和物理内存加载地址缺乏充分随机化 | Project Zero 2025 |
+| Linear Map 非随机化 | Pixel 设备的线性映射和物理内存加载地址缺乏充分随机化 | （此引用链接未经验证，可能不存在） |
 | Cache Timing Attack | 通过 prefetch 指令测量访问时间推断内核地址 | kaslr-bypass-via-prefetch |
 | EntryBleed ([CVE-2022-4543](../../../cves/entries/CVE-2022-4543.md)) | 利用 KPTI 的 syscall/interrupt 处理例外泄露地址 | USENIX Security 2023 |
 | Side-channel via /proc | 某些 /proc 接口泄露内核指针 | 各种信息泄露 CVE |
@@ -289,7 +289,7 @@ buf[32] = 'X';  // 越界访问不同 Tag 的内存 → 检测到！
 
 | 技术 | 原理 | 代表性研究 |
 |------|------|------------|
-| DSP/协处理器攻击 | 通过 Pixel GXP 等协处理器绕过 MTE 保护 | HITCON 2025, CODEBLUE 2025 |
+| DSP/协处理器攻击 | 通过 Pixel GXP 等协处理器绕过 MTE 保护 | （此引用链接未经验证，可能不存在） |
 | 逻辑漏洞 | 利用不涉及内存破坏的逻辑错误 | 各种条件竞争 CVE |
 | Tag 碰撞 | 4-bit 只有 16 种可能，1/16 概率猜中 | 理论攻击 |
 | 未启用 MTE 的路径 | 某些内存区域/模块可能未启用 MTE | 驱动审计 |
@@ -404,6 +404,8 @@ void escalate_privileges(void *arb_write) {
 
 ### 4.3 [CVE-2025-38352](../../../cves/entries/CVE-2025-38352.md) (Chronomaly) 利用分析
 
+（注：此 CVE 编号及关联信息未经独立验证，请读者自行核实）
+
 这是 2025 年公开的一个典型内核提权漏洞：
 
 ```c
@@ -430,8 +432,5 @@ Thread B: handle_posix_cpu_timers() 访问已释放的 task_struct
 - [ARM PAC Documentation](https://developer.arm.com/documentation/102433/latest/)
 
 ### 研究资源
-- [Project Zero: Defeating KASLR by Doing Nothing](https://projectzero.google/2025/11/defeating-kaslr-by-doing-nothing-at-all.html)
 - [GitHub Blog: Android Kernel Mitigations Obstacle Race](https://github.blog/security/vulnerability-research/the-android-kernel-mitigations-obstacle-race/)
-- [HITCON 2025: Cracking Pixel 8 MTE via DSP](https://hitcon.org/2025/slides/)
-- [Chronomaly Exploit PoC](https://github.com/farazsth98/chronomaly)
 - [Android Kernel CVE PoCs Collection](https://github.com/ScottyBauer/Android_Kernel_CVE_POCs)

@@ -524,4 +524,4 @@ adb shell cat /proc/kallsyms           # 内核符号 (需root)
 
 ### 学习资源
 - [Android Security Internals](https://nostarch.com/androidsecurity)
-- [Maddie Stone's Android Exploitation](https://github.com/maddiestone/AndroidAppRE)
+- [Maddie Stone's Android App Reverse Engineering](https://github.com/maddiestone/AndroidAppRE)

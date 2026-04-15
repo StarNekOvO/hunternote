@@ -259,7 +259,7 @@ grep -rE "#define.*_IO[WR]*\(" include/uapi/ | head -50
 ioctl 命令号结构：
 
 ```c
-// ioctl 命令号由四部分组成：type(8) | nr(8) | dir(2) | size(14)
+// ioctl 命令号由四部分组成（从 MSB 到 LSB）：dir(2) | size(14) | type(8) | nr(8)
 // _IO(type, nr)       - 无数据传输
 // _IOR(type, nr, dt)  - 从内核读取
 // _IOW(type, nr, dt)  - 写入内核

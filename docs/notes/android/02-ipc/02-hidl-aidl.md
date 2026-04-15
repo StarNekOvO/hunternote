@@ -44,7 +44,7 @@ HIDL 是专门为 HAL 设计的接口语言。
 
 ## 4. AIDL 的统一
 
-在 Android 11 之后，AIDL 开始取代 HIDL 成为 HAL 的首选接口语言（称为 Stable AIDL）。
+在 Android 10 之后，AIDL 开始取代 HIDL 成为 HAL 的首选接口语言（称为 Stable AIDL）。
 
 - **优势**: 统一了应用层和系统层的开发体验。
 - **VNDK**: 供应商原生开发套件，确保了库的版本兼容性。

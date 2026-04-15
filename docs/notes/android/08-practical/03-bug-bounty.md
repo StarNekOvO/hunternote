@@ -26,6 +26,8 @@
 | **支付方式** | 银行转账/捐赠 | 银行转账 | 银行转账 | 银行转账/礼品 |
 | **提交入口** | bughunters.google.com | security.samsungmobile.com | isrc.huawei.com | sec.xiaomi.com |
 
+（注：响应时间为社区经验估算，非官方承诺，实际可能因具体情况而异）
+
 补充：不同项目对"范围、影响、复现质量"的要求差异很大，提交前需先确认：
 
 - 资产/版本是否在范围内
@@ -35,6 +37,8 @@
 ## 2. 奖励金额与定级标准
 
 ### 2.1 ASRP 奖励参考 (截至 2024)
+
+（注：以下奖金数额仅供参考，Google VRP 奖励标准频繁调整，请以 [bughunters.google.com](https://bughunters.google.com) 官方最新公告为准）
 
 | 漏洞类型 | 严重程度 | 基础奖励 | 带高质量报告 | 带 Exploit |
 |---------|---------|---------|-------------|-----------|
@@ -515,4 +519,4 @@ Day 90+: 公开披露 (如果允许)
 - https://android.googlesource.com/platform/frameworks/base/+log — AOSP 提交历史
 
 **学习资源**
-- https://github.blog/2020-05-06-how-to-write-good-bug-reports/ — 如何写好漏洞报告
+- https://bughunters.google.com/about/rules — Google Bug Hunters 规则与报告指南
