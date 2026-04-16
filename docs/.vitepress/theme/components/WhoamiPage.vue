@@ -108,7 +108,7 @@ Freelancer`
       'home': {
         type: 'dir',
         children: {
-          'starneko': {
+          'milksu': {
             type: 'dir',
             children: {
               'TODO.2026': {
@@ -148,7 +148,7 @@ Mode:     global-perfectionist`
             children: {
               'status': {
                 type: 'file',
-                content: `Name:     starneko
+                content: `Name:     milksu
 State:    R (running)
 Pid:      1337
 Uid:      1000
@@ -172,7 +172,7 @@ const currentTyping = ref(true)
 const isTyping = ref(false)
 const isInteractive = ref(false)
 const userInput = ref('')
-const cwd = ref('/home/starneko')
+const cwd = ref('/home/milksu')
 const isExited = ref(false)
 const commandHistory: string[] = []
 let historyIndex = -1
@@ -182,7 +182,7 @@ const MAX_BLOCKS = 200
 
 // Intro commands
 const introCommands: OutputBlock[] = [
-  { command: 'whoami', output: 'starneko <span class="dim">// aka misakabit</span>' },
+  { command: 'whoami', output: 'milksu <span class="dim">// aka starneko</span>' },
   { command: 'cat /etc/profile', output: '' },
   { command: 'cat .status', output: '' },
   { command: 'ls interests/', output: '' },
@@ -246,11 +246,11 @@ const splitArgs = (input: string): string[] => {
 }
 
 const getPrompt = () => {
-  const home = '/home/starneko'
+  const home = '/home/milksu'
   let display = cwd.value
   if (cwd.value === home) display = '~'
   else if (cwd.value.startsWith(home + '/')) display = '~' + cwd.value.slice(home.length)
-  return `starneko:${display}$ `
+  return `milksu:${display}$ `
 }
 
 const resolvePath = (path: string): string => {
@@ -260,7 +260,7 @@ const resolvePath = (path: string): string => {
   if (path.startsWith('/')) {
     resolved = path
   } else if (path.startsWith('~')) {
-    resolved = '/home/starneko' + path.slice(1)
+    resolved = '/home/milksu' + path.slice(1)
   } else {
     resolved = cwd.value + '/' + path
   }
@@ -342,13 +342,13 @@ const executeCommand = async (input: string): Promise<string> => {
 <span class="dim">Hint: There might be something interesting in /</span>`
 
     case 'whoami':
-      return 'starneko'
+      return 'milksu'
 
     case 'pwd':
       return cwd.value
 
     case 'cd': {
-      const target = args[0] || '/home/starneko'
+      const target = args[0] || '/home/milksu'
       const node = getNode(target)
       if (!node) return `cd: ${escapeHtml(target)}: No such file or directory`
       if (node.type !== 'dir') return `cd: ${escapeHtml(target)}: Not a directory`
@@ -382,7 +382,7 @@ const executeCommand = async (input: string): Promise<string> => {
           const type = child.type === 'dir' ? 'drwxr-x---' : '-rw-r--r--'
           const color = child.type === 'dir' ? 'dir' : ''
           const safeName = escapeHtml(name)
-          return `${type}  starneko  ${color ? `<span class="${color}">${safeName}</span>` : safeName}${child.type === 'dir' ? '/' : ''}`
+          return `${type}  milksu  ${color ? `<span class="${color}">${safeName}</span>` : safeName}${child.type === 'dir' ? '/' : ''}`
         }).join('\n')
       }
       

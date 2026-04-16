@@ -84,8 +84,8 @@ const props = withDefaults(defineProps<{
   secondaryAction?: { text: string; link: string }
 }>(), {
   welcomeText: '牛奶喵的笨蛋笔记',
-  name: 'starneko',
-  alias: 'misakabit',
+  name: 'milksu',
+  alias: 'starneko',
   motto: 'System Security Hunter. Python/Go/Rust.\nMSCS at CU Boulder. Freelancer.\nヨルシカ ◂Ⓘ▸ maimaiDX',
   avatar: '/img/m2.PNG',
   bgLight: '/img/banner-light.webp',

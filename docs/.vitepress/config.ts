@@ -336,9 +336,9 @@ export default defineConfig({
     ['meta', { name: 'apple-mobile-web-app-title', content: '笨蛋笔记' }],
 
     // SEO meta tags
-    ['meta', { name: 'keywords', content: 'starneko, misakabit, 牛奶猫, 御坂晚, StarNekOvO, security, CTF, pwn, writeup, Android security, kernel exploitation, 系统安全, 安全研究' }],
-    ['meta', { name: 'author', content: 'starneko, misakabit, 牛奶猫, 御坂晚' }],
-    ['meta', { name: 'description', content: '牛奶喵的笨蛋笔记 - starneko / misakabit 的系统安全研究笔记与 Writeup。包含 CTF、PWN、Android 安全、内核利用等内容。' }],
+    ['meta', { name: 'keywords', content: 'milksu, starneko, 牛奶猫, 御坂晚, StarNekOvO, security, CTF, pwn, writeup, Android security, kernel exploitation, 系统安全, 安全研究' }],
+    ['meta', { name: 'author', content: 'milksu, starneko, 牛奶猫, 御坂晚' }],
+    ['meta', { name: 'description', content: '牛奶喵的笨蛋笔记 - milksu / starneko 的系统安全研究笔记与 Writeup。包含 CTF、PWN、Android 安全、内核利用等内容。' }],
 
     // Other meta tags
     ['link', { rel: 'stylesheet', href: '/custom.css' }],
@@ -346,27 +346,27 @@ export default defineConfig({
     ['link', { rel: 'canonical', href: 'https://milksu.org' }],
 
     // Open Graph meta tags
-    ['meta', { property: 'og:title', content: '牛奶喵的笨蛋笔记 - starneko / misakabit' }],
+    ['meta', { property: 'og:title', content: '牛奶喵的笨蛋笔记 - milksu / starneko' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:url', content: 'https://milksu.org' }],
     ['meta', { property: 'og:image', content: 'https://milksu.org/img/m2.PNG' }],
     ['meta', { property: 'og:site_name', content: '牛奶喵的笨蛋笔记' }],
-    ['meta', { property: 'og:description', content: 'starneko / misakabit (牛奶猫 / 御坂晚) 的系统安全研究笔记 - System Security Hunter. Python/Go/Rust. MSCS at CU Boulder.' }],
+    ['meta', { property: 'og:description', content: 'milksu / starneko (牛奶猫 / 御坂晚) 的系统安全研究笔记 - System Security Hunter. Python/Go/Rust. MSCS at CU Boulder.' }],
 
     // Twitter Card meta tags
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:site', content: '@StarNekOvO' }],
     ['meta', { name: 'twitter:creator', content: '@StarNekOvO' }],
-    ['meta', { name: 'twitter:title', content: '牛奶喵的笨蛋笔记 - starneko / misakabit' }],
-    ['meta', { name: 'twitter:description', content: 'starneko / misakabit (牛奶猫 / 御坂晚) 的系统安全研究笔记 - System Security Hunter' }],
+    ['meta', { name: 'twitter:title', content: '牛奶喵的笨蛋笔记 - milksu / starneko' }],
+    ['meta', { name: 'twitter:description', content: 'milksu / starneko (牛奶猫 / 御坂晚) 的系统安全研究笔记 - System Security Hunter' }],
     ['meta', { name: 'twitter:image', content: 'https://milksu.org/img/m2.PNG' }],
 
     // JSON-LD structured data for better SEO
     ['script', { type: 'application/ld+json' }, JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'Person',
-      name: 'starneko',
-      alternateName: ['misakabit', '牛奶猫', '御坂晚', 'StarNekOvO'],
+      name: 'milksu',
+      alternateName: ['starneko', '牛奶猫', '御坂晚', 'StarNekOvO'],
       url: 'https://milksu.org',
       image: 'https://milksu.org/img/m2.PNG',
       sameAs: [
@@ -382,13 +382,13 @@ export default defineConfig({
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       name: '牛奶喵的笨蛋笔记',
-      alternateName: ['StarNekOvO Blog', 'starneko notes', 'misakabit notes'],
+      alternateName: ['StarNekOvO Blog', 'milksu notes', 'starneko notes'],
       url: 'https://milksu.org',
-      description: 'starneko / misakabit (牛奶猫 / 御坂晚) 的系统安全研究笔记与 Writeup',
+      description: 'milksu / starneko (牛奶猫 / 御坂晚) 的系统安全研究笔记与 Writeup',
       author: {
         '@type': 'Person',
-        name: 'starneko',
-        alternateName: ['misakabit', '牛奶猫', '御坂晚', 'StarNekOvO']
+        name: 'milksu',
+        alternateName: ['starneko', '牛奶猫', '御坂晚', 'StarNekOvO']
       },
       inLanguage: 'zh-CN'
     })],
@@ -428,14 +428,14 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/StarNekOvO' },
-      { icon: 'twitter', link: 'https://x.com/StarNekOvO' },
+      { icon: 'github', link: 'https://github.com/MilkSU-Official' },
+      { icon: 'twitter', link: 'https://x.com/MilkSU_Official' },
       { icon: 'telegram', link: 'https://t.me/StarNekOvO' },
     ],
 
     footer: {
       message: '',
-      copyright: '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;vertical-align:middle;"><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height:14px" alt="CC"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height:14px" alt="BY"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="height:14px" alt="NC"></a> · © starneko (misakabit)'
+      copyright: '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;vertical-align:middle;"><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height:14px" alt="CC"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height:14px" alt="BY"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="height:14px" alt="NC"></a> · © milksu (starneko)'
     },
 
     search: {
