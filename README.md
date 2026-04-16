@@ -1,12 +1,12 @@
 # 牛奶喵的笨蛋笔记
 
-[![Deploy](https://img.shields.io/badge/deploy-GitHub%20Pages-blue)](https://starneko.com)
+[![Deploy](https://img.shields.io/badge/deploy-GitHub%20Pages-blue)](https://milksu.org)
 [![VitePress](https://img.shields.io/badge/VitePress-1.6.4-brightgreen)](https://vitepress.dev)
 [![Rust](https://img.shields.io/badge/Rust-WASM-orange)](https://www.rust-lang.org/)
 
 基于 VitePress 构建的个人系统安全研究博客，专注于 CTF、PWN、漏洞利用等领域的学习笔记与 Writeup
 
-**在线地址**：[https://starneko.com](https://starneko.com)
+**在线地址**：[https://milksu.org](https://milksu.org)
 
 ## 项目结构
 

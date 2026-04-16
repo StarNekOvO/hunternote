@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Homepage -->
   <url>
-    <loc>https://hunternote.cn/</loc>
+    <loc>https://milksu.org/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -10,91 +10,91 @@
 
   <!-- CTF Section -->
   <url>
-    <loc>https://hunternote.cn/ctfs/</loc>
+    <loc>https://milksu.org/ctfs/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/ctfs/buuctf/</loc>
+    <loc>https://milksu.org/ctfs/buuctf/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/ctfs/ctfshow/</loc>
+    <loc>https://milksu.org/ctfs/ctfshow/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/ctfs/ctfshow/pwnvip360/</loc>
+    <loc>https://milksu.org/ctfs/ctfshow/pwnvip360/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/ctfs/ctfshow/pwnvip360/01-fundamentals</loc>
+    <loc>https://milksu.org/ctfs/ctfshow/pwnvip360/01-fundamentals</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/ctfs/ctfshow/pwnvip360/02-stack-overflow</loc>
+    <loc>https://milksu.org/ctfs/ctfshow/pwnvip360/02-stack-overflow</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/ctfs/ctfshow/pwnvip360/03-format-string</loc>
+    <loc>https://milksu.org/ctfs/ctfshow/pwnvip360/03-format-string</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/ctfs/ctfshow/pwnvip360/04-integer-security</loc>
+    <loc>https://milksu.org/ctfs/ctfshow/pwnvip360/04-integer-security</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/ctfs/ctfshow/pwnvip360/05-bypass-protection</loc>
+    <loc>https://milksu.org/ctfs/ctfshow/pwnvip360/05-bypass-protection</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/ctfs/ctfshow/pwnvip360/06-heap-exploitation</loc>
+    <loc>https://milksu.org/ctfs/ctfshow/pwnvip360/06-heap-exploitation</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/ctfs/ctfshow/pwnvip360/07-exploitation-tricks</loc>
+    <loc>https://milksu.org/ctfs/ctfshow/pwnvip360/07-exploitation-tricks</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/ctfs/ctfshow/pwnvip360/08-other-vulnerabilities</loc>
+    <loc>https://milksu.org/ctfs/ctfshow/pwnvip360/08-other-vulnerabilities</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/ctfs/ctfshow/pwnvip360/09-cross-architecture</loc>
+    <loc>https://milksu.org/ctfs/ctfshow/pwnvip360/09-cross-architecture</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/ctfs/ctfshow/pwnvip360/10-kernel-pwn</loc>
+    <loc>https://milksu.org/ctfs/ctfshow/pwnvip360/10-kernel-pwn</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/ctfs/nssctf/</loc>
+    <loc>https://milksu.org/ctfs/nssctf/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -102,373 +102,373 @@
 
   <!-- CVE Section -->
   <url>
-    <loc>https://hunternote.cn/cves/</loc>
+    <loc>https://milksu.org/cves/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/indexes/by-component</loc>
+    <loc>https://milksu.org/cves/indexes/by-component</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/indexes/by-cwe</loc>
+    <loc>https://milksu.org/cves/indexes/by-cwe</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/indexes/by-layer</loc>
+    <loc>https://milksu.org/cves/indexes/by-layer</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/indexes/by-version</loc>
+    <loc>https://milksu.org/cves/indexes/by-version</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2021-0478</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2021-0478</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2021-0920</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2021-0920</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2021-0928</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2021-0928</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2021-1048</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2021-1048</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2021-1905</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2021-1905</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2022-0847</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2022-0847</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2022-20186</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2022-20186</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2022-4543</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2022-4543</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2023-20938</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2023-20938</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2023-21036</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2023-21036</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2023-21255</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2023-21255</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2023-4211</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2023-4211</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2023-4863</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2023-4863</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-0025</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-0025</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-0044</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-0044</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-20832</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-20832</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-20865</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-20865</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-29745</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-29745</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-29779</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-29779</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-31320</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-31320</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-32896</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-32896</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-36971</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-36971</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-40650</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-40650</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-40652</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-40652</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-40660</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-40660</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-43080</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-43080</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-43081</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-43081</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-43090</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-43090</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-43093</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-43093</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-45445</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-45445</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-49721</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-49721</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-49733</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-49733</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-49744</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-49744</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-50302</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-50302</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-53104</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-53104</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-53150</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-53150</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2024-53197</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2024-53197</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-0076</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-0076</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-0078</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-0078</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-0091</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-0091</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-20655</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-20655</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-22413</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-22413</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-22432</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-22432</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-26443</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-26443</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-26464</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-26464</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-27363</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-27363</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-32323</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-32323</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-38352</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-38352</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-48524</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-48524</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-48530</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-48530</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-48535</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-48535</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-48543</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-48543</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-48545</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-48545</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-48554</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-48554</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-48593</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-48593</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-48633</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-48633</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/cves/entries/CVE-2025-68260</loc>
+    <loc>https://milksu.org/cves/entries/CVE-2025-68260</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -476,73 +476,73 @@
 
   <!-- Labs Section -->
   <url>
-    <loc>https://hunternote.cn/labs/</loc>
+    <loc>https://milksu.org/labs/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/labs/htb-academy/</loc>
+    <loc>https://milksu.org/labs/htb-academy/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/labs/htb-lab/</loc>
+    <loc>https://milksu.org/labs/htb-lab/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/labs/pwn-college/</loc>
+    <loc>https://milksu.org/labs/pwn-college/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/labs/pwn-college/computing-101/</loc>
+    <loc>https://milksu.org/labs/pwn-college/computing-101/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/labs/pwn-college/linux-luminarium/</loc>
+    <loc>https://milksu.org/labs/pwn-college/linux-luminarium/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/labs/pwn-college/lv1/</loc>
+    <loc>https://milksu.org/labs/pwn-college/lv1/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/labs/pwn-college/lv2/</loc>
+    <loc>https://milksu.org/labs/pwn-college/lv2/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/labs/pwn-college/lv3/</loc>
+    <loc>https://milksu.org/labs/pwn-college/lv3/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/labs/pwn-college/lv4/</loc>
+    <loc>https://milksu.org/labs/pwn-college/lv4/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/labs/pwn-college/lv5/</loc>
+    <loc>https://milksu.org/labs/pwn-college/lv5/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/labs/pwn-college/playing-with-programs/</loc>
+    <loc>https://milksu.org/labs/pwn-college/playing-with-programs/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -550,535 +550,535 @@
 
   <!-- Notes Section -->
   <url>
-    <loc>https://hunternote.cn/notes/</loc>
+    <loc>https://milksu.org/notes/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/</loc>
+    <loc>https://milksu.org/notes/android/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/tips</loc>
+    <loc>https://milksu.org/notes/android/tips</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/00-foundation/00-environment-setup</loc>
+    <loc>https://milksu.org/notes/android/00-foundation/00-environment-setup</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/00-foundation/01-architecture-overview</loc>
+    <loc>https://milksu.org/notes/android/00-foundation/01-architecture-overview</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/00-foundation/02-build-system</loc>
+    <loc>https://milksu.org/notes/android/00-foundation/02-build-system</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/01-sandbox/</loc>
+    <loc>https://milksu.org/notes/android/01-sandbox/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/01-sandbox/00-uid-gid-isolation</loc>
+    <loc>https://milksu.org/notes/android/01-sandbox/00-uid-gid-isolation</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/01-sandbox/01-zygote-process</loc>
+    <loc>https://milksu.org/notes/android/01-sandbox/01-zygote-process</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/01-sandbox/02-permission-model</loc>
+    <loc>https://milksu.org/notes/android/01-sandbox/02-permission-model</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/01-sandbox/03-storage-isolation</loc>
+    <loc>https://milksu.org/notes/android/01-sandbox/03-storage-isolation</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/01-sandbox/04-app-components</loc>
+    <loc>https://milksu.org/notes/android/01-sandbox/04-app-components</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/02-ipc/</loc>
+    <loc>https://milksu.org/notes/android/02-ipc/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/02-ipc/00-binder-deep-dive</loc>
+    <loc>https://milksu.org/notes/android/02-ipc/00-binder-deep-dive</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/02-ipc/01-intent-system</loc>
+    <loc>https://milksu.org/notes/android/02-ipc/01-intent-system</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/02-ipc/02-hidl-aidl</loc>
+    <loc>https://milksu.org/notes/android/02-ipc/02-hidl-aidl</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/02-ipc/03-other-ipc</loc>
+    <loc>https://milksu.org/notes/android/02-ipc/03-other-ipc</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/03-services/</loc>
+    <loc>https://milksu.org/notes/android/03-services/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/03-services/00-system-server</loc>
+    <loc>https://milksu.org/notes/android/03-services/00-system-server</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/03-services/01-ams</loc>
+    <loc>https://milksu.org/notes/android/03-services/01-ams</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/03-services/02-pms</loc>
+    <loc>https://milksu.org/notes/android/03-services/02-pms</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/03-services/03-wms</loc>
+    <loc>https://milksu.org/notes/android/03-services/03-wms</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/03-services/04-media-framework</loc>
+    <loc>https://milksu.org/notes/android/03-services/04-media-framework</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/04-native/</loc>
+    <loc>https://milksu.org/notes/android/04-native/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/04-native/00-bionic-libc</loc>
+    <loc>https://milksu.org/notes/android/04-native/00-bionic-libc</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/04-native/01-linker</loc>
+    <loc>https://milksu.org/notes/android/04-native/01-linker</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/04-native/02-seccomp</loc>
+    <loc>https://milksu.org/notes/android/04-native/02-seccomp</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/04-native/03-art-runtime</loc>
+    <loc>https://milksu.org/notes/android/04-native/03-art-runtime</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/04-native/04-native-daemons</loc>
+    <loc>https://milksu.org/notes/android/04-native/04-native-daemons</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/05-kernel/</loc>
+    <loc>https://milksu.org/notes/android/05-kernel/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/05-kernel/00-kernel-overview</loc>
+    <loc>https://milksu.org/notes/android/05-kernel/00-kernel-overview</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/05-kernel/01-selinux</loc>
+    <loc>https://milksu.org/notes/android/05-kernel/01-selinux</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/05-kernel/02-attack-surface</loc>
+    <loc>https://milksu.org/notes/android/05-kernel/02-attack-surface</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/05-kernel/03-mitigations</loc>
+    <loc>https://milksu.org/notes/android/05-kernel/03-mitigations</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/05-kernel/04-avf</loc>
+    <loc>https://milksu.org/notes/android/05-kernel/04-avf</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/05-kernel/05-exploitation</loc>
+    <loc>https://milksu.org/notes/android/05-kernel/05-exploitation</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/06-hardware/</loc>
+    <loc>https://milksu.org/notes/android/06-hardware/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/06-hardware/00-trustzone</loc>
+    <loc>https://milksu.org/notes/android/06-hardware/00-trustzone</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/06-hardware/01-arm-cca</loc>
+    <loc>https://milksu.org/notes/android/06-hardware/01-arm-cca</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/06-hardware/02-avb</loc>
+    <loc>https://milksu.org/notes/android/06-hardware/02-avb</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/06-hardware/03-keystore</loc>
+    <loc>https://milksu.org/notes/android/06-hardware/03-keystore</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/07-special/</loc>
+    <loc>https://milksu.org/notes/android/07-special/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/07-special/00-webview</loc>
+    <loc>https://milksu.org/notes/android/07-special/00-webview</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/07-special/01-bluetooth</loc>
+    <loc>https://milksu.org/notes/android/07-special/01-bluetooth</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/07-special/02-connectivity</loc>
+    <loc>https://milksu.org/notes/android/07-special/02-connectivity</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/08-practical/</loc>
+    <loc>https://milksu.org/notes/android/08-practical/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/08-practical/00-methodology</loc>
+    <loc>https://milksu.org/notes/android/08-practical/00-methodology</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/08-practical/01-debugging</loc>
+    <loc>https://milksu.org/notes/android/08-practical/01-debugging</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/08-practical/02-exploit-dev</loc>
+    <loc>https://milksu.org/notes/android/08-practical/02-exploit-dev</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/08-practical/03-bug-bounty</loc>
+    <loc>https://milksu.org/notes/android/08-practical/03-bug-bounty</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/android/08-practical/04-cve-studies</loc>
+    <loc>https://milksu.org/notes/android/08-practical/04-cve-studies</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/asm_essentials/</loc>
+    <loc>https://milksu.org/notes/asm_essentials/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/asm_essentials/00-arm64-basics</loc>
+    <loc>https://milksu.org/notes/asm_essentials/00-arm64-basics</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/asm_essentials/01-memory-addressing</loc>
+    <loc>https://milksu.org/notes/asm_essentials/01-memory-addressing</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/asm_essentials/02-calling-conventions</loc>
+    <loc>https://milksu.org/notes/asm_essentials/02-calling-conventions</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/asm_essentials/03-inline-asm</loc>
+    <loc>https://milksu.org/notes/asm_essentials/03-inline-asm</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/asm_essentials/04-debugging-asm</loc>
+    <loc>https://milksu.org/notes/asm_essentials/04-debugging-asm</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/asm_essentials/05-control-flow-hijack</loc>
+    <loc>https://milksu.org/notes/asm_essentials/05-control-flow-hijack</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/asm_essentials/06-memory-corruption</loc>
+    <loc>https://milksu.org/notes/asm_essentials/06-memory-corruption</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/asm_essentials/07-exploit-development</loc>
+    <loc>https://milksu.org/notes/asm_essentials/07-exploit-development</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/c_essentials/</loc>
+    <loc>https://milksu.org/notes/c_essentials/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/c_essentials/00-basics</loc>
+    <loc>https://milksu.org/notes/c_essentials/00-basics</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/c_essentials/01-pointers</loc>
+    <loc>https://milksu.org/notes/c_essentials/01-pointers</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/c_essentials/02-memory</loc>
+    <loc>https://milksu.org/notes/c_essentials/02-memory</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/c_essentials/03-structures</loc>
+    <loc>https://milksu.org/notes/c_essentials/03-structures</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/c_essentials/04-preprocessor</loc>
+    <loc>https://milksu.org/notes/c_essentials/04-preprocessor</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/c_essentials/05-kernel-style</loc>
+    <loc>https://milksu.org/notes/c_essentials/05-kernel-style</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/c_essentials/06-driver-dev</loc>
+    <loc>https://milksu.org/notes/c_essentials/06-driver-dev</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/c_essentials/07-ksu-magisk-native</loc>
+    <loc>https://milksu.org/notes/c_essentials/07-ksu-magisk-native</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/english_learning/</loc>
+    <loc>https://milksu.org/notes/english_learning/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/english_learning/resources</loc>
+    <loc>https://milksu.org/notes/english_learning/resources</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/java_essentials/</loc>
+    <loc>https://milksu.org/notes/java_essentials/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/java_essentials/00-basics</loc>
+    <loc>https://milksu.org/notes/java_essentials/00-basics</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/java_essentials/01-oop</loc>
+    <loc>https://milksu.org/notes/java_essentials/01-oop</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/java_essentials/02-collections</loc>
+    <loc>https://milksu.org/notes/java_essentials/02-collections</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/java_essentials/03-concurrency</loc>
+    <loc>https://milksu.org/notes/java_essentials/03-concurrency</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/java_essentials/04-jvm-art</loc>
+    <loc>https://milksu.org/notes/java_essentials/04-jvm-art</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/java_essentials/05-smali</loc>
+    <loc>https://milksu.org/notes/java_essentials/05-smali</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/java_essentials/06-android-java</loc>
+    <loc>https://milksu.org/notes/java_essentials/06-android-java</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/java_essentials/07-xposed-lsposed</loc>
+    <loc>https://milksu.org/notes/java_essentials/07-xposed-lsposed</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/rust_essentials/</loc>
+    <loc>https://milksu.org/notes/rust_essentials/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/rust_essentials/00-basics</loc>
+    <loc>https://milksu.org/notes/rust_essentials/00-basics</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/rust_essentials/01-ownership</loc>
+    <loc>https://milksu.org/notes/rust_essentials/01-ownership</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/rust_essentials/02-types</loc>
+    <loc>https://milksu.org/notes/rust_essentials/02-types</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/rust_essentials/03-error</loc>
+    <loc>https://milksu.org/notes/rust_essentials/03-error</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/rust_essentials/04-concurrency</loc>
+    <loc>https://milksu.org/notes/rust_essentials/04-concurrency</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/rust_essentials/05-unsafe</loc>
+    <loc>https://milksu.org/notes/rust_essentials/05-unsafe</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/rust_essentials/06-android-rust</loc>
+    <loc>https://milksu.org/notes/rust_essentials/06-android-rust</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/notes/rust_essentials/07-magisk-rust</loc>
+    <loc>https://milksu.org/notes/rust_essentials/07-magisk-rust</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -1086,7 +1086,7 @@
 
   <!-- Papers Section -->
   <url>
-    <loc>https://hunternote.cn/papers/</loc>
+    <loc>https://milksu.org/papers/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -1094,49 +1094,49 @@
 
   <!-- Tools Section -->
   <url>
-    <loc>https://hunternote.cn/tools/base-converter</loc>
+    <loc>https://milksu.org/tools/base-converter</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/tools/encoder</loc>
+    <loc>https://milksu.org/tools/encoder</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/tools/hash</loc>
+    <loc>https://milksu.org/tools/hash</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/tools/image-tools</loc>
+    <loc>https://milksu.org/tools/image-tools</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/tools/ip-calculator</loc>
+    <loc>https://milksu.org/tools/ip-calculator</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/tools/pwn-helper</loc>
+    <loc>https://milksu.org/tools/pwn-helper</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/tools/regex</loc>
+    <loc>https://milksu.org/tools/regex</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/tools/timestamp</loc>
+    <loc>https://milksu.org/tools/timestamp</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1144,13 +1144,13 @@
 
   <!-- Other Pages -->
   <url>
-    <loc>https://hunternote.cn/links/</loc>
+    <loc>https://milksu.org/links/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hunternote.cn/whoami/</loc>
+    <loc>https://milksu.org/whoami/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

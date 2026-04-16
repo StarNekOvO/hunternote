@@ -420,7 +420,7 @@ To decrypt this file, you need to:
 2. Analyze it to get the key
 3. Run: ./flag &lt;key&gt;
 
-Tools: ${ctfConfig?.tools || 'https://re.starneko.com/'}
+Tools: ${ctfConfig?.tools || 'https://re.milksu.org/'}
 Difficulty: ${ctfConfig?.difficulty || 'Easy'} | Category: ${ctfConfig?.category || 'RE'}
 </span>`
       }
@@ -439,7 +439,7 @@ Difficulty: ${ctfConfig?.difficulty || 'Easy'} | Category: ${ctfConfig?.category
 Analyze the challenge to get the key.
 Download: ${escapeHtml(getDownloadUrl())}
 
-    Tools: ${escapeHtml(ctfConfig?.tools || 'https://re.starneko.com/')}
+    Tools: ${escapeHtml(ctfConfig?.tools || 'https://re.milksu.org/')}
     Difficulty: ${ctfConfig?.difficulty || 'Easy'} | Category: ${ctfConfig?.category || 'RE'}
 </span>`
       }

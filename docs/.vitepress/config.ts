@@ -343,13 +343,13 @@ export default defineConfig({
     // Other meta tags
     ['link', { rel: 'stylesheet', href: '/custom.css' }],
     ['link', { rel: 'sitemap', type: 'application/xml', href: '/sitemap.xml' }],
-    ['link', { rel: 'canonical', href: 'https://starneko.com' }],
+    ['link', { rel: 'canonical', href: 'https://milksu.org' }],
 
     // Open Graph meta tags
     ['meta', { property: 'og:title', content: '牛奶喵的笨蛋笔记 - starneko / misakabit' }],
     ['meta', { property: 'og:type', content: 'website' }],
-    ['meta', { property: 'og:url', content: 'https://starneko.com' }],
-    ['meta', { property: 'og:image', content: 'https://starneko.com/img/m2.PNG' }],
+    ['meta', { property: 'og:url', content: 'https://milksu.org' }],
+    ['meta', { property: 'og:image', content: 'https://milksu.org/img/m2.PNG' }],
     ['meta', { property: 'og:site_name', content: '牛奶喵的笨蛋笔记' }],
     ['meta', { property: 'og:description', content: 'starneko / misakabit (牛奶猫 / 御坂晚) 的系统安全研究笔记 - System Security Hunter. Python/Go/Rust. MSCS at CU Boulder.' }],
 
@@ -359,7 +359,7 @@ export default defineConfig({
     ['meta', { name: 'twitter:creator', content: '@StarNekOvO' }],
     ['meta', { name: 'twitter:title', content: '牛奶喵的笨蛋笔记 - starneko / misakabit' }],
     ['meta', { name: 'twitter:description', content: 'starneko / misakabit (牛奶猫 / 御坂晚) 的系统安全研究笔记 - System Security Hunter' }],
-    ['meta', { name: 'twitter:image', content: 'https://starneko.com/img/m2.PNG' }],
+    ['meta', { name: 'twitter:image', content: 'https://milksu.org/img/m2.PNG' }],
 
     // JSON-LD structured data for better SEO
     ['script', { type: 'application/ld+json' }, JSON.stringify({
@@ -367,8 +367,8 @@ export default defineConfig({
       '@type': 'Person',
       name: 'starneko',
       alternateName: ['misakabit', '牛奶猫', '御坂晚', 'StarNekOvO'],
-      url: 'https://starneko.com',
-      image: 'https://starneko.com/img/m2.PNG',
+      url: 'https://milksu.org',
+      image: 'https://milksu.org/img/m2.PNG',
       sameAs: [
         'https://github.com/StarNekOvO',
         'https://x.com/StarNekOvO',
@@ -383,7 +383,7 @@ export default defineConfig({
       '@type': 'WebSite',
       name: '牛奶喵的笨蛋笔记',
       alternateName: ['StarNekOvO Blog', 'starneko notes', 'misakabit notes'],
-      url: 'https://starneko.com',
+      url: 'https://milksu.org',
       description: 'starneko / misakabit (牛奶猫 / 御坂晚) 的系统安全研究笔记与 Writeup',
       author: {
         '@type': 'Person',
@@ -411,8 +411,8 @@ export default defineConfig({
       {
         text: 'Tools',
         items: [
-          { text: 'RzWeb <span style="font-size: 0.65em; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2px 6px; border-radius: 4px; margin-left: 6px; font-weight: 500;">Binary RE</span>', link: 'https://re.starneko.com/' },
-          { text: 'CyberChef <span style="font-size: 0.65em; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; padding: 2px 6px; border-radius: 4px; margin-left: 6px; font-weight: 500;">Misc</span>', link: 'https://misc.starneko.com/' },
+          { text: 'RzWeb <span style="font-size: 0.65em; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2px 6px; border-radius: 4px; margin-left: 6px; font-weight: 500;">Binary RE</span>', link: 'https://re.milksu.org/' },
+          { text: 'CyberChef <span style="font-size: 0.65em; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; padding: 2px 6px; border-radius: 4px; margin-left: 6px; font-weight: 500;">Misc</span>', link: 'https://misc.milksu.org/' },
           { text: '图片工具 <span style="font-size: 0.65em; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 2px 6px; border-radius: 4px; margin-left: 6px; font-weight: 500;">NEW</span>', link: '/tools/image-tools' },
           { text: '编码解码', link: '/tools/encoder' },
           { text: '进制转换', link: '/tools/base-converter' },
