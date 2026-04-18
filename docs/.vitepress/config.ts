@@ -463,7 +463,9 @@ export default defineConfig({
   markdown: {
     lineNumbers: true,
     languageAlias: {
-      'nasm': 'asm'
+      'nasm': 'asm',
+      'smali': 'java',
+      'blueprint': 'json'
     }
   },
 
