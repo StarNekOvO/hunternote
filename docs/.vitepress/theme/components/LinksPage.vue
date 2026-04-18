@@ -74,6 +74,17 @@ const friends = [
     ]
   },
   {
+    name: 'SorrowRain的小窝',
+    link: 'https://0xsr.dev/',
+    avatar: 'https://0xsr.dev/avatar-fixed.jpeg',
+    desc: '23 y.r.｜产品经理｜兴趣至上的普通人',
+    socialLinks: [
+      { type: 'github', url: 'https://github.com/sorrowrain', name: 'GitHub' },
+      { type: 'twitter', url: 'https://x.com/0xSorrowRain', name: 'Twitter' },
+      { type: 'telegram', url: 'https://t.me/SorrowRain', name: 'Telegram' }
+    ]
+  },
+  {
     name: '编汐译梦CacheTide',
     link: 'https://www.cachetide.top',
     avatar: 'https://www.cachetide.top/favicon.jpg',
