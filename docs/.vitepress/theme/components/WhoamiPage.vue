@@ -1,11 +1,11 @@
 <template>
   <div class="terminal-container" v-if="!isExited">
     <div class="terminal-content" ref="terminalBody" @click="focusInput($event)">
-      <pre class="ascii-art"> ____  _              _   _      _
-/ ___|| |_ __ _ _ __ | \ | | ___| | _____
-\___ \| __/ _` | '__|  \| |/ _ \ |/ / _ \
- ___) | || (_| | |  | |\  |  __/   &lt; (_) |
-|____/ \__\__,_|_|  |_| \_|\___|_|\_\___/</pre>
+      <pre class="ascii-art"> __  __  _  _  _     ____   _   _
+|  \/  |(_)| || | __/ ___| | | | |
+| |\/| || || || |/ /\___ \ | | | |
+| |  | || || ||   &lt;  ___) || |_| |
+|_|  |_||_||_||_|\_\|____/  \___/</pre>
       <div v-for="(block, idx) in visibleBlocks" :key="idx" class="output-block">
         <div class="command-line" v-if="block.command">
           <span class="prompt">{{ block.prompt }}</span>
@@ -113,9 +113,9 @@ Freelancer`
             children: {
               'TODO.2026': {
                 type: 'file',
-                content: `[ ] voice surgery prep
-[ ] toefl (no human examiners pls)
-[ ] become a qualified bug bounty hunter`
+                content: `[x] vfs surgery prep
+[ ] ielts (no human examiners pls)
+[ ] become a qualified bug bounty hunter & reverser`
               },
               'interests': {
                 type: 'dir',

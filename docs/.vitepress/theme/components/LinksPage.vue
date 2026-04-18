@@ -55,6 +55,16 @@ onMounted(() => {
 
 const friends = [
   {
+    name: 'ZianTT',
+    link: 'https://ziantt.top/',
+    avatar: 'https://ziantt.top/_astro/avatar.rremnUwR.jpg',
+    desc: 'KEEP LOVING, KEEP LIVING',
+    socialLinks: [
+      { type: 'github', url: 'https://github.com/ZianTT', name: 'GitHub' },
+      { type: 'twitter', url: 'https://twitter.com/ZianTT_Official', name: 'Twitter' }
+    ]
+  },
+  {
     name: 'Hikaru Lab',
     link: 'https://www.mengxiblog.top/',
     avatar: 'https://img-cn.static.isla.fan/2025/10/19/68f4824b7c228.png',
